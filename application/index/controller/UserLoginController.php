@@ -16,10 +16,15 @@ class UserLoginController extends Controller
 
     //登录界面
     public function log(){
-        return view();
+        if (session('token'))
+            return $this->fetch('group');
+        else
+            return view();
     }
 
     public function group(){
+        if (!session('token'))
+            $this->error('非法访问！请先登录','user_login_controller/log');
         return view();
     }
 
@@ -77,8 +82,17 @@ class UserLoginController extends Controller
         //判断密码是否正确
         $password = Request::instance()->param('password');
         $repassword = $User->where('email',"$email")->find();
-        if ($repassword->password == md5($password))
-            $this->success('登录成功！','user_login_controller/group');
+        if ($repassword->password == md5($password)) {
+            session('token',"$repassword->user_name");
+            //如果分组为0，即为没有分组，转向选择分组界面
+            if ($repassword->group_id == 0) {
+                $this->success('登录成功！', "user_login_controller/group");
+            }
+            //如果有分组，转向用户主页
+            else{
+                $this->success('登陆成功','');
+            }
+        }
         else
             $this->error('邮箱或密码错误！');
     }
