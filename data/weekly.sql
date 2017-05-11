@@ -84,7 +84,7 @@ CREATE TABLE `user` (
 --    6       软件测试组
 --    7       Java组
 --  SQL：
-INSERT INTO groupe VALUE(1,'PHP组'),(2,'Web前端组'),
+INSERT INTO wa_group VALUE(1,'PHP组'),(2,'Web前端组'),
                           (3,'UI设计组'),(4,'Android组'),
                           (5,'产品经理组'),(6,'软件测试组'),
                           (7,'Java组');
