@@ -36,8 +36,8 @@ CREATE TABLE `attend` (
 -- ----------------------------
 -- Table structure for group
 -- ----------------------------
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE `group` (
+DROP TABLE IF EXISTS `wa_group`;
+CREATE TABLE `wa_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '分组id',
   `group_name` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '分组名称',
   PRIMARY KEY (`id`)
@@ -72,3 +72,20 @@ CREATE TABLE `user` (
   `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '分组id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
+
+-- -----------------------------
+-- 分组id和名称的对应关系
+--    id      分组
+--    1       PHP组
+--    2       Web前端组
+--    3       UI设计组
+--    4       Android组
+--    5       产品经理组
+--    6       软件测试组
+--    7       Java组
+--  SQL：
+INSERT INTO groupe VALUE(1,'PHP组'),(2,'Web前端组'),
+                          (3,'UI设计组'),(4,'Android组'),
+                          (5,'产品经理组'),(6,'软件测试组'),
+                          (7,'Java组');
+-- -----------------------------
