@@ -17,7 +17,7 @@ class UserLoginController extends Controller
     //登录界面
     public function log(){
         if (session('token'))
-            return $this->fetch('group');
+            $this->error('你已登录！','user_login_controller/login');
         else
             return view();
     }
@@ -58,6 +58,7 @@ class UserLoginController extends Controller
 
         //将用户数据写入数据库
         if( $User->allowField(true)->save(input('post.')))
+
             $this->success('注册成功,即将转向登陆界面','user_login_controller/log');
         else
             $this->error($User->getError());
@@ -65,13 +66,17 @@ class UserLoginController extends Controller
 
     //登录
     public function login(){
+        //如果session文件存在，则跳转到用户界面(地址未确定)
+        if (session('token')){
+            $this->redirect('http://www.test.com');
+        }
         $User = new UserLogin();
         $captcha = new Captcha();
 
         //判断验证码是否正确
         $code = Request::instance()->param('code');
         if (!$captcha->check($code))
-            $this->error('验证码错误！');
+            $this->error('验证码错误！','user_login_controller/log');
 
         //判断输入的邮箱是否已注册
         $email = Request::instance()->param('email');
@@ -81,22 +86,39 @@ class UserLoginController extends Controller
 
         //判断密码是否正确
         $password = Request::instance()->param('password');
-        $repassword = $User->where('email',"$email")->find();
-        if ($repassword->password == md5($password)) {
-            session('token',"$repassword->user_name");
+        $info = $User->where('email',"$email")->find();
+        if ($info->password == md5($password)) {
+            session('token',"$info->id");
             //如果分组为0，即为没有分组，转向选择分组界面
-            if ($repassword->group_id == 0) {
+            if ($info->group_id == 0) {
                 $this->success('登录成功！', "user_login_controller/group");
             }
-            //如果有分组，转向用户主页
+            //如果有分组，转向用户主页 (地址未确定)
             else{
-                $this->success('登陆成功','');
+                $this->success('登陆成功','user_login_controller/test');
             }
         }
         else
             $this->error('邮箱或密码错误！');
     }
 
+    public function join(){
+        if (!session('token'))
+            $this->error('非法访问！请先登录','user_login_controller/log');
+        $id = session('token');
+        $group = $_GET['group'];
+        if ($group > 7 || $group <1)
+            $this->error('非法参数！');
 
+        $User = new UserLogin();
+        $res = $User->where('id',"$id")->setField('group_id',$group);
+        if ($res){
+            //跳转到用户主页(地址未确定)
+            $this->success('你已成功加入！', "user_login_controller/test");
+        }
+        else{
+            $this->error('加入分组失败！请稍候重试！');
+        }
+    }
 
 }
