@@ -102,14 +102,18 @@ class UserLoginController extends Controller
             $this->error('邮箱或密码错误！');
     }
 
+    //未加入分组的用户通过此方法选择分组
+    //****此方法不进行用户是否已加入分组的判断***
     public function join(){
         if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
+        //通过session获取用户id，获取用户要加入的分组
         $id = session('token');
         $group = $_GET['group'];
+        //防止用户通过修改地址传递非法参数
         if ($group > 7 || $group <1)
             $this->error('非法参数！');
-
+        //将数据更新到数据库
         $User = new UserLogin();
         $res = $User->where('id',"$id")->setField('group_id',$group);
         if ($res){
