@@ -66,7 +66,7 @@ class UserLoginController extends Controller
 
     //登录
     public function login(){
-        //如果session文件存在，则跳转到用户界面(地址未确定)
+        //如果session文件存在，则跳转到用户界面(地址未确定)！！！！！！
         if (session('token')){
             $this->redirect('http://www.test.com');
         }
@@ -93,7 +93,7 @@ class UserLoginController extends Controller
             if ($info->group_id == 0) {
                 $this->success('登录成功！', "user_login_controller/group");
             }
-            //如果有分组，转向用户主页 (地址未确定)
+            //如果有分组，转向用户主页 (地址未确定)！！！！！！
             else{
                 $this->success('登陆成功','user_login_controller/test');
             }
@@ -117,7 +117,7 @@ class UserLoginController extends Controller
         $User = new UserLogin();
         $res = $User->where('id',"$id")->setField('group_id',$group);
         if ($res){
-            //跳转到用户主页(地址未确定)
+            //跳转到用户主页(地址未确定)！！！！！！！！！！
             $this->success('你已成功加入！', "user_login_controller/test");
         }
         else{
