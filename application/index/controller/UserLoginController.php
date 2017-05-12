@@ -121,7 +121,7 @@ class UserLoginController extends Controller
             $this->success('你已成功加入！', "user_login_controller/test");
         }
         else{
-            $this->error('加入分组失败！请稍候重试！');
+            $this->error('加入分组失败或你已是该组成员！');
         }
     }
 
