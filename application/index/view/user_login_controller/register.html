@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2>注册</h2>
-<form action="http://localhost__URL__/add" method="post">
+<form action="{:url('user_login_controller/add')}" method="post">
     午安网昵称:<input type="text" name="wuan_name" required><br/>
     邮箱:<input type="text" name="email" required><br/>
     QQ:<input type="text" name="QQ" required><br/>
@@ -17,5 +17,6 @@
     <input type="submit" value="注册">
     <input type="reset" value="重新填写">
 </form>
+<br/><a href="{:url('user_login_controller/log')}">已有帐号？点击登录</a>
 </body>
 </html>
