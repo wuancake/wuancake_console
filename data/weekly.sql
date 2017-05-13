@@ -73,6 +73,14 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
+-- ----------------------------
+-- Table structure for week
+-- ----------------------------
+DROP TABLE IF EXISTS `week`;
+CREATE TABLE `week` (
+  `num` int(11) DEFAULT NULL COMMENT '最大星期数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 -- -----------------------------
 -- 分组id和名称的对应关系
 --    id      分组

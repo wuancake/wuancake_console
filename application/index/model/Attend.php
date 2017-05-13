@@ -7,6 +7,10 @@ use think\Model;
 
 class Attend extends Model
 {
+    public function get_max_week()
+    {
+        return Db::table('week')->find();
+    }
     public function get_all_user($week_num)
     {
         $rs= Db::name('user')
@@ -14,7 +18,7 @@ class Attend extends Model
             ->field('id AS user_id,user_name,email AS user_email,user.group_id,status')
             ->bind(['week_num'=>$week_num])
             ->order('status DESC')
-            ->paginate(10);
+            ->select();
         return $rs;
     }
     public function get_list_attend($user_id)
@@ -42,6 +46,15 @@ class Attend extends Model
             ->bind(['user_id'=>$user_id])
             ->update([
                 'group_id'  => 0,
+            ]);
+    }
+    public function add_max_week($week)
+    {
+        Db::name('week')
+            ->where('num', ':week')
+            ->bind(['week'=>$week])
+            ->update([
+                'num'  => $week+1,
             ]);
     }
 }

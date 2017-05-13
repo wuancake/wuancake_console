@@ -2,9 +2,10 @@
 
 namespace app\index\controller;
 
-use think\Controller;
 use app\index\model\Attend as AttendModel;
-use think\Db;
+use think\Controller;
+use think\Log;
+
 
 class Attend extends Controller
 {
@@ -14,11 +15,18 @@ class Attend extends Controller
         //当前周数
         $week_num = floor((time()-strtotime('2015-11-02'))/604800);
         $attend = new AttendModel();
+        $max_week = $attend->get_max_week()['num'];
+        if($week_num<$max_week)
+        {
+            echo '本周已考勤';
+            //Log::write('本周已考勤','notice');
+            //$this->redirect('user_login_controller/log');
+            exit;
+        }
         //查询所有注册用户本周的考勤情况
         $all = $attend->get_all_user($week_num);
-        $all_user = $all->items();
         //合并之前的考勤情况并自动踢人
-        foreach($all_user as $key => $value)
+        foreach($all as $key => $value)
         {
             $value['status'] = $value['status']?$value['status']:1;
             $list_attend = $attend->get_list_attend($value['user_id']);
@@ -44,5 +52,8 @@ class Attend extends Controller
             }
 
         }
+        $attend->add_max_week($week_num);
+        echo '自动考勤成功！';
+        //Log::record('自动考勤成功！');
     }
 }
