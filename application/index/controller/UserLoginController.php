@@ -66,7 +66,7 @@ class UserLoginController extends Controller
 
     //登录
     public function login(){
-        //如果session文件存在，则跳转到用户界面(地址未确定)
+        //如果session文件存在，则跳转到用户界面(地址未确定)！！！！！！
         if (session('token')){
             $this->redirect('http://www.test.com');
         }
@@ -93,7 +93,7 @@ class UserLoginController extends Controller
             if ($info->group_id == 0) {
                 $this->success('登录成功！', "user_login_controller/group");
             }
-            //如果有分组，转向用户主页 (地址未确定)
+            //如果有分组，转向用户主页 (地址未确定)！！！！！！
             else{
                 $this->success('登陆成功','user_login_controller/test');
             }
@@ -102,22 +102,26 @@ class UserLoginController extends Controller
             $this->error('邮箱或密码错误！');
     }
 
+    //未加入分组的用户通过此方法选择分组
+    //****此方法不进行用户是否已加入分组的判断***
     public function join(){
         if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
+        //通过session获取用户id，获取用户要加入的分组
         $id = session('token');
         $group = $_GET['group'];
+        //防止用户通过修改地址传递非法参数
         if ($group > 7 || $group <1)
             $this->error('非法参数！');
-
+        //将数据更新到数据库
         $User = new UserLogin();
         $res = $User->where('id',"$id")->setField('group_id',$group);
         if ($res){
-            //跳转到用户主页(地址未确定)
+            //跳转到用户主页(地址未确定)！！！！！！！！！！
             $this->success('你已成功加入！', "user_login_controller/test");
         }
         else{
-            $this->error('加入分组失败！请稍候重试！');
+            $this->error('加入分组失败或你已是该组成员！');
         }
     }
 
