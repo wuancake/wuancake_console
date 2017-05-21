@@ -62,12 +62,12 @@
                         <label class="res-lab">当前周：</label><span class="res-info">第{$userres.week_num}周</span>
                     </li>
                     <li>
-                        <label class="res-lab">请假状态：</label><span class="res-info" style="color:#f00;">{if condition = "$userres.status eq 1"} 当前正在假期中，无法请假{elseif condition = "$userres.status eq 0" /}已提交周报，不能请假{elseif condition = "$userres.status eq 3" /}您已连续请假3周，不能继续请假{else /}未在假期中，可以请假{/if}</span>
+                        <label class="res-lab">请假状态：</label><span class="res-info" style="color:#f00;">{if condition = "$userres.status eq 3"} 当前正在假期中，无法请假{elseif condition = "$userres.status eq 2" /}已提交周报，不能请假{elseif condition = "$userres.status eq 5" /}您已连续请假3周，不能继续请假{else /}未在假期中，可以请假{/if}</span>
                     </li>
                     <li>
                         <label class="res-lab">请假周数：</label>
                         <span class="res-info">
-                            <select name="leave_num" id="" {if condition = "($userres.status eq 1) OR ($userres.status eq 0) OR ($userres.status eq 3)"}disabled{/if}>
+                            <select name="leave_num" id="" {if condition = "($userres.status eq 2) OR ($userres.status eq 3) OR ($userres.status eq 5)"}disabled{/if}>
                                 <option value="1">请假1周</option>
                                 <option value="2">请假2周</option>
                                 <option value="3">请假3周</option>
@@ -76,7 +76,7 @@
                     </li>
                     <li>
                         <label class="res-lab" style="display: block;float: left;">请假理由：</label><span class="res-info">
-                        <textarea name="text" id="" cols="30" rows="10" placeholder="可选1-3周，需写请假理由，该周已请假或连续请假3周，无法继续请假；但可正常提交周报，同时取消请假状态。" {if condition = "($userres.status eq 1) OR ($userres.status eq 0) OR ($userres.status eq 3)"}disabled{/if}></textarea></span>
+                        <textarea name="text" id="" cols="30" rows="10" placeholder="可选1-3周，需写请假理由，该周已请假或连续请假3周，无法继续请假；但可正常提交周报，同时取消请假状态。" {if condition = "($userres.status eq 2) OR ($userres.status eq 3) OR ($userres.status eq 5)"}disabled{/if}></textarea></span>
                     </li>
                     
                     <li>
@@ -85,7 +85,7 @@
                         </label>
                         <span class="res-info">
                             <input type="submit" value="提交请假申请"
-                                   {if condition = "($userres.status eq 1) OR ($userres.status eq 0) OR ($userres.status eq 3)"}disabled{/if}>
+                                   {if condition = "($userres.status eq 2) OR ($userres.status eq 3) OR ($userres.status eq 5)"}disabled{/if}>
                         </span>
                     </li>
                 </ul>

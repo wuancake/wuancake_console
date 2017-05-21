@@ -62,22 +62,22 @@
                         <label class="res-lab">当前周：</label><span class="res-info"> 第{$userres.week_num}周</span>
                     </li>
                     <li>
-                        <input type="hidden" name="status" value="0">
+                        <input type="hidden" name="status" value="2">
                         <label class="res-lab">报告状态：</label>
                         <span class="res-info" style="color:#f00;">
-                            {if condition = "$userres.status == 0"}已提交过周报，不用再次提交
-                            {elseif condition = "$userres.status == 1" /}本周已请假，仍可交周报，提交后撤消请假状态
+                            {if condition = "$userres.status == 2"}已提交过周报，不用再次提交
+                            {elseif condition = "$userres.status == 3" /}本周已请假，仍可交周报，提交后撤消请假状态
                             {else /}本周未交周报
                             {/if}
                         </span>
                     </li>
                     <li>
                         <label class="res-lab" style="display: block;float: left;">提交周报：</label><span class="res-info"> 
-                        <textarea name="text" id="" cols="30" rows="10" placeholder="本周已完成内容,遇到问题,下周计划,作品链接（可选）" {if condition = "$userres.status == 0"}disabled{/if}></textarea></span>
+                        <textarea name="text" id="" cols="30" rows="10" placeholder="本周已完成内容,遇到问题,下周计划,作品链接（可选）" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
                     </li>
                     
                     <li>
-                        <label class="res-lab"></label><span class="res-info"><input type="submit" value="提交周报"  {if condition = "$userres.status == 0"}disabled{/if}></span>
+                        <label class="res-lab"></label><span class="res-info"><input type="submit" value="提交周报"  {if condition = "$userres.status == 2"}disabled{/if}></span>
                     </li>
                 </ul>
                 </form>
