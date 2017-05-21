@@ -19,32 +19,36 @@ class Attendlist extends Controller
 		$userinfo = $g->getlist();
 		//print_r($userinfo);
 	//	print_r($userinfo);
-		
+
 	for($j=0;$j<count($userinfo);$j++)
 	{
-		if(strlen($userinfo[$j]['status'])<10)
-		{
-			$limet = strlen($userinfo[$j]['status']);
-		}
-		else
-		{
-			$limet = 10;
-		}
-	    for($i=0;$i<$limet;$i++)
-	    {
-	    if(substr($userinfo[$j]['status'],$i,1) == '1')
-	    {
-	    	$arr[$j][$i]='未提交 ';
-	    }
-	    if(substr($userinfo[$j]['status'],$i,1) == '2')
-	    {
-	    	$arr[$j][$i]='提交 ';
-	    }
-	    if(substr($userinfo[$j]['status'],$i,1) == '3')
-	    {
-	    	$arr[$j][$i]='请假 ';
-	    }
-	    $userinfo[$j]['s'] = implode($arr[$j]);
+		if($userinfo[$j]['status']){    //此处加了一个attend.status为空时的判断  by CC 20170522
+			if(strlen($userinfo[$j]['status'])<10)
+			{
+				$limet = strlen($userinfo[$j]['status']);
+			}
+			else
+			{
+				$limet = 10;
+			}
+		    for($i=0;$i<$limet;$i++)
+		    {
+		    if(substr($userinfo[$j]['status'],$i,1) == '1')
+		    {
+		    	$arr[$j][$i]='未提交 ';
+		    }
+		    if(substr($userinfo[$j]['status'],$i,1) == '2')
+		    {
+		    	$arr[$j][$i]='提交 ';
+		    }
+		    if(substr($userinfo[$j]['status'],$i,1) == '3')
+		    {
+		    	$arr[$j][$i]='请假 ';
+		    }
+		    $userinfo[$j]['s'] = implode($arr[$j]);
+			}
+		}else{
+			$userinfo[$j]['s'] = '首次登陆';
 		}
 	}
 		//echo ($userinfo[0]['status']);
