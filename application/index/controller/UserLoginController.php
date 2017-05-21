@@ -11,10 +11,13 @@ use think\Session;
 
 class UserLoginController extends Controller
 {
-    //注册界面
-    public function register(){
+    public function test(){
         return view();
     }
+//    //注册界面
+//    public function register(){
+//        return view();
+//    }
 
     //登录界面
     public function log(){
@@ -48,16 +51,16 @@ class UserLoginController extends Controller
             $this->error('非法访问！请先登录','user_login_controller/log');
         return view();
     }
-    public function check_cap()
-    {
-        $captcha = new Captcha();
-        $code = Request::instance()->param('code');
-        if (!$captcha->check($code)){
-            echo '验证码不正确';
-        }else{
-            echo '验证码正确!';
-        }
-    }
+//    public function check_cap()
+//    {
+//        $captcha = new Captcha();
+//        $code = Request::instance()->param('code');
+//        if (!$captcha->check($code)){
+//            echo '验证码不正确';
+//        }else{
+//            echo '验证码正确!';
+//        }
+//    }
 
     //注册
     public function add(){
@@ -65,10 +68,10 @@ class UserLoginController extends Controller
         $captcha = new Captcha();
         $Attend = new Attend();
 
-        //判断验证码是否正确
-        $code = Request::instance()->param('code');
-        if (!$captcha->check($code))
-            $this->error('验证码错误！');
+//        //判断验证码是否正确
+//        $code = Request::instance()->param('code');
+//        if (!$captcha->check($code))
+//            $this->error('验证码错误！');
 
         //获取数据
         $username = Request::instance()->param('user_name');
@@ -108,10 +111,10 @@ class UserLoginController extends Controller
         $User = new UserLogin();
         $captcha = new Captcha();
 
-        //判断验证码是否正确
-        $code = Request::instance()->param('code');
-        if (!$captcha->check($code))
-            $this->error('验证码错误！','user_login_controller/log');
+//        //判断验证码是否正确
+//        $code = Request::instance()->param('code');
+//        if (!$captcha->check($code))
+//            $this->error('验证码错误！','user_login_controller/log');
 
         //判断输入的邮箱是否已注册
         $email = Request::instance()->param('email');

@@ -1,17 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-</head>
-<body>
-<h2>登录</h2>
-<form action="{:url('user_login_controller/login')}" method="post">
-    邮箱:<input type="text" name="email" required><br/>
-    密码:<input type="password" name="password" required><br/>
-    验证码:<input type="text" name="code">{:captcha_img()}<br/>
-    <input type="submit" value="登录"><input type="reset" value="重新输入">
-</form>
-<a href="{:url('user_login_controller/register')}">没有帐号？点击注册</a>
-</body>
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>用户登录</title>
+        <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/animate-custom.css" />
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1><span>午安煎饼计划</span></h1>
+				<nav class="codrops-demos">
+					<span>请先<strong>登录</strong>或者<strong>注册</strong></span>
+				</nav>
+            </header>
+            <section>				
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  action="{:url('user_login_controller/login')}" autocomplete="on" method="post">
+                                <h1>Log in</h1> 
+                                <p> 
+                                    <label for="email" class="uname" data-icon="u" >您的电子邮件</label>
+                                    <input id="email" name="email" required="required" type="text" placeholder="请输入电子邮箱地址"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p">密码</label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="请输入密码" />
+                                </p>
+                                <p class="login button"> 
+                                    <input type="submit" value="登录" />
+								</p>
+                                <p class="change_link">
+									还不是会员？
+									<a href="#toregister" class="to_register">加入我们</a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form  action="{:url('user_login_controller/add')}" autocomplete="on" method="post">
+                                <h1> Sign up </h1> 
+                                <p> 
+                                    <label for="user_name" class="uname" data-icon="u">用户名</label>
+                                    <input id="user_name" name="user_name" required="required" type="text" placeholder="请输入用户名" />
+                                </p>
+                                <p> 
+                                    <label for="email" class="youmail" data-icon="e" > 邮箱地址 </label>
+                                    <input id="email" name="email" required="required" type="text" placeholder="请输入电子邮箱地址"/>
+                                </p>
+                                <p>
+                                    <label for="wuan_name" class="wuan_name" data-icon="e" > 午安网昵称 </label>
+                                    <input id="wuan_name" name="wuan_name" required="required" type="text" placeholder="请输入你的午安网昵称"/>
+                                </p>
+                                <p>
+                                    <label for="QQ" class="QQ" data-icon="e" > QQ </label>
+                                    <input id="QQ" name="QQ" required="required" type="text" placeholder="请输入你的QQ号"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p">密码</label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="请输入密码"/>
+                                </p>
+                                <p> 
+                                    <label for="repassword" class="youpasswd" data-icon="p">确认密码</label>
+                                    <input id="repassword" name="repassword" required="required" type="password" placeholder="请再次输入密码"/>
+                                </p>
+                                <p class="signin button"> 
+									<input type="submit" value="注册"/>
+								</p>
+                                <p class="change_link">  
+									已有帐号 ?
+									<a href="#tologin" class="to_register"> 点击登录 </a>
+								</p>
+                            </form>
+                        </div>	
+                    </div>
+                </div>  
+            </section>
+<div style="text-align:center;clear:both">
+</div>	
+        </div>
+    </body>
 </html>
