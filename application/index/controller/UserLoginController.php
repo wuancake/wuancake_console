@@ -2,6 +2,7 @@
 
 namespace app\index\controller;
 
+use app\index\model\Attend;
 use app\index\model\UserLogin;
 use think\Controller;
 use think\Request;
@@ -61,6 +62,7 @@ class UserLoginController extends Controller
     public function add(){
         $User = new UserLogin();
         $captcha = new Captcha();
+        $Attend = new Attend();
 
         //判断验证码是否正确
         $code = Request::instance()->param('code');
@@ -86,9 +88,12 @@ class UserLoginController extends Controller
             $this->error('该邮箱已经注册，请使用邮箱账户登录');
 
         //将用户数据写入数据库
-        if( $User->allowField(true)->save(input('post.')))
-
+        if( $User->allowField(true)->save(input('post.'))){
+            $Attend->user_id = $User->id;
+            $Attend->group_id = 0;
+            $Attend->save();
             $this->success('注册成功,即将转向登陆界面','user_login_controller/log');
+        }
         else
             $this->error($User->getError());
     }

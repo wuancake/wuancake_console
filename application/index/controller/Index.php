@@ -6,10 +6,10 @@ use think\Request;
 use think\Session;
 class Index extends Controller
 {
-	// 浏览周报&&请假理由
+    // 浏览周报&&请假理由
     public function index()
     {
-    	if (!session('token'))
+        if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
         $_SESSION["think"]['username'] = $userres['user_name'];
@@ -20,7 +20,7 @@ class Index extends Controller
     // 添加周报
     public function addreport()
     {
-    	if (!session('token'))
+        if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
         $data['id']=session('token');
         //$userres=db('user')->where('id','1')->select();
@@ -37,13 +37,13 @@ class Index extends Controller
     // 添加请假理由
     public function addleave()
     {
-    	if (!session('token'))
+        if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
         $data['id']=session('token');
         $userres = \think\Db::name('user')->where('id',$data['id'])->find();
         //获得当前周数
         $userres['week_num'] = floor((time()-strtotime('2015-11-02'))/604800);
-        
+
         $reportres = \think\Db::name('report')->where('user_id','eq',$data['id'])->where('week_num','eq',$userres['week_num'])->find();
         //statue 为 0 表示已经提交周报，status 为 1 表示已经请假，status 为 2 表示可以请假，status 为 3 表示已请假3周，不能继续请假
         //判断：如果学员处于0或者1状态，不能请假
@@ -51,7 +51,7 @@ class Index extends Controller
 
         $va_num = 0;//统计最近三周请假次数
         for ($i=0,$num = $userres['week_num'];$i<3;$i++){
-            
+
             $vacation = \think\Db::name('report')->where('user_id','eq',$data['id'])->where('week_num','eq',$num)->find();
             if($vacation['status'] == 1){$va_num++;}
             $num--;
@@ -63,16 +63,16 @@ class Index extends Controller
     //提交请假申请
     public function add()
     {
-	    	if (!session('token'))
-	            $this->error('非法访问！请先登录','user_login_controller/log');
-            if(request()->isPost()){
+        if (!session('token'))
+            $this->error('非法访问！请先登录','user_login_controller/log');
+        if(request()->isPost()){
             $data=[
                 'user_id'=>input('user_id'),
                 'group_id'=>input('group_id'),
                 'status'=>1,
                 'week_num'=>input('week_num'),
                 'text'=>input('text'),
-               // 'reply_time'=>time(),
+                // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),//提交时间
                 //'leave_num'=>,//请假周数
             ];
@@ -82,7 +82,7 @@ class Index extends Controller
                 //请假3周，添加3次，本周及未来的2周也同时添加status为1
                 for($i=0;$i<$leave_num;$i++){
                     $db= \think\Db::name('report')->insert($data);
-                    $data['week_num']++; 
+                    $data['week_num']++;
                 }
                 if($db){
                     return $this->success('提交请假成功！','addleave');
@@ -92,26 +92,26 @@ class Index extends Controller
             }else{
                 return $this->error($validate->getError());
             }
-            
+
         }
     }
 
     //更新周报或者提交新周报
     public function update()
     {
-			if (!session('token'))
-	            $this->error('非法访问！请先登录','user_login_controller/log');
-            if(request()->isPost()){
+        if (!session('token'))
+            $this->error('非法访问！请先登录','user_login_controller/log');
+        if(request()->isPost()){
             $data=[
                 'user_id'=>input('user_id'),
                 'group_id'=>input('group_id'),
                 'status'=>input('status'),
                 'week_num'=>input('week_num'),
                 'text'=>input('text'),
-               // 'reply_time'=>time(),
+                // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),
             ];
-            $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq','1')->count();
+            $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq',$data['user_id'])->count();
             if(!$leaveres){
                 $validate = \think\Loader::validate('report');
                 if($validate->check($data)){
@@ -129,15 +129,15 @@ class Index extends Controller
                 if($db){
                     return $this->success('提交周报成功！','addreport');
                 }else{
-                    return $this->error('提交周报失败！');
+                    return $this->error('提交周报失败！0');
                 }
             }
         }
     }
 
     public function logout(){
-    	Session::clear();
-    	$this->success('登出成功','index/index');
+        Session::clear();
+        $this->success('登出成功','index/index');
     }
 
 

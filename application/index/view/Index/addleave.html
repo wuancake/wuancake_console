@@ -33,7 +33,7 @@
                 <h1>请假申请单</h1>
             </div>
             <div class="result-content">
-                <form action="__ROOT__/index.php/index/index/add" method="post">
+                <form action="{:url('index/add')}" method="post">
                 <ul class="sys-info-list">
                     <li>
                         <input type="hidden" name="user_id" value="{$userres.id}">
@@ -80,7 +80,13 @@
                     </li>
                     
                     <li>
-                        <label class="res-lab"></label><span class="res-info"><input type="submit" value="提交请假申请" {if condition = "($userres.status eq 1) OR ($userres.status eq 0) OR ($userres.status eq 3)"}disabled{/if}></span>
+                        <label class="res-lab">
+
+                        </label>
+                        <span class="res-info">
+                            <input type="submit" value="提交请假申请"
+                                   {if condition = "($userres.status eq 1) OR ($userres.status eq 0) OR ($userres.status eq 3)"}disabled{/if}>
+                        </span>
                     </li>
                 </ul>
                 </form>
