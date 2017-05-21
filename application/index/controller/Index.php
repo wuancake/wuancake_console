@@ -135,10 +135,6 @@ class Index extends Controller
         }
     }
 
-    public function logout(){
-        Session::clear();
-        $this->success('登出成功','index/index');
-    }
 
 
 }

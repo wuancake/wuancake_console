@@ -7,6 +7,7 @@ use app\index\model\UserLogin;
 use think\Controller;
 use think\Request;
 use think\captcha\Captcha;
+use think\Session;
 
 class UserLoginController extends Controller
 {
@@ -158,5 +159,12 @@ class UserLoginController extends Controller
             $this->error('加入分组失败或你已是该组成员！');
         }
     }
+
+    //登出功能 临时增加 20170521 by CC
+    public function logout(){
+        Session::clear();
+        $this->success('退出成功','index/index');
+    }
+
 
 }

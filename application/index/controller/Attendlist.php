@@ -9,7 +9,7 @@ class Attendlist extends Controller
 {
 	public function index()
 	{
-		echo "function index1";
+
 	}
 	public function getlist()
 	{
@@ -19,6 +19,7 @@ class Attendlist extends Controller
 		$userinfo = $g->getlist();
 		//print_r($userinfo);
 	//	print_r($userinfo);
+		
 	for($j=0;$j<count($userinfo);$j++)
 	{
 		if(strlen($userinfo[$j]['status'])<10)
