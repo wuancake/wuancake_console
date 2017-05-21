@@ -31,15 +31,15 @@ class Attendlist extends Controller
 		}
 	    for($i=0;$i<$limet;$i++)
 	    {
-	    if(substr($userinfo[$j]['status'],$i,1) == '0')
-	    {
-	    	$arr[$j][$i]='已签到 ';
-	    }
 	    if(substr($userinfo[$j]['status'],$i,1) == '1')
 	    {
-	    	$arr[$j][$i]='未签到 ';
+	    	$arr[$j][$i]='未提交 ';
 	    }
 	    if(substr($userinfo[$j]['status'],$i,1) == '2')
+	    {
+	    	$arr[$j][$i]='提交 ';
+	    }
+	    if(substr($userinfo[$j]['status'],$i,1) == '3')
 	    {
 	    	$arr[$j][$i]='请假 ';
 	    }
