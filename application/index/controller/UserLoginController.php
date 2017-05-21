@@ -22,10 +22,39 @@ class UserLoginController extends Controller
             return view();
     }
 
+    public function uploader(){
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('file');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->rule('md5_file($file)')->move(ROOT_PATH . 'public' . DS . 'uploads');
+        if($info){
+            // 成功上传后 获取上传信息
+            // 输出 jpg
+            echo $info->getExtension().'<br>';
+            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+            echo $info->getSaveName().'<br>';
+            // 输出 42a79759f284b767dfcb2a0197904287.jpg
+            echo $info->getFilename().'<br>';
+        }else{
+            // 上传失败获取错误信息
+            echo $file->getError();
+        }
+    }
+
     public function group(){
         if (!session('token'))
             $this->error('非法访问！请先登录','user_login_controller/log');
         return view();
+    }
+    public function check_cap()
+    {
+        $captcha = new Captcha();
+        $code = Request::instance()->param('code');
+        if (!$captcha->check($code)){
+            echo '验证码不正确';
+        }else{
+            echo '验证码正确!';
+        }
     }
 
     //注册
