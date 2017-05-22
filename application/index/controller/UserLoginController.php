@@ -166,7 +166,7 @@ class UserLoginController extends Controller
     //登出功能 临时增加 20170521 by CC
     public function logout(){
         Session::clear();
-        $this->success('退出成功','index/index');
+        $this->success('退出成功','user_login_controller/log');
     }
 
 
