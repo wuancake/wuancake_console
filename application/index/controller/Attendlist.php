@@ -17,7 +17,7 @@ class Attendlist extends Controller
 
 		//获取用户id、user_name、group_id
 		$userinfo = $g->getlist();
-		//print_r($userinfo);
+
 		//	print_r($userinfo);
 
 		for($j=0;$j<count($userinfo);$j++)
@@ -46,15 +46,18 @@ class Attendlist extends Controller
 					{
 						$arr[$j][$i]='请假 ';
 					}
-					$userinfo[$j]['s'] = implode($arr[$j]);
+					$userinfo[$j]['s'] = $arr[$j];
 				}
 			}else{
 				$userinfo[$j]['s'] = '首次登陆';
 			}
 		}
-		//echo ($userinfo[0]['status']);
+		print_r($userinfo);
 
 		$this->assign('userinfo',$userinfo);
+
+		$week_num = floor((time()-strtotime('2015-11-02'))/604800);
+		$this->assign('week',$week_num);
 
 		return $this->fetch('/attendlist');
 	}

@@ -9,10 +9,18 @@ class Attendlist extends Model
 	public function getlist()
 	{
 		//获取十周考勤状态
-		$sql = "SELECT attend.group_id gid,wa_group.group_name gname,attend.user_id uid,user.user_name uname,user.wuan_name wname,user.QQ QQ, attend.status status from attend,user,wa_group where attend.user_id =user.id and attend.group_id = wa_group.id";
-		$rs = Db::query($sql);
+
+		$rs= Db::name('attend')
+            ->join('user','attend.user_id = user.id')
+            ->join('wa_group','user.group_id = wa_group.id')
+            ->field('attend.group_id AS gid,wa_group.group_name AS gname,attend.user_id as uid,user.user_name AS uname,user.wuan_name AS wname,user.QQ AS QQ,attend.status AS status')
+            ->select();
         return $rs;
+		// $sql = "SELECT attend.group_id gid,wa_group.group_name gname,attend.user_id uid,user.user_name uname,user.wuan_name wname,user.QQ QQ, attend.status status from attend,user,wa_group where attend.user_id =user.id and attend.group_id = wa_group.id";
+		// $rs = Db::query($sql);
+  //       return $rs;
 	}
+	
 
 	public function getgroupid()
 	{

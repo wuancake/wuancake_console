@@ -41,7 +41,17 @@
                         <tr>
                             <th width="6%">用户名</th>
                             <th width="8%">所属组</th>
-                            <th>十周周报状态</th>
+                            <th>第{$week}周</th>
+                            <th>第{$week-1}周</th>
+                            <th>第{$week-2}周</th>
+                            <th>第{$week-3}周</th>
+                            <th>第{$week-4}周</th>
+                            <th>第{$week-5}周</th>
+                            <th>第{$week-6}周</th>
+                            <th>第{$week-7}周</th>
+                            <th>第{$week-8}周</th>
+                            <th>第{$week-9}周</th>
+
                             
                         </tr>
                         {volist name="userinfo" id="ui" }
@@ -58,10 +68,13 @@
                                     {default /}PHP组
                                 {/switch}
                             </td>
-                            <td>
-                                {$ui.s}
-                            </td>
+<?php $len = count($ui['s']);?>
+                            {for start="0" end="$len" step="1" name="i"}
                             
+                            <td>
+                                {$ui.s[$i]}
+                            </td>
+                            {/for}
 
                         </tr>
                         {/volist}
