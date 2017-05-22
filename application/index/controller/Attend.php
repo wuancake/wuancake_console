@@ -23,8 +23,8 @@ class Attend extends Controller
             //$this->redirect('user_login_controller/log');
             exit;
         }
-        //查询所有注册用户本周的考勤情况
-        $all = $attend->get_all_user($week_num);
+        //查询所有注册用户上周的考勤情况
+        $all = $attend->get_all_user($week_num-1);
         //合并之前的考勤情况并自动踢人
         foreach($all as $key => $value)
         {
