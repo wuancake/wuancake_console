@@ -52,7 +52,7 @@ class Attendlist extends Controller
 				$userinfo[$j]['s'] = '首次登陆';
 			}
 		}
-		print_r($userinfo);
+		//print_r($userinfo);
 
 		$this->assign('userinfo',$userinfo);
 

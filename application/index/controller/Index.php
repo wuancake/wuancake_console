@@ -107,14 +107,21 @@ class Index extends Controller
                 'group_id'=>input('group_id'),
                 'status'=>input('status'),
                 'week_num'=>input('week_num'),
-                'text'=>input('text'),
+                //'text'=>input('text'),
+                'text'=>'本周完成：'.input('text1').'<br>所遇问题：'.input('text2').'<br>下周计划：'.input('text3'),
                 // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),
             ];
+            $data2=[
+                'text1'=>input('text1'),
+                'text2'=>input('text2'),
+                'text3'=>input('text3'),
+            ];
+            if(input('text4'))$data['text'] = $data['text'].'<br>作品链接：'.input('text4');
             $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq',$data['user_id'])->count();
             if(!$leaveres){
                 $validate = \think\Loader::validate('report');
-                if($validate->check($data)){
+                if($validate->check($data2)){
                     $db= \think\Db::name('report')->insert($data);
                     if($db){
                         return $this->success('提交周报成功！','addreport');

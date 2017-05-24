@@ -72,12 +72,23 @@
                         </span>
                     </li>
                     <li>
-                        <label class="res-lab" style="display: block;float: left;">提交周报：</label><span class="res-info"> 
-                        <textarea name="text" id="" cols="30" rows="10" placeholder="本周已完成内容,遇到问题,下周计划,作品链接（可选）" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
+                        <label class="res-lab" style="display: block;float: left;">本周完成内容：<br>(必填)</label><span class="res-info"> 
+                        <textarea name="text1" id="t1" cols="30" rows="4" placeholder="本周做了什么项目，学到了哪些内容" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
                     </li>
-                    
                     <li>
-                        <label class="res-lab"></label><span class="res-info"><input type="submit" value="提交周报"  {if condition = "$userres.status == 2"}disabled{/if}></span>
+                        <label class="res-lab" style="display: block;float: left;">本周遇到问题：<br>(必填)</label><span class="res-info"> 
+                        <textarea name="text2" id="t2" cols="30" rows="4" placeholder="本周所遇到的问题有什么？" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
+                    </li>
+                    <li>
+                        <label class="res-lab" style="display: block;float: left;">下周计划：<br>(必填)</label><span class="res-info"> 
+                        <textarea name="text3" id="t3" cols="30" rows="4" placeholder="下周打算学些什么？" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
+                    </li>
+                    <li>
+                        <label class="res-lab" style="display: block;float: left;">作品链接：</label><span class="res-info"> 
+                        <input type="text" name="text4" placeholder="作品链接（可选）" style="width:230px;" {if condition = "$userres.status == 2"}disabled{/if}></span>
+                    </li>
+                    <li>
+                        <label class="res-lab"></label><span class="res-info"><input type="submit" id='tj' value="提交周报"  {if condition = "$userres.status == 2"}disabled{/if}></span>
                     </li>
                 </ul>
                 </form>
