@@ -35,7 +35,7 @@
             <div class="result-content">
                 <form action="{:url('index/update')}" method="post">
                 <ul class="sys-info-list">
-                    <li>
+                    <li style="display:none;">
                         <input type="hidden" name="user_id" value="{$userres.id}">
                         <label class="res-lab">用户ID：</label><span class="res-info"> {$userres.id}</span>
                     </li>
@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <label class="res-lab" style="display: block;float: left;">本周完成内容：<br>(必填)</label><span class="res-info"> 
-                        <textarea name="text1" id="t1" cols="30" rows="4" placeholder="本周做了什么项目，学到了哪些内容" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
+                        <textarea name="text1" id="t1" cols="30" rows="4" placeholder="本周学到了哪些内容？做了什么项目？" {if condition = "$userres.status == 2"}disabled{/if}></textarea></span>
                     </li>
                     <li>
                         <label class="res-lab" style="display: block;float: left;">本周遇到问题：<br>(必填)</label><span class="res-info"> 
