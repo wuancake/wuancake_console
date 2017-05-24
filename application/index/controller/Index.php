@@ -117,11 +117,11 @@ class Index extends Controller
                 'text2'=>input('text2'),
                 'text3'=>input('text3'),
             ];
-            if(input('text4'))$data['text'] = $data['text'].'<br>作品链接：'.input('text4');
-            $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq',$data['user_id'])->count();
-            if(!$leaveres){
-                $validate = \think\Loader::validate('report');
-                if($validate->check($data2)){
+            $validate = \think\Loader::validate('report');
+            if($validate->check($data2)){
+                if(input('text4'))$data['text'] = $data['text'].'<br>作品链接：'.input('text4');
+                $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq',$data['user_id'])->count();
+                if(!$leaveres){
                     $db= \think\Db::name('report')->insert($data);
                     if($db){
                         return $this->success('提交周报成功！','addreport');
@@ -129,16 +129,17 @@ class Index extends Controller
                         return $this->error('提交周报失败！');
                     }
                 }else{
-                    return $this->error($validate->getError());
+                    $db= \think\Db::name('report')->update($data);
+                    if($db){
+                        return $this->success('提交周报成功！','addreport');
+                    }else{
+                        return $this->error('提交周报失败！');
+                    }
                 }
             }else{
-                $db= \think\Db::name('report')->update($data);
-                if($db){
-                    return $this->success('提交周报成功！','addreport');
-                }else{
-                    return $this->error('提交周报失败！');
-                }
+                return $this->error($validate->getError());
             }
+    
         }
     }
 
