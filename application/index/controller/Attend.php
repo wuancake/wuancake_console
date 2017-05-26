@@ -12,7 +12,7 @@ class Attend extends Controller
 
     public function attend()
     {
-        //当前周数
+        //当前周数  向下取整
         $week_num = floor((time()-strtotime('2015-11-02'))/604800);
         $attend = new AttendModel();
         $max_week = $attend->get_max_week()['num'];

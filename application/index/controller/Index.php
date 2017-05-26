@@ -25,7 +25,8 @@ class Index extends Controller
         $data['id']=session('token');
         //$userres=db('user')->where('id','1')->select();
         $userres=\think\Db::name('user')->where('id',$data['id'])->find();
-        $userres['week_num'] = floor((time()-strtotime('2015-11-02'))/604800);
+        //获得当前周数  向上取整
+        $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
         //获得当前周，该用户的当前状态
         $reportres = \think\Db::name('report')->where('user_id','eq',$data['id'])->where('week_num','eq',$userres['week_num'])->find();
         //statue 为 2 表示已经提交周报，status 为 3 表示已经请假，status 为 4 表示可以请假，4为前端提交临时判断参数，不提交数据库
@@ -41,8 +42,8 @@ class Index extends Controller
             $this->error('非法访问！请先登录','user_login_controller/log');
         $data['id']=session('token');
         $userres = \think\Db::name('user')->where('id',$data['id'])->find();
-        //获得当前周数
-        $userres['week_num'] = floor((time()-strtotime('2015-11-02'))/604800);
+        //获得当前周数  向上取整
+        $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
 
         $reportres = \think\Db::name('report')->where('user_id','eq',$data['id'])->where('week_num','eq',$userres['week_num'])->find();
         //statue 为 2 表示已经提交周报，status 为 3 表示已经请假，status 为 4 表示可以请假，4为前端提交临时判断参数，不提交数据库
