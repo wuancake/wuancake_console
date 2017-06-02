@@ -11,13 +11,49 @@ class Login extends Controller
 {
     //登录界面
     public function log(){
-//        return view('log');
-        echo 13123;
+        return view();
     }
-    //注册界面
-    public function sig(){
-        return view('sig');
+
+    //登陆成功后显示界面
+    //判断用户权限，显示审批界面和管理界面入口
+    public function station()
+    {
+        //判断用户是否登录
+        if (Session::get('token')){
+            return view('station',Session::get('token'));
+        }
+        else{
+            $this->error('非法访问，请先登录','login/log');
+        }
     }
+
+    //登录
+    public function login()
+    {
+        $User = new Adm();
+        $email = Request::instance()->param('email');
+        $psd = Request::instance()->param('password');
+
+        if ($info = $User->where('email',$email)->find()){
+            if ($info->password == md5($psd)){
+                //登录成功
+                //将用户id、用户名、用户权限、用户分组 存储session中，页面跳转
+                $data = ['id'=>$info->id,'name'=>$info->username,'auth'=>$info->auth,'group'=>$info->group_id];
+                Session::set('token',$data);
+                $this->success('登陆成功，即将转向后台页面','login/station');
+            }
+            else{
+                //密码错误
+                $this->error('用户名或密码错误，请检查后重试');
+            }
+        }
+        else {
+            //用户不存在，请重新输入
+            $this->error('用户不存在，请检查后重试');
+        }
+    }
+
+
     //用户名是否重复判断
     public function name_judge()
     {
@@ -52,33 +88,5 @@ class Login extends Controller
         else{
             $this->error($User->getError());
         }
-    }
-
-    //登录
-    public function login()
-    {
-        $User = new Adm();
-        $email = Request::instance()->param('email');
-        $psd = Request::instance()->param('password');
-
-        if ($info = $User->where('name',$email)->find()){
-            if ($info->password == md5($psd)){
-                //登录成功
-                //存储session，页面跳转
-            }
-            else{
-                //密码错误，页面跳转
-            }
-        }
-        else{
-            //用户不存在，请重新输入，页面跳转
-        }
-    }
-
-    //登陆成功后显示界面
-    //判断用户权限，显示审批界面和管理界面入口
-    public function auth_approve()
-    {
-
     }
 }
