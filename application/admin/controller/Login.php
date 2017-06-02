@@ -53,6 +53,12 @@ class Login extends Controller
         }
     }
 
+    //注销登陆
+    public function logout(){
+        Session::delete('token');
+        $this->success('已退出登录！','login/log');
+    }
+
 
     //用户名是否重复判断
     public function name_judge()
@@ -80,13 +86,24 @@ class Login extends Controller
 
     //注册，执行此方法时数据已经由js和ajax做判断处理
     public function signin()
-    {
-        $User = new Adm($_POST);
-        if ($User->allowField(true)->save()) {
-            $this->success('');
+    {   $type = Request::instance()->post('type');
+        switch ($type){
+            case 'tutor':
+                //创建导师
+                break;
+            case 'admin':
+                //创建管理员
+                break;
+            default:
+                $this->error('参数有误，请按照正常的流程操作');
+                break;
         }
-        else{
-            $this->error($User->getError());
-        }
+//        $User = new Adm($_POST);
+//        if ($User->allowField(true)->save()) {
+//            $this->success('');
+//        }
+//        else{
+//            $this->error($User->getError());
+//        }
     }
 }
