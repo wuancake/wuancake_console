@@ -1,25 +1,24 @@
 CREATE TABLE `adm` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ÓÃ»§id',
-  `username` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'ÓÃ»§êÇ³Æ',
-  `email` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'ÓÊÏä',
-  `password` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'ÓÃ»§ÃÜÂë',
-  `auth` int(11) NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§È¨ÏÞ',
-  `group_id` int(11) NOT NULL DEFAULT '0' COMMENT '·Ö×éid',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ç”¨æˆ·id',
+  `username` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'ç”¨æˆ·æ˜µç§°',
+  `email` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'é‚®ç®±',
+  `password` varchar(60) COLLATE utf8_bin NOT NULL COMMENT 'ç”¨æˆ·å¯†ç ',
+  `auth` int(11) NOT NULL DEFAULT '0' COMMENT 'ç”¨æˆ·æƒé™',
+  `group_id` int(11) NOT NULL DEFAULT '0' COMMENT 'åˆ†ç»„id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='µ¼Ê¦±í';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='å¯¼å¸ˆè¡¨';
 
--- 	ÓÃ»§È¨ÏÞ:
--- 		0----´ýÉóÅú
--- 		1----µ¼Ê¦
--- 		2----¹ÜÀíÔ±
--- 		3----×î¸ß¹ÜÀíÔ±
+-- 	ç”¨æˆ·æƒé™:
+-- 		1----å¯¼å¸ˆ
+-- 		2----ç®¡ç†å‘˜
+-- 		3----æœ€é«˜ç®¡ç†å‘˜
 
--- 	·Ö×éÐÅÏ¢£º
--- 		0----'¹ÜÀíÔ±Ã»ÓÐ·Ö×é'
--- 		1----PHP×é
--- 		2----WebÇ°¶Ë×é
--- 		3----UIÉè¼Æ×é
--- 		4----Android×é
--- 		5----²úÆ·¾­Àí×é
--- 		6----Èí¼þ²âÊÔ×é
--- 		7----Java×é
+-- 	åˆ†ç»„ä¿¡æ¯ï¼š
+-- 		0----'ç®¡ç†å‘˜æ²¡æœ‰åˆ†ç»„'
+-- 		1----PHPç»„
+-- 		2----Webå‰ç«¯ç»„
+-- 		3----UIè®¾è®¡ç»„
+-- 		4----Androidç»„
+-- 		5----äº§å“ç»ç†ç»„
+-- 		6----è½¯ä»¶æµ‹è¯•ç»„
+-- 		7----Javaç»„
