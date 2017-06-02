@@ -1,6 +1,6 @@
 CREATE TABLE `adm` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `name` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '用户昵称',
+  `username` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '用户昵称',
   `email` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '邮箱',
   `password` varchar(60) COLLATE utf8_bin NOT NULL COMMENT '用户密码',
   `auth` int(11) NOT NULL DEFAULT '0' COMMENT '用户权限',
