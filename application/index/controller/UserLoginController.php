@@ -151,8 +151,11 @@ class UserLoginController extends Controller
         //防止用户通过修改地址传递非法参数
         if ($group > 7 || $group <1)
             $this->error('非法参数！');
-        //将数据更新到数据库
+        //防止用户通过修改地址重新加入分组
         $User = new UserLogin();
+        if ($User->where('id',session('token'))->find()->group_id)
+            $this->error('你已加入分组！');
+        //将数据更新到数据库
         $res = $User->where('id',"$id")->setField('group_id',$group);
         if ($res){
             //跳转到用户主页(地址未确定)！！！！！！！！！！
