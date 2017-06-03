@@ -11,7 +11,7 @@ namespace app\admin\model;
 use think\Model;
 class Adm extends Model
 {
-    public function getPsdAttr($value)
+    public function setPasswordAttr($value)
     {
         return md5($value);
     }
