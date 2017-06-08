@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\index\model\UserGroup;
 use think\Controller;
 use think\helper\Time;
 use think\Request;
@@ -11,6 +12,12 @@ class Index extends Controller
     {
         if (!session('token'))
             $this->error('非法访问！请先登录','user/log');
+
+        //增加判断是否加入分组，防止用户在选择分组界面通过修改url进入周报界面 By Gtacer
+        $Group = new UserGroup();
+        if ($Group->find(session('token'))->group_id)
+            $this->error('请先加入分组！','user/group');
+
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
         $_SESSION["think"]['username'] = $userres['user_name'];
         $reportres= \think\Db::name('report')->where('user_id',$_SESSION["think"]['token'])->paginate(10);
