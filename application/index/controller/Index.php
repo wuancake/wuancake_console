@@ -15,7 +15,7 @@ class Index extends Controller
 
         //增加判断是否加入分组，防止用户在选择分组界面通过修改url进入周报界面 By Gtacer
         $Group = new UserGroup();
-        if ($Group->find(session('token'))->group_id)
+        if (!$Group->where('user_id',session('token'))->find()->group_id)
             $this->error('请先加入分组！','user/group');
 
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
