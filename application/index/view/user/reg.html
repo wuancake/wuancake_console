@@ -23,7 +23,7 @@
         <!--登录-->
         <div class="web_login">
             <div class="login_form">
-                <form action="{:url('user_login_controller/login')}" method="post">
+                <form action="{:url('user/login')}" method="post">
                     <input type="hidden" name="did" value="0"/>
                     <input type="hidden" name="to" value="log"/>
                     <label class="input-tips" for="u">邮箱：</label>
@@ -58,7 +58,7 @@
     <div class="qlogin" id="qlogin" style="display: none; ">
         <!--注册-->
         <div class="web_login">
-            <form action="{:url('user_login_controller/add')}" method="post">
+            <form action="{:url('user/add')}" method="post">
                 <input type="hidden" name="to" value="reg"/>
                 <input type="hidden" name="did" value="0"/>
                 <div class="reg_form">
@@ -93,7 +93,7 @@
                     <label for="code" class="input-tips2">验证码：</label>
                     <div class="inputOuter2">
                         <input type="text" id="code" name="code" class="input_style2"/>
-                        <input type="hidden" id="url" value="{:url('user_login_controller/check_cap')}"/>
+                        <input type="hidden" id="url" value="{:url('user/check_cap')}"/>
                     </div>
                     <div class="inputOuter" style="float: right">
                         {:captcha_img()}

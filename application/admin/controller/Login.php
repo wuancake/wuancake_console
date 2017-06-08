@@ -9,23 +9,67 @@ use think\Session;
 
 class Login extends Controller
 {
+    public function lawful(){
+        if (!Session::get('adm_token')) {
+            $this->error('非法访问，请先登录','login/log');
+        }
+    }
+    public function test(){
+        self::lawful();
+        return view('index');
+    }
+    public function book(){
+        self::lawful();
+        return view();
+    }
+    public function tips(){
+        self::lawful();
+        return view();
+    }
+    public function admin(){
+        self::lawful();
+        return view();
+    }
+    public function tutor(){
+        self::lawful();
+        return view();
+    }
+    public function column(){
+        self::lawful();
+        return view();
+    }
+    public function pass(){
+        self::lawful();
+        return view();
+    }
+    public function info(){
+        self::lawful();
+        return view();
+    }
+    public function lists(){
+        self::lawful();
+        return view();
+    }
+    public function add(){
+        self::lawful();
+        return view();
+    }
+    public function cate(){
+        self::lawful();
+        return view();
+    }
     /********************** 登录功能 ***********************/
     //登录界面
     public function log(){
         return view();
     }
 
-    //登陆成功后显示界面
-    //判断用户权限，显示审批界面和管理界面入口
-    public function station()
+    //登录成功后显示界面
+    //判断用户权限，显示审批界面
+    public function suc()
     {
-        //判断用户是否登录
-        if (Session::get('adm_token')){
-            return view('station',Session::get('adm_token'));
-        }
-        else{
-            $this->error('非法访问，请先登录','login/log');
-        }
+        self::lawful();
+        return view('index',Session::get('adm_token'));
     }
 
     //登录
@@ -41,7 +85,7 @@ class Login extends Controller
                 //将用户id、用户名、用户权限、用户分组 存储session中，页面跳转
                 $data = ['id'=>$info->id,'name'=>$info->username,'auth'=>$info->auth,'group'=>$info->group_id];
                 Session::set('adm_token',$data);
-                $this->success('登陆成功，即将转向后台页面','login/station');
+                $this->success('登录成功，即将转向后台页面','login/suc');
             }
             else{
                 //密码错误
@@ -54,7 +98,7 @@ class Login extends Controller
         }
     }
 
-    //注销登陆
+    //注销登录
     public function logout(){
         Session::delete('adm_token');
         $this->success('已退出登录！','login/log');
@@ -65,22 +109,21 @@ class Login extends Controller
     //注册
     public function signin()
     {
-        if (!Session::get('adm_token'))
-            $this->error('非法访问，请先登录');
+        self::lawful();
         $User = new Adm($_POST);
 
         //判断用户名是否存在
         $name = Request::instance()->post('name');
-        if ($User->where('username',$name)->find())
+        if ($User->where('username', $name)->find())
             $this->error('该用户名已存在');
 
         //判断电子邮箱是否存在
         $email = Request::instance()->post('email');
-        if ($User->where('email',$email)->find())
+        if ($User->where('email', $email)->find())
             $this->error('该电子邮箱已被占用');
 
         //判断两次输入密码是否相同
-        if ( Request::instance()->post('password') != Request::instance()->post('repassword'))
+        if (Request::instance()->post('password') != Request::instance()->post('repassword'))
             $this->error('两次输入的密码不同，请确认后重试');
 
         //信息合法，写入数据库
@@ -89,7 +132,7 @@ class Login extends Controller
 
         //判断是创建导师还是管理员
         $type = Request::instance()->post('type');
-        switch ($type){
+        switch ($type) {
             case 'tutor':
                 //创建导师
                 //如果用户为导师权限，企图创建导师，则报错
@@ -117,11 +160,36 @@ class Login extends Controller
         if ($User->allowField(true)->save()) {
             //写入成功
             $this->success('创建帐号成功');
-        }
-        else{
+        } else {
             //写入失败返回-1
             $this->error('创建失败，请稍候重试');
         }
 
     }
+
+    public function modify_psd(){
+        self::lawful();
+        $psd = Request::instance()->param('password');
+        $User = new Adm();
+
+        //判断当前密码是否正确
+        if($User->checkPsd($psd)){
+            $newpsd = Request::instance()->param('newpass');
+            //输出更改密码的结果
+            switch ($User->newPsd($newpsd)){
+                case -1:
+                    $this->error('密码重置失败，请重新重试');
+                    break;
+                case 0:
+                    $this->error('更改后的密码和原密码相同！');
+                    break;
+                case 1:
+                    $this->success('更新密码成功！');
+            }
+        }
+        else{
+            $this->error('密码错误，请重试');
+        }
+    }
+
 }

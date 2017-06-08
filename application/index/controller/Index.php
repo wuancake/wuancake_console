@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\index\model\UserGroup;
 use think\Controller;
 use think\helper\Time;
 use think\Request;
@@ -10,7 +11,13 @@ class Index extends Controller
     public function index()
     {
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
+
+        //增加判断是否加入分组，防止用户在选择分组界面通过修改url进入周报界面 By Gtacer
+        $Group = new UserGroup();
+        if (!$Group->where('user_id',session('token'))->find()->group_id)
+            $this->error('请先加入分组！','user/group');
+
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
         $_SESSION["think"]['username'] = $userres['user_name'];
         $reportres= \think\Db::name('report')->where('user_id',$_SESSION["think"]['token'])->paginate(10);
@@ -21,7 +28,7 @@ class Index extends Controller
     public function addreport()
     {
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         $data['id']=session('token');
         //$userres=db('user')->where('id','1')->select();
         $userres=\think\Db::name('user')->where('id',$data['id'])->find();
@@ -40,7 +47,7 @@ class Index extends Controller
     public function addleave()
     {
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         $data['id']=session('token');
         $userres = \think\Db::name('user')->where('id',$data['id'])->find();
         //获得当前周数  向上取整
@@ -66,7 +73,7 @@ class Index extends Controller
     public function add()
     {
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         if(request()->isPost()){
             $data=[
                 'user_id'=>input('user_id'),
@@ -102,7 +109,7 @@ class Index extends Controller
     public function update()
     {
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         if(request()->isPost()){
             $data=[
                 'user_id'=>input('user_id'),

@@ -4,3 +4,4 @@ composer.lock
 runtime
 public/uploads
 .gitignore
+/application/database.php
