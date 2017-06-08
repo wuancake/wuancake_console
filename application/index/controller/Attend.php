@@ -20,7 +20,7 @@ class Attend extends Controller
         {
             echo '本周已考勤';
             //Log::write('本周已考勤','notice');
-            //$this->redirect('user_login_controller/log');
+            //$this->redirect('user/log');
             exit;
         }
         //查询所有注册用户上周的考勤情况

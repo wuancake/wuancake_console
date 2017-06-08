@@ -5,7 +5,7 @@ namespace app\index\model;
 use think\Db;
 use think\Model;
 
-class UserLogin extends Model
+class User extends Model
 {
     protected $table = 'user';
 

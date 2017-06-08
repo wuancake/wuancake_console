@@ -3,13 +3,13 @@
 namespace app\index\controller;
 
 use app\index\model\Attend;
-use app\index\model\UserLogin;
+use app\index\model\User AS UserModel;
 use think\Controller;
 use think\Request;
-use think\captcha\Captcha;
+//use think\captcha\Captcha;
 use think\Session;
 
-class UserLoginController extends Controller
+class User extends Controller
 {
     public function test(){
         return view();
@@ -22,7 +22,7 @@ class UserLoginController extends Controller
     //登录界面
     public function log(){
         if (session('token'))
-            $this->error('你已登录！','user_login_controller/login');
+            $this->error('你已登录！','user/login');
         else
             return view();
     }
@@ -48,7 +48,7 @@ class UserLoginController extends Controller
 
     public function group(){
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         return view();
     }
 //    public function check_cap()
@@ -64,8 +64,8 @@ class UserLoginController extends Controller
 
     //注册
     public function add(){
-        $User = new UserLogin();
-        $captcha = new Captcha();
+        $UserModel = new UserModel();
+//        $captcha = new Captcha();
         $Attend = new Attend();
 
 //        //判断验证码是否正确
@@ -76,8 +76,8 @@ class UserLoginController extends Controller
         //获取数据
         $username = Request::instance()->param('user_name');
         $email = Request::instance()->param('email');
-        $result1 = $User->where('user_name',"$username")->find();
-        $result2 = $User->where('email',"$email")->find();
+        $result1 = $UserModel->where('user_name',"$username")->find();
+        $result2 = $UserModel->where('email',"$email")->find();
 
         //判断两次输入的密码是否一致
         if (Request::instance()->param('password') != Request::instance()->param('repassword'))
@@ -92,14 +92,14 @@ class UserLoginController extends Controller
             $this->error('该邮箱已经注册，请使用邮箱账户登录');
 
         //将用户数据写入数据库
-        if( $User->allowField(true)->save(input('post.'))){
-            $Attend->user_id = $User->id;
+        if( $UserModel->allowField(true)->save(input('post.'))){
+            $Attend->user_id = $UserModel->id;
             $Attend->group_id = 0;
             $Attend->save();
-            $this->success('注册成功,即将转向登陆界面','user_login_controller/log');
+            $this->success('注册成功,即将转向登录界面','user/log');
         }
         else
-            $this->error($User->getError());
+            $this->error($UserModel->getError());
     }
 
     //登录
@@ -108,32 +108,32 @@ class UserLoginController extends Controller
         if (session('token')){
             $this->redirect('index/index');
         }
-        $User = new UserLogin();
-        $captcha = new Captcha();
+        $UserModel = new UserModel();
+//        $captcha = new Captcha();
 
 //        //判断验证码是否正确
 //        $code = Request::instance()->param('code');
 //        if (!$captcha->check($code))
-//            $this->error('验证码错误！','user_login_controller/log');
+//            $this->error('验证码错误！','user/log');
 
         //判断输入的邮箱是否已注册
         $email = Request::instance()->param('email');
-        $resemail = $User->where('email',"$email")->find();
+        $resemail = $UserModel->where('email',"$email")->find();
         if (!isset($resemail))
             $this->error('该邮箱尚未注册网站');
 
         //判断密码是否正确
         $password = Request::instance()->param('password');
-        $info = $User->where('email',"$email")->find();
+        $info = $UserModel->where('email',"$email")->find();
         if ($info->password == md5($password)) {
             session('token',"$info->id");
             //如果分组为0，即为没有分组，转向选择分组界面
             if ($info->group_id == 0) {
-                $this->success('登录成功！', "user_login_controller/group");
+                $this->success('登录成功！', "user/group");
             }
             //如果有分组，转向用户主页 (地址未确定)！！！！！！
             else{
-                $this->success('登陆成功','index/index');
+                $this->success('登录成功！','index/index');
             }
         }
         else
@@ -144,7 +144,7 @@ class UserLoginController extends Controller
     //****此方法不进行用户是否已加入分组的判断***
     public function join(){
         if (!session('token'))
-            $this->error('非法访问！请先登录','user_login_controller/log');
+            $this->error('非法访问！请先登录','user/log');
         //通过session获取用户id，获取用户要加入的分组
         $id = session('token');
         $group = $_GET['group'];
@@ -152,11 +152,11 @@ class UserLoginController extends Controller
         if ($group > 7 || $group <1)
             $this->error('非法参数！');
         //防止用户通过修改地址重新加入分组
-        $User = new UserLogin();
-        if ($User->where('id',session('token'))->find()->group_id)
+        $UserModel = new UserModel();
+        if ($UserModel->where('id',session('token'))->find()->group_id)
             $this->error('你已加入分组！');
         //将数据更新到数据库
-        $res = $User->where('id',"$id")->setField('group_id',$group);
+        $res = $UserModel->where('id',"$id")->setField('group_id',$group);
         if ($res){
             //跳转到用户主页(地址未确定)！！！！！！！！！！
             $this->success('你已成功加入！', "index/index");
@@ -169,7 +169,7 @@ class UserLoginController extends Controller
     //登出功能 临时增加 20170521 by CC
     public function logout(){
         Session::clear();
-        $this->success('退出成功','user_login_controller/log');
+        $this->success('退出成功','user/log');
     }
 
 

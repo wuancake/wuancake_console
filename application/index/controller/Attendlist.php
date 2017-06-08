@@ -49,7 +49,7 @@ class Attendlist extends Controller
 					$userinfo[$j]['s'] = $arr[$j];
 				}
 			}else{
-				$userinfo[$j]['s'] = '首次登陆';
+				$userinfo[$j]['s'] = '首次登录';
 			}
 		}
 		//print_r($userinfo);
