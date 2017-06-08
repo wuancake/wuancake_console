@@ -64,7 +64,7 @@ class Login extends Controller
         return view();
     }
 
-    //登陆成功后显示界面
+    //登录成功后显示界面
     //判断用户权限，显示审批界面
     public function suc()
     {
@@ -85,7 +85,7 @@ class Login extends Controller
                 //将用户id、用户名、用户权限、用户分组 存储session中，页面跳转
                 $data = ['id'=>$info->id,'name'=>$info->username,'auth'=>$info->auth,'group'=>$info->group_id];
                 Session::set('adm_token',$data);
-                $this->success('登陆成功，即将转向后台页面','login/suc');
+                $this->success('登录成功，即将转向后台页面','login/suc');
             }
             else{
                 //密码错误
@@ -98,7 +98,7 @@ class Login extends Controller
         }
     }
 
-    //注销登陆
+    //注销登录
     public function logout(){
         Session::delete('adm_token');
         $this->success('已退出登录！','login/log');
