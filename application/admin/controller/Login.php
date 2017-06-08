@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\index\model\User;
 use think\Controller;
 use app\admin\model\Adm;
 use think\Request;
@@ -165,6 +166,31 @@ class Login extends Controller
             $this->error('创建失败，请稍候重试');
         }
 
+    }
+
+    public function modify_psd(){
+        self::lawful();
+        $psd = Request::instance()->param('password');
+        $User = new Adm();
+
+        //判断当前密码是否正确
+        if($User->checkPsd($psd)){
+            $newpsd = Request::instance()->param('newpass');
+            //输出更改密码的结果
+            switch ($User->newPsd($newpsd)){
+                case -1:
+                    $this->error('密码重置失败，请重新重试');
+                    break;
+                case 0:
+                    $this->error('更改后的密码和原密码相同！');
+                    break;
+                case 1:
+                    $this->success('更新密码成功！');
+            }
+        }
+        else{
+            $this->error('密码错误，请重试');
+        }
     }
 
 }
