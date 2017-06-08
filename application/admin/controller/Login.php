@@ -2,7 +2,6 @@
 
 namespace app\admin\controller;
 
-use app\index\model\User;
 use think\Controller;
 use app\admin\model\Adm;
 use think\Request;
