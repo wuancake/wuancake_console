@@ -46,7 +46,7 @@ class User extends Controller
         $UserModel = new UserModel();
 //        $captcha = new Captcha();
         $Attend = new Attend();
-        $Group = new UserGroup();
+//        $Group = new UserGroup();
 
 //        //判断验证码是否正确
 //        $code = Request::instance()->param('code');
@@ -78,9 +78,10 @@ class User extends Controller
             $Attend->save();
 
             //将用户分组信息写入分组表
-            $Group->user_id = $UserModel->id;
-            $Group->group_id = 0;
-            $Group->save();
+//            $Group->user_id = $UserModel->id;
+//            $Group->group_id = 0;
+//            $Group->save();
+            //新注册用户无须在此时选择分组 201706091254 xiaochao
             $this->success('注册成功,即将转向登录界面','user/log');
         }
         else
@@ -114,7 +115,7 @@ class User extends Controller
         if ($info->password == md5($password)) {
             session('token',"$info->id");
             //如果没有分组，转向选择分组界面
-            if ($UserModel->exist_user_group($info->id)) {
+            if ($User->exist_user_group($info->id)) {
                 $this->success('登录成功！','index/index');
             }
             //如果有分组，转向用户主页
@@ -142,7 +143,7 @@ class User extends Controller
         //判断用户是否加入分组 20170609 新增
         if ($UserModel->exist_user_group($id))
         //if ($UserModel->where('id',session('token'))->find()->group_id)
-        if ($Group ->where('user_id',session('token'))->find()->group_id)
+//        if ($Group ->where('user_id',session('token'))->find()->group_id)
             $this->error('你已加入分组！');
         //将数据更新到数据库
         //$res = $UserModel->where('id',"$id")->setField('group_id',$group);

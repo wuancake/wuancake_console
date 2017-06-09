@@ -164,7 +164,8 @@ class Index extends Controller
             $this->error('非法访问！请先登录','user_login_controller/log');
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
         $_SESSION["think"]['username'] = $userres['user_name'];
-        $_SESSION["think"]['groupid'] = $userres['group_id'];
+        $UserModel = new UserModel();
+        $_SESSION["think"]['groupid'] = $UserModel->exist_user_group($_SESSION["think"]['token']);
         //获得当前周数  向上取整
         $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
         // $reportres= \think\Db::name('report')->where('group_id',$_SESSION["think"]['groupid'])->where('week_num','in',[$userres['week_num'],$userres['week_num']-1])->paginate(10);
