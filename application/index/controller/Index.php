@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\index\model\UserGroup;
 use think\Controller;
 use think\helper\Time;
 use think\Request;
@@ -12,6 +13,12 @@ class Index extends Controller
     {
         if (!session('token'))
             $this->error('非法访问！请先登录','user/log');
+
+        //增加判断是否加入分组，防止用户在选择分组界面通过修改url进入周报界面 By Gtacer
+        $Group = new UserGroup();
+        if (!$Group->where('user_id',session('token'))->find()->group_id)
+            $this->error('请先加入分组！','user/group');
+
         $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
         $_SESSION["think"]['username'] = $userres['user_name'];
         $reportres= \think\Db::name('report')->where('user_id',$_SESSION["think"]['token'])->paginate(10);
@@ -30,6 +37,7 @@ class Index extends Controller
         $userres['group_id'] = $UserModel->exist_user_group($data['id']);
         //获得当前周数  向上取整
         $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
+
         //获得当前周，该用户的当前状态
         $reportres = \think\Db::name('report')->where('user_id','eq',$data['id'])->where('week_num','eq',$userres['week_num'])->find();
         //statue 为 2 表示已经提交周报，status 为 3 表示已经请假，status 为 4 表示可以请假，4为前端提交临时判断参数，不提交数据库
@@ -149,6 +157,27 @@ class Index extends Controller
         }
     }
 
+// 查看其他学员和自己当前周及上周的报告
+    public function otherstu()
+    {
+        if (!session('token'))
+            $this->error('非法访问！请先登录','user_login_controller/log');
+        $userres = \think\Db::name('user')->where('id',$_SESSION["think"]['token'])->find();
+        $_SESSION["think"]['username'] = $userres['user_name'];
+        $_SESSION["think"]['groupid'] = $userres['group_id'];
+        //获得当前周数  向上取整
+        $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
+        // $reportres= \think\Db::name('report')->where('group_id',$_SESSION["think"]['groupid'])->where('week_num','in',[$userres['week_num'],$userres['week_num']-1])->paginate(10);
+        $reportres= \think\Db::name('report')
+        ->join('user','user.id = report.user_id')
+        // ->field('user.user_name As user_name','report.week_num As week_num','user.id As user_id','report.group_id As group_id','report.text As text','report.status As status','report.reply_time As reply_time')
+        ->field('user_name , week_num , user_id , report.group_id As group_id , text , status , reply_time')
+        ->where('report.group_id',$_SESSION["think"]['groupid'])
+        ->where('week_num','in',[$userres['week_num'],$userres['week_num']-1])
+        ->paginate(10);
+        $this->assign('reportres',$reportres);
+        return $this->fetch();
+    }
 
 
 }

@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\index\model\Attend;
 use app\index\model\User AS UserModel;
+use app\index\model\UserGroup;
 use think\Controller;
 use think\Db;
 use think\Request;
@@ -12,11 +13,7 @@ use think\Session;
 
 class User extends Controller
 {
-    public function test(){
-        return view();
-    }
-//    //注册界面
-//    public function register(){
+//    public function test(){
 //        return view();
 //    }
 
@@ -49,6 +46,7 @@ class User extends Controller
         $UserModel = new UserModel();
 //        $captcha = new Captcha();
         $Attend = new Attend();
+        $Group = new UserGroup();
 
 //        //判断验证码是否正确
 //        $code = Request::instance()->param('code');
@@ -78,6 +76,11 @@ class User extends Controller
             $Attend->user_id = $UserModel->id;
             $Attend->group_id = 0;
             $Attend->save();
+
+            //将用户分组信息写入分组表
+            $Group->user_id = $UserModel->id;
+            $Group->group_id = 0;
+            $Group->save();
             $this->success('注册成功,即将转向登录界面','user/log');
         }
         else
@@ -86,11 +89,12 @@ class User extends Controller
 
     //登录
     public function login(){
-        //如果session文件存在，则跳转到用户界面(地址未确定)！！！！！！
+        //如果session文件存在，则跳转到用户界面
         if (session('token')){
             $this->redirect('index/index');
         }
-        $UserModel = new UserModel();
+        $User = new UserModel();
+        $Group = new UserGroup();
 //        $captcha = new Captcha();
 
 //        //判断验证码是否正确
@@ -100,20 +104,20 @@ class User extends Controller
 
         //判断输入的邮箱是否已注册
         $email = Request::instance()->param('email');
-        $resemail = $UserModel->where('email',"$email")->find();
+        $resemail = $User->where('email',"$email")->find();
         if (!isset($resemail))
             $this->error('该邮箱尚未注册网站');
 
         //判断密码是否正确
         $password = Request::instance()->param('password');
-        $info = $UserModel->where('email',"$email")->find();
+        $info = $User->where('email',"$email")->find();
         if ($info->password == md5($password)) {
             session('token',"$info->id");
             //如果没有分组，转向选择分组界面
             if ($UserModel->exist_user_group($info->id)) {
                 $this->success('登录成功！','index/index');
             }
-            //如果有分组，转向用户主页 (地址未确定)！！！！！！
+            //如果有分组，转向用户主页
             else{
                 $this->success('登录成功！', "user/group");
             }
@@ -134,9 +138,11 @@ class User extends Controller
             $this->error('非法参数！');
         //防止用户通过修改地址重新加入分组
         $UserModel = new UserModel();
+        $Group = new UserGroup();
         //判断用户是否加入分组 20170609 新增
         if ($UserModel->exist_user_group($id))
         //if ($UserModel->where('id',session('token'))->find()->group_id)
+        if ($Group ->where('user_id',session('token'))->find()->group_id)
             $this->error('你已加入分组！');
         //将数据更新到数据库
         //$res = $UserModel->where('id',"$id")->setField('group_id',$group);
@@ -161,7 +167,6 @@ class User extends Controller
         Session::clear();
         $this->success('退出成功','user/log');
     }
-
 
 
 }
