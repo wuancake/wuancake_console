@@ -95,7 +95,7 @@ class User extends Controller
             $this->redirect('index/index');
         }
         $User = new UserModel();
-        $Group = new UserGroup();
+ //       $Group = new UserGroup();
 //        $captcha = new Captcha();
 
 //        //判断验证码是否正确
