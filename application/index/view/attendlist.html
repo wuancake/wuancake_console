@@ -10,7 +10,7 @@
     div.list-page ul.pagination li{width: 30px;float:left;}
     table.result-tab th{text-align: center;}
     table.result-tab td{text-align: center;}
-    table.result-tab td:nth-of-type(4){text-align: left;}
+    /*table.result-tab td:nth-of-type(4){text-align: left;}*/
     </style>
 </head>
 <body>
@@ -59,13 +59,14 @@
                             <td>{$ui.uname}</td>
                             <td>
                                 {switch name="ui.gid"}
+                                    {case value="1"}PHP组{/case}
                                     {case value="2"}Web前端组{/case}
                                     {case value="3"}UI设计组{/case}
                                     {case value="4"}Android组{/case}
                                     {case value="5"}产品经理组{/case}
                                     {case value="6"}软件测试组{/case}
                                     {case value="7"}Java组{/case}
-                                    {default /}PHP组
+                                    {default /}未分组
                                 {/switch}
                             </td>
 <?php $len = count($ui['s']);?>

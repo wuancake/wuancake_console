@@ -17,7 +17,7 @@ class Attendlist extends Controller
 
 		//获取用户id、user_name、group_id
 		$userinfo = $g->getlist();
-
+        //dump($userinfo);exit;
 		//	print_r($userinfo);
 
 		for($j=0;$j<count($userinfo);$j++)
@@ -49,9 +49,13 @@ class Attendlist extends Controller
 					$userinfo[$j]['s'] = $arr[$j];
 				}
 			}else{
-				$userinfo[$j]['s'] = '首次登录';
+                for($i=1;$i<10;$i++){
+                    $userinfo[$j]['s'][$i] = '';
+                }
+                $userinfo[$j]['s'][0] = '首次登录';
 			}
 		}
+//		dump($userinfo);exit;
 		//print_r($userinfo);
 
 		$this->assign('userinfo',$userinfo);

@@ -26,7 +26,8 @@ class Attend extends Model
     {
         $rs= Db::name('user')
             ->join('report','user.id = report.user_id AND report.week_num = :week_num','LEFT')
-            ->field('id AS user_id,user_name,email AS user_email,user.group_id,status')
+            ->join('user_group','user.id = user_group.user_id AND user_group.deleteFlg = 0','LEFT')
+            ->field('user.id AS user_id,user_name,email AS user_email,user_group.group_id,status')
             ->bind(['week_num'=>$week_num])
             ->order('status DESC')
             ->select();
@@ -72,11 +73,13 @@ class Attend extends Model
      */
     public function delete_user_group($user_id)
     {
-        Db::name('user')
-            ->where('id', ':user_id')
+        Db::name('user_group')
+            ->where('user_id', ':user_id')
+            ->where('deleteFlg',0)
             ->bind(['user_id'=>$user_id])
             ->update([
-                'group_id'  => 0,
+                'deleteFlg'  => 1,
+                'modify_time' => date('Y-m-d H:i:s'),
             ]);
     }
 

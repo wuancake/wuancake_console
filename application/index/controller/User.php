@@ -5,6 +5,7 @@ namespace app\index\controller;
 use app\index\model\Attend;
 use app\index\model\User AS UserModel;
 use think\Controller;
+use think\Db;
 use think\Request;
 //use think\captcha\Captcha;
 use think\Session;
@@ -25,25 +26,6 @@ class User extends Controller
             $this->error('你已登录！','user/login');
         else
             return view();
-    }
-
-    public function uploader(){
-        // 获取表单上传文件 例如上传了001.jpg
-        $file = request()->file('file');
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->rule('md5_file($file)')->move(ROOT_PATH . 'public' . DS . 'uploads');
-        if($info){
-            // 成功上传后 获取上传信息
-            // 输出 jpg
-            echo $info->getExtension().'<br>';
-            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-            echo $info->getSaveName().'<br>';
-            // 输出 42a79759f284b767dfcb2a0197904287.jpg
-            echo $info->getFilename().'<br>';
-        }else{
-            // 上传失败获取错误信息
-            echo $file->getError();
-        }
     }
 
     public function group(){
@@ -127,13 +109,13 @@ class User extends Controller
         $info = $UserModel->where('email',"$email")->find();
         if ($info->password == md5($password)) {
             session('token',"$info->id");
-            //如果分组为0，即为没有分组，转向选择分组界面
-            if ($info->group_id == 0) {
-                $this->success('登录成功！', "user/group");
+            //如果没有分组，转向选择分组界面
+            if ($UserModel->exist_user_group($info->id)) {
+                $this->success('登录成功！','index/index');
             }
             //如果有分组，转向用户主页 (地址未确定)！！！！！！
             else{
-                $this->success('登录成功！','index/index');
+                $this->success('登录成功！', "user/group");
             }
         }
         else
@@ -141,7 +123,6 @@ class User extends Controller
     }
 
     //未加入分组的用户通过此方法选择分组
-    //****此方法不进行用户是否已加入分组的判断***
     public function join(){
         if (!session('token'))
             $this->error('非法访问！请先登录','user/log');
@@ -153,12 +134,21 @@ class User extends Controller
             $this->error('非法参数！');
         //防止用户通过修改地址重新加入分组
         $UserModel = new UserModel();
-        if ($UserModel->where('id',session('token'))->find()->group_id)
+        //判断用户是否加入分组 20170609 新增
+        if ($UserModel->exist_user_group($id))
+        //if ($UserModel->where('id',session('token'))->find()->group_id)
             $this->error('你已加入分组！');
         //将数据更新到数据库
-        $res = $UserModel->where('id',"$id")->setField('group_id',$group);
+        //$res = $UserModel->where('id',"$id")->setField('group_id',$group);
+        $data = [
+            'user_id' => $id,
+            'group_id' => $group,
+            'deleteFlg' =>0,
+            'create_time' =>date('Y-m-d H:i:s'),
+            'modify_time' =>date('Y-m-d H:i:s'),
+        ];
+        $res = $UserModel->join_group($data);
         if ($res){
-            //跳转到用户主页(地址未确定)！！！！！！！！！！
             $this->success('你已成功加入！', "index/index");
         }
         else{
@@ -171,6 +161,7 @@ class User extends Controller
         Session::clear();
         $this->success('退出成功','user/log');
     }
+
 
 
 }

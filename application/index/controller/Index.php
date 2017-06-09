@@ -4,6 +4,7 @@ use think\Controller;
 use think\helper\Time;
 use think\Request;
 use think\Session;
+use app\index\model\User AS UserModel;
 class Index extends Controller
 {
     // 浏览周报&&请假理由
@@ -25,6 +26,8 @@ class Index extends Controller
         $data['id']=session('token');
         //$userres=db('user')->where('id','1')->select();
         $userres=\think\Db::name('user')->where('id',$data['id'])->find();
+        $UserModel = new UserModel();
+        $userres['group_id'] = $UserModel->exist_user_group($data['id']);
         //获得当前周数  向上取整
         $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
         //获得当前周，该用户的当前状态
@@ -42,6 +45,8 @@ class Index extends Controller
             $this->error('非法访问！请先登录','user/log');
         $data['id']=session('token');
         $userres = \think\Db::name('user')->where('id',$data['id'])->find();
+        $UserModel = new UserModel();
+        $userres['group_id'] = $UserModel->exist_user_group($data['id']);
         //获得当前周数  向上取整
         $userres['week_num'] = ceil((time()-strtotime('2015-11-02'))/604800);
 

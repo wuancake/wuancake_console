@@ -25,6 +25,7 @@ class Attend extends Controller
         }
         //查询所有注册用户上周的考勤情况
         $all = $attend->get_all_user($week_num-1);
+        //dump($all);exit;
         //合并之前的考勤情况并自动踢人
         foreach($all as $key => $value)
         {
