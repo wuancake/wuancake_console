@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use app\index\model\Attend as AttendModel;
 use think\Controller;
+use think\Db;
 use think\Log;
 
 
@@ -56,5 +57,86 @@ class Attend extends Controller
         $attend->add_max_week($week_num);
         echo '自动考勤成功！';
         //Log::record('自动考勤成功！');
+    }
+    public function test1()
+    {
+        $week_num = floor((time()-strtotime('2015-11-02'))/604800)+1;
+        $sql = 'SELECT user_name,week_num,`status` '
+            .'FROM `user` LEFT JOIN report ON user_id=id AND week_num = :thisweek';
+
+        for($i=$week_num;$i>=$week_num-3;$i--)
+        {
+            $paras = [
+                'thisweek' =>$i
+            ];
+            $rs = Db::query($sql,$paras);
+            $re[] = $rs;
+
+        }
+        $rs = Db::table('user')->column('user_name');
+        $user_num = count($rs)-1;
+        for($j=0;$j<=3;$j++){
+            for($k=0;$k<=$user_num;$k++){
+                $v = $re["$j"]["$k"]['status'];
+                if(empty($v)){
+                    $v=0;
+                }
+                $ni["$k"]["$j"] = $v;
+                $ww["$k"] = $re["$j"]["$k"]['user_name'];
+
+
+            }
+        }
+        $this->assign('user_name',$ww);
+        $this->assign('week',$week_num);
+        $this->assign('userinfo',$ni);
+        return view('/test1');
+
+
+    }
+    public function test2(){
+//        Db::listen(function($sql, $time, $explain){
+//            // 记录SQL
+//            echo $sql. ' ['.$time.'s]';
+//            // 查看性能分析结果
+//            dump($explain);
+//        });
+        $week_num = ceil((time()-strtotime('2015-11-02'))/604800);
+        $rs = Db::table('user')
+            ->alias('u')
+            ->join('user_group ug','ug.user_id = `u`.id AND ug.deleteFlg = 0','LEFT')
+            ->join('wa_group wg','wg.id = ug.group_id','LEFT')
+            ->join('report r1','r1.user_id = `u`.id AND r1.week_num = :s1','LEFT')
+            ->join('report r2','r2.user_id = `u`.id AND r2.week_num = :s2','LEFT')
+            ->join('report r3','r3.user_id = `u`.id AND r3.week_num = :s3','LEFT')
+            ->join('report r4','r4.user_id = `u`.id AND r4.week_num = :s4','LEFT')
+            ->join('report r5','r5.user_id = `u`.id AND r5.week_num = :s5','LEFT')
+            ->bind([
+                's1'=>$week_num,
+                's2'=>$week_num-1,
+                's3'=>$week_num-2,
+                's4'=>$week_num-3,
+                's5'=>$week_num-4,
+            ])
+//            ->select('wg.group_name AS `0`');
+            ->column('wg.group_name AS `0`,user_name,QQ AS `2`,r1.`status` AS `3`,r2.`status` AS `4`,r3.`status` AS `5`,r4.`status` AS `6`,r5.`status` AS `7`','user_name');
+//        dump($rs);
+        $this->assign('week',$week_num);
+        $this->assign('users',$rs);
+        return view('/test2');
+    }
+    public function test(){
+
+        $in = Db::table('user_group')
+            ->join('user','`user`.id = user_group.user_id')
+            ->join('wa_group','user_group.group_id = wa_group.id')
+            ->where('user_group.create_time','IN',function($query){
+                $query->table('user_group')->field('max(create_time)')->group('user_id');
+            })
+            ->group('user_id')
+            ->field('user_group.deleteFlg,user_group.create_time,user_group.modify_time,user_name,user.id,QQ,group_id,group_name')
+            ->select();
+        $this->assign('users',$in);
+        return view('/test');
     }
 }
