@@ -7,68 +7,42 @@
     <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/main.css"/>
     <script type="text/javascript" src="__ROOT__/static/index/js/libs/modernizr.min.js"></script>
     <style>
-    div.list-page ul.pagination li{width: 30px;float:left;}
-    table.result-tab th{text-align: center;}
-    table.result-tab td{text-align: center;}
-    table.result-tab td:nth-of-type(3){text-align: left;}
-    .result-content select{width:70px;height: 30px;position:relative;top:1px;}
+        div.list-page ul.pagination li{width: 30px;float:left;}
+        table.result-tab th{text-align: center;}
+        table.result-tab td{text-align: center;}
+        table.result-tab td:nth-of-type(3){text-align: left;}
+        .result-content select{width:70px;height: 30px;position:relative;top:1px;}
 
     </style>
 </head>
 <body>
-{include file="public/top" /}
-<div class="container clearfix">
-    {include file="public/left" /}
-    <!--/sidebar-->
-    <div class="main-wrap">
-        <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span><?php echo session('username');?>主页</span></div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>快捷操作</h1>
-            </div>
-            <div class="result-content">
-                <div class="short-wrap">
-                    <a href="{:url('index/index')}"><i class="icon-font">&#xe001;</i>查看学员周报和请假情况</a>
-
-                </div>
-            </div>
-        </div>
-        <div class="result-wrap">
-                <div class="result-content">
-                    <form action="{:url('index/onestu')}" method="get">
-                    <span>根据学员的姓名，查看该学员的所有考勤情况：</span>
-                    <select name="user_id" id="">
-                        {volist name='userres' id='vo'}
-                        <option value="{$vo.id}">{$vo.user_name}</option>
-                        {/volist}
-                    </select>
-                    <input class="btn btn-primary btn2" type="submit" value="查询">
-                    </form>
-                </div>
-
-        </div>
-
-        <div class="result-wrap">
-                <div class="result-content">
-                    <form action="{:url('index/oneweek')}" method="post">
-                    <span>查看某周所有学员考勤，请选择要查看的周数：</span>
-                    <select name="week_num" id="">
-                    {volist name='weekres' id='vo'}
-                        <option>{$vo.week_num}</option>
-                    {/volist}
-                    </select>
-                    <input class="btn btn-primary btn2" type="submit" value="查询">
-                    </form>
-                </div>
-        </div>
-
-
-
-
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="{:url('index/onestu')}" method="get">
+            <span>根据学员的姓名，查看该学员的所有考勤情况：</span>
+            <select name="user_id" id="">
+                {volist name='userres' id='vo'}
+                <option value="{$vo.id}">{$vo.user_name}</option>
+                {/volist}
+            </select>
+            <input class="btn btn-primary btn2" type="submit" value="查询">
+        </form>
     </div>
-    <!--/main-->
+
+</div>
+
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="{:url('index/oneweek')}" method="post">
+            <span>查看某周所有学员考勤，请选择要查看的周数：</span>
+            <select name="week_num" id="">
+                {volist name='weekres' id='vo'}
+                <option>{$vo.week_num}</option>
+                {/volist}
+            </select>
+            <input class="btn btn-primary btn2" type="submit" value="查询">
+        </form>
+    </div>
 </div>
 </body>
 </html>

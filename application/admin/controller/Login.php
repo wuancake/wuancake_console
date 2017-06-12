@@ -15,16 +15,7 @@ class Login extends Controller
         }
     }
     public function test(){
-        self::lawful();
-        return view('index');
-    }
-    public function book(){
-        self::lawful();
-        return view();
-    }
-    public function tips(){
-        self::lawful();
-        return view();
+        return view('log');
     }
     public function admin(){
         self::lawful();
@@ -34,30 +25,12 @@ class Login extends Controller
         self::lawful();
         return view();
     }
-    public function column(){
-        self::lawful();
-        return view();
-    }
+
     public function pass(){
         self::lawful();
         return view();
     }
-    public function info(){
-        self::lawful();
-        return view();
-    }
-    public function lists(){
-        self::lawful();
-        return view();
-    }
-    public function add(){
-        self::lawful();
-        return view();
-    }
-    public function cate(){
-        self::lawful();
-        return view();
-    }
+
     /********************** 登录功能 ***********************/
     //登录界面
     public function log(){

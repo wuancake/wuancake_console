@@ -18,6 +18,10 @@ class User extends Controller
 //    }
 
     //登录界面
+    public function test()
+    {
+        return view('log');
+    }
     public function log(){
         if (session('token'))
             $this->error('你已登录！','user/login');

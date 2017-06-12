@@ -31,7 +31,7 @@ class Index extends Controller
         if (!(Session::get('adm_token'))){
             $this->error('非法访问，请先登录','login/log');
         }
-        $data['adm'] = Session::get('adm_token'); 
+        $data['adm'] = Session::get('adm_token');
         $admres = \think\Db::name('adm') ->find($data['adm']['id']);
         if($admres['auth'] == 0){
             $this->error('您没有权限操作，请联系管理员','login/log');
@@ -47,7 +47,7 @@ class Index extends Controller
         $data['user_name']= $userres['user_name'];
         $this->assign('data',$data);
         $this->assign('reportres',$reportres);
-        return $this->fetch(); 
+        return $this->fetch();
     }
 
     // 查看某一周的所有学员考勤
@@ -69,12 +69,12 @@ class Index extends Controller
 
         }
         $reportres= \think\Db::name('report')
-        ->join('user','user.id = report.user_id')
-        ->field('user.id AS user_id , user.user_name AS user_name , report.week_num AS week_num , report.group_id AS group_id , report.text AS text , report.status AS status , report.reply_time AS reply_time')
-        ->where('week_num',$data['week_num'])        
-        ->paginate(10);
+            ->join('user','user.id = report.user_id')
+            ->field('user.id AS user_id , user.user_name AS user_name , report.week_num AS week_num , report.group_id AS group_id , report.text AS text , report.status AS status , report.reply_time AS reply_time')
+            ->where('week_num',$data['week_num'])
+            ->paginate(10);
         $this->assign('reportres',$reportres);
-        return $this->fetch(); 
+        return $this->fetch();
     }
 
 

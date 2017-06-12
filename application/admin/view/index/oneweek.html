@@ -7,82 +7,68 @@
     <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/main.css"/>
     <script type="text/javascript" src="__ROOT__/static/index/js/libs/modernizr.min.js"></script>
     <style>
-    div.list-page ul.pagination li{width: 30px;float:left;}
-    table.result-tab th{text-align: center;}
-    table.result-tab td{text-align: center;}
-    table.result-tab td:nth-of-type(3){text-align: left;}
+        div.list-page ul.pagination li{width: 30px;float:left;}
+        table.result-tab th{text-align: center;}
+        table.result-tab td{text-align: center;}
+        table.result-tab td:nth-of-type(3){text-align: left;}
     </style>
 </head>
 <body>
-{include file="public/top" /}
-<div class="container clearfix">
-    {include file="public/left" /}
-    <!--/sidebar-->
-    <div class="main-wrap">
-        <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span><?php echo session('username');?>主页</span></div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>考勤情况汇总：查看某周所有学员考勤</h1>
-            </div>
-            <div class="result-content">
-                <div class="short-wrap">
 
-                </div>
-            </div>
-        </div>
-        <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <!-- <th width="6%">用户ID</th> -->
-                            <th width="6%">学员</th>
-                            <th width="8%">所属组</th>
-                            <th width="8%">当前周数</th>
-                            <th>周报及请假原因</th>
-                            <th width="8%">周报状态</th>
-                            <th width="13%">提交时间</th>
-                            
-                        </tr>
-                        {volist name="reportres" id="vo"}
-                        <tr>
-                            <!-- <td>{$vo.user_id}</td> -->
-                            <td>{$vo.user_name}</td>
-                            <td>
-                                {switch name="vo.group_id"}
-                                    {case value="2"}Web前端组{/case}
-                                    {case value="3"}UI设计组{/case}
-                                    {case value="4"}Android组{/case}
-                                    {case value="5"}产品经理组{/case}
-                                    {case value="6"}软件测试组{/case}
-                                    {case value="7"}Java组{/case}
-                                    {default /}PHP组
-                                {/switch}
-                            </td>
-                            <td>{$vo.week_num}</td>
-                            <td>{$vo.text}</td>
-                            <td>
-                                {if condition="$vo['status'] eq '2' "}
-                                已提交周报
-                                {else /}
-                                本周已请假
-                                {/if}
-                            </td>
-                            
-                            
-                            <td>{$vo.reply_time}</td>
-
-                        </tr>
-                        {/volist}
-                    </table>
-                    <div class="list-page">{$reportres->render()}</div>
-                </div>
-            </form>
-        </div>
+<div class="result-wrap">
+    <div class="result-title">
+        <h1>考勤情况汇总：查看某周所有学员考勤</h1>
     </div>
-    <!--/main-->
 </div>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <!-- <th width="6%">用户ID</th> -->
+                    <th width="6%">学员</th>
+                    <th width="8%">所属组</th>
+                    <th width="8%">当前周数</th>
+                    <th>周报及请假原因</th>
+                    <th width="8%">周报状态</th>
+                    <th width="13%">提交时间</th>
+
+                </tr>
+                {volist name="reportres" id="vo"}
+                <tr>
+                    <!-- <td>{$vo.user_id}</td> -->
+                    <td>{$vo.user_name}</td>
+                    <td>
+                        {switch name="vo.group_id"}
+                        {case value="2"}Web前端组{/case}
+                        {case value="3"}UI设计组{/case}
+                        {case value="4"}Android组{/case}
+                        {case value="5"}产品经理组{/case}
+                        {case value="6"}软件测试组{/case}
+                        {case value="7"}Java组{/case}
+                        {default /}PHP组
+                        {/switch}
+                    </td>
+                    <td>{$vo.week_num}</td>
+                    <td>{$vo.text}</td>
+                    <td>
+                        {if condition="$vo['status'] eq '2' "}
+                        已提交周报
+                        {else /}
+                        本周已请假
+                        {/if}
+                    </td>
+
+
+                    <td>{$vo.reply_time}</td>
+
+                </tr>
+                {/volist}
+            </table>
+            <div class="list-page">{$reportres->render()}</div>
+        </div>
+    </form>
+</div>
+
 </body>
 </html>
