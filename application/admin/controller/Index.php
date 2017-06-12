@@ -43,7 +43,7 @@ class Index extends Controller
 
         }
         $userres = \think\Db::name('user')->where('id',$data['user_id'])->find();
-        $reportres= \think\Db::name('report')->where('user_id',$data['user_id'])->paginate(10);
+        $reportres= \think\Db::name('report')->where('user_id',$data['user_id'])->paginate(10 , false , ['query' => request() -> param(),]);
         $data['user_name']= $userres['user_name'];
         $this->assign('data',$data);
         $this->assign('reportres',$reportres);
@@ -72,7 +72,7 @@ class Index extends Controller
             ->join('user','user.id = report.user_id')
             ->field('user.id AS user_id , user.user_name AS user_name , report.week_num AS week_num , report.group_id AS group_id , report.text AS text , report.status AS status , report.reply_time AS reply_time')
             ->where('week_num',$data['week_num'])
-            ->paginate(10);
+            ->paginate(10 , false , ['query' => request() -> param(),]);
         $this->assign('reportres',$reportres);
         return $this->fetch();
     }
