@@ -14,9 +14,7 @@ class Login extends Controller
             $this->error('非法访问，请先登录','login/log');
         }
     }
-    public function test(){
-        return view('log');
-    }
+
     public function admin(){
         self::lawful();
         return view();
