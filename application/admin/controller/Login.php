@@ -9,6 +9,10 @@ use think\Session;
 
 class Login extends Controller
 {
+    public function test(){
+        return view('log');
+    }
+
     public function lawful(){
         if (!Session::get('adm_token')) {
             $this->error('非法访问，请先登录','login/log');
