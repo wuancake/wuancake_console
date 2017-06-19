@@ -85,7 +85,7 @@ class Index extends Controller
                 'group_id'=>input('group_id'),
                 'status'=>3,//提交状态3为请假状态
                 'week_num'=>input('week_num'),
-                'text'=>input('text'),
+                'text'=>htmlspecialchars(input('text')),
                 // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),//提交时间
                 //'leave_num'=>,//请假周数
@@ -128,7 +128,7 @@ class Index extends Controller
                 'status'=>input('status'),
                 'week_num'=>input('week_num'),
                 //'text'=>input('text'),
-                'text'=>'本周完成：'.input('text1').'<br>所遇问题：'.input('text2').'<br>下周计划：'.input('text3'),
+                'text'=>'本周完成：'.htmlspecialchars(input('text1')).'<br>所遇问题：'.htmlspecialchars(input('text2')).'<br>下周计划：'.htmlspecialchars(input('text3')),
                 // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),
             ];
