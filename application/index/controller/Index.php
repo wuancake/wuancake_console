@@ -91,21 +91,27 @@ class Index extends Controller
                 //'leave_num'=>,//请假周数
             ];
             $leave_num = input('leave_num');//请假周数
-            $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq','1')->count();
-            if(!$leaveres){
-                //请假3周，添加3次，本周及未来的2周也同时添加status为3
-                for($i=0;$i<$leave_num;$i++){
-                    $db= \think\Db::name('report')->insert($data);
-                    $data['week_num']++;
-                }
-                if($db){
-                    return $this->success('提交请假成功！','addleave');
+            $validate = \think\Loader::validate('leave');
+            if($validate->check($data)) {
+                $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq','1')->count();
+                if(!$leaveres){
+                    //请假3周，添加3次，本周及未来的2周也同时添加status为3
+                    for($i=0;$i<$leave_num;$i++){
+                        $db= \think\Db::name('report')->insert($data);
+                        $data['week_num']++;
+                    }
+                    if($db){
+                        return $this->success('提交请假成功！','addleave');
+                    }else{
+                        return $this->error('提交请假失败！');
+                    }
                 }else{
-                    return $this->error('提交请假失败！');
-                }
+                    return $this->error('本周已请假！');
+                }      
             }else{
-                return $this->error('本周已请假！');
+                return $this->error($validate->getError());
             }
+
 
         }
     }
