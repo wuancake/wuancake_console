@@ -85,33 +85,27 @@ class Index extends Controller
                 'group_id'=>input('group_id'),
                 'status'=>3,//提交状态3为请假状态
                 'week_num'=>input('week_num'),
-                'text'=>htmlspecialchars(input('text')),
+                'text'=>input('text'),
                 // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),//提交时间
                 //'leave_num'=>,//请假周数
             ];
             $leave_num = input('leave_num');//请假周数
-            $validate = \think\Loader::validate('leave');
-            if($validate->check($data)) {
-                $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq','1')->count();
-                if(!$leaveres){
-                    //请假3周，添加3次，本周及未来的2周也同时添加status为3
-                    for($i=0;$i<$leave_num;$i++){
-                        $db= \think\Db::name('report')->insert($data);
-                        $data['week_num']++;
-                    }
-                    if($db){
-                        return $this->success('提交请假成功！','addleave');
-                    }else{
-                        return $this->error('提交请假失败！');
-                    }
+            $leaveres = \think\Db::name('report')->where('week_num','eq',$data['week_num'])->where('user_id','eq','1')->count();
+            if(!$leaveres){
+                //请假3周，添加3次，本周及未来的2周也同时添加status为3
+                for($i=0;$i<$leave_num;$i++){
+                    $db= \think\Db::name('report')->insert($data);
+                    $data['week_num']++;
+                }
+                if($db){
+                    return $this->success('提交请假成功！','addleave');
                 }else{
-                    return $this->error('本周已请假！');
-                }      
+                    return $this->error('提交请假失败！');
+                }
             }else{
-                return $this->error($validate->getError());
+                return $this->error('本周已请假！');
             }
-
 
         }
     }
@@ -128,7 +122,7 @@ class Index extends Controller
                 'status'=>input('status'),
                 'week_num'=>input('week_num'),
                 //'text'=>input('text'),
-                'text'=>'本周完成：'.htmlspecialchars(input('text1')).'<br>所遇问题：'.htmlspecialchars(input('text2')).'<br>下周计划：'.htmlspecialchars(input('text3')),
+                'text'=>'本周完成：'.input('text1').'<br>所遇问题：'.input('text2').'<br>下周计划：'.input('text3'),
                 // 'reply_time'=>time(),
                 'reply_time'=>date('Y-m-d H:i:s'),
             ];
