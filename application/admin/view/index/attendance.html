@@ -1,8 +1,6 @@
-<!doctype html>
-<html>
 <head>
     <meta charset="UTF-8">
-    <title>周报汇总</title>
+    <title>考勤汇总</title>
     <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/main.css"/>
     <script type="text/javascript" src="__ROOT__/static/index/js/libs/modernizr.min.js"></script>
@@ -15,11 +13,10 @@
 
     </style>
 </head>
-<body>
 <div class="result-wrap">
     <div class="result-content">
-        <form action="{:url('index/onestu')}" method="get">
-            <span>根据学员的姓名，查看该学员的所有周报情况：</span>
+        <form action="{:url('index/attstu')}" method="get">
+            <span>根据学员的姓名，查看该学员的所有考勤情况：</span>
             <select name="user_id" id="">
                 {volist name='userres' id='vo'}
                 <option value="{$vo.id}">{$vo.user_name}</option>
@@ -33,16 +30,9 @@
 
 <div class="result-wrap">
     <div class="result-content">
-        <form action="{:url('index/oneweek')}" method="post">
-            <span>查看某周所有学员周报，请选择要查看的周数：</span>
-            <select name="week_num" id="">
-                {volist name='weekres' id='vo'}
-                <option>{$vo.week_num}</option>
-                {/volist}
-            </select>
+        <form action="{:url('index/attweek')}" method="post">
+            <span>查看所有学员考勤</span>
             <input class="btn btn-primary btn2" type="submit" value="查询">
         </form>
     </div>
 </div>
-</body>
-</html>

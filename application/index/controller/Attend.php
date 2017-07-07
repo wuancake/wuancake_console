@@ -111,15 +111,17 @@ class Attend extends Controller
             ->join('report r3','r3.user_id = `u`.id AND r3.week_num = :s3','LEFT')
             ->join('report r4','r4.user_id = `u`.id AND r4.week_num = :s4','LEFT')
             ->join('report r5','r5.user_id = `u`.id AND r5.week_num = :s5','LEFT')
+            ->join('report r6','r6.user_id = `u`.id AND r6.week_num = :s6','LEFT')
             ->bind([
                 's1'=>$week_num,
                 's2'=>$week_num-1,
                 's3'=>$week_num-2,
                 's4'=>$week_num-3,
                 's5'=>$week_num-4,
+                's6'=>$week_num-5,
             ])
 //            ->select('wg.group_name AS `0`');
-            ->column('wg.group_name AS `0`,user_name,QQ AS `2`,r1.`status` AS `3`,r2.`status` AS `4`,r3.`status` AS `5`,r4.`status` AS `6`,r5.`status` AS `7`','user_name');
+            ->column('wg.group_name AS `0`,user_name,wuan_name,QQ AS `2`,r1.`status` AS `4`,r2.`status` AS `5`,r3.`status` AS `6`,r4.`status` AS `7`,r5.`status` AS `8`,r6.`status` AS `9`','user_name');
 //        dump($rs);
         $this->assign('week',$week_num);
         $this->assign('users',$rs);

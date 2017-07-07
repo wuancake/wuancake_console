@@ -52,13 +52,15 @@
                     <table class="result-tab" width="100%">
                         <tr>
                             <th width="10%">分组</th>
-                            <th width="10%">用户名</th>
+                            <th width="10%">昵称</th>
                             <th width="10%">QQ</th>
+                            <th width="10%">午安网昵称</th>
                             <th>第{$week}周</th>
                             <th>第{$week-1}周</th>
                             <th>第{$week-2}周</th>
                             <th>第{$week-3}周</th>
                             <th>第{$week-4}周</th>
+                            <th>第{$week-5}周</th>
 
 
                         </tr>
@@ -71,8 +73,9 @@
                             </td>
                             <td>{$user['user_name']}</td>
                             <td>{$user[2]}</td>
+                            <td>{$user['wuan_name']}</td>
                             <?php $len = count($user);?>
-                            {for start="3" end="$len" step="1" name="i"}
+                            {for start="4" end="$len" step="1" name="i"}
 
 
                             {switch name="$user[$i]"}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/index/css/main.css"/>
+    <style>
+        div.list-page ul.pagination li{width: 30px;float:left;}
+        table.result-tab th{text-align: center;}
+        table.result-tab td{text-align: center;}
+        /*table.result-tab td:nth-of-type(4){text-align: left;}*/
+        .success{
+            /*color: #ff282f;*/
+            background-color: #00aa00;
+        }
+        .error{
+            /*color: #00aa00;*/
+            background-color: #ff1a19;
+        }
+        .other{
+            color: #000000;
+            background-color: #ffff00;
+        }
+    </style>
+</head>
+<body>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th width="10%">分组</th>
+                    <th width="10%">昵称</th>
+                    <th width="10%">QQ</th>
+                    <th width="10%">午安网昵称</th>
+                    <th>第{$week}周</th>
+                    <th>第{$week-1}周</th>
+                    <th>第{$week-2}周</th>
+                    <th>第{$week-3}周</th>
+                    <th>第{$week-4}周</th>
+                    <th>第{$week-5}周</th>
+
+
+                </tr>
+                {volist name="users" id="user" }
+                <tr>
+                    <td>
+                        {if condition="($user[0] === NULL)"}无分组
+                        {else /}{$user[0]}
+                        {/if}
+                    </td>
+                    <td>{$user['user_name']}</td>
+                    <td>{$user[2]}</td>
+                    <td>{$user['wuan_name']}</td>
+                    <?php $len = count($user);?>
+                    {for start="4" end="$len" step="1" name="i"}
+
+
+                    {switch name="$user[$i]"}
+                    {case value="1"}<td class="error">未提交{/case}
+                    {case value="2"}<td class="success">已提交{/case}
+                    {case value="3"}<td class="other">请假{/case}
+                    {default /}<td class="error">未提交
+                    {/switch}
+                </td>
+
+                    {/for}
+
+                </tr>
+                {/volist}
+            </table>
+            <div class="list-page">{$users->render()}</div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
