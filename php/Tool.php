@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: ccc
- * Date: 2017/7/21 0021
- * Time: 17:28
- */
 class Tool
 {
     protected $connect = '';
@@ -19,7 +13,7 @@ class Tool
     public function jump($page,$message){
         echo '信息：'.$message;
         //head跳转
-        return;
+        exit();
     }
 
 
@@ -88,11 +82,12 @@ class Tool
      * @param $id integer 用户id
      * @param $username string 用户名
      * @param $nickname string 午安网昵称
+     * session中token字符串存放的信息：用户id*用户名*用户昵称
+     * cookie中token字符串存放的信息：用户id*用户名*用户昵称*令牌
      */
     public function setToken($id,$username,$nickname){
         $message = "$id*$username*$nickname";
-        $key = "$message*".password_hash($message,PASSWORD_DEFAULT);
-        $token = "$message*$key";
+        $token = "$message*".password_hash($message,PASSWORD_DEFAULT);
 
         $_SESSION['token'] = $message;
         setcookie('token',$token,time()+3600*24*7);
@@ -102,7 +97,6 @@ class Tool
     /**
      * 删除session和cookie */
     public function delToken(){
-        session_start();
         session_destroy();
 
         foreach($_COOKIE as $key=>$val){
@@ -127,7 +121,7 @@ class Tool
                 return 0;
             }
             $str = "$message[0]*$message[1]*$message[2]";
-            if (password_verify($str,$message[4])){
+            if (password_verify($str,$message[3])){
                 //cookie文件存在且合法，设置session令牌
                 $_SESSION['token'] = $message[0];
                 return 1;

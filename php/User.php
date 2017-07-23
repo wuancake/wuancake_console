@@ -1,12 +1,7 @@
 <?php
 
 require_once './Tool.php';
-/**
- * Created by PhpStorm.
- * User: ccc
- * Date: 2017/7/21 0021
- * Time: 17:02
- */
+
 class User extends Tool
 {
     private $id = '';
@@ -34,7 +29,7 @@ class User extends Tool
         $date = date('Y-m-d H:m:s');
         $password = password_hash($psd,PASSWORD_DEFAULT);
 
-        ($message = $this->check_sole($username,$email,$nickname)) === 1 or $this->jump('',$message);
+        ($message = $this->check_sole($email,$username,$nickname)) === 1 or $this->jump('',$message);
 
         $sql = "INSERT INTO user VALUE (DEFAULT,?,?,?,?,?,0,0,'$date','$date')";
         $stmt = $this->connect->prepare($sql);
@@ -52,6 +47,8 @@ class User extends Tool
      * @param $psd string 密码
      */
     public function login($email,$psd){
+        $this->check_state() and $this->jump('','你已经登录');
+
         $this->check_sole($email) === 1 and $this->jump('','该邮箱尚未在本网站注册');
 
         $sql = "SELECT id,user_name,wuan_name,password FROM user WHERE email = ?";
@@ -66,7 +63,7 @@ class User extends Tool
         //验证成功，储存session和cookie信息
         $this->setToken($id,$username,$wuan_name);
 
-
+        $this->jump('','登陆成功,即将转向主页');
     }
 
 
@@ -88,9 +85,9 @@ class User extends Tool
 
     /**
      * 找回密码
-     *
+     * @param $email string email地址
      */
-    public function recover_psd(){
+    public function recover_psd($email){
 
     }
 }
