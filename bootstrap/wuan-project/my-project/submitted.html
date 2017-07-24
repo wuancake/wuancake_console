@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>submitted</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/public.css" />
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+		
+<style scoped>
+ /*submitted begin*/
+.submitted{
+	padding-top: 5.25rem;
+	height: 100%;width: 100%;
+}
+.timeboxout{
+	width: 11.5625rem;
+	height: 11.5625rem;
+	box-sizing: border-box;
+	border: 1px solid #34a853;
+	border-radius: 50%;
+	position: relative;
+	margin-left: auto;margin-right: auto;
+	margin-bottom: 1rem;
+}
+.percent{
+	font-size: 1.1875rem;
+	color: #34a853;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.userMessage{
+    font-size: 0.84375rem;
+    color: #b6b6b6;
+    margin-bottom: 2.4375rem;
+}
+#pushweekly{
+    width: 77%;
+    font-size: 1.1875rem;
+    color: white;
+    background-color: #4285f4;
+    height: 2.625rem;
+    border: none;
+    border-radius: 1.3125rem;
+    margin-bottom: 1.75rem;
+}
+ /*submitted end*/
+</style>
+
+	</head>
+  	<body> 
+
+	<div class="submitted">
+  <div class="timeboxout">
+    <div class="percent">
+      <p>第<span id="nw">51</span>周</p>
+	  <p>本周已提交</p>
+    </div>
+  </div>
+  <p class="userMessage"><span>产品经理组</span>：<span>二马</span></p>
+  <router-link v-bind:to="toMyWeekly"><button id="pushweekly" class="center-block" type="submit">我的周报</button></router-link>
+</div>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
+</html>
