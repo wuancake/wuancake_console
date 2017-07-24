@@ -77,9 +77,38 @@ class User extends Tool
 
 
     /**
-     * 修改密码*/
-    public function reset_psd(){
+     * 修改密码
+     * @param $psd string 用户当前密码
+     * @param $newpsd string 用户想要设置的新密码
+     * @param $renewpsd string 确认新密码
+     */
+    public function reset_psd($psd,$newpsd,$renewpsd){
+        $newpsd === $renewpsd or $this->jump('','两次输入的密码不同');
 
+        $this->check_state() or $this->jump('','请先登录');
+        $id = $_SESSION['token']['id'];
+
+        $sql = "SELECT password FROM user WHERE id = ?";
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bind_param('s',$id);
+        $stmt->bind_result($now_psd);
+        $stmt->execute() or $this->jump('','操作失败，请稍后重试');
+        $stmt->fetch();
+        $stmt->close();
+
+        password_verify($psd,$now_psd) or $this->jump('','密码错误');
+        $newpsd = password_hash($newpsd,PASSWORD_DEFAULT);
+
+        $sql = "UPDATE user SET password = ? WHERE id = ?";
+        $stmt = $this->connect->prepare($sql);
+
+        $stmt->bind_param('si',$newpsd,$id);
+        $stmt->execute() or $this->jump('','操作失败，请稍后重试');
+
+        $stmt->free_result();
+        $stmt->close();
+
+        $this->jump('','修改密码成功');
     }
 
 
@@ -88,6 +117,6 @@ class User extends Tool
      * @param $email string email地址
      */
     public function recover_psd($email){
-
+        //email*hash_hmac
     }
 }

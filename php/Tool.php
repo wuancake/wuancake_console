@@ -25,7 +25,7 @@ class Tool
      * @return string 如果用户名、电子邮箱或用户昵称存在，则返回存在字符串
      * @return integer 如果以上三项都未被注册，则返回整型数值1
      */
-    public function check_sole($email,$username = null,$nickname = null){
+    protected function check_sole($email,$username = null,$nickname = null){
         $sql = "SELECT email FROM user WHERE email = ?";
         $stmt = $this->connect->prepare($sql);
         $stmt->bind_param('s',$email);
@@ -68,7 +68,7 @@ class Tool
      * @param $port mixed 指定MySQL服务器的端口
      * @return array 返回连接是否成功的信息
      */
-    public function db($host='localhost',$username='root',$psd='root',$dbname='weekly',$port='3306'){
+    protected function db($host='localhost',$username='root',$psd='root',$dbname='weekly',$port='3306'){
         $this->connect = new mysqli($host,$username,$psd,$dbname,$port);
         if ($this->connect->connect_error)
             return array('mark'=>'error','message'=>$this->connect->connect_error);
@@ -82,14 +82,14 @@ class Tool
      * @param $id integer 用户id
      * @param $username string 用户名
      * @param $nickname string 午安网昵称
-     * session中token字符串存放的信息：用户id*用户名*用户昵称
+     * session中token数组存放的信息：id=>用户id,username=>用户名,nickname=>用户昵称
      * cookie中token字符串存放的信息：用户id*用户名*用户昵称*令牌
      */
-    public function setToken($id,$username,$nickname){
+    protected function setToken($id,$username,$nickname){
         $message = "$id*$username*$nickname";
         $token = "$message*".password_hash($message,PASSWORD_DEFAULT);
 
-        $_SESSION['token'] = $message;
+        $_SESSION['token'] = array('id'=>$id,'username'=>$username,'nickname'=>$nickname);
         setcookie('token',$token,time()+3600*24*7);
     }
 
