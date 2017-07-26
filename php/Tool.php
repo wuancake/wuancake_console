@@ -90,7 +90,7 @@ class Tool
         $token = "$message*".password_hash($message,PASSWORD_DEFAULT);
 
         $_SESSION['token'] = array('id'=>$id,'username'=>$username,'nickname'=>$nickname);
-        setcookie('token',$token,time()+3600*24*7,'../');
+        setcookie('token',$token,time()+3600*24*7,'/');
     }
 
 
