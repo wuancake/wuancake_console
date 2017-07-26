@@ -60,6 +60,8 @@ class User extends Tool
         $stmt->bind_result($id, $username, $wuan_name, $true_psd);
         $stmt->execute() or $this->jump('', '未知错误，请稍后重试');
         $stmt->fetch();
+        $stmt->free_result();
+        $stmt->close();
 
         $sql = "SELECT group_id FROM user_grouo WHERE user_id = $id";
         $res = $this->connect->query($sql);

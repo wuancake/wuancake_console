@@ -37,27 +37,26 @@ class Tracer
         $this->db = new $db;
     }
 
-    //加载视图
+    /**
+     * 加载视图
+     * @param $view string 要加载的界面
+     * @param $data array 要传递的数据
+     */
     public function view($view,$data=array()){
-        $str = file_get_contents('./application/views/'.$view.'.php');
-        if (!empty($data))
-            foreach ($data as $key=>$value){
-            $str = str_replace("{"."$key"."}",$value,$str);
-            //运用正则替换，把
-            }
+        @extract($data);
         ob_end_clean();
-        echo $str;
+        require_once './application/views/'.$view.'.php';
     }
 
 
     /**
      * 跳转到指定页面
      * @param $page string 要跳转到的页面
-     * @param $message string 错误信息
+     * @param $message mixed 错误信息
      */
-    public function jump($page, $message) {
-        echo '信息：' . $message;
-        //head跳转
+    public function jump($page, $message='') {
+        ob_end_clean();
+        require_once './application/views/'.$page.'.php';
         exit();
     }
 }

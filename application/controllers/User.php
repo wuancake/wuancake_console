@@ -52,12 +52,12 @@ class User extends Tracer
 
     /**
      * 登录
-     * @param $email string 电子邮箱
-     * @param $psd string 密码
+     * $email string 电子邮箱
+     * $psd string 密码
      */
     public function login() {
         $email = $this->post('email');
-        $psd = $this->post('password');
+        $psd   = $this->post('password');
 
         $this->db->check_state() and $this->jump('', '你已经登录');
 
@@ -96,8 +96,8 @@ class User extends Tracer
         $id   = $_SESSION['token']['id'];
         $time = date('Y-m-d H:m:s');
 
-        $this->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,$time,$time)")
-        or $this->jump('', '加入分组失败，请稍后再试');
+        $res = $this->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,$time,$time)");
+        $res->num_rows or $this->jump('', '加入分组失败，请稍后再试');
 
         $this->jump('', '加入分组成功');
     }
@@ -114,13 +114,13 @@ class User extends Tracer
 
     /**
      * 修改密码
-     * @param $psd string 用户当前密码
-     * @param $newpsd string 用户想要设置的新密码
-     * @param $renewpsd string 确认新密码
+     * $psd string 用户当前密码
+     * $newpsd string 用户想要设置的新密码
+     * $renewpsd string 确认新密码
      */
     public function reset_psd() {
-        $psd = $this->post('password');
-        $newpsd = $this->post('newpsd');
+        $psd      = $this->post('password');
+        $newpsd   = $this->post('newpsd');
         $renewpsd = $this->post('repassword');
 
         $newpsd === $renewpsd or $this->jump('', '两次输入的密码不同');
@@ -159,5 +159,9 @@ class User extends Tracer
     public function recover_psd($email) {
         $info = 'url字符串';
         $this->db->send_mail($email, $info);
+    }
+
+    public function test(){
+        $this->jump('test','sss');
     }
 }

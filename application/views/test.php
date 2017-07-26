@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>测试{test}</h1>
-<?php echo "hello"; ?>
+<?php echo $message; ?>
 </body>
 </html>

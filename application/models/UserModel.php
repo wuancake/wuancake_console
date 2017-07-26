@@ -120,7 +120,7 @@ class UserModel extends TracerModels
      * @param $info mixed 要发送的信息
      */
     public function send_mail($email, $info) {
-        require './mailer/PHPMailerAutoload.php';
+        require './library/mailer/PHPMailerAutoload.php';
 
         $mail = new PHPMailer;
 
