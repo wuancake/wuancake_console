@@ -4,7 +4,11 @@ require_once '../User.php';
 
 $user = new User();
 
-empty($_POST['email']) || empty($_POST['password'])
+$user->check_state()
+or
+$this->jump('', '请先登录！');
+
+empty($_GET['group_id'])
 and
 $user->jump('', '非法请求来源，缺少必要信息');
 
