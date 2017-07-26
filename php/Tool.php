@@ -90,7 +90,7 @@ class Tool
         $token = "$message*".password_hash($message,PASSWORD_DEFAULT);
 
         $_SESSION['token'] = array('id'=>$id,'username'=>$username,'nickname'=>$nickname);
-        setcookie('token',$token,time()+3600*24*7);
+        setcookie('token',$token,time()+3600*24*7,'../');
     }
 
 
@@ -131,5 +131,37 @@ class Tool
         return 0;
     }
 
+    public function send_mail($email,$info){
+        require './mailer/PHPMailerAutoload.php';
 
+        $mail = new PHPMailer;
+
+//        $mail->SMTPDebug = 3;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.qq.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '459472218@qq.com';
+        $mail->Password = 'qpqzmxasigvzbhef';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('459472218@qq.com', 'wuan');
+        $mail->addAddress($email, 'user');     // Add a recipient
+//        $mail->addAddress('ellen@example.com');               // Name is optional
+//        $mail->addReplyTo('info@example.com', 'Information');
+//        $mail->addCC('cc@example.com');
+//        $mail->addBCC('bcc@example.com');
+        $mail->isHTML(false);
+
+        $mail->Subject = 'reset password';
+        $mail->Body    = '请访问以下连接进行重置密码操作：'.$info;
+//        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        if(!$mail->send()) {
+            $this->jump('','Message could not be sent.'.'Mailer Error: ' . $mail->ErrorInfo);
+        } else {
+            $this->jump('','邮件发送成功，请查收邮件');
+        }
+
+    }
 }

@@ -27,7 +27,7 @@ class User extends Tool
         $psd === $rpsd or $this->jump('wrong_psd','两次输入密码不一致');
         is_numeric($qq) or $this->jump('wrong_qq','请输入正确的QQ号码');
         $date = date('Y-m-d H:m:s');
-        $password = password_hash($psd,PASSWORD_DEFAULT);
+        $password = md5($psd);
 
         ($message = $this->check_sole($email,$username,$nickname)) === 1 or $this->jump('',$message);
 
@@ -54,11 +54,11 @@ class User extends Tool
         $sql = "SELECT id,user_name,wuan_name,password FROM user WHERE email = ?";
         $stmt = $this->connect->prepare($sql);
         $stmt->bind_param('s',$email);
-        $stmt->bind_result($id,$username,$wuan_name,$hash);
+        $stmt->bind_result($id,$username,$wuan_name,$true_psd);
         $stmt->execute() or $this->jump('','未知错误，请稍后重试');
 
         $stmt->fetch();
-        password_verify($psd,$hash) or $this->jump('','用户名或密码错误！');
+        $true_psd == md5($psd) or $this->jump('','用户名或密码错误！');
 
         //验证成功，储存session和cookie信息
         $this->setToken($id,$username,$wuan_name);
@@ -96,8 +96,8 @@ class User extends Tool
         $stmt->fetch();
         $stmt->close();
 
-        password_verify($psd,$now_psd) or $this->jump('','密码错误');
-        $newpsd = password_hash($newpsd,PASSWORD_DEFAULT);
+        $now_psd == $psd or $this->jump('','密码错误');
+        $newpsd = md5($newpsd);
 
         $sql = "UPDATE user SET password = ? WHERE id = ?";
         $stmt = $this->connect->prepare($sql);
@@ -117,6 +117,7 @@ class User extends Tool
      * @param $email string email地址
      */
     public function recover_psd($email){
-        //email*hash_hmac
+        $info = 'url字符串';
+        $this->send_mail($email,$info);
     }
 }
