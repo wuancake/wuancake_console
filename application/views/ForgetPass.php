@@ -9,8 +9,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/public.css" />
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,10 +26,10 @@
     </div>
     
 <div class="forgetpass clearfix">
-  <form>
+  <form action="/index.php/user/recover_psd" method="post">
   	<h4>忘记密码?</h4>
     <div class="from-group center-block">
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮箱" v-model="userEmail">
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮箱" v-model="userEmail" name="email">
     </div>
   </form>
   
@@ -40,7 +40,7 @@
   <p>提交后我们将修改密码的地址以邮件的形式发送到您的邮箱中，请注意查收！</p>
  
   <div class="box clearfix">
-			<span>已有帐号？</span><router-link v-bind:to="signupToLogin"><a href="Login.html" class="btn btn-default">点击登录</a></router-link>
+			<span>已有帐号？</span><router-link v-bind:to="signupToLogin"><a href="/index.php/user/login" class="btn btn-default">点击登录</a></router-link>
 		</div>
 
 </div>

@@ -26,12 +26,12 @@ class User extends Tracer
      * $rpsd string 确认输入的密码
      */
     public function register() {
-        $username = $this->post('username');
-        $email    = $this->post('email');
-        $nickname = $this->post('nickname');
-        $psd      = $this->post('password');
-        $qq       = $this->post('qq');
-        $rpsd     = $this->post('repassword');
+        $username = $this->post('username','viewer/signup');
+        $email    = $this->post('email','viewer/signup');
+        $nickname = $this->post('nickname','viewer/signup');
+        $psd      = $this->post('password','viewer/signup');
+        $qq       = $this->post('qq','viewer/signup');
+        $rpsd     = $this->post('repassword','viewer/signup');
 
         $psd === $rpsd or $this->jump('skip', '两次输入密码不一致', 'viewer/signup');
         is_numeric($qq) or $this->jump('skip', '请输入正确的QQ号码', 'viewer/signup');
@@ -56,8 +56,8 @@ class User extends Tracer
      * $psd string 密码
      */
     public function login() {
-        $email = $this->post('email');
-        $psd   = $this->post('password');
+        $email = $this->post('email','viewer/login');
+        $psd   = $this->post('password','viewer/login');
 
         $this->db->check_state() and $this->jump('skip', '你已经登录', 'viewer/login');
 
@@ -88,9 +88,11 @@ class User extends Tracer
 
     /**
      * 加入分组
-     * @param $group_id mixed 分组id
+     * $group_id mixed 分组id
      */
-    public function join_group($group_id) {
+    public function join_group() {
+        $group_id = $this->post('group','viewer/join_group)');
+
         $group_id >= 1 && $group_id <= 7 or $this->jump('skip', '非法操作，请返回后重试', 'viewer/join_group');
 
         $id   = $_SESSION['token']['id'];
@@ -119,9 +121,9 @@ class User extends Tracer
      * $renewpsd string 确认新密码
      */
     public function reset_psd() {
-        $psd      = $this->post('password');
-        $newpsd   = $this->post('newpsd');
-        $renewpsd = $this->post('repassword');
+        $psd      = $this->post('password','viewer/reset_psd');
+        $newpsd   = $this->post('newpsd','viewer/reset_psd');
+        $renewpsd = $this->post('repassword','viewer/reset_psd');
 
         $newpsd === $renewpsd or $this->jump('skip', '两次输入的密码不同', 'viewer/change_psd');
 
@@ -154,9 +156,10 @@ class User extends Tracer
 
     /**
      * 找回密码
-     * @param $email string email地址
+     * $email string email地址
      */
-    public function recover_psd($email) {
+    public function recover_psd() {
+        $email = $this->post('email','viewer/recover_psd');
         $info = 'url字符串';
         $this->db->send_mail($email, $info);
     }
