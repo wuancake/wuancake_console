@@ -14,10 +14,10 @@ class Tracer
     public function post($aim = ''){
         if (empty($aim))
             return $_POST;
-        elseif (isset($_POST[$aim]))
+        elseif (!empty($_POST[$aim]))
             return $_POST[$aim];
         else
-            $this->jump('','请求错误，必要参数不存在');
+            $this->jump('skip',"请求错误，必要参数{$aim}不存在",'viewer/login');
     }
 
     //获取get数据
@@ -54,7 +54,7 @@ class Tracer
      * @param $page string 要跳转到的页面
      * @param $message mixed 错误信息
      */
-    public function jump($page, $message='') {
+    public function jump($page, $message='',$url='') {
         ob_end_clean();
         require_once './application/views/'.$page.'.php';
         exit();
