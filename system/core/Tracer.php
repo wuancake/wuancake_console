@@ -9,6 +9,16 @@
 class Tracer
 {
     protected $db = '';
+    private $terminal = '';
+
+
+    public function __construct(){
+        $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if (strpos($agent, 'windows nt') || strpos($agent, 'mac os'))
+            $this->terminal = 'computer';
+        else
+            $this->terminal = 'mobile';
+    }
 
 
     /**
@@ -73,7 +83,9 @@ class Tracer
      */
     public function jump($page, $message = '', $url = '') {
         ob_end_clean();
-        require_once './application/views/' . $page . '.php';
+        require_once "./application/views/$this->terminal/" . $page . '.php';
         exit();
     }
+
+
 }

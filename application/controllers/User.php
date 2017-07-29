@@ -11,6 +11,7 @@ class User extends Tracer
 
 
     public function __construct() {
+        parent::__construct();
         $this->database('user');
 //        session_start();
     }
@@ -26,12 +27,12 @@ class User extends Tracer
      * $rpsd string 确认输入的密码
      */
     public function register() {
-        $username = $this->post('username','viewer/signup');
-        $email    = $this->post('email','viewer/signup');
-        $nickname = $this->post('nickname','viewer/signup');
-        $psd      = $this->post('password','viewer/signup');
-        $qq       = $this->post('qq','viewer/signup');
-        $rpsd     = $this->post('repassword','viewer/signup');
+        $username = $this->post('username', 'viewer/signup');
+        $email    = $this->post('email', 'viewer/signup');
+        $nickname = $this->post('nickname', 'viewer/signup');
+        $psd      = $this->post('password', 'viewer/signup');
+        $qq       = $this->post('qq', 'viewer/signup');
+        $rpsd     = $this->post('repassword', 'viewer/signup');
 
         $psd === $rpsd or $this->jump('skip', '两次输入密码不一致', 'viewer/signup');
         is_numeric($qq) or $this->jump('skip', '请输入正确的QQ号码', 'viewer/signup');
@@ -56,10 +57,8 @@ class User extends Tracer
      * $psd string 密码
      */
     public function login() {
-        $email = $this->post('email','viewer/login');
-        $psd   = $this->post('password','viewer/login');
-
-        $this->db->check_state() and $this->jump('skip', '你已经登录', 'viewer/login');
+        $email = $this->post('email', 'viewer/login');
+        $psd   = $this->post('password', 'viewer/login');
 
         $this->db->check_sole($email) === 1 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewer/login');
 
@@ -72,15 +71,16 @@ class User extends Tracer
         $stmt->free_result();
         $stmt->close();
 
-        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
-        $res = $this->db->connect->query($sql);
-
-        @$res->num_rows or $this->jump('skip', '你尚未加入分组，请先选择分组', 'viewer/join_group');
-
         $true_psd == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewer/login');
 
         //验证成功，储存session和cookie信息
         $this->db->setToken($id, $username, $wuan_name);
+
+        //判断用户是否加入分组
+        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
+        $res = $this->db->connect->query($sql);
+
+        @$res->num_rows or $this->jump('skip', '你尚未加入分组，请先选择分组', 'viewer/join_group');
 
         $this->jump('skip', '登陆成功,即将转向主页', 'viewer/homepage');
     }
@@ -91,15 +91,21 @@ class User extends Tracer
      * $group_id mixed 分组id
      */
     public function join_group() {
-        $group_id = $this->post('group','viewer/join_group)');
+        $this->db->check_state();
+
+        $id  = @$_SESSION['token']['id'];
+        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
+        $res = $this->db->connect->query($sql);
+        @$res->num_rows and $this->jump('skip', '你已加入分组，即将转向主页', 'viewer/homepage');
+
+        $group_id = $this->post('genre', 'viewer/join_group');
 
         $group_id >= 1 && $group_id <= 7 or $this->jump('skip', '非法操作，请返回后重试', 'viewer/join_group');
 
         $id   = $_SESSION['token']['id'];
         $time = date('Y-m-d H:m:s');
 
-        $res = $this->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,$time,$time)");
-        $res->num_rows or $this->jump('skip', '加入分组失败，请稍后再试', 'viewer/homepage');
+        $this->db->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,'$time','$time')");
 
         $this->jump('skip', '加入分组成功', 'viewer/homepage');
     }
@@ -121,9 +127,11 @@ class User extends Tracer
      * $renewpsd string 确认新密码
      */
     public function reset_psd() {
-        $psd      = $this->post('password','viewer/reset_psd');
-        $newpsd   = $this->post('newpsd','viewer/reset_psd');
-        $renewpsd = $this->post('repassword','viewer/reset_psd');
+        $this->db->check_state();
+
+        $psd      = $this->post('password', 'viewer/reset_psd');
+        $newpsd   = $this->post('newpsd', 'viewer/reset_psd');
+        $renewpsd = $this->post('repassword', 'viewer/reset_psd');
 
         $newpsd === $renewpsd or $this->jump('skip', '两次输入的密码不同', 'viewer/change_psd');
 
@@ -159,9 +167,41 @@ class User extends Tracer
      * $email string email地址
      */
     public function recover_psd() {
-        $email = $this->post('email','viewer/recover_psd');
-        $info = 'url字符串';
+        $email = $this->post('email', 'viewer/recover_psd');
+        $info  = 'url字符串';
         $this->db->send_mail($email, $info);
+    }
+
+
+    /**
+     * 查看周报提交状态
+     */
+    public function show_state() {
+
+    }
+
+
+    /**
+     * 查看周报
+     */
+    public function show_weekly() {
+
+    }
+
+
+    /**
+     * 撰写周报
+     */
+    public function write_weekly() {
+
+    }
+
+
+    /**
+     * 请假
+     */
+    public function vacate() {
+
     }
 
 

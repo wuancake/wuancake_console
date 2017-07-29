@@ -100,7 +100,7 @@ class UserModel extends TracerModels
             if (count($message) !== 4) {
                 //cookie被篡改，删除用户登录凭证
                 $this->delToken();
-                return 0;
+                $this->jump('skip', '请先登录', 'viewer/login');
             }
             $str = "$message[0]*$message[1]*$message[2]";
             if (password_verify($str, $message[3])) {
@@ -109,8 +109,8 @@ class UserModel extends TracerModels
                 return 1;
             }
         }
-        //cookie和session均不存在，返回0
-        return 0;
+        //cookie和session均不存在
+        $this->jump('skip', '请先登录', 'viewer/login');
     }
 
 
