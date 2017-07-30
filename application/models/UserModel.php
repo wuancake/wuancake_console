@@ -8,11 +8,12 @@ class UserModel extends TracerModels
     /**
      * 跳转到指定页面
      * @param $page string 要跳转到的页面
-     * @param $message string 错误信息
+     * @param $message mixed 错误信息
+     * @param $url mixed 要跳转的链接，形如 类名/方法名
      */
-    public function jump($page, $message) {
-        echo '信息：' . $message;
-        //head跳转
+    public function jump($page, $message = '', $url = '') {
+        ob_end_clean();
+        require_once "./application/views/$this->terminal/" . $page . '.php';
         exit();
     }
 
@@ -100,17 +101,17 @@ class UserModel extends TracerModels
             if (count($message) !== 4) {
                 //cookie被篡改，删除用户登录凭证
                 $this->delToken();
-                $this->jump('skip', '请先登录', 'viewer/login');
+                $this->jump('skip', '请先登录', 'viewer/index');
             }
             $str = "$message[0]*$message[1]*$message[2]";
             if (password_verify($str, $message[3])) {
                 //cookie文件存在且合法，设置session令牌
-                $_SESSION['token'] = $message[0];
+                $_SESSION['token'] = array('id' => $message[0], 'username' => $message[1], 'nickname' => $message[2]);
                 return 1;
             }
         }
         //cookie和session均不存在
-        $this->jump('skip', '请先登录', 'viewer/login');
+        $this->jump('skip', '请先登录', 'viewer/index');
     }
 
 
@@ -152,5 +153,18 @@ class UserModel extends TracerModels
             $this->jump('', '邮件发送成功，请查收邮件');
         }
 
+    }
+
+
+    /**
+     * 检测用户是否加入分组
+     */
+    public function exist_group() {
+        $id = @$_SESSION['token']['id'];
+
+        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
+        $res = $this->connect->query($sql)->num_rows;
+
+        return $res != 0;
     }
 }

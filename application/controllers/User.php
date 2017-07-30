@@ -13,7 +13,6 @@ class User extends Tracer
     public function __construct() {
         parent::__construct();
         $this->database('user');
-//        session_start();
     }
 
 
@@ -47,7 +46,7 @@ class User extends Tracer
         $stmt->execute() or $this->jump('skip', '注册失败，可能含有非法信息', 'viewer/signup');
         $stmt->close();
 
-        $this->jump('skip', '注册成功,即将转向登陆界面', 'viewer/login');
+        $this->jump('skip', '注册成功,即将转向登陆界面', 'viewer/index');
     }
 
 
@@ -57,32 +56,33 @@ class User extends Tracer
      * $psd string 密码
      */
     public function login() {
-        $email = $this->post('email', 'viewer/login');
-        $psd   = $this->post('password', 'viewer/login');
+        $email = $this->post('email', 'viewer/index');
+        $psd   = $this->post('password', 'viewer/index');
 
-        $this->db->check_sole($email) === 1 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewer/login');
+        $this->db->check_sole($email) === 1 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewer/index');
 
         $sql  = "SELECT id,user_name,wuan_name,password FROM user WHERE email = ?";
         $stmt = $this->db->connect->prepare($sql);
         $stmt->bind_param('s', $email);
         $stmt->bind_result($id, $username, $wuan_name, $true_psd);
-        $stmt->execute() or $this->jump('skip', '未知错误，请稍后重试', 'viewer/login');
+        $stmt->execute() or $this->jump('skip', '未知错误，请稍后重试', 'viewer/index');
         $stmt->fetch();
         $stmt->free_result();
         $stmt->close();
 
-        $true_psd == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewer/login');
+        $true_psd == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewer/index');
 
         //验证成功，储存session和cookie信息
         $this->db->setToken($id, $username, $wuan_name);
 
         //判断用户是否加入分组
-        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
-        $res = $this->db->connect->query($sql);
+//        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
+//        $res = $this->db->connect->query($sql);
+//        @$res->num_rows or $this->jump('skip', '你尚未加入分组，请先选择分组', 'viewer/join_group');
+        $this->db->exist_group() or $this->jump('jump', '你尚未加入分组，请先加入分组', 'viewer/join_group');
 
-        @$res->num_rows or $this->jump('skip', '你尚未加入分组，请先选择分组', 'viewer/join_group');
 
-        $this->jump('skip', '登陆成功,即将转向主页', 'viewer/homepage');
+        $this->jump('skip', '登陆成功,即将转向主页', 'viewer/index');
     }
 
 
@@ -93,10 +93,7 @@ class User extends Tracer
     public function join_group() {
         $this->db->check_state();
 
-        $id  = @$_SESSION['token']['id'];
-        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
-        $res = $this->db->connect->query($sql);
-        @$res->num_rows and $this->jump('skip', '你已加入分组，即将转向主页', 'viewer/homepage');
+        $this->db->exist_group() and $this->jump('skip', '你已加入分组，即将转向主页', 'viewer/index');
 
         $group_id = $this->post('genre', 'viewer/join_group');
 
@@ -107,7 +104,7 @@ class User extends Tracer
 
         $this->db->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,'$time','$time')");
 
-        $this->jump('skip', '加入分组成功', 'viewer/homepage');
+        $this->jump('skip', '加入分组成功', 'viewer/index');
     }
 
 
@@ -116,7 +113,7 @@ class User extends Tracer
      */
     public function quit() {
         $this->db->delToken();
-        $this->jump('skip', '你已退出登录！', 'viewer/login');
+        $this->jump('skip', '你已退出登录！', 'viewer/index');
     }
 
 
@@ -193,6 +190,20 @@ class User extends Tracer
      * 撰写周报
      */
     public function write_weekly() {
+//        $this->db->check_state();
+//        $this->db->exist_group();
+//
+//        $info    = $this->post();
+//        $done    = $info['done'];
+//        $problem = $info['problem'];
+//        $todo    = $info['todo'];
+//        $url     = isset($info['url']) ? $info['url'] : null;
+//
+//        $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
+//        $id       = @$_SESSION['token']['id'];
+        $group = $this->db->connect->query("SELECT group_id FROM user_grouo WHERE user_id = $id")->fetch_assoc()['group_id'];
+        var_dump($group);
+
 
     }
 

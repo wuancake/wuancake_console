@@ -8,11 +8,11 @@
  */
 class Tracer
 {
-    protected $db = '';
-    private $terminal = '';
+    protected $db       = '';
+    private   $terminal = '';
 
 
-    public function __construct(){
+    public function __construct() {
         $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
         if (strpos($agent, 'windows nt') || strpos($agent, 'mac os'))
             $this->terminal = 'computer';
@@ -72,7 +72,8 @@ class Tracer
     public function view($view, $data = array()) {
         @extract($data);
         ob_end_clean();
-        require_once './application/views/' . $view . '.php';
+        require_once "./application/views/$this->terminal/" . $view . '.php';
+        exit();
     }
 
 
@@ -80,6 +81,7 @@ class Tracer
      * 跳转到指定页面
      * @param $page string 要跳转到的页面
      * @param $message mixed 错误信息
+     * @param $url mixed 要跳转的链接，形如 类名/方法名
      */
     public function jump($page, $message = '', $url = '') {
         ob_end_clean();
