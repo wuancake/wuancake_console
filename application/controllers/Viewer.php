@@ -95,4 +95,6 @@ class Viewer extends Tracer
     public function write_weekly() {
 
     }
+
+
 }

@@ -170,6 +170,8 @@ class User extends Tracer
     }
 
 
+    /** 周报相关 */
+
     /**
      * 查看周报提交状态
      */
@@ -216,7 +218,5 @@ class User extends Tracer
     }
 
 
-    public function test() {
-        $this->jump('skip', '请输入密码', 'viewer/register');
-    }
+
 }
