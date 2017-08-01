@@ -9,8 +9,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/public.css" />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/public.css" />
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,8 +32,8 @@
     		<div class="timeboxin">
     			<div class="box">
 					<div class="percent">
-      <p>第<span id="nw">51</span>周</p>
-	  <p>本周已提交</p>
+      <p>第<span id="nw"><?php echo $week_num;?></span>周</p>
+	  <p><?php echo $status;?></p>
     </div>
 					<!--<div id="water" class="water">
 						<svg viewBox="0 0 560 20" class="water_wave water_wave_back">
@@ -47,7 +47,30 @@
 	    	</div>
     
     </div>
-    <p class="userMessage"><span>产品经理组</span>：<span>二马</span></p>
+    <p class="userMessage"><span><?php
+            switch ($group) {
+                case 1:
+                    echo 'PHP组';
+                    break;
+                case 2:
+                    echo 'Web前端组';
+                    break;
+                case 3:
+                    echo 'UI设计组';
+                    break;
+                case 4:
+                    echo 'Android组';
+                    break;
+                case 5:
+                    echo '产品经理组';
+                    break;
+                case 6:
+                    echo '软件测试组';
+                    break;
+                case 7:
+                    echo 'Java组';
+                    break;
+            } ?></span>：<span><?php echo $nick_name;?></span></p>
     <router-link v-bind:to="writeWeekly"><button id="myweeklybtn" class="center-block" type="submit">我的周报</button></router-link>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
 		<symbol id="wave">

@@ -40,18 +40,26 @@ class Viewer extends Tracer
 
 
     /**
+     * 返回试图所需要的信息，包含用户分组，用户id，用户昵称，当前周数等
+     */
+    public function info() {
+        $data             = $_SESSION['token'];
+        $data['week_num'] = ceil((time() - strtotime('2015-11-02')) / 604800);
+        $data['group']    = $this->db->sel_group();
+        return $data;
+    }
+
+
+    /**
      * 登录界面
      */
     public function index() {
         if ($this->check_state()) {
-            $data = $_SESSION['token'];
-
-            $data['week_num'] = ceil((time() - strtotime('2015-11-02')) / 604800);
-            $data['group']    = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = {$_SESSION['token']['id']}")->fetch_assoc()['group_id'];
-            $this->view('homepage', $data);
+            $data = $this->info();
+            $this->view('HomePage', $data);
         }
         else
-            $this->jump('login');
+            $this->jump('Login');
     }
 
 
@@ -68,7 +76,7 @@ class Viewer extends Tracer
      */
     public function join_group() {
         $this->check_state() or $this->jump('login', '请先登录', 'viewer/index');
-        $this->jump('grouping');
+        $this->jump('Grouping');
     }
 
 
@@ -94,7 +102,35 @@ class Viewer extends Tracer
      */
     public function write_weekly() {
 
+        if ($this->check_state() && $this->db->exist_group()) {
+            $data = $this->info();
+            $data['status'] = $this->db->connect->query("SELECT status FROM report WHERE week_num = {$data['week_num']} AND user_id = {$data['id']}")->fetch_assoc()['status'];
+            $data['status'] == '' and $data['status'] = 1;
+            $this->view('WriteWeekly', $data);
+        }
+        else {
+            $this->jump('skip', '你未登录或未加入分组', 'viewer/index');
+        }
+
     }
 
 
+    /**
+     * 请假界面
+     */
+    public function vacate(){
+        $data = $this->info();
+        $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = {$data['week_num']} AND user_id = {$data['id']}");
+
+        if (!$res->num_rows) {
+            $data['status'] = '未请假';
+        }
+        else if ($res->fetch_assoc()['status'] == 3) {
+            $data['status'] = '已请假';
+        }
+        else{
+            $data['status'] = '未请假';
+        }
+        $this->view('Leave',$data);
+    }
 }

@@ -176,6 +176,33 @@ class User extends Tracer
      * 查看周报提交状态
      */
     public function show_state() {
+        $this->db->check_state();
+        $this->db->exist_group() or $this->jump('skip', '请先加入分组', 'viewer/index');
+
+        $data             = $_SESSION['token'];
+        $data['group']    = $this->db->sel_group();
+        $data['week_num'] = ceil((time() - strtotime('2015-11-02')) / 604800);
+
+        $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = {$data['week_num']} AND user_id = {$data['id']}");
+
+        $status = @$res->fetch_assoc()['status'];
+        if (!$res->num_rows) {
+            $data['status'] = '未提交周报';
+        }
+        else if ($status == '2') {
+            $data['status'] = '已提交周报';
+        }
+        else if ($status == '3') {
+            $data['status'] = '已请假';
+        }
+        else if ($status == '4') {
+            $data['status'] = '可以请假';
+        }
+
+        if ($data['status'] == '已请假')
+            $this->view('askLeaveSuccess', $data);
+        else
+            $this->view('subWeeklySuccess', $data);
 
     }
 
@@ -184,7 +211,7 @@ class User extends Tracer
      * 查看周报
      */
     public function show_weekly() {
-
+        echo 'my weekly';
     }
 
 
@@ -192,20 +219,34 @@ class User extends Tracer
      * 撰写周报
      */
     public function write_weekly() {
-//        $this->db->check_state();
-//        $this->db->exist_group();
-//
-//        $info    = $this->post();
-//        $done    = $info['done'];
-//        $problem = $info['problem'];
-//        $todo    = $info['todo'];
-//        $url     = isset($info['url']) ? $info['url'] : null;
-//
-//        $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
-//        $id       = @$_SESSION['token']['id'];
-        $group = $this->db->connect->query("SELECT group_id FROM user_grouo WHERE user_id = $id")->fetch_assoc()['group_id'];
-        var_dump($group);
+        $this->db->check_state();
+        $this->db->exist_group() or $this->jump('skip', '请先加入分组', 'viewer/index');
 
+        $id    = $_SESSION['token']['id'];
+        $group = $this->db->sel_group();
+
+        $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
+        $time     = date('Y-m-d H:m:s');
+
+        $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = $week_num AND user_id = $id");
+        if (@$res->num_rows) {
+            $this->jump('skip', '错误的操作，你已提交本周周报或请假', 'viewer/index');
+        }
+
+        $info    = $this->post();
+        $done    = addslashes(htmlspecialchars(@$info['done'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
+        $problem = addslashes(htmlspecialchars(@$info['problem'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
+        $todo    = addslashes(htmlspecialchars(@$info['todo'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
+        $url     = isset($info['url']) ? addslashes(htmlspecialchars($info['url'])) : '';
+
+        $str = "本周完成：$done<br>所遇问题：$problem<br>下周计划：$todo<br>作品链接：$url";
+
+        //status 为 2 表示已经提交周报，status 为 3 表示已经请假，status 为 4 表示可以请假，4为前端提交临时判断参数，不提交数据库
+        //判断：如果学员处于2或者3状态，不能请假
+        $sql = "INSERT INTO report VALUE ($week_num,$id,$group,'$str',2,'$time')";
+        $this->db->connect->query($sql) or $this->jump('skip', '添加失败，请检查输入是否正确后重试', 'viewer/index');
+
+        $this->jump('skip', '回复成功！页面即将跳转', 'user/show_state');
 
     }
 
@@ -214,9 +255,53 @@ class User extends Tracer
      * 请假
      */
     public function vacate() {
+        $this->db->check_state();
+        $this->db->exist_group() or $this->jump('skip', '请先加入分组', 'viewer/index');
 
+        $id    = $_SESSION['token']['id'];
+        $group = $this->db->sel_group();
+
+        $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
+        $time     = date('Y-m-d H:m:s');
+
+        $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = $week_num AND user_id = $id");
+        if (@$res->num_rows) {
+            $this->jump('skip', '错误的操作，你已提交本周周报或请假', 'viewer/index');
+        }
+
+        $info   = $this->post();
+        $num    = @$info['num'] or $this->jump('skip','非法请求，缺少必要参数','viewer/vacate');
+        $reason = addslashes(htmlspecialchars(@$info['reason'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/vacate');
+
+        while ($num--) {
+            $sql = "INSERT INTO report VALUE ($week_num,$id,$group,'$reason',3,'$time')";
+            $this->db->connect->query($sql) or $this->jump('skip', '添加失败，请检查输入是否正确后重试', 'viewer/index');
+            $week_num++;
+        }
+        $this->jump('skip', '请假成功！页面即将跳转', 'user/show_state');
     }
 
 
+    /**
+     * 取消请假
+     */
+    public function vacate_off(){
+        $this->db->check_state();
+        $this->db->exist_group() or $this->jump('skip', '请先加入分组', 'viewer/index');
+
+        $id = $_SESSION['token']['id'];
+        $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
+
+        $res = $this->db->connect->query("SELECT status FROM report WHERE user_id = $id");
+
+        if (!$res->num_rows || $res->fetch_assoc()['status'] != 3){
+            $this->jump('skip','你尚未请假','viewer/vacate');
+        }
+        else{
+            $this->db->connect->query("DELETE FROM report WHERE user_id = $id AND week_num >= $week_num");
+            $this->jump('skip','取消请假成功，正在转向主页','viewer/index');
+        }
+
+    }
 
 }
