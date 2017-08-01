@@ -158,6 +158,7 @@ class UserModel extends TracerModels
 
     /**
      * 检测用户是否加入分组
+     * @return integer 已加入返回1，未加入返回2
      */
     public function exist_group() {
         $id = @$_SESSION['token']['id'];
@@ -166,5 +167,18 @@ class UserModel extends TracerModels
         $res = $this->connect->query($sql)->num_rows;
 
         return $res != 0;
+    }
+
+
+    /**
+     * 查询用户的分组代号
+     * 需要登陆后使用
+     * @return integer 用户的分组代号
+     */
+    public function sel_group(){
+        $id       = @$_SESSION['token']['id'];
+        $id = (int)$id;
+        return $this->connect->query("SELECT group_id FROM user_group WHERE user_id = $id")->fetch_assoc()['group_id'];
+
     }
 }
