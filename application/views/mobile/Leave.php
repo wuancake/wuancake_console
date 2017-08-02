@@ -56,7 +56,7 @@
                         echo 'Java组';
                         break;
                 } ?>：</label>
-            <span class="la-horizontal-right"><?php echo $nickname; ?></span>
+            <span class="la-horizontal-right"><?php echo $username; ?></span>
         </div>
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left">当前周数：</label>

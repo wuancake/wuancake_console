@@ -73,7 +73,7 @@
                 case 7:
                     echo 'Java组';
                     break;
-            } ?></span>：<span><?php echo $nickname; ?></span></p>
+            } ?></span>：<span><?php echo $username; ?></span></p>
     <!--<router-link v-bind:to="writeWeekly"><button id="pushweekly" class="center-block" type="submit">提交周报</button></router-link>-->
     <router-link v-bind:to="writeWeekly">
         <button id="myweeklybtn" class="center-block" type="submit">我的周报</button>

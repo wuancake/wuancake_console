@@ -70,7 +70,7 @@
                 case 7:
                     echo 'Java组';
                     break;
-            } ?></span>：<span><?php echo $nick_name;?></span></p>
+            } ?></span>：<span><?php echo $username;?></span></p>
     <router-link v-bind:to="writeWeekly"><button id="myweeklybtn" class="center-block" type="submit">我的周报</button></router-link>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
 		<symbol id="wave">
