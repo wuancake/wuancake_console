@@ -9,8 +9,9 @@
 			var timeRate;
 			var interval;
 			
-	
-
+			var showSideBar1 = document.getElementById("showSideBar1");
+			var showSideBar2 = document.getElementById("showSideBar2");
+			var sidbox = document.getElementById("sid-box");
 
 			
 			
@@ -72,3 +73,5 @@
 			
 
 		
+//title
+    

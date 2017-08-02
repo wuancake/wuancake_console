@@ -22,11 +22,43 @@
 
 	</head>
   	<body> 
-  		<div class="title">
-    	<button id="showSideBar"><span id="rotateBtn" class="iconfont icon-tab"></span></button>
+  		<div class="title" >
+    	<a id="showSideBar1" onclick="sideBar(1);">
+    		<span  class="iconfont icon-tab"></span>
+    	</a>
+    	<a id="showSideBar2" onclick="sideBar(2);"  style="display: none;">
+    		<span  class="iconfont icon-tab"></span>
+    	</a>
       <h2>午安煎饼计划</h2>
       </div>
+      
+
+            	<!--侧边栏-->
+        <div class="sidebar-box" id="sid-box" style="display: none;">
+      	<div class="sidebar">
+        <div class="box">
+            <div class="page with-sidebar">
+                <div class="page-header">
+                    <img class="img-responsive" src="img/logo.png" alt="用户头像">
+                    <div class="uid"><span>产品经理组：二马</span></div>
+                </div>
+                <div class="page-sidebar text-center">
+                    <ul class="sub-menu">
+                        <li class="active"><a  href="MyWeekly.html">我的周报</a></li>
+                        <li><a  href="ChangePassWord.html">修改密码</a></li>
+                    </ul>
+                </div>
+                <div class="page-region">
+                    <a href="Login.html" class="btn btn-default center-block " >退出</a>
+                </div>
+            </div>
+        </div>
+</div>
+     </div> 
+      
 <div class="homepage subLeaveSuccess">
+	
+	
 <div class="timeboxout">
     	
     		<div class="timeboxin">
@@ -64,8 +96,12 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+		<script type="text/javascript" src="js/other.js" ></script>
   	
  
   	</body>
+  	
+  	
+ 
+  	
 </html>

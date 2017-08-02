@@ -395,7 +395,7 @@
 
  /*elHeader begin*/
 
-#showSideBar{
+#showSideBar,#showSideBar1,#showSideBar2{
 	display: block;
 	position: absolute;
 	top: 50%;left: 0.9375rem;
@@ -407,12 +407,18 @@
 	padding: 0;
 	text-decoration:none;
 	cursor: pointer;
-	
 }
+
+#showSideBar2{transform:translate(-25%,-35%) rotate(90deg)}
  /*elHeader end*/
 
 
 /*SideBar begin*/
+.sidebar-box{
+	position: relative;
+	z-index: 9998;
+}
+
 .sidebar{
 	width: 100vw;height: 100vh;
 	box-sizing: border-box;
