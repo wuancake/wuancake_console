@@ -23,7 +23,7 @@
 	</head>
   	<body> 
   		<div class="title">
-    	<button id="showSideBar" v-on:click="showSideBar"><span id="rotateBtn" class="iconfont icon-tab"></span></button>
+    	<button id="showSideBar" ><span id="rotateBtn" class="iconfont icon-tab"></span></button>
       <h2>午安煎饼计划</h2>
       </div>
 <div class="homepage">
@@ -32,9 +32,9 @@
     		<div class="timeboxin">
     			<div class="box">
 					<div class="percent">
-						<p id="prompt1">第<span id="nw">51</span>周</p>
+						<p id="prompt1">第<span id="nw">1</span>周</p>
 						<p id="prompt2">本周剩余时间</p>
-						<p id="prompt3"><span id="days">0</span>天<span id="hours">0</span>小时<span id="minutes">0</span>分<span id="seconds">0</span>秒</p>
+						<p id="prompt3"><span id="days"></span><span id="hours"></span><span id="minutes"></span><span id="seconds"></span></p>
 					</div>
 					<div id="water" class="water ball">
 						<svg viewBox="0 0 560 20" class="water_wave water_wave_back ball">
@@ -49,9 +49,8 @@
     	</div>
     </div>
     <p class="userMessage"><span>产品经理组</span>：<span>二马</span></p>
-    <!--<router-link v-bind:to="writeWeekly"><button id="pushweekly" class="center-block" type="submit">提交周报</button></router-link>-->
-    <router-link v-bind:to="writeWeekly"><button id="myweeklybtn" class="center-block" type="submit">我的周报</button></router-link>
-    <router-link v-bind:to="Leave"><button id="askleave" class="center-block" type="submit">我要请假</button></router-link>
+    <a href="MyWeekly.html" id="myweeklybtn" class="center-block btn"www>我的周报</a>
+    <a href="Leave.html" id="askleave" class="center-block btn" >我要请假</a>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
 		<symbol id="wave">
 		    <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
@@ -72,25 +71,3 @@
   
   	</body>
 </html>
-
-
-
-<!--
-
-20 = {波浪1   		#ff9753
-		      波浪2  		  #fe6c0d
-	           边    框       	  #fe6c0d  
-		     底    色       	  #fe6c0d}
-		     
-		     
-50 = {波浪1   		#7befaa
-		      波浪2  		  #2edb75
-	           边    框       	  #2edb75  
-		     底    色       	  #2edb75}
-		     
-
-40 = {波浪1 740   .water_wave_back     #ffd762
-		     波浪2 746   .water_wave_front    #fbbc05
-	           边框      654   timeboxout           #fbbc05     
-		     底色      719   .water               #fbbc05}
--->
