@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>ChangePassWord</title>
+    <title>SideBar</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -19,30 +19,33 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	
 
 	</head>
   	<body> 
   		<div class="title">
-    	<button id="showSideBar" v-on:click="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></button>
-      <h2>修改密码</h2>
-    	</div>
-<div class="changepassword">
-	<form role="form" class="info-box">
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="旧密码">
-			</div>
-			<div class="form-group has-success has-feedback">
-   				<input type="password" class="form-control" placeholder="新密码" >
-   				<span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
-  			</div>
-			<div class="form-group has-error has-feedback">
-   				<input type="password" class="form-control" placeholder="确认新密码">
-    			<span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>  
-  			</div>
-		</form>
-		<router-link v-bind:to="toLogin"><button id="pushPsaaWord" class="center-block" type="submit">提交</button></router-link>
+    	<button id="showSideBar"><span id="rotateBtn" class="iconfont icon-tab"></span></button>
+      <h2>午安煎饼计划</h2>
+      </div>
+<div class="sidebar">
+        <div class="box">
+            <div class="page with-sidebar">
+                <div class="page-header">
+                    <img class="img-responsive" src="img/logo.png" alt="用户头像">
+                    <div class="uid"><span>产品经理组：二马</span></div>
+                </div>
+                <div class="page-sidebar text-center">
+                    <ul class="sub-menu">
+                        <li class="active"><a  href="MyWeekly.html">我的周报</a></li>
+                        <li><a  href="ChangePassWord.html">修改密码</a></li>
+                    </ul>
+                </div>
+                <div class="page-region">
+                    <a href="Login.html" class="btn btn-default center-block " >退出</a>
+                </div>
+            </div>
+        </div>
 </div>
+
 	
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

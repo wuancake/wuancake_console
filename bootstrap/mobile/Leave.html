@@ -23,7 +23,7 @@
 	</head>
   	<body> 
   		<div class="title">
-    	<button id="showSideBar" v-on:click="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></button>
+    	<a href="javascript:history.go(-1)"  id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
       <h2>我要请假</h2>
     </div>
     	
@@ -55,7 +55,7 @@
     					<textarea class="form-control" rows="12"></textarea>
   				</div>
 		</form>
-		<router-link v-bind:to="toAskLeaveSuccess"><button id="pushLeave" class="center-block" type="submit">提交请假申请</button></router-link>
+		<button id="pushLeave" class="center-block" type="submit">提交请假申请</button>
 </div>
 
 	
