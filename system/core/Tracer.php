@@ -14,10 +14,14 @@ class Tracer
 
     public function __construct() {
         $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
-        if (strpos($agent, 'windows nt') || strpos($agent, 'mac os'))
-            $this->terminal = 'computer';
-        else
+        if (strpos($agent, 'iphone') || strpos($agent, 'android'))
             $this->terminal = 'mobile';
+        else
+            $this->terminal = 'computer';
+//        if (strpos($agent, 'windows nt') || strpos($agent, 'macintosh'))
+//            $this->terminal = 'computer';
+//        else
+//            $this->terminal = 'mobile';
     }
 
 

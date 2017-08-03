@@ -55,6 +55,7 @@ class Viewer extends Tracer
      */
     public function index() {
         if ($this->check_state()) {
+            $this->db->exist_group() or $this->jump('skip', '你尚未加入分组，请先加入分组', 'viewer/join_group');
             $data = $this->info();
             $this->view('HomePage', $data);
         }
