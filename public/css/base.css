@@ -75,9 +75,9 @@ body{
  
 .clear {
 	clear: both;
-	/*font-size:0;
+	font-size:0;
 	line-height:0;
-	height:0;*/
+	height:0;
 }
 /*清除浮动*/
  .clearfix:after {
@@ -115,16 +115,6 @@ body{
 
 .icon-icon-dangerous-1:before { content: "\e607"; }
 
+
 /*提示信息*/
-   	.skip .hint{
-    		position: fixed;
-  			top: 40%;
-  			left: 50%;
-  			width:8.25rem;
-  			height: 3.333rem;
-  			line-height: 3.333rem;
-  			-webkit-transform: translateX(-50%) translateY(-50%);
-  			text-align: center;
-  			border: 1px solid indianred;
-  			color: indianred;
- 				}
+

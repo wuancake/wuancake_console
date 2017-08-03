@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="title">
-    <button id="showSideBar" v-on:click="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></button>
+    <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>我要请假</h2>
 </div>
 
@@ -60,7 +60,7 @@
         </div>
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left">当前周数：</label>
-            <time class="la-horizontal-right"><?php echo $week_num; ?></time>
+            <time class="la-horizontal-right"><?php echo $week_num; ?>周</time>
         </div>
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left">请假状态：</label>
@@ -87,10 +87,9 @@
             <label class="la-horizontal-left">请假理由（必填）：</label>
             <textarea class="form-control" rows="12" name="reason"></textarea>
         </div>
-        <router-link v-bind:to="toAskLeaveSuccess">
-            <button id="pushLeave" class="center-block" type="submit">提交请假申请</button>
-        </router-link>
+        <button id="pushLeave" class="center-block" type="submit">提交请假申请</button>
     </form>
+
 </div>
 
 

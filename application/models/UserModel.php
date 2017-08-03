@@ -80,10 +80,12 @@ class UserModel extends TracerModels
     /**
      * 删除session和cookie */
     public function delToken() {
+        session_unset();
         session_destroy();
 
         foreach ($_COOKIE as $key => $val) {
-            setcookie($key, '', time() - 1);
+            setcookie($key, '', time() - 10000,'/');
+            unset($_COOKIE[$key]);
         }
     }
 

@@ -24,9 +24,62 @@
 </head>
 <body>
 <div class="title">
-    <button id="showSideBar" v-on:click="showSideBar"><span id="rotateBtn" class="iconfont icon-tab"></span></button>
+    <a id="showSideBar1" onclick="sideBar(1);">
+        <span class="iconfont icon-tab"></span>
+    </a>
+    <a id="showSideBar2" onclick="sideBar(2);" style="display: none;">
+        <span class="iconfont icon-tab"></span>
+    </a>
     <h2>午安煎饼计划</h2>
 </div>
+
+
+<!--侧边栏-->
+<div class="sidebar-box" id="sid-box" style="display: none;">
+    <div class="sidebar">
+        <div class="box">
+            <div class="page with-sidebar">
+                <div class="page-header">
+                    <img class="img-responsive" src="/public/img/logo.png" alt="用户头像">
+                    <div class="uid"><span><?php
+                            switch ($group) {
+                                case 1:
+                                    echo 'PHP组';
+                                    break;
+                                case 2:
+                                    echo 'Web前端组';
+                                    break;
+                                case 3:
+                                    echo 'UI设计组';
+                                    break;
+                                case 4:
+                                    echo 'Android组';
+                                    break;
+                                case 5:
+                                    echo '产品经理组';
+                                    break;
+                                case 6:
+                                    echo '软件测试组';
+                                    break;
+                                case 7:
+                                    echo 'Java组';
+                                    break;
+                            } ?>：<?php echo $username; ?></span></div>
+                </div>
+                <div class="page-sidebar text-center">
+                    <ul class="sub-menu">
+                        <li class="active"><a href="/index.php/user/show_weekly">我的周报</a></li>
+                        <li><a href="/index.php/viewer/change_psd">修改密码</a></li>
+                    </ul>
+                </div>
+                <div class="page-region">
+                    <a href="/index.php/user/quit" class="btn btn-default center-block ">退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="homepage">
     <div class="timeboxout  ball">
         <div class="timeboxmiddle ball">
@@ -35,8 +88,8 @@
                     <div class="percent">
                         <p id="prompt1">第<span id="nw"><?php echo $week_num; ?></span>周</p>
                         <p id="prompt2">本周剩余时间</p>
-                        <p id="prompt3"><span id="days">0</span>天<span id="hours">0</span>小时<span id="minutes">0</span>分<span
-                                    id="seconds">0</span>秒</p>
+                        <p id="prompt3"><span id="days"></span><span id="hours"></span><span id="minutes"></span><span
+                                    id="seconds"></span></p>
                     </div>
                     <div id="water" class="water ball">
                         <svg viewBox="0 0 560 20" class="water_wave water_wave_back ball">
@@ -74,13 +127,8 @@
                     echo 'Java组';
                     break;
             } ?></span>：<span><?php echo $username; ?></span></p>
-    <!--<router-link v-bind:to="writeWeekly"><button id="pushweekly" class="center-block" type="submit">提交周报</button></router-link>-->
-    <router-link v-bind:to="writeWeekly">
-        <button id="myweeklybtn" class="center-block" type="submit">我的周报</button>
-    </router-link>
-    <router-link v-bind:to="Leave">
-        <button id="askleave" class="center-block" type="submit">我要请假</button>
-    </router-link>
+    <a href="/index.php/viewer/write_weekly" id="myweeklybtn" class="center-block btn" www>提交周报</a>
+    <a href="/index.php/viewer/vacate" id="askleave" class="center-block btn">我要请假</a>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          style="display: none;">
         <symbol id="wave">
@@ -100,28 +148,7 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="/public/js/ball.js"></script>
-
+<script type="text/javascript" src="/public/js/other.js"></script>
 
 </body>
 </html>
-
-
-<!--
-
-20 = {波浪1   		#ff9753
-		      波浪2  		  #fe6c0d
-	           边    框       	  #fe6c0d  
-		     底    色       	  #fe6c0d}
-		     
-		     
-50 = {波浪1   		#7befaa
-		      波浪2  		  #2edb75
-	           边    框       	  #2edb75  
-		     底    色       	  #2edb75}
-		     
-
-40 = {波浪1 740   .water_wave_back     #ffd762
-		     波浪2 746   .water_wave_front    #fbbc05
-	           边框      654   timeboxout           #fbbc05     
-		     底色      719   .water               #fbbc05}
--->

@@ -175,12 +175,8 @@
   
    .login .btn-register{
   	display: block;
-  	/*width: 69%;*/
   	font-size: 1.125rem;
-  	/*color: white;
-  	background-color: #adccff;*/
   	height: 2.5rem;
-  	/*border-radius: 1.25rem;*/
   	box-sizing: border-box;
   	border: none;
   	margin: 0 auto;
@@ -215,7 +211,6 @@
   	color: #22ac38;
   	border: 1px solid #22ac38;
   }
-  
   
   /*Login end*/
 
@@ -265,8 +260,6 @@
   	margin-bottom: 1rem;
   }
   
-  
-
 /*ForgetPass end*/
 
 
@@ -299,13 +292,10 @@
  /*MyWeekly begin*/
 .myweekly{
 	padding-top: 3.25rem;
-	/*width: 100%;
-	height: 100%;*/
 	position: relative;
 }
-.myweekly .form-group,.writeweekly .form-group,.leave .form-group{
-	/*overflow: hidden;*/
-}
+
+
 .myweekly .btn-pull{
 	position: absolute;
 	left: 50%;
@@ -314,7 +304,6 @@
 }
 .myweekly .next{
 	bottom: 0.5rem;
-	
 }
 
 .my-weekly-box{
@@ -327,7 +316,6 @@
 /*WriteWeekly begin*/
 .writeweekly{
 	padding-top: 3.25rem;
-	/*width: 100%;height: 100%;*/
 }
 
 #pushweekly{
@@ -340,14 +328,12 @@
 	border-radius: 1.28125rem;
 }
 
-
  /*WriteWeekly end*/
 
 
  /*Leave begin*/
 .leave{
 	padding-top: 3.25rem;
-	/*width: 100%;height: 100%;*/
 }
 #pushLeave{
 	width: 77%;
@@ -406,61 +392,11 @@
   .forgetpass .btn{border-color: #828282;color: #828282;}
  /*Signup end*/
 
-/*askLeaveSuccess 球  暂定    begin*/
-/*.askLeaveSuccess{
-	padding-top: 5.25rem;
-	height: 100%;width: 100%;
-}
-.timeboxout{
-	width: 11.5625rem;
-	height: 11.5625rem;
-	box-sizing: border-box;
-	border: 1px solid #abb9da;
-	border-radius: 50%;
-	position: relative;
-	margin-left: auto;margin-right: auto;
-	margin-bottom: 1rem;
-}
-.percent{
-	font-size: 1.1875rem;
-	color: #abb9da;
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-}
-.userMessage{
-    font-size: 0.84375rem;
-    color: #b6b6b6;
-    margin-bottom: 2.4375rem;
-}
-#myweekly{
-    width: 77%;
-    font-size: 1.1875rem;
-    color: white;
-    background-color: #4285f4;
-    height: 2.625rem;
-    border: none;
-    border-radius: 1.3125rem;
-    margin-bottom: 1.75rem;
-}
-#removeleave{
-    width: 77%;
-    font-size: 1.1875rem;
-    color: #4285f4;
-    background-color: rgba(0,0,0,0);
-    height: 2.625rem;
-    border: 1px solid #4285f4;
-    border-radius: 1.3125rem;
-    box-sizing: border-box;
-}*/
- /*askLeaveSuccess end*/
-
-
 
  /*elHeader begin*/
 
-#showSideBar{
+#showSideBar,#showSideBar1,#showSideBar2{
+	display: block;
 	position: absolute;
 	top: 50%;left: 0.9375rem;
 	transform: translateY(-50%);
@@ -469,78 +405,21 @@
 	border: none;
 	background-color: rgba(0,0,0,0);
 	padding: 0;
-}
-/*.sidebar{
-	background-color: rgba(0,0,0,0.5);
-	width: 100vw;height: 100vh;
-	box-sizing: border-box;
-	position: relative;
-	display: none;
-}
-.sidebar .left{
-	width: 56%;height: 100%;
-	background-color: white;
-	padding-top: 5.1875rem;
-	box-sizing: border-box;
-}
-.sidebar .right{
-	width: 44%;height: 100%;
-	box-sizing: border-box;
-	position: absolute;
-	top: 0;right: 0;
-}
-.sidebar .right > button{
-	padding: 0;border: none;
-	height: 100%;width: 100%;
-	background-color: rgba(0,0,0,0);
-}
-.sidebar .left img{
-	display: block;
-	width: 5.3125rem;height: 5.3125rem;
-	border-radius: 50%;
-	background-color: #42B983;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 1.4375rem;
-}
-.sidebar .left p{
-	font-size: 1rem;
-	color: #222222;
-	margin-bottom: 1.25rem;
-}
-.sidebar .left ul{
-	list-style: none;
-	padding: 0;
-	color: #999999;
-	font-size: 1.09375rem;
-	margin-bottom: 7rem;
-}
-.sidebar .aLink{
-	background-color: white;
-	height: 100%;width: 100%;
-	padding-top: 0.9375rem;
-	padding-bottom: 0.9375rem;
-	display: block;
-	color: #999999;
-}
-.sidebar .aLink:link,.aLink:hover,.aLink:visited,.aLink:active{
-	text-decoration: none;
+	text-decoration:none;
+	cursor: pointer;
 }
 
-.sidebar .left button{
-	background-color: #ADCCFF;
-	color: #666666;
-	border: none;
-	font-size: 1.09375rem;
-	padding: 0.59375rem 1.34375rem;
-	border-radius: 4px;
-}*/
+#showSideBar2{transform:translate(-25%,-35%) rotate(90deg)}
  /*elHeader end*/
 
 
 /*SideBar begin*/
+.sidebar-box{
+	position: relative;
+	z-index: 9998;
+}
+
 .sidebar{
-  	/*background-color: #f2f2f2;*/
 	width: 100vw;height: 100vh;
 	box-sizing: border-box;
 	position: absolute;
@@ -548,7 +427,6 @@
   
 
       .sidebar  .box {
-            /*display: inline-block;*/
             width: 56%;
             background-color: white;
             height: 100%;
@@ -574,22 +452,15 @@
 
        .sidebar .box .page-header .uid {
             margin: 1.4375rem auto 1.21875rem;
-            /* 23/16=1.4375   19.5/16=1.21875 */
             text-align: center;
             font-size: 0.9375rem;
-            /* 15/16=0.9375 */
         }
 
        .sidebar .box .page .page-sidebar ul li {
             padding: 0;
             font-size: 1.09375rem;
-            /* 17/16=1.09375 */
             list-style: none;
             height: 2.9375rem;
-            /* 47/16=2.9375 */
-            /* padding-top: 0.90625rem; */
-            /* padding-bottom: 0.9375rem; */
-            /* 15/16=0.9375 */
             color: gray;
             display: list-item;
         }
@@ -607,12 +478,10 @@
 
        .sidebar .box .page .page-sidebar .active a {
             color: rgb(17, 107, 255);
-            /* background-color: blue;*/
         }
 
        .sidebar .box .page .page-region {
             margin-top: 7.03125rem;
-            /* 112.5/16=7.03125 */
         }
 
        .sidebar .btn-default {
@@ -632,12 +501,22 @@
       .sidebar  .logo {
             display: inline-block;
             margin: 1.875rem auto; 
-            /* 30/16=1.875 */
             height: 6.25rem;
-            /* 100/16=6.25 */
             width: 6.25rem;
             border: 1px solid rgb(66, 133, 244);
         }
+        
+      .sub-menu{
+      	padding-left: 0px;
+      	margin-bottom: 0px;
+      }  
+      
+      .sub-menu a{
+      	text-decoration:none
+      }  
+      
+  
+        
  /*SideBar end*/
 
 
@@ -692,7 +571,6 @@
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-   /* background: white;*/
     border-radius: 100%;
     overflow: hidden;
 }
@@ -727,9 +605,6 @@
 	transform: translate(0, 100%);
 	background: #2edb75;
 }
-
-
-
 
 
 .homepage .box .water_wave {
@@ -840,12 +715,6 @@ background-color: #4285f4;
 
 .askLeaveSuccess .timeboxin{
 	background-color: #f2f2f2;
-	/*width: 10.875rem;height: 10.875rem;
-	box-sizing: border-box;
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;left: 50%;
-	transform: translate(-50%, -50%);*/
 	overflow: hidden;
 }
 
@@ -869,12 +738,6 @@ background-color: #4285f4;
 
 .subLeaveSuccess .timeboxin{
 	background-color: #f2f2f2;
-	/*width: 10.875rem;height: 10.875rem;
-	box-sizing: border-box;
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;left: 50%;
-	transform: translate(-50%, -50%);*/
 	overflow: hidden;
 }
 
@@ -884,3 +747,57 @@ background-color: #4285f4;
 }
 /*askLeaveSuccess end*/
 
+			/*grouping begin*/
+.grouping{
+	padding-top: 5.25rem;
+}
+
+.grouping .genre{
+	padding-bottom: 5rem;
+}
+
+.grouping input[radio]{
+	
+	color: royalblue;
+}
+
+.grouping .genre .radio-inline{
+	line-height: 1.25rem;
+	display: block;
+}
+
+.grouping .genre .radio-inline:first-child{
+	margin-left:10px
+}
+
+
+#genreBtn{
+	display: block;
+  	width: 69%;
+  	font-size: 1.125rem;
+  	color: white;
+  	background-color: #4285f4;
+  	height: 2.5rem;
+  	border-radius: 1.25rem;
+  	box-sizing: border-box;
+  	border: none;
+  	margin: 0 auto;
+  	margin-bottom: 1rem;
+}
+
+/*grouping end*/
+
+/*skip begin*/
+
+ .skip .hint{
+    		position: fixed;
+  			top: 40%;
+  			left: 50%;
+  			padding:1rem 0.5rem;
+  			-webkit-transform: translateX(-50%) translateY(-50%);
+  			text-align: center;
+  			border: 1px solid indianred;
+  			color: indianred;
+ 				}
+ 				
+/*skip begin*/

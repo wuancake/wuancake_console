@@ -23,7 +23,12 @@
 	</head>
   	<body> 
   		<div class="title">
-    	<button id="showSideBar" v-on:click="showSideBar"><span id="rotateBtn" class="iconfont icon-tab"></span></button>
+    	<a id="showSideBar1" onclick="sideBar(1);">
+    		<span  class="iconfont icon-tab"></span>
+    	</a>
+    	<a id="showSideBar2" onclick="sideBar(2);"  style="display: none;">
+    		<span  class="iconfont icon-tab"></span>
+    	</a>
       <h2>午安煎饼计划</h2>
       </div>
 <div class="sidebar">
@@ -34,13 +39,13 @@
                     <div class="uid"><span>产品经理组：二马</span></div>
                 </div>
                 <div class="page-sidebar text-center">
-                    <ul class="sub-menu" style="padding-left: 0px;margin-bottom: 0px;">
-                        <li class="active"><a style="text-decoration:none;" href="#">我的周报</a></li>
-                        <li><a style="text-decoration:none;" href="#">修改密码</a></li>
+                    <ul class="sub-menu">
+                        <li class="active"><a  href="MyWeekly.html">我的周报</a></li>
+                        <li><a  href="ChangePassWord.html">修改密码</a></li>
                     </ul>
                 </div>
                 <div class="page-region">
-                    <button class="btn btn-default center-block" type="submit">退出</button>
+                    <a href="Login.html" class="btn btn-default center-block " >退出</a>
                 </div>
             </div>
         </div>

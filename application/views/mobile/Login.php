@@ -29,14 +29,13 @@
     <img src="/public/img/logo.png"/>
     <form action="/index.php/user/login" method="post">
         <div class="from-group center-block">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮箱" v-model="userEmail" name="email">
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮箱" name="email">
         </div>
         <div class="from-group center-block">
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="请输入密码"
-                   v-model="userPassWord" name="password">
+            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="请输入密码" name="password">
         </div>
         <div class="center-block">
-            <button id="logBtn" type="submit" class="btn btn-default" v-on:click="login">登录</button>
+            <button id="logBtn" type="submit" class="btn btn-default">登录</button>
         </div>
     </form>
 
@@ -45,7 +44,7 @@
         <a href="/index.php/viewer/signup" class="btn btn-link btn-register">注册</a>
     </div>
 
-    <a href="/index.php/viewer/rigister" id="forgetPassword" v-bind:to="path" class="btn btn-default forgetPassword">忘记密码？</a>
+    <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="btn btn-default forgetPassword">忘记密码？</a>
 
 
 </div>

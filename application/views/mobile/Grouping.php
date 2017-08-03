@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,101 +8,64 @@
     <title>grouping</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/base.css" />
-    <link rel="stylesheet" href="/public/css/public.css" />
-    
-    <style> 
-			/*grouping begin*/
-.grouping{
-	padding-top: 5.25rem;
-}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/base.css"/>
+    <link rel="stylesheet" href="/public/css/public.css"/>
 
-.grouping .genre{
-	padding-bottom: 5rem;
-}
-
-.grouping input[radio]{
-	
-	color: royalblue;
-}
-
-.grouping .genre .radio-inline{
-	line-height: 1.25rem;
-	display: block;
-}
-
-.grouping .genre .radio-inline:first-child{
-	margin-left:10px
-}
+    <style>
 
 
-#genreBtn{
-	display: block;
-  	width: 69%;
-  	font-size: 1.125rem;
-  	color: white;
-  	background-color: #4285f4;
-  	height: 2.5rem;
-  	border-radius: 1.25rem;
-  	box-sizing: border-box;
-  	border: none;
-  	margin: 0 auto;
-  	margin-bottom: 1rem;
-}
-
-/*grouping end*/
- 				
     </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	</head>
-  	<body> 
-		<div class="title">
-     	 <h2>午安煎饼计划</h2>
-    	</div>
+</head>
+<body>
+<div class="title">
+    <h2>午安煎饼计划</h2>
+</div>
 
-		<div class="grouping">
-			<p class="text-center">选择要加入的分组</p>
-			
-			<form  class="genre" action="/index.php/user/join_group" method="post">
-    	   <label class="radio-inline">
-  				<input type="radio" name="genre" id="PHP" value="1">PHP组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="Web" value="2">Web前端组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="UI" value="3">UI设计组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="Android" value="4">Android组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="PM" value="5">产品经理组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="QA" value="6">软件测试组
-				</label>
-				<label class="radio-inline">
- 					 <input type="radio" name="genre" id="Java" value="7">Java组
-				</label>
-                <button id="genreBtn" type="submit" class="btn btn-default" >确定</button>
-			</form>
-			
-			<div class="center-block">
-  </div>
-		</div>
-	
-	
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	</body>
+
+<div class="grouping">
+    <p class="text-center">选择要加入的分组</p>
+
+    <form class="genre" action="/index.php/user/join_group" method="post">
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="PHP" value="1">PHP组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="Web" value="2">Web前端组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="UI" value="3">UI设计组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="Android" value="4">Android组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="PM" value="5">产品经理组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="QA" value="6">软件测试组
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="genre" id="Java" value="7">Java组
+        </label>
+        <div class="center-block">
+            <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
+        </div>
+    </form>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
 </html>
