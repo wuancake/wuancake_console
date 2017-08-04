@@ -7,6 +7,9 @@
 
 class Attend {
 
+    /**
+     * @return mysqli
+     */
     public function connect(){
         require './application/config/Databases.php';
         // 创建连接
@@ -18,6 +21,13 @@ class Attend {
         }
         return $conn;
     }
+
+    public function check_old_user($user_id){
+        $conn = $this->connect();
+        $sql = "SELECT create_time FROM `user` WHERE id = {$user_id}";
+        $result = $conn->query($sql);
+        return time()-strtotime($result->fetch_assoc()['create_time'])<1209600?FALSE:TRUE;
+    }
     public function get_current_week(){
         $conn = $this->connect();
         $sql = 'SELECT `week`.num FROM `week`';
@@ -25,7 +35,7 @@ class Attend {
         if ($result->num_rows > 0) {
 //            var_dump($result->fetch_assoc());
         }else{
-            echo '异常';exit;
+            echo '您尚未设置当前周数！';exit;
         }
         $conn->close();
         return $result->fetch_assoc()['num'];
@@ -35,7 +45,7 @@ class Attend {
 
         $first_week = ceil((time()-strtotime('2015-11-02'))/604800);
         $current_week = $this->get_current_week();
-        if($first_week<$current_week){
+        if($first_week!=$current_week){
             echo '本周已考勤';
             exit;
         }
@@ -62,7 +72,7 @@ class Attend {
 //    var_dump($re);
 //    echo json_encode($re);
             foreach ($re as $k => $v){
-                if($v['group_id']!=0&&$v['first']==1&&$v['first']==$v['second'])
+                if($this->check_old_user($v['user_id'])&&$v['group_id']!=0&&$v['first']==1&&$v['first']==$v['second'])
                 {
                     $this->delete_user_group($v['user_id']);
                     echo '连续两周不提交，取消分组权限<br>';
