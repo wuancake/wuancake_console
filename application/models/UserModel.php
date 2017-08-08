@@ -127,7 +127,6 @@ class UserModel extends TracerModels
 
         $mail = new PHPMailer;
 
-//        $mail->SMTPDebug = 3;
         $mail->isSMTP();
         $mail->Host       = 'smtp.qq.com';
         $mail->SMTPAuth   = true;
@@ -145,14 +144,11 @@ class UserModel extends TracerModels
         $mail->isHTML(false);
 
         $mail->Subject = 'reset password';
-        $mail->Body    = '请访问以下连接进行重置密码操作：' . $info;
-//        $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        $mail->Body    = '请访问以下链接进行重置密码操作：' . $info;
 
         if (!$mail->send()) {
-            $this->jump('', 'Message could not be sent.' . 'Mailer Error: ' . $mail->ErrorInfo);
-        }
-        else {
-            $this->jump('', '邮件发送成功，请查收邮件');
+            echo 'Message could not be sent.' . 'Mailer Error: ' . $mail->ErrorInfo;
+            die();
         }
 
     }

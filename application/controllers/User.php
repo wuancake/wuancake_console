@@ -118,7 +118,7 @@ class User extends Tracer
 
 
     /**
-     * 修改密码
+     * 通过旧密码修改密码
      * $psd string 用户当前密码
      * $newpsd string 用户想要设置的新密码
      * $renewpsd string 确认新密码
@@ -162,12 +162,66 @@ class User extends Tracer
     /**
      * 找回密码
      * $email string email地址
+     * !!!!!!!!!正式上线前需要更改公钥!!!!!!!!!!!!!!!!!!!!
      */
     public function recover_psd() {
         $email = $this->post('email', 'viewer/recover_psd');
-        $info  = 'url字符串';
+
+        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
+        $body = $email . '*' . (time() + 600);
+        $key  = $body . '*' . hash_hmac('sha256', $body, 'foo');
+
+        $info = 'http://' . $_SERVER['SERVER_NAME'] . "/index.php/user/verify_psdtoken?key=$key";
         $this->db->send_mail($email, $info);
+        $this->jump('skip', '邮件发送成功，请查收邮件', 'viewer/index');
     }
+
+
+    /**
+     * 验证url合法性，如果合法，跳转到修改密码界面
+     */
+    public function verify_psdtoken() {
+        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
+        isset($_GET['key']) or $this->jump('skip', '非法访问', 'viewer/index');
+
+        $info = explode('*', $_GET['key']);
+
+        sizeof($info) === 3 or $this->jump('skip', '无效的url');
+
+        $body = $info[0] . '*' . $info[1];
+
+        hash_hmac('sha256', $body, 'foo') == $info[2]
+        or
+        $this->jump('skip', '无效的url', 'viewer/login');
+
+        $email = $info[0];
+        $time  = $info[1];
+
+        $time >= time() or $this->jump('skip', '该链接已过期', 'viewer/index');
+
+        $_SESSION['psd_token'] = $email;
+        $this->view('resetPsd');
+
+    }
+
+
+    /**
+     * 通过验证邮箱修改密码
+     */
+    public function set_new_psd() {
+        isset($_SESSION['psd_token']) or $this->jump('skip', '非法访问', 'viewer/index');
+
+        $email = $_SESSION['psd_token'];
+        $password = md5($this->post('password', 'viewer/index'));
+
+        $stmt     = $this->db->connect->prepare("UPDATE user SET password = ? WHERE email = ?");
+        $stmt->bind_param('ss', $password, $email);
+        $stmt->execute() or $this->jump('skip', '未知错误，请稍后重试', 'viewer/index');
+        $stmt->close();
+
+        $this->jump('skip', '修改密码成功，请用新密码登录','viewer/index');
+    }
+
 
 
     /** 周报相关 */
@@ -233,11 +287,11 @@ class User extends Tracer
             $this->jump('skip', '错误的操作，你已提交本周周报或请假', 'viewer/index');
         }
 
-        $info    = $this->post();
-        $done    = addslashes(htmlspecialchars(@$info['done'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
-        $problem = addslashes(htmlspecialchars(@$info['problem'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
-        $todo    = addslashes(htmlspecialchars(@$info['todo'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/write_weekly');;
-        $url     = isset($info['url']) ? addslashes(htmlspecialchars($info['url'])) : '';
+        $info = $this->post();
+        $done = addslashes(htmlspecialchars(@$info['done'])) or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/write_weekly');;
+        $problem = addslashes(htmlspecialchars(@$info['problem'])) or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/write_weekly');;
+        $todo = addslashes(htmlspecialchars(@$info['todo'])) or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/write_weekly');;
+        $url = isset($info['url']) ? addslashes(htmlspecialchars($info['url'])) : '';
 
         $str = "本周完成：$done<br>所遇问题：$problem<br>下周计划：$todo<br>作品链接：$url";
 
@@ -269,9 +323,9 @@ class User extends Tracer
             $this->jump('skip', '错误的操作，你已提交本周周报或请假', 'viewer/index');
         }
 
-        $info   = $this->post();
-        $num    = @$info['num'] or $this->jump('skip','非法请求，缺少必要参数','viewer/vacate');
-        $reason = addslashes(htmlspecialchars(@$info['reason'])) or $this->jump('skip','非法请求，缺少必要参数','viewer/vacate');
+        $info = $this->post();
+        $num = @$info['num'] or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/vacate');
+        $reason = addslashes(htmlspecialchars(@$info['reason'])) or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/vacate');
 
         while ($num--) {
             $sql = "INSERT INTO report VALUE ($week_num,$id,$group,'$reason',3,'$time')";
@@ -285,21 +339,21 @@ class User extends Tracer
     /**
      * 取消请假
      */
-    public function vacate_off(){
+    public function vacate_off() {
         $this->db->check_state();
         $this->db->exist_group() or $this->jump('skip', '请先加入分组', 'viewer/index');
 
-        $id = $_SESSION['token']['id'];
+        $id       = $_SESSION['token']['id'];
         $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
 
         $res = $this->db->connect->query("SELECT status FROM report WHERE user_id = $id");
 
-        if (!$res->num_rows || $res->fetch_assoc()['status'] != 3){
-            $this->jump('skip','你尚未请假','viewer/vacate');
+        if (!$res->num_rows || $res->fetch_assoc()['status'] != 3) {
+            $this->jump('skip', '你尚未请假', 'viewer/vacate');
         }
-        else{
+        else {
             $this->db->connect->query("DELETE FROM report WHERE user_id = $id AND week_num >= $week_num");
-            $this->jump('skip','取消请假成功，正在转向主页','viewer/index');
+            $this->jump('skip', '取消请假成功，正在转向主页', 'viewer/index');
         }
 
     }
