@@ -86,7 +86,7 @@
             <div class="box">
                 <div class="percent">
                     <p>第<span id="nw"><?php echo $week_num; ?></span>周</p>
-                    <p><?php echo $status; ?></p>
+                    <p>本周已请假</p>
                 </div>
             </div>
         </div>

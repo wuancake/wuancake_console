@@ -40,7 +40,7 @@
         <div class="box">
             <div class="page with-sidebar">
                 <div class="page-header">
-                    <img class="img-responsive" src="img/logo.png" alt="用户头像">
+                    <img class="img-responsive" src="/public/img/logo.png" alt="用户头像">
                     <div class="uid"><span><?php
                             switch ($group) {
                                 case 1:
@@ -89,7 +89,7 @@
             <div class="box">
                 <div class="percent">
                     <p>第<span id="nw"><?php echo $week_num; ?></span>周</p>
-                    <p><?php echo $status; ?></p>
+                    <p>已提交周报</p>
                 </div>
                 <!--<div id="water" class="water">
                     <svg viewBox="0 0 560 20" class="water_wave water_wave_back">

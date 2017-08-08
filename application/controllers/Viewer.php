@@ -57,7 +57,21 @@ class Viewer extends Tracer
         if ($this->check_state()) {
             $this->db->exist_group() or $this->jump('skip', '你尚未加入分组，请先加入分组', 'viewer/join_group');
             $data = $this->info();
-            $this->view('HomePage', $data);
+
+            $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = {$data['week_num']} AND user_id = {$data['id']}");
+            if ($res->num_rows){
+
+                $state = $res->fetch_assoc()['status'];
+                if($state == 2)
+                    $this->view('subWeeklySuccess',$data);
+                elseif ($state == 3)
+                    $this->view('askLeaveSuccess',$data);
+                else
+                    $this->view('HomePage',$data);
+
+            }else {
+                $this->view('HomePage', $data);
+            }
         }
         else
             $this->jump('Login');
