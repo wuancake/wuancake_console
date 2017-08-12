@@ -5,7 +5,6 @@
 			var nwweek = document.getElementById("prompt1");
 			var countdown = document.getElementById("prompt3");
 			var water = document.getElementById("water");
-			var nw = document.getElementById("nw");
 			var ballchange = document.getElementsByClassName("ball");
 			
 			var timeRate;
@@ -25,13 +24,12 @@
 				var minuter = newtime.getMinutes(); //得到现在时间的分数
 				var second = newtime.getSeconds(); //得到现在时间的秒数
 				
-
 				day = 7 - (day ? day : 7);
 				hours = 23 - hours;
 				minuter = 59 - minuter;
 				second = 59 - second;
+
 				countdown.innerHTML =  day + "天" + hours  + "时" + minuter + "分" + second + "秒" ;
-				
 				
 				return (day * 24 * 60 * 60 + hours * 60 * 60 + minuter * 60 + second) / 604800 * 100;
 			
@@ -49,7 +47,6 @@
 			      document.getElementsByTagName("svg")[0].innerHTML = "";
 			      document.getElementsByTagName("svg")[1].innerHTML = "";
 			      clearInterval(interval);
-			      nw++
 			    }
 				else if(timeRate >50) {
    				  ballchange[0].style.border = "1px solid #2edb75";
@@ -74,7 +71,3 @@
 			   }
 			},500);
 			
-
-		
-//title
-    

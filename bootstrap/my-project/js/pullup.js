@@ -1,11 +1,24 @@
-$(document).ready(function(){ 
-	
-var o =0;	
-	
+
+
+$(document).ready(function(){
+
+	var nw = document.getElementById("nw");
+	// 获取当前时间
+	var currentTime = new Date();
+	// 这里写的是2015年11月2日0时0分0秒   Javascript中月份是实际数字减1，故指定日期月份减一，另获取到毫秒。
+	var targetTime = (new Date(2015, 10, 2, 0, 0, 0)).getTime();
+	var offsetTime =currentTime - targetTime;
+	// 将时间转位天数
+	var offsetDays =Math.floor((offsetTime / (3600 * 24 * 1000))/7);
+//	nw =Math.floor(offsetDays-92);
+	nw = offsetDays-1;
+
 $.getJSON('js/json.txt',function(data){ 
-var strHtml = "";//存储数据的变量
+	
+//var strHtml = "";//存储数据的变量
+	var o = nw;
     strHtml= 
-        '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content">'
+        '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content" id="nw">'
         + data[o].week + '周</span></div>' +
     	'<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-content">' 
         + data[o].time + '</time></div>' +
@@ -17,8 +30,7 @@ var strHtml = "";//存储数据的变量
         + data[o].plan + '</div></div>' 
 var $jsontip = $("#show");
 $jsontip.html(strHtml);//显示处理后的数据 
-return false; 
-}); 
+
 
 
 //touch事件实现左右上下触摸滑动事件
@@ -67,7 +79,7 @@ var mytouch = (function() {
 							if(o<0){alert("已经翻到顶端了！");}
 							else{
 								strHtml= 
-     						    '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content">'
+     						    '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content" id="nw">'
      						    + data[o].week + '周</span></div>' +
     						 	'<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-content">' 
      						    + data[o].time + '</time></div>' +
@@ -100,10 +112,14 @@ var mytouch = (function() {
                             /*alert("加载完成");*/
                           $.getJSON('js/json.txt',function(data){
 							o ++;
-							if(o<0){alert("已经翻到顶端了！");}
+							if(o>=offsetDays){
+								o = offsetDays-1;
+								alert("已经翻到最后一页了！");
+							}
+							
 							else{
 								strHtml= 
-     						    '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content">'
+     						    '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-content" id="nw">'
      						    + data[o].week + '周</span></div>' +
     						 	'<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-content">' 
      						    + data[o].time + '</time></div>' +
@@ -129,6 +145,8 @@ var mytouch = (function() {
 
 document.addEventListener("touchstart", mytouch.tStart, false);
 document.addEventListener("touchmove", mytouch.tMove, false);
+return false; 
+}); 
 
 
 }); 

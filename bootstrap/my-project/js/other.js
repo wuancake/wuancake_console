@@ -14,5 +14,5 @@
 	    		sidbox.style.display = "none";
 			  }
 	    
-} 
-
+}
+  	
