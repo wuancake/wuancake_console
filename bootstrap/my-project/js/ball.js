@@ -5,7 +5,9 @@
 			var nwweek = document.getElementById("prompt1");
 			var countdown = document.getElementById("prompt3");
 			var water = document.getElementById("water");
+			var nw = document.getElementById("nw");
 			var ballchange = document.getElementsByClassName("ball");
+			
 			var timeRate;
 			var interval;
 			
@@ -47,6 +49,7 @@
 			      document.getElementsByTagName("svg")[0].innerHTML = "";
 			      document.getElementsByTagName("svg")[1].innerHTML = "";
 			      clearInterval(interval);
+			      nw++
 			    }
 				else if(timeRate >50) {
    				  ballchange[0].style.border = "1px solid #2edb75";

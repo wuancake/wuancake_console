@@ -334,23 +334,39 @@
  /*MyWeekly begin*/
 .myweekly{
 	padding-top: 3.25rem;
-	position: relative;
 }
 
 
-.myweekly .btn-pull{
+.myweekly #pullup,.myweekly #pulldown,
+#refreshTop,#refreshbottom{
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 	color: #cfcfcf;
 }
-.myweekly .next{
+.myweekly #pulldown,#refreshbottom{
 	bottom: 0.5rem;
+}
+
+
+#refreshTop,#refreshbottom {
+	width: 100%;
+	text-align: center;
+	background:url(../img/loading.gif) no-repeat center;
+	display: none;
+	height: 40px;
 }
 
 .my-weekly-box{
 	padding-top: 1.875rem;
 }
+
+.myweekly .la-horizontal{
+	line-height: 1.67rem;
+	margin-bottom: 1.6875rem;
+}
+
+
 
  /*MyWeekly end*/
 
