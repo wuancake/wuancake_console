@@ -1,0 +1,195 @@
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: "微软雅黑";
+}
+
+
+/******* base *******/
+.clear {
+	clear: both;
+	font-size:0;
+	line-height:0;
+	height:0;
+}
+/*清除浮动*/
+ .clearfix:after {
+	content:".";
+	clear:both;
+	display:block;
+	height:0;
+	visibility:hidden;
+}
+.clearfix { *zoom:1;}  
+
+/******* base *******/
+
+/*左边*************/
+
+/*导航布局*/
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 274px;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.sidebar-top {
+  width: 269px;
+  height:269px;
+  display: table;
+  margin: 0;
+  background-color: #006fdd;
+}  
+
+.sidebar-bottom {
+  width: 269px;
+  height:100%;
+  display: table;
+  margin: 0;
+  border-right: 3px solid #ffffff;
+  box-shadow: 5px 0px 0px #ffffff;
+  background-color: #006fdd;
+}  
+
+
+.logo {
+	padding: 10px 12px 6px 15px;
+}
+
+.logo .media-body{
+	color: #ffffff;
+}
+
+/*我的信息*/
+.myinfo.media{
+	color: #ffffff;
+	height: 72px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	background-color: #00479b;
+}
+
+
+.myinfo .portrait{
+	width: 72px;
+	height: 72px;
+}
+
+.myinfo  .media-body{
+	background-color: #00479b;
+	padding: 15px 10px 15px 20px;
+}
+
+.myinfo .glyphicon.share-icon{
+	width: 22px;
+	height: 25px;
+}
+
+
+
+.myinfo .media-right{
+    vertical-align: middle;
+}
+
+.myinfo .media-right .icon-fenxiang{
+	width: 22px;
+  height: 26px;
+   
+}
+
+
+/*导航*/
+
+.sidebar .media,.sidebar .nav-pills>li>a{
+	border-radius: 0;
+	border-right: 3px solid #ffffff;
+	box-shadow: 5px 0px 0px #ffffff;
+	text-align: left;
+}
+
+
+.sidebar .nav-pills>li>a,
+.sidebar .nav-pills>li.active>a{
+	font-size: 18px;
+	height: 66px;
+	line-height: 44px;
+	color: #ffffff;
+	background-color: rgba(0,0,0,0);
+}
+
+
+.sidebar .nav-pills>li>a:focus,.sidebar .nav-pills>li>a:hover,
+/*.sidebar .nav-pills>li.active>a,*/
+.sidebar .nav-pills>li.active>a:focus,.sidebar .nav-pills>li.active>a:hover {
+	background-color: #247fe7;
+	border-right:3px solid #ffffff;
+	box-shadow: 5px 0px 0px #006fdd;
+}
+
+.nav-stacked>li+li,.sidebar .media{
+	margin-top: 0;
+}
+
+.sidebar .nav-pills>li>a>.glyphicon{
+	width: 85px;
+	text-align: center;
+}
+
+
+.skip .hint{
+    		position: fixed;
+  			top: 40%;
+  			left: 54%;
+  			padding:1rem 3.333rem;
+  			line-height: 3.333rem;
+  			-webkit-transform: translateX(-50%) translateY(-50%);
+  			text-align: center;
+  			border: 1px solid indianred;
+  			color: indianred;
+ 				}
+
+
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1502122395479'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1502122395479#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1502122395479') format('woff'), /* chrome, firefox */
+  url('../fonts/iconfont.ttf?t=1502122395479') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1502122395479#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:20px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+.icon-yanjing{color: #0565fe;}
+.icon-quanyes{color: #006fdd;}
+.icon-quandian{font-size:12px;color: #cad4ff;}
+
+
+.icon-quanyes:before { content: "\e65a"; }
+
+.icon-wo:before { content: "\e623"; }
+
+.icon-quandian:before { content: "\e621"; display:inline-block;margin-right: 20px;}
+
+.icon-fenxiang:before { content: "\e612"; }
+
+.icon-yanjing:before { content: "\e613"; }
+
+.icon-shezhi:before { content: "\e608"; }
+
+.icon-ziyuan:before { content: "\e60b"; }
+

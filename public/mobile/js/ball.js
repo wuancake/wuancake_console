@@ -6,6 +6,7 @@
 			var countdown = document.getElementById("prompt3");
 			var water = document.getElementById("water");
 			var ballchange = document.getElementsByClassName("ball");
+			
 			var timeRate;
 			var interval;
 			
@@ -23,13 +24,12 @@
 				var minuter = newtime.getMinutes(); //得到现在时间的分数
 				var second = newtime.getSeconds(); //得到现在时间的秒数
 				
-
 				day = 7 - (day ? day : 7);
 				hours = 23 - hours;
 				minuter = 59 - minuter;
 				second = 59 - second;
+
 				countdown.innerHTML =  day + "天" + hours  + "时" + minuter + "分" + second + "秒" ;
-				
 				
 				return (day * 24 * 60 * 60 + hours * 60 * 60 + minuter * 60 + second) / 604800 * 100;
 			
@@ -50,28 +50,24 @@
 			    }
 				else if(timeRate >50) {
    				  ballchange[0].style.border = "1px solid #2edb75";
-   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#f2f2f2,#2edb75)";
+   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#ffffff,#2edb75)";
    				  ballchange[2].style.background = "#2edb75";
    				  ballchange[3].style.fill = "#7befaa";
    				  ballchange[4].style.fill = "#2edb75";
 			   }
 				else if(timeRate <= 50 && timeRate > 20) {
    				  ballchange[0].style.border = "1px solid #fbbc05";
-   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#f2f2f2,#fbbc05)";
+   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#ffffff,#fbbc05)";
    				  ballchange[2].style.background = "#fbbc05";
    				  ballchange[3].style.fill = "#ffd762";
    				  ballchange[4].style.fill = "#fbbc05";
 			   }
 				else{
    				  ballchange[0].style.border = "1px solid #fe6c0d";
-   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#f2f2f2,#fe6c0d)";
+   				  ballchange[1].style.background = "-webkit-linear-gradient(top,#ffffff,#fe6c0d)";
    				  ballchange[2].style.background = "#fe6c0d";
    				  ballchange[3].style.fill = "#ff9753";
    				  ballchange[4].style.fill = "#fe6c0d";
 			   }
 			},500);
 			
-
-		
-//title
-    
