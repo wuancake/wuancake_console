@@ -13,7 +13,7 @@ $(document).ready(function(){
 //	nw =Math.floor(offsetDays-92);
 	nw = offsetDays-1;
 
-$.getJSON('js/json.txt',function(data){ 
+$.getJSON('/index.php/user/show_weekly',function(data){
 	
 //var strHtml = "";//存储数据的变量
 	var o = nw;
@@ -74,7 +74,7 @@ var mytouch = (function() {
                             doc.getElementById("pullup").style.display = "block";
                            /* alert("刷新完成");*/
                           
-							$.getJSON('js/json.txt',function(data){
+							$.getJSON('/index.php/user/show_weekly',function(data){
 							o --;
 							if(o<0){alert("已经翻到顶端了！");}
 							else{
@@ -110,7 +110,7 @@ var mytouch = (function() {
                             doc.getElementById("refreshbottom").style.display = "none";
                             doc.getElementById("pulldown").style.display = "block";
                             /*alert("加载完成");*/
-                          $.getJSON('js/json.txt',function(data){
+                          $.getJSON('/index.php/user/show_weekly',function(data){
 							o ++;
 							if(o>=offsetDays){
 								o = offsetDays-1;

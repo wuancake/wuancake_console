@@ -10,8 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/base.css"/>
-    <link rel="stylesheet" href="/public/css/public.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +40,7 @@
         <div class="box">
             <div class="page with-sidebar">
                 <div class="page-header">
-                    <img class="img-responsive" src="/public/img/logo.png" alt="用户头像">
+                    <img class="img-responsive" src="/public/mobile/img/logo.png" alt="用户头像">
                     <div class="uid"><span><?php
                             switch ($group) {
                                 case 1:
@@ -89,7 +89,7 @@
             <div class="box">
                 <div class="percent">
                     <p>第<span id="nw"><?php echo $week_num; ?></span>周</p>
-                    <p>已提交周报</p>
+                    <p>本周已提交</p>
                 </div>
                 <!--<div id="water" class="water">
                     <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
@@ -146,7 +146,10 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="/public/js/other.js"></script>
+<script type="text/javascript" src="/public/mobile/js/other.js"></script>
+<script type="text/javascript" src="/public/mobile/js/ball-weeknum.js"></script>
 
 </body>
+
+
 </html>

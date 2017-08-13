@@ -51,5 +51,7 @@ $parameter = array_slice($info, 3);
 
 //调用
 $exc = new $class();
+
+/* call_user_func_array的返回值为回调函数执行的结果或者为false,此处代码是为防止用户通过url非法访问已存在的方法*/
 if (!@call_user_func_array(array($exc, $function), $parameter))
     die('非法访问，错误的URL');

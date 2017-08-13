@@ -10,8 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/base.css"/>
-    <link rel="stylesheet" href="/public/css/public.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
 
     <style>
 
@@ -56,11 +56,14 @@
         <label class="radio-inline">
             <input type="radio" name="genre" id="Java" value="7">Java组
         </label>
-        <div class="center-block">
-            <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
-        </div>
     </form>
+
+    <div class="center-block">
+        <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
+    </div>
 </div>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

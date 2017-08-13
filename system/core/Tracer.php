@@ -93,5 +93,14 @@ class Tracer
         exit();
     }
 
+    /**
+     * 返回json数据
+     * @param $data array 要传输的json数据
+     */
+    public function json(array $data) {
+        is_array($data) or $this->jump('skip','错误的参数，数据类型必须为array');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit();
+    }
 
 }

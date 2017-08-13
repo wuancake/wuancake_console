@@ -10,8 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/base.css"/>
-    <link rel="stylesheet" href="/public/css/public.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,31 +28,37 @@
 </div>
 <div class="signup">
     <form role="form" class="info-box registered-box" action="/index.php/user/register" method="post">
-        <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" placeholder="用户名" name="username">
-            <span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
-        </div>
+        <!--<div class="form-group has-success has-feedback">
+               <input type="text" class="form-control" placeholder="用户名" >
+               <span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
+          </div>
         <div class="form-group has-error has-feedback">
-            <input type="email" class="form-control" placeholder="电子邮箱" name="email">
+               <input type="email" class="form-control" placeholder="电子邮箱">
             <span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>
+          </div>-->
+        <div class="form-group has-success">
+            <input type="text" class="form-control text-center" placeholder="用户名" name="username">
+        </div>
+        <div class="form-group has-error">
+            <input type="email" class="form-control text-center" placeholder="电子邮箱" name="email">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="午安网昵称" name="nickname">
+            <input type="text" class="form-control text-center" placeholder="午安网昵称" name="nickname">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="QQ" name="qq">
+            <input type="text" class="form-control text-center" placeholder="QQ" name="qq">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="密码" name="password">
+            <input type="password" class="form-control text-center" placeholder="密码" name="password">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="确认密码" name="repassword">
+            <input type="password" class="form-control text-center" placeholder="确认密码" name="repassword">
         </div>
         <button id="signup" class="center-block" type="submit">注册</button>
     </form>
 
     <div class="box clearfix">
-        <span>已有帐号？</span><a href="/index.php/viewer/index" class="btn btn-default">点击登录</a>
+        已有帐号？</span><a href="/index.php/viewer/index">点击登录</a>
     </div>
 </div>
 

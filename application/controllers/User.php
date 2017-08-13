@@ -211,15 +211,15 @@ class User extends Tracer
     public function set_new_psd() {
         isset($_SESSION['psd_token']) or $this->jump('skip', '非法访问', 'viewer/index');
 
-        $email = $_SESSION['psd_token'];
+        $email    = $_SESSION['psd_token'];
         $password = md5($this->post('password', 'viewer/index'));
 
-        $stmt     = $this->db->connect->prepare("UPDATE user SET password = ? WHERE email = ?");
+        $stmt = $this->db->connect->prepare("UPDATE user SET password = ? WHERE email = ?");
         $stmt->bind_param('ss', $password, $email);
         $stmt->execute() or $this->jump('skip', '未知错误，请稍后重试', 'viewer/index');
         $stmt->close();
 
-        $this->jump('skip', '修改密码成功，请用新密码登录','viewer/index');
+        $this->jump('skip', '修改密码成功，请用新密码登录', 'viewer/index');
     }
 
 
@@ -263,9 +263,37 @@ class User extends Tracer
 
     /**
      * 查看周报
+     * 该方法返回json格式的信息
+     * @param $num integer 要查看的周数
      */
-    public function show_weekly() {
-        echo 'my weekly';
+    public function show_weekly($num) {
+        !is_numeric($num) and $this->json(array('error' => '缺少必要的参数或参数为非数字'));
+        isset($_SESSION['token']) or $this->json(array('error' => '用户未登录'));
+        $this->db->exist_group() or $this->json(array('error' => '用户未加入分组'));
+
+        $id = $_SESSION['token']['id'];
+        $res = $this->db->connect->query("SELECT * FROM report WHERE user_id = $id AND week_num = $num") or $this->json(array('error' => '获取信息出错，请检查参数是否合法'));
+
+        $res->num_rows or $this->json(array('status' => '未提交',
+                                          'week'=>$num));
+
+        $data = $res->fetch_assoc();
+        $data['status'] == 3 and $this->json(array('status' => "本周已请假",
+                                                 "week" => $num,
+                                                 "time" => $data['reply_time']));
+
+        $message = $data['text'];
+        $message = explode('<br>', $message);
+
+        $done = str_replace('本周完成：', '', $message['0']);
+        $problem = str_replace('所遇问题：','',$message['1']);
+        $todo = str_replace('下周计划：','',$message['2']);
+        $this->json(array('status'=>"未提交",
+                        "week"=>$num,
+                        "time"=>$data['reply_time'],
+                        "finished"=>$done,
+                        "problem"=>$problem,
+                        "plan"=>$todo));
     }
 
 
@@ -301,7 +329,6 @@ class User extends Tracer
         $this->db->connect->query($sql) or $this->jump('skip', '添加失败，请检查输入是否正确后重试', 'viewer/index');
 
         $this->jump('skip', '回复成功！页面即将跳转', 'user/show_state');
-
     }
 
 

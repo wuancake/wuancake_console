@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>ChangePassWord</title>
+    <title>MyWeekly</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -20,30 +20,43 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
 </head>
 <body>
 <div class="title">
     <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
-    <h2>修改密码</h2>
+    <h2>我的周报</h2>
 </div>
-<div class="changepassword">
-    <form role="form" class="info-box" action="/index.php/user/reset_psd" method="post">
-        <div class="form-group">
-            <input type="password" class="form-control text-center" placeholder="旧密码" name="password">
-        </div>
-        <!--<div class="form-group has-success has-feedback">-->
-        <div class="form-group">
-            <input type="password" class="form-control text-center" placeholder="新密码" name="newpsd">
-            <!--<span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>-->
-        </div>
-        <div class="form-group has-error">
-            <input type="password" class="form-control text-center" placeholder="确认新密码" name="repassword">
-            <!--<span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>  -->
-        </div>
-        <button id="pushPsaaWord" class="center-block" type="submit">提交</button>
-    </form>
+<div class="myweekly">
+    <!--刷新图标，当有新内容加载时，显示该图标，加载完成后图标隐藏-->
+    <div id="refreshTop"></div>
+    <div id="pullup">下拉显示上一周</div>
 
+    <form role="form" class="info-box my-weekly-box" id="show">
+        <div class="form-group la-horizontal clearfix">
+            <label class="la-horizontal-left">周数：</label>
+            <span class="la-horizontal-right" id="nw"></span>
+        </div>
+        <div class="form-group la-horizontal clearfix">
+            <label class="la-horizontal-left">提交时间：</label>
+            <time class="la-horizontal-right">2017/6/20日 11:15:20分</time>
+        </div>
+        <div class="form-group la-horizontal clearfix">
+            <label class="la-horizontal-left">本周完成：</label>
+            <div class="la-content"></div>
+        </div>
+        <div class="form-group la-horizontal clearfix">
+            <label class="la-horizontal-left">所遇到问题：</label>
+            <div class="la-content"></div>
+        </div>
+        <div class="form-group la-horizontal clearfix">
+            <label class="la-horizontal-left">下周计划：</label>
+            <div class="la-content"></div>
+        </div>
+
+    </form>
+    <div id="pulldown">上拉显示下一周</div>
+    <!--刷新图标，当有新内容加载时，显示该图标，加载完成后图标隐藏-->
+    <div id="refreshbottom"></div>
 </div>
 
 
@@ -53,5 +66,9 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="/public/mobile/js/other.js"></script>
+<script type="text/javascript" src="/public/mobile/js/pullup.js"></script>
+
+
 </body>
 </html>

@@ -10,8 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/css/base.css"/>
-    <link rel="stylesheet" href="/public/css/public.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,25 +26,31 @@
     <h2>午安煎饼计划</h2>
 </div>
 <div class="login clearfix">
-    <img src="/public/img/logo.png"/>
+    <img src="/public/mobile/img/logo.png"/>
     <form action="/index.php/user/login" method="post">
         <div class="from-group center-block">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入电子邮箱" name="email">
+            <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="输入电子邮箱"
+                   name="email">
         </div>
         <div class="from-group center-block">
-            <input type="password" class="form-control" id="exampleInputEmail1" placeholder="请输入密码" name="password">
+            <input type="password" class="form-control text-center" id="exampleInputEmail1" placeholder="输入登录密码"
+                   name="password">
         </div>
-        <div class="center-block">
-            <button id="logBtn" type="submit" class="btn btn-default">登录</button>
+
+        <div class="from-group  center-block">
+            <a href="/index.php/viewer/signup" class="btn btn-register">注册</a>
+            <button id="logBtn" type="submit" class="btn">登录</button>
         </div>
+
     </form>
 
 
-    <div class="center-block">
-        <a href="/index.php/viewer/signup" class="btn btn-link btn-register">注册</a>
-    </div>
+    <!--<div class="center-block">
+        <a  href="Signup.html" class="btn btn-link btn-register">注册</a>
+    </div>-->
 
-    <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="btn btn-default forgetPassword">忘记密码？</a>
+
+    <a href="/index.php/viewer/signup" id="forgetPassword" class="forgetPassword">忘记密码？</a>
 
 
 </div>
