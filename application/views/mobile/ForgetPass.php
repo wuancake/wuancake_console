@@ -31,11 +31,12 @@
     <div class="from-group center-block">
       <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="注册的电子邮箱" name="email">
     </div>
+      <div class="center-block">
+          <button id="gainpassBtn" type="submit" class="btn btn-default" >提交</button>
+      </div>
   </form>
   
-  <div class="center-block">
-  	   <button id="gainpassBtn" type="submit" class="btn btn-default" >提交</button>
-  </div>
+
   
   <p>提交后我们将修改密码的地址以邮件的形式发送到您的邮箱中，请注意查收！</p>
  

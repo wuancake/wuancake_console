@@ -50,7 +50,7 @@
     </div>-->
 
 
-    <a href="/index.php/viewer/signup" id="forgetPassword" class="forgetPassword">忘记密码？</a>
+    <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
 
 
 </div>
