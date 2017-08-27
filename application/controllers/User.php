@@ -155,7 +155,7 @@ class User extends Tracer
         $stmt->free_result();
         $stmt->close();
 
-        $this->jump('skip', '修改密码成功', 'viewer/change_psd');
+        $this->jump('skip', '修改密码成功', 'viewer/index');
     }
 
 

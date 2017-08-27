@@ -82,7 +82,7 @@ class Viewer extends Tracer
      * 注册界面
      */
     public function signup() {
-        $this->jump('signup');
+        $this->jump('Signup');
     }
 
 

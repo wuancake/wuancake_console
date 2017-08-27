@@ -56,11 +56,12 @@
         <label class="radio-inline">
             <input type="radio" name="genre" id="Java" value="7">Java组
         </label>
+        <div class="center-block">
+            <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
+        </div>
     </form>
 
-    <div class="center-block">
-        <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
-    </div>
+
 </div>
 
 

@@ -68,7 +68,7 @@
                 </div>
                 <div class="page-sidebar text-center">
                     <ul class="sub-menu">
-                        <li class="active"><a href="/index.php/user/show_weekly">我的周报</a></li>
+                        <li class="active"><a href="/index.php/viewer/show_weekly">我的周报</a></li>
                         <li><a href="/index.php/viewer/change_psd">修改密码</a></li>
                     </ul>
                 </div>
