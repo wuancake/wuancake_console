@@ -24,7 +24,7 @@
 <body>
 <div class="title">
     <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
-    <h2>我的周报</h2>
+    <h2>我的周报<?php echo $session_id;?></h2>
 </div>
 <div class="myweekly">
     <!--刷新图标，当有新内容加载时，显示该图标，加载完成后图标隐藏-->

@@ -153,6 +153,6 @@ class Viewer extends Tracer
      *
      */
     public function show_weekly(){
-        $this->jump('MyWeekly');
+        $this->view('MyWeekly',array('session_id'=>session_id()));
     }
 }
