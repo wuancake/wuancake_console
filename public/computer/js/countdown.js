@@ -23,7 +23,7 @@
 				hours = 23 - hours;
 				minuter = 59 - minuter;
 				second = 59 - second;
-				countdown.innerHTML =  day + "天" + hours  + ":" + minuter + ":" + second  ;
+				countdown.innerHTML =  day + "天&nbsp;&nbsp;"+  + hours  + ":" + minuter + ":" + second  ;
 			 	
    				interval = countdown;
     			setTimeout("startCount()",1000);

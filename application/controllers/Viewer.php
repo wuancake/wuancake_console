@@ -153,6 +153,14 @@ class Viewer extends Tracer
      *
      */
     public function show_weekly(){
-        $this->view('MyWeekly',array('session_id'=>session_id()));
+        if ($this->check_state() && $this->db->exist_group()) {
+            $this->view('MyWeekly',array('session_id'=>session_id()));
+        }
+        else {
+            $this->jump('skip', '你未登录或未加入分组', 'viewer/index');
+        }
     }
+
+
+
 }

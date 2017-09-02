@@ -46,7 +46,7 @@
 
 
     <!--<div class="center-block">
-        <a  href="Signup.html" class="btn btn-link btn-register">注册</a>
+        <a  href="/index.php/viewer/signup" class="btn btn-link btn-register">注册</a>
     </div>-->
 
 

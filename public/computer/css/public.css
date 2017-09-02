@@ -138,9 +138,9 @@ textarea:-ms-input-placeholder {
 }
 
 .btn-leave {
+	width: 86%;
   text-align: center;
-  margin-top: 86px;
-  margin-bottom: 60px;
+  margin-top:66px;
 }
 
 .btn-leave .btn {
@@ -168,7 +168,8 @@ textarea:-ms-input-placeholder {
 
 .column-weekly-2 textarea {
   margin-bottom: 18px;
-  width: 872px;
+/*  width: 872px;*/
+  width: 86%;
   border: 1px solid rgb(40, 157, 255);
   padding: 10px 12px;
   resize: none;
@@ -232,7 +233,7 @@ textarea:-ms-input-placeholder {
   margin-bottom: 35px;
 }
 
-.column-password .submit-btn .btn {
+.column-password .submit-btn .btn ,.submit-btn .btn-primary{
   width: 395px;
   height: 47px;
   font-size: 23px;
@@ -242,9 +243,10 @@ textarea:-ms-input-placeholder {
   color: rgb(5, 101, 254);
   border-color: rgb(0, 71, 155);
   background-color: white;
+
 }
 
-.column-password .submit-btn .btn:hover {
+.column-password .submit-btn .btn:hover,.submit-btn .btn-primary:hover {
   background-color: rgb(40, 157, 255);
   color: white;
 }
@@ -436,6 +438,7 @@ textarea:-ms-input-placeholder {
 
 /*表格*/
 .table{
+	background-color: #ffffff;
 	/*width: 875px;
 	height: 492px;*/
 }
@@ -443,6 +446,8 @@ textarea:-ms-input-placeholder {
 .table th{
 	font-weight: 500;
 }
+
+
 
 
 .table-bordered > thead > tr > th,
@@ -476,13 +481,27 @@ textarea:-ms-input-placeholder {
   background-color: #f4f9fe;
 }
 
+/*分组*/
+.grouping table tr td:first-child{
+	width:60px;
+}
+
+
+.grouping table tr{
+	height:60px;
+}
+.grouping .submit-btn{
+  margin: 60px 0 0 0;
+  text-align: center;
+}
+/*分组*/
 
 
 
 
 /*翻页*/
 
-.pager {
+.pager{
   padding-left: 0;
   margin: 60px 0 0 0;
   text-align: center;
