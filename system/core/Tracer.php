@@ -10,7 +10,7 @@ class Tracer
 {
     protected $db       = '';
     private   $terminal = '';
-
+    private $class = '';
 
     public function __construct() {
         $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -69,6 +69,14 @@ class Tracer
 
 
     /**
+     * 设置当前class
+     */
+    public function setClass($class){
+        $this->class = $class;
+    }
+
+
+    /**
      * 加载视图
      * @param $view string 要加载的界面
      * @param $data array 要传递的数据
@@ -76,7 +84,7 @@ class Tracer
     public function view($view, $data = array()) {
         @extract($data);
         ob_end_clean();
-        require_once "./application/views/$this->terminal/" . $view . '.php';
+        require_once "./application/views/$this->class/$this->terminal/" . $view . '.php';
         exit();
     }
 
@@ -89,9 +97,10 @@ class Tracer
      */
     public function jump($page, $message = '', $url = '') {
         ob_end_clean();
-        require_once "./application/views/$this->terminal/" . $page . '.php';
+        require_once "./application/views/$this->class/$this->terminal/" . $page . '.php';
         exit();
     }
+
 
     /**
      * 返回json数据

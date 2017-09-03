@@ -8,7 +8,8 @@ function weeknum(){
  
 	// 将时间转位天数
 	var offsetDays =Math.floor((offsetTime / (3600 * 24 * 1000))/7);
-	nw.innerHTML=offsetDays;
+	nw.innerHTML=offsetDays+1;
 }
+
 weeknum();
 
