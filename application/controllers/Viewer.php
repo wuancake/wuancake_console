@@ -11,6 +11,7 @@ class Viewer extends Tracer
 
     public function __construct() {
         parent::__construct();
+        $this->setClass('User');
         $this->database('user');
     }
 
@@ -149,7 +150,9 @@ class Viewer extends Tracer
         $this->view('Leave',$data);
     }
 
-    /** 显示已提交周报界面
+
+    /**
+     * 显示已提交周报界面
      *
      */
     public function show_weekly(){

@@ -12,6 +12,7 @@ class User extends Tracer
 
     public function __construct() {
         parent::__construct();
+        $this->setClass('User');
         $this->database('user');
     }
 
