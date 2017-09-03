@@ -9,8 +9,8 @@
 
     <!-- Bootstrap -->
    	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/computer/css/base.css" />
-    <link rel="stylesheet" href="/public/computer/css/public.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/base.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/public.css" />
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -40,11 +40,34 @@
 				<!--我的信息-->
 				<div class="media myinfo">
   				<div class="media-left">
-  				   <a href="#"><img class="media-object portrait" src="/public/computer/img/logo.png" alt="我的头像"></a>
+  				   <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
   				</div>
  					 <div class="media-body">
-   				 <h4 class="media-heading">二马</h4>
-    				产品经理组
+   				 <h4 class="media-heading"><?php echo $username; ?></h4>
+                         <?php
+                         switch ($group) {
+                             case 1:
+                                 echo 'PHP组';
+                                 break;
+                             case 2:
+                                 echo 'Web前端组';
+                                 break;
+                             case 3:
+                                 echo 'UI设计组';
+                                 break;
+                             case 4:
+                                 echo 'Android组';
+                                 break;
+                             case 5:
+                                 echo '产品经理组';
+                                 break;
+                             case 6:
+                                 echo '软件测试组';
+                                 break;
+                             case 7:
+                                 echo 'Java组';
+                                 break;
+                         } ?>
   				</div>
   				<div class="media-right">
   				   <a href="#">
@@ -78,7 +101,7 @@
     <div class="right-part-password">
         <form class="column-password" action="/index.php/user/reset_psd" method="post">
             <div class="old-password sign-user">
-                <input type="password" name="password" placeholder="原密码">
+                <input type="password"  name="password" placeholder="原密码" >
             </div>
             <div class="new-password sign-user">
                 <input type="password" name="newpsd" placeholder="新密码">
@@ -88,8 +111,7 @@
                 <input type="password" name="repassword" placeholder="确认密码">
             </div>
             <div class="submit-btn">
-				<!-- ??? 改成button-->
-                <a class="btn btn-primary" href="#" role="button"><span>提交</span></a>
+                <button class="btn btn-primary" type="submit"><span>提交</span></button>
             </div>
         </form>
     </div>
@@ -110,7 +132,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
         
-    <script src="/public/computer/js/eyes.js"></script>
+    <script src="/public/User/computer/js/eyes.js"></script>
 </body>
 
 </html>

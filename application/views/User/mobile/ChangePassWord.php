@@ -10,8 +10,8 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
-    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
+    <link rel="stylesheet" href="/public/User/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/User/mobile/css/public.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,13 +28,19 @@
     <h2>修改密码</h2>
 </div>
 <div class="changepassword">
-    <form role="form" class="info-box" action="/index.php/user/set_new_psd" method="post">
-
-        <div class="form-group has-success has-feedback">
-            <input type="password" class="form-control" placeholder="新密码" name="password">
-            <span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
+    <form role="form" class="info-box" action="/index.php/user/reset_psd" method="post">
+        <div class="form-group">
+            <input type="password" class="form-control text-center" placeholder="旧密码" name="password">
         </div>
-
+        <!--<div class="form-group has-success has-feedback">-->
+        <div class="form-group">
+            <input type="password" class="form-control text-center" placeholder="新密码" name="newpsd">
+            <!--<span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>-->
+        </div>
+        <div class="form-group has-error">
+            <input type="password" class="form-control text-center" placeholder="确认新密码" name="repassword">
+            <!--<span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>  -->
+        </div>
         <button id="pushPsaaWord" class="center-block" type="submit">提交</button>
     </form>
 

@@ -5,36 +5,53 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>登录界面</title>
+    <title>注册页面</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/computer/css/base.css" />
-    <link rel="stylesheet" href="/public/computer/css/public.css">
+        crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/public/User/computer/css/base.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/public.css"/>
 
 
 </head>
 
+
 <body>
 
-    <div class="column-sign">
-        <form class="sign-in-box">
+    <div class="column-sign signup">
+        <form class="sign-up-box">
             <div class="sign-user-id sign-user">
                 <input type="text" name="user-id" placeholder="用户名">
+            </div>
+            <div class="sign-user-email sign-user">
+                <input type="text" name="sign-user-password" placeholder="电子邮箱">
+            </div>
+            <div class="sign-user-name sign-user">
+                <input type="text" name="user-name" placeholder="午安网昵称">
+            </div>
+            <div class="sign-user-qq sign-user">
+                <input type="text" name="user-qq" placeholder="QQ">
             </div>
             <div class="sign-user-password sign-user">
                 <input type="password" name="sign-user-password" placeholder="密码">
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
-            <div class="sign-in-btn">
-                <a class="btn btn-primary" href="#" role="button"><span>登陆</span></a>
+            <div class="sign-user-confirm-password sign-user">
+                <input type="password" name="sign-user-confirm-password" placeholder="确认密码">
             </div>
-            <div class="sign-up-href">
-                -><a href="/index.php/viewer/signup" class="sign-up-a">注册</a>
+            <div class="sign-up-btn">
+                <button class="btn btn-primary" type="submit"><span>注册</span></button>
+            </div>
+            <div class="sign-in-href ">
+                -><a href="/index.php/viewer/index" class="sign-up-a">登陆</a>
             </div>
         </form>
     </div>
+
+
+
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

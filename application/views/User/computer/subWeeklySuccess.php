@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>grouping</title>
+    <title>HomePage</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/computer/css/base.css" />
-    <link rel="stylesheet" href="/public/computer/css/public.css">
+    <link rel="stylesheet" href="/public/User/computer/css/base.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/public.css" />
     
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,11 +39,34 @@
 				<!--我的信息-->
 				<div class="media myinfo">
   				<div class="media-left">
-  				   <a href="#"><img class="media-object portrait" src="/public/computer/img/logo.png" alt="我的头像"></a>
+  				   <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
   				</div>
  					 <div class="media-body">
-   				 <h4 class="media-heading">二马</h4>
-    				产品经理组
+   				 <h4 class="media-heading"><?php echo $username; ?></h4>
+                         <?php
+                         switch ($group) {
+                             case 1:
+                                 echo 'PHP组';
+                                 break;
+                             case 2:
+                                 echo 'Web前端组';
+                                 break;
+                             case 3:
+                                 echo 'UI设计组';
+                                 break;
+                             case 4:
+                                 echo 'Android组';
+                                 break;
+                             case 5:
+                                 echo '产品经理组';
+                                 break;
+                             case 6:
+                                 echo '软件测试组';
+                                 break;
+                             case 7:
+                                 echo 'Java组';
+                                 break;
+                         } ?>
   				</div>
   				<div class="media-right">
   				   <a href="#">
@@ -72,65 +95,40 @@
 		</div>
 		
 		
-		
 <!--右边	-->	
 		 <div class="right-part">
-		 	
-		 	<div class="title-bar">
-				<h4>选择分组</h4>
-			</div>
-
-			<div class="grouping">
+			<div class="title-bar">
+							<h4 class="week">
+								本周第<i id="nw"></i>周
+								<span>已撰写周报 <span class="glyphicon iconfont icon-quanyes"></span></span>
+								<h4 class="week">本周当前状态</h4>
+							</h4>
+					</div>			
+			<div class="container-fluid">
   				<div class="row">
-     				<div class="col-md-2"></div>
- 						<div class="col-md-7">
-							<table class="table table-striped  table-bordered  text-center">
-  			    	  <tbody>
-  			    	  	<tr>
-    		        	 <td><input type="radio" name="genre" id="PHP" value="PHP组"></td>
-       		     	   <td>PHP组</td>
-     		     	    </tr>
-     		     	     <tr>
-      		     	   <td><input type="radio" name="genre" id="Web" value="Web前端组"></td>
-      		     	   <td>Web前端组</td>
-    		      	  </tr>
-    		      	  <tr>
-      		      	 <td><input type="radio" name="genre" id="UI" value="UI设计组"></td>
-       		      	 <td>UI设计组</td>
-     		     	   </tr>
-     		     	   <tr>
-    		        	 <td><input type="radio" name="genre" id="Android" value="Android组"></td>
-       		     	   <td>Android组</td>
-     		     	   </tr>
-    	 		    	  <tr>
-      	 		    	  <td><input type="radio" name="genre" id="PM" value="产品经理组"></td>
-        		    	  <td>产品经理组</td>
-      		    	  </tr>
-      		    	  <tr>
-    		        	 <td><input type="radio" name="genre" id="QA" value="软件测试组"></td>
-       		     	   <td>软件测试组</td>
-     		     	    </tr>
-     		     	    <tr>
-    		        	 <td><input type="radio" name="genre" id="Java" value="JAVA组"></td>
-       		     	   <td>JAVA组</td>
-     		     	    </tr>
-    		     	  </tbody>
-    	    	  <table>
-    		 			
-							<span class=" iconfont icon-quandian">
-							<span class="remind">警告：只能选择一次分组，请谨慎选择！</span>
-    		 
-    					<div class="submit-btn">
-                <a class="btn btn-primary" href="#" role="button"><span>提交</span></a>
-           	 </div>
- 						
- 			 		</div>
- 	
- 					<div class="col-md-1"></div>
- 					
+     				<div class="col-md-1"></div>
+ 						<div class="col-md-10 text-center">
+ 							<time id="time" >周报已提交</time>
+ 						</div>
+ 						<div class="col-md-1"></div>
   				</div>
+  				<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-11">
+								 <span class=" iconfont icon-quandian">
+								 <span class="remind">开始为下周计划做准备吧！</span>
+						</div>
+					</div>
+					
 				</div>
-		
+				
+				
+				<div class="pager">
+						<a class="btn btn-default active" href="/index.php/viewer/show_weekly" role="button">我的周报</a>
+				</div>
+				
+				
+				
 		</div>
 
 
@@ -146,5 +144,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	</body>
+		<script type="text/javascript" src="/public/User/computer/js/ball-weeknum.js" ></script>
+  </body>
 </html>

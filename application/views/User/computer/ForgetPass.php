@@ -8,8 +8,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/computer/css/base.css" />
-    <link rel="stylesheet" href="/public/computer/css/public.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/base.css" />
+    <link rel="stylesheet" href="/public/User/computer/css/public.css" />
     
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,11 +39,34 @@
 				<!--我的信息-->
 				<div class="media myinfo">
   				<div class="media-left">
-  				   <a href="#"><img class="media-object portrait" src="/public/computer/img/logo.png" alt="我的头像"></a>
+  				   <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
   				</div>
  					 <div class="media-body">
-   				 <h4 class="media-heading">二马</h4>
-    				产品经理组
+   				 <h4 class="media-heading"><?php echo $username; ?></h4>
+                         <?php
+                         switch ($group) {
+                             case 1:
+                                 echo 'PHP组';
+                                 break;
+                             case 2:
+                                 echo 'Web前端组';
+                                 break;
+                             case 3:
+                                 echo 'UI设计组';
+                                 break;
+                             case 4:
+                                 echo 'Android组';
+                                 break;
+                             case 5:
+                                 echo '产品经理组';
+                                 break;
+                             case 6:
+                                 echo '软件测试组';
+                                 break;
+                             case 7:
+                                 echo 'Java组';
+                                 break;
+                         } ?>
   				</div>
   				<div class="media-right">
   				   <a href="#">
@@ -63,7 +86,7 @@
  					<li role="presentation">
  							<a href="/index.php/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
  					</li>
-
+				</ul>
 				</div>
 				
 				
@@ -78,9 +101,9 @@
 			
 			<div class="forgetpass">
 				
-				<form class="form-inline">
+				<form class="form-inline" action="/index.php/user/recover_psd" method="post">
   					<div class="form-group">
-      							<input type="text" class="form-control" id="exampleInputAmount" placeholder="注册时电子邮箱">
+      							<input type="text" class="form-control" id="exampleInputAmount" placeholder="注册时电子邮箱" name="email">
   					</div>
  						<button type="submit" class="btn btn-primary "><span class="glyphicon iconfont icon-iconfontjiantou-copy"></span></button>
 				</form>

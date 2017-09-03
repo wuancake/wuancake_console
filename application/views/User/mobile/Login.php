@@ -5,18 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>grouping</title>
+    <title>Login</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/mobile/css/base.css"/>
-    <link rel="stylesheet" href="/public/mobile/css/public.css"/>
+    <link rel="stylesheet" href="/public/User/mobile/css/base.css"/>
+    <link rel="stylesheet" href="/public/User/mobile/css/public.css"/>
 
-    <style>
-
-
-    </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,37 +25,32 @@
 <div class="title">
     <h2>午安煎饼计划</h2>
 </div>
-
-
-<div class="grouping">
-    <p class="text-center">选择要加入的分组</p>
-
-    <form class="genre" action="/index.php/user/join_group" method="post">
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="PHP" value="1">PHP组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Web" value="2">Web前端组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="UI" value="3">UI设计组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Android" value="4">Android组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="PM" value="5">产品经理组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="QA" value="6">软件测试组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Java" value="7">Java组
-        </label>
-        <div class="center-block">
-            <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
+<div class="login clearfix">
+    <img src="/public/User/mobile/img/logo.png"/>
+    <form action="/index.php/user/login" method="post">
+        <div class="from-group center-block">
+            <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="输入电子邮箱"
+                   name="email">
         </div>
+        <div class="from-group center-block">
+            <input type="password" class="form-control text-center" id="exampleInputEmail1" placeholder="输入登录密码"
+                   name="password">
+        </div>
+
+        <div class="from-group  center-block">
+            <a href="/index.php/viewer/signup" class="btn btn-register">注册</a>
+            <button id="logBtn" type="submit" class="btn">登录</button>
+        </div>
+
     </form>
+
+
+    <!--<div class="center-block">
+        <a  href="/index.php/viewer/signup" class="btn btn-link btn-register">注册</a>
+    </div>-->
+
+
+    <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
 
 
 </div>
