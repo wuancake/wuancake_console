@@ -352,8 +352,8 @@ class User extends Tracer
         }
 
         $info = $this->post();
-        $num = @$info['num'] or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/vacate');
-        $reason = addslashes(htmlspecialchars(@$info['reason'])) or $this->jump('skip', '非法请求，缺少必要参数', 'viewer/vacate');
+        $num = @$info['num'] or $this->jump('skip', '非法请求，缺少必要参数num', 'viewer/vacate');
+        $reason = addslashes(htmlspecialchars(@$info['reason'])) or $this->jump('skip', '非法请求，缺少必要参数reason', 'viewer/vacate');
 
         while ($num--) {
             $sql = "INSERT INTO report VALUE ($week_num,$id,$group,'$reason',3,'$time')";

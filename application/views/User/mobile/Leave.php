@@ -83,16 +83,16 @@
                           <option>请假三周</option>
                 </select>-->
             <div class="la-horizontal-right">
-                <button type="button" class="btn">一周</button>
-                <button type="button" class="btn">二周</button>
-                <button type="button" class="btn">三周</button>
-                <input type="hidden" name="num" value="1">
+                <button type="button" class="btn" value="1" id="one">一周</button>
+                <button type="button" class="btn" value="2" id="two">二周</button>
+                <button type="button" class="btn" value="3" id="three">三周</button>
+                <input type="hidden" name="num" id="num"  value="1"/>
             </div>
 
         </div>
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left">请假理由（必填）：</label>
-            <textarea class="form-control" rows="6"></textarea>
+            <textarea class="form-control" rows="6" name="reason"></textarea>
         </div>
         <button id="pushLeave" class="center-block" type="submit">提交请假申请</button>
     </form>
@@ -108,13 +108,21 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(function () {
-        $(".btn").each(function (i) {
-            $(this).val(i + 1);
-        })
-// $(".btn").bind("click", function () {
-// 	 alert($(this).val());
-//  })
+
+    $(document).ready(function(){
+
+        $("#one").bind("click", function () {
+            $("#num").val("1");
+        });
+        $("#two").bind("click", function () {
+            $("#num").val("2");
+        });
+        $("#three").bind("click", function () {
+            $("#num").val("3");
+        });
+
+        $.post("../../../api/test.php",{num:$("#num").val()});
+
     });
 </script>
 
