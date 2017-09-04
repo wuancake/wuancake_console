@@ -19,12 +19,12 @@
 <body>
 
     <div class="column-sign">
-        <form class="sign-in-box">
+        <form class="sign-in-box" action="/index.php/user/login" method="post">
             <div class="sign-user-id sign-user">
-                <input type="text" name="user-id" placeholder="用户名">
+                <input type="text" name="email" placeholder="邮箱" >
             </div>
             <div class="sign-user-password sign-user">
-                <input type="password" name="sign-user-password" placeholder="密码">
+                <input type="password" name="password" placeholder="密码">
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
             <div class="sign-in-btn">

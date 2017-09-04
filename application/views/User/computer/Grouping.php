@@ -67,7 +67,7 @@
                 } ?>
             </div>
             <div class="media-right">
-                <a href="#">
+                <a href="/index.php/user/quit">
                     <span class="glyphicon iconfont icon-fenxiang"></span>
                 </a>
             </div>

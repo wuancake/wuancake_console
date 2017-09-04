@@ -72,7 +72,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="#">
+  				   <a href="/index.php/user/quit">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>
@@ -104,7 +104,7 @@
             <h4>周报撰写</h4>
         </div>
         <div class="box writeweekly">
-        	<form>
+        	<form action="/index.php/user/write_weekly" method="post">
             <div class="column-leave-1">
                 <div class="user-info">
                     <span class="user-group">
@@ -139,18 +139,28 @@
                 </div>
                 <div class="user-holiday">
                     <span class="holiday-state">请假状态</span>
-                    <span class="holiday-flag">未请假</span>
+                    <span class="holiday-flag"><?php switch ($status) {
+                            case 1:
+                                echo '未提交';
+                                break;
+                            case 2:
+                                echo '已提交';
+                                break;
+                            case 3:
+                                echo '已请假';
+                                break;
+                        }; ?></span>
                 </div>
             </div>
             <div class="column-weekly-2">
                 <span class="weekly-content">本周完成内容（必填）</span>
-                <textarea rows="2" cols="30" placeholder="请在此处输入本周你做了什么"></textarea>
+                <textarea rows="2" cols="30" placeholder="请在此处输入本周你做了什么" name="done"></textarea>
                 <span class="weekly-problem">本周遇到问题（必填）</span>
-                <textarea rows="3" cols="30" placeholder="遇到了坑那么肯定是要学会解决掉它的"></textarea>
+                <textarea rows="3" cols="30" placeholder="遇到了坑那么肯定是要学会解决掉它的" name="problem"></textarea>
                 <span class="next-plan">下周计划（必填）</span>
-                <textarea rows="3" cols="30" placeholder="合理的计划能够带来更好的学习效果"></textarea>
+                <textarea rows="3" cols="30" placeholder="合理的计划能够带来更好的学习效果" name="todo"></textarea>
                 <span class="homework">作品链接</span>
-                <textarea rows="1" cols="30" placeholder="记得把作品链接放在这里，特别是UI组的伙伴么"></textarea>
+                <textarea rows="1" cols="30" placeholder="记得把作品链接放在这里，特别是UI组的伙伴么" name="url"></textarea>
             </div>
             
             <div class="btn-leave">

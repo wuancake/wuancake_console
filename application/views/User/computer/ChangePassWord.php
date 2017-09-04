@@ -45,7 +45,7 @@
  					 <div class="media-body">
    				 <h4 class="media-heading"><?php echo $_SESSION['token']['username']; ?></h4>
                          <?php
-                         switch ($_SESSION['token']['group']) {
+                         switch ($group) {
                              case 1:
                                  echo 'PHP组';
                                  break;
@@ -70,7 +70,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="#">
+  				   <a href="/index.php/user/quit">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>

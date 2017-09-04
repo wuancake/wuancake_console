@@ -20,25 +20,25 @@
 <body>
 
     <div class="column-sign signup">
-        <form class="sign-up-box">
+        <form class="sign-up-box" action="/index.php/user/register" method="post">
             <div class="sign-user-id sign-user">
-                <input type="text" name="user-id" placeholder="用户名">
+                <input type="text" name="username" placeholder="用户名">
             </div>
             <div class="sign-user-email sign-user">
-                <input type="text" name="sign-user-password" placeholder="电子邮箱">
+                <input type="text" name="email" placeholder="电子邮箱">
             </div>
             <div class="sign-user-name sign-user">
-                <input type="text" name="user-name" placeholder="午安网昵称">
+                <input type="text" name="nickname" placeholder="午安网昵称">
             </div>
             <div class="sign-user-qq sign-user">
-                <input type="text" name="user-qq" placeholder="QQ">
+                <input type="text" name="qq" placeholder="QQ">
             </div>
             <div class="sign-user-password sign-user">
-                <input type="password" name="sign-user-password" placeholder="密码">
+                <input type="password" name="password" placeholder="密码">
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
             <div class="sign-user-confirm-password sign-user">
-                <input type="password" name="sign-user-confirm-password" placeholder="确认密码">
+                <input type="password" name="repassword" placeholder="确认密码" >
             </div>
             <div class="sign-up-btn">
                 <button class="btn btn-primary" type="submit"><span>注册</span></button>

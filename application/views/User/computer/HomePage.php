@@ -69,7 +69,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="#">
+  				   <a href="/index.php/user/quit">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>
@@ -101,7 +101,7 @@
 			<div class="title-bar">
 							<h4 class="week">
 								本周第<i id="nw"></i>周
-								<span>已撰写周报 <span class="glyphicon iconfont icon-cha"></span></span>
+								<span>尚未提交周报 <span class="glyphicon iconfont icon-cha"></span></span>
 								<h4 class="week">本周剩余时间</h4>
 							</h4>
 					</div>			

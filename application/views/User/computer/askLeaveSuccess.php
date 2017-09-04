@@ -69,7 +69,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="#">
+  				   <a href="/index.php/user/quit">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>
@@ -126,7 +126,7 @@
 				
 				<div class="pager">
 						<a class="btn btn-default active" href="/index.php/viewer/show_weekly" role="button">我的周报</a>
-						<button  class="btn btn-default" type="submit">取消请假</button>
+						<a  class="btn btn-default" href="/index.php/user/vacate_off">取消请假</a>
 				</div>
 				
 				
