@@ -64,7 +64,7 @@
   margin-left: 50px;
 }
 
-.column-leave-2 .holiday-btn a {
+.column-leave-2 .holiday-btn button {
   width: 73px;
   height: 25px;
   line-height: 11px;
@@ -447,10 +447,7 @@ textarea:-ms-input-placeholder {
 	font-weight: 500;
 }
 
-
-
-
-.table-bordered > thead > tr > th,
+/*.table-bordered > thead > tr > th,*/
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
@@ -481,13 +478,20 @@ textarea:-ms-input-placeholder {
   background-color: #f4f9fe;
 }
 
+/*myweekly*/
+.myweekly .table{
+
+}
+/*myweekly*/
+
+
 /*分组*/
-.grouping table tr td:first-child{
+.grouping .table tr td:first-child{
 	width:60px;
 }
 
 
-.grouping table tr{
+.grouping .table tr{
 	height:60px;
 }
 .grouping .submit-btn{
