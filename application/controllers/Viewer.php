@@ -101,7 +101,8 @@ class Viewer extends Tracer
      */
     public function change_psd() {
         $this->check_state() or $this->jump('login', '请先登录', 'viewer/index');
-        $this->jump('ChangePassWord');
+        $data = $this->info();
+        $this->view('ChangePassWord',$data);
     }
 
 
@@ -157,7 +158,22 @@ class Viewer extends Tracer
      */
     public function show_weekly(){
         if ($this->check_state() && $this->db->exist_group()) {
-            $this->view('MyWeekly',array('session_id'=>session_id()));
+            switch ($this->terminal){
+                case 'mobile':
+                    $this->view('MyWeekly',array('session_id'=>session_id()));
+                    break;
+                case 'computer':
+                    $data = $this->info();
+                    $data['session_id'] = session_id();
+
+                    $data['num'] = $this->db->connect->query("SELECT COUNT(user_id) FROM report WHERE user_id = {$_SESSION['token']['id']}")
+                    ->fetch_array()[0];
+
+                    $this->view('MyWeekly',$data);
+                    break;
+                default:
+                    $this->jump('skip','未知错误','viewer/index');
+            }
         }
         else {
             $this->jump('skip', '你未登录或未加入分组', 'viewer/index');

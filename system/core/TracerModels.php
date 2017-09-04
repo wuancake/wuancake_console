@@ -43,6 +43,7 @@ class TracerModels
         return $data;
     }
 
+
     //返回指定id的用户信息
     protected function id($table, $id) {
         $data = array();

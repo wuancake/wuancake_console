@@ -9,7 +9,7 @@
 class Tracer
 {
     protected $db       = '';
-    private   $terminal = '';
+    protected  $terminal = '';
     private $class = '';
 
     public function __construct() {

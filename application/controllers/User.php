@@ -34,8 +34,11 @@ class User extends Tracer
         $qq       = $this->post('qq', 'viewer/signup');
         $rpsd     = $this->post('repassword', 'viewer/signup');
 
+        strpos($psd,' ') and $this->jump('skip', '密码中不能有空格', 'viewer/signup');
+        strlen($psd) >= 6 or $this->jump('skip', '密码至少为6位', 'viewer/signup');
         $psd === $rpsd or $this->jump('skip', '两次输入密码不一致', 'viewer/signup');
         is_numeric($qq) or $this->jump('skip', '请输入正确的QQ号码', 'viewer/signup');
+
         $date     = date('Y-m-d H:m:s');
         $password = md5($psd);
 
@@ -260,42 +263,6 @@ class User extends Tracer
             $this->view('subWeeklySuccess', $data);
 
     }
-
-
-//    /**
-//     * 查看周报
-//     * 该方法返回json格式的信息
-//     * @param $num integer 要查看的周数
-//     */
-//    public function show_weekly($num) {
-//        !is_numeric($num) and $this->json(array('error' => '缺少必要的参数或参数为非数字'));
-//        isset($_SESSION['token']) or $this->json(array('error' => '用户未登录'));
-//        $this->db->exist_group() or $this->json(array('error' => '用户未加入分组'));
-//
-//        $id = $_SESSION['token']['id'];
-//        $res = $this->db->connect->query("SELECT * FROM report WHERE user_id = $id AND week_num = $num") or $this->json(array('error' => '获取信息出错，请检查参数是否合法'));
-//
-//        $res->num_rows or $this->json(array('status' => '未提交',
-//                                          'week'=>$num));
-//
-//        $data = $res->fetch_assoc();
-//        $data['status'] == 3 and $this->json(array('status' => "本周已请假",
-//                                                 "week" => $num,
-//                                                 "time" => $data['reply_time']));
-//
-//        $message = $data['text'];
-//        $message = explode('<br>', $message);
-//
-//        $done = str_replace('本周完成：', '', $message['0']);
-//        $problem = str_replace('所遇问题：','',$message['1']);
-//        $todo = str_replace('下周计划：','',$message['2']);
-//        $this->json(array('status'=>"未提交",
-//                        "week"=>$num,
-//                        "time"=>$data['reply_time'],
-//                        "finished"=>$done,
-//                        "problem"=>$problem,
-//                        "plan"=>$todo));
-//    }
 
 
     /**

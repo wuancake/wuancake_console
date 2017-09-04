@@ -2,7 +2,21 @@
 
 class UserModel extends TracerModels
 {
-//    protected $connect = '';
+
+    protected  $terminal = '';
+
+    public function __construct() {
+        parent::__construct();
+        $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if (strpos($agent, 'iphone') || strpos($agent, 'android'))
+            $this->terminal = 'mobile';
+        else
+            $this->terminal = 'computer';
+//        if (strpos($agent, 'windows nt') || strpos($agent, 'macintosh'))
+//            $this->terminal = 'computer';
+//        else
+//            $this->terminal = 'mobile';
+    }
 
 
     /**
