@@ -8,42 +8,44 @@
     <title>请假申请</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="/public/User/computer/css/base.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/User/computer/css/base.css" />
     <link rel="stylesheet" href="/public/User/computer/css/public.css">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 
 
 </head>
 
 
+
+
 <body>
-<!--左边-->
-<div class="sidebar">
-
-    <!--导航上层-->
-    <div class="sidebar-top">
-        <!--午安icon-->
-        <div class="media logo">
-        </div>
-
-        <!--我的信息-->
-        <div class="media myinfo">
-            <div class="media-left">
-                <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading"><?php echo $username; ?></h4>
-                <?php
+    <!--左边-->
+  	<div class="sidebar">
+  		
+  		<!--导航上层-->
+  		<div  class="sidebar-top">
+  		<!--午安icon-->
+				<div class="media logo">
+				</div>
+				
+				<!--我的信息-->
+				<div class="media myinfo">
+  				<div class="media-left">
+  				   <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
+  				</div>
+ 					 <div class="media-body">
+   				 <h4 class="media-heading"><?php echo $username; ?></h4>
+                         <?php
                 switch ($group) {
                     case 1:
                         echo 'PHP组';
@@ -67,47 +69,45 @@
                         echo 'Java组';
                         break;
                 } ?>
-            </div>
-            <div class="media-right">
-                <a href="#">
-                    <span class="glyphicon iconfont icon-fenxiang"></span>
-                </a>
-            </div>
+  				</div>
+  				<div class="media-right">
+  				   <a href="#">
+  				   	<span class="glyphicon iconfont icon-fenxiang"></span>
+  				   </a>
+  				</div>
+				</div>
+				
+				<!--导航-->
+  			<ul class="nav nav-pills nav-stacked">
+ 					<li role="presentation" class="active">
+ 							<a href="/index.php/viewer/index" class="text-center"><span class="glyphicon iconfont icon-shouye"></span>首页</a>
+ 					</li>
+ 					<li role="presentation">
+ 							<a href="/index.php/viewer/show_weekly" class="text-center"><span class="glyphicon iconfont icon-wo"></span>我的周报</a>
+ 					</li>
+ 					<li role="presentation">
+ 							<a href="/index.php/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
+ 					</li>
+				</ul>
+				</div>
+				
+				
+			<!--导航底层-->
+			<div class="sidebar-bottom"></div>
+		</div>
+
+
+
+    <!-- 右边 -->
+    <div class="right-part">
+        <div class="title-bar">
+            <h2>请假申请</h2>
         </div>
-
-        <!--导航-->
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active">
-                <a href="/index.php/viewer/index" class="text-center"><span
-                            class="glyphicon iconfont icon-shouye"></span>首页</a>
-            </li>
-            <li role="presentation">
-                <a href="/index.php/viewer/show_weekly" class="text-center"><span
-                            class="glyphicon iconfont icon-wo"></span>我的周报</a>
-            </li>
-            <li role="presentation">
-                <a href="/index.php/viewer/change_psd" class="text-center"><span
-                            class="glyphicon iconfont icon-icon28"></span>修改密码</a>
-            </li>
-        </ul>
-    </div>
-
-
-    <!--导航底层-->
-    <div class="sidebar-bottom"></div>
-</div>
-
-
-<!-- 右边 -->
-<div class="right-part">
-    <div class="title-bar">
-        <h2>请假申请</h2>
-    </div>
-    <form class="box">
-        <div class="column-leave-1">
-            <div class="user-info">
+        <form class="box"  action="/index.php/user/vacate" method="post">
+            <div class="column-leave-1">
+                <div class="user-info">
                     <span class="user-group">
-                        <?php
+                          <?php
                         switch ($group) {
                             case 1:
                                 echo 'PHP组';
@@ -132,13 +132,13 @@
                                 break;
                         } ?>
                     </span>
-                <span class="user-id">
+                    <span class="user-id">
                         <?php echo $username; ?>
                     </span>
-            </div>
-            <div class="user-holiday">
-                <span class="holiday-state">请假状态</span>
-                <span class="holiday-flag"><?php
+                </div>
+                <div class="user-holiday">
+                    <span class="holiday-state">请假状态</span>
+                    <span class="holiday-flag"><?php
                     switch ($status) {
                         case 3:
                             echo '已请假';
@@ -148,46 +148,57 @@
                             break;
                     }
                     ?></span>
+                </div>
             </div>
-        </div>
-        <div class="column-leave-2">
+            <div class="column-leave-2">
                 <span class="holiday-duration">
                     请假周数
                 </span>
-            <button role="button" class="btn btn-default active" value="1" id="one" type="submit">一周</button>
-            <button role="button" class="btn btn-default" value="2" id="two" type="submit">二周</button>
-            <button role="button" class="btn btn-default" value="3" id="three" type="submit">三周</button>
-        </div>
-        <div class="column-leave-3">
-            <span class="leave-reason">请假理由（必填）</span>
-            <textarea rows="10" cols="70" placeholder="请在这里输入请假理由，没有理由不能提交请假申请哟"></textarea>
-        </div>
-
-        <div class="btn-leave">
+                <div class="holiday-btn">
+                    <button role="button"  class="btn btn-default" value="1" id="one" type="button">一周</button>
+                    <button role="button" class="btn btn-default" value="2" id="two" type="button">二周</button>
+                    <button role="button" class="btn btn-default" value="3" id="three" type="button">三周</button>
+                    <input type="hidden" id="num" name="num" value="1">
+                </div>
+            </div>
+            <div class="column-leave-3">
+                <span class="leave-reason">请假理由（必填）</span>
+                <textarea rows="10" cols="70" placeholder="请在这里输入请假理由，没有理由不能提交请假申请哟" name="reason"></textarea>
+            </div>
+            
+            <div class="btn-leave">
             <button class="btn btn-primary" type="submit">提交请假申请</button>
-        </div>
-    </form>
+        	</div>
+        </form>
 
-</div>
+    </div>
+    
 
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
+        
 <script>
-    $("#one").bind("click", function () {
-        $.post("/api/test.php", {week: $("#one").val()});
-    });
-    $("#two").bind("click", function () {
-        $.post("/api/test.php", {week: $("#two").val()});
-    });
-    $("#three").bind("click", function () {
-        $.post("/api/test.php", {week: $("#three").val()});
-    });
+    $(document).ready(function(){
+
+        $("#one").bind("click", function () {
+            $("#num").val("1");
+            $("#one,#two,#three").removeClass("active");
+            $("#one").addClass("active");
+        });
+        $("#two").bind("click", function () {
+            $("#num").val("2");
+            $("#one,#two,#three").removeClass("active");
+            $("#two").addClass("active");
+        });
+        $("#three").bind("click", function () {
+            $("#num").val("3");
+            $("#one,#two,#three").removeClass("active");
+            $("#three").addClass("active");
+        });
+
 </script>
 </body>
 

@@ -43,9 +43,9 @@
   				   <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
   				</div>
  					 <div class="media-body">
-   				 <h4 class="media-heading"><?php echo $username; ?></h4>
+   				 <h4 class="media-heading"><?php echo $_SESSION['token']['username']; ?></h4>
                          <?php
-                         switch ($group) {
+                         switch ($_SESSION['token']['group']) {
                              case 1:
                                  echo 'PHP组';
                                  break;

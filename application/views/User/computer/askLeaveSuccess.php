@@ -101,7 +101,7 @@
 			<div class="title-bar">
 							<h4 class="week">
 								本周第<i id="nw"></i>周
-								<span>已撰写周报 <span class="glyphicon iconfont icon-cha"></span></span>
+								<span>已请假 <span class="glyphicon iconfont icon-cha"></span></span>
 								<h4 class="week">本周当前状态</h4>
 							</h4>
 					</div>			

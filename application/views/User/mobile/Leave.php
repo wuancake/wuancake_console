@@ -108,22 +108,23 @@
         crossorigin="anonymous"></script>
 
 <script>
-
     $(document).ready(function(){
 
         $("#one").bind("click", function () {
             $("#num").val("1");
+            $("#one,#two,#three").removeClass("active");
+            $("#one").addClass("active");
         });
         $("#two").bind("click", function () {
             $("#num").val("2");
+            $("#one,#two,#three").removeClass("active");
+            $("#two").addClass("active");
         });
         $("#three").bind("click", function () {
             $("#num").val("3");
+            $("#one,#two,#three").removeClass("active");
+            $("#three").addClass("active");
         });
-
-        $.post("../../../api/test.php",{num:$("#num").val()});
-
-    });
 </script>
 
 </body>
