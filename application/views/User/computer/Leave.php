@@ -80,13 +80,13 @@
 				<!--导航-->
   			<ul class="nav nav-pills nav-stacked">
  					<li role="presentation" class="active">
- 							<a href="/index.php/viewer/index" class="text-center"><span class="glyphicon iconfont icon-shouye"></span>首页</a>
+ 						<a href="/index.php/viewer/index" class="text-center"><span class="glyphicon iconfont icon-shouye"></span>首页</a>
  					</li>
  					<li role="presentation">
- 							<a href="/index.php/viewer/show_weekly" class="text-center"><span class="glyphicon iconfont icon-wo"></span>我的周报</a>
+ 						<a href="/index.php/viewer/show_weekly" class="text-center"><span class="glyphicon iconfont icon-wo"></span>我的周报</a>
  					</li>
  					<li role="presentation">
- 							<a href="/index.php/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
+ 						<a href="/index.php/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
  					</li>
 				</ul>
 				</div>
@@ -155,9 +155,9 @@
                     请假周数
                 </span>
                 <div class="holiday-btn">
-                    <button role="button"  class="btn btn-default" value="1" id="one" type="button">一周</button>
-                    <button role="button" class="btn btn-default" value="2" id="two" type="button">二周</button>
-                    <button role="button" class="btn btn-default" value="3" id="three" type="button">三周</button>
+                    <button  type="button"  class="btn btn-default" value="1" id="one" >一周</button>
+                    <button  type="button"  class="btn btn-default" value="2" id="two" >二周</button>
+                    <button  type="button"  class="btn btn-default" value="3" id="three" >三周</button>
                     <input type="hidden" id="num" name="num" value="1">
                 </div>
             </div>
@@ -175,7 +175,7 @@
     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
@@ -198,6 +198,7 @@
             $("#one,#two,#three").removeClass("active");
             $("#three").addClass("active");
         });
+    });
 
 </script>
 </body>
