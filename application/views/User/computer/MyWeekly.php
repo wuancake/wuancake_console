@@ -69,7 +69,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="/index.php/user/quit">
+  				   <a href="#">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>
@@ -103,7 +103,7 @@
 				<h4>周报详情</h4>
 			</div>
 		 	
-			<div class="container-fluid">
+			<div class="container-fluid  myweekly">
   				<div class="row">
      				<div class="col-md-1"></div>
  						<div class="col-md-10">
@@ -117,64 +117,15 @@
         		    	  <th>提交时间</th>
      			     	  </tr>
  				    	  </thead>
-  			    	  <tbody>
-    	 		    	  <tr>
-      	 		    	  <td>产品经理组</td>
-        		    	  <td>88</td>
-        		    	  <td>表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    				表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	     	表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	  </td>
-        		    	  <td>已提交</td>
-        		    	  <td><div>10:15:00</div><div>2017-12-20</div></td>
-      		    	  </tr>
-      		    	  <tr>
-      		      	 <td>表格单元格表格单元格表格</td>
-       		      	 <td>表格单元格</td>
-       		     	   <td>表格单元格</td>
-       		      	 <td>周报状态</td>
-        		    	 <td>提交时间</td>
-     		     	    </tr>
-     		     	    <tr>
-      		     	   <td>表格单元格</td>
-      		     	   <td>表格单元格</td>
-       		     	   <td>表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    			   表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	               表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	               表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	               表格单元格表格单元格表格单元格表格单元格表格单元格表格单元格
-        		    	  </td>
-       		     	   <td>周报状态</td>
-        		    	 <td>提交时间</td>
-    		      	  </tr>
-    		      	  <tr>
-    		        	 <td>表格单元格</td>
-       		     	   <td>表格单元格</td>
-       		     	   <td>表格单元格</td>
-       		     	   <td>周报状态</td>
-        	    	   <td>提交时间</td>
-     		     	    </tr>
-     		     	    <tr>
-    		        	 <td>表格单元格</td>
-       		     	   <td>表格单元格</td>
-       		     	   <td>表格单元格</td>
-       		     	   <td>周报状态</td>
-        	    	   <td>提交时间</td>
-     		     	    </tr>
-    		     	  </tbody>
+  			    	  <tbody id="idData">
+  			    	  	<!--sql数据库数据查询-->
+  			    	  </tbody>
     	    	  <table>
     		 
-    		 
     					<nav aria-label="...">
- 								<ul class="pager">
-   								<li><a href="#">上一页</a></li>
-   					 			<li><a href="#" class="pager-tab active">1</a></li>
-   					 			<li><a href="#" class="pager-tab">2</a></li>
-   					 			<li><a href="#" class="pager-tab">3</a></li>
-   					 			<li><a href="#" class="pager-tab">4</a></li>
-   							 	<li><a href="#" class="pager-tab">5</a></li>
-   				 			 	<li><a href="#">下一页</a></li>
- 								</ul>
+ 								<div class="pager"   id="pagination" name="pagination">
+   				 			 	<!--js创建分页-->
+ 								</div>
 					  	</nav>
  						
  			 		</div>
@@ -195,5 +146,258 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script>
+						window.onload = function (){
+								
+							var session_id = "<?php echo $session_id; ?>";
+							var num = "<?php echo $num;?>";
+							var group =  "<?php
+                         switch ($group) {
+                             case 1:
+                                 echo 'PHP组';
+                                 break;
+                             case 2:
+                                 echo 'Web前端组';
+                                 break;
+                             case 3:
+                                 echo 'UI设计组';
+                                 break;
+                             case 4:
+                                 echo 'Android组';
+                                 break;
+                             case 5:
+                                 echo '产品经理组';
+                                 break;
+                             case 6:
+                                 echo '软件测试组';
+                                 break;
+                             case 7:
+                                 echo 'Java组';
+                                 break;
+                         } ?>";
+             
+              var pageSize = 5;	   //每页显示行数  
+							var page_num = Math.ceil(num/pageSize);   //   总页数 : 99行/5页 = 19.8 = 20页
+							var page_now = page_num -(page_num-1);   //   等于第一页  
+							
+                       
+         page({
+					
+					id:"pagination",   //当前id
+					nowNum:page_now,//当前页
+					allNum:page_num, //显示总页妈
+					
+					callBack:function(pno){
+						//回调函数，在这里写相关显示传参数
+						
+							var itable = document.getElementById("idData");
+							
+							$.ajax({
+								 type:"get",
+          			 url:"../../../../api/pc_weekly.php?page="+ page_now +"&session="+session_id,
+           			 dataType:'json',
+          			 success:function(json){
+          			 	
+          			 
+          			 	
+          			 	$("#idData").html("");
+
+          			 	for (var i =0; i <=num;i++) {
+       			 	     // 得到表格某一页数据
+										if (json["data"][i].status == "本周已请假") {
+											itable.innerHTML += "<tr><td>"+ group + "</td>" +
+          			 	                    		"<td>"+ json["data"][i].week + "</td>" +
+          			 	                    				 "<td>"+ json["data"][i].reason + "</td>" +
+          			 	                   				   "<td>"+ json["data"][i].status + "</td>" +
+          			 	                     				 "<td>"+ json["data"][i].time + "</td></tr>" ;
+										} 
+										else{
+											itable.innerHTML += "<tr><td>"+ group + "</td>" +
+          			 	                    				 "<td>"+ json["data"][i].week + "</td>" +
+          			 	                    				 "<td>本周完成："+ json["data"][i].finished +
+          			 	                     				 "<br/>所遇问题："+ json["data"][i].problem + 																							   																							 "<br/>下周计划："+ json["data"][i].plan +"</td>" +
+          			 	                   				  "<td>"+ json["data"][i].status + "</td>" +
+          			 	                     				"<td>"+ json["data"][i].time + "</td></tr>" ;
+										}
+
+          			 	};  		
+          			 	
+          			 	
+          			
+            	},      			 
+
+            error:function(json){
+            	if (json.error=="缺少必要的参数:id") {
+            		alert("用户尚未登录");
+            	}
+            	else if(json.error=="用户未加入分组"){
+            		alert("用户尚未加入分组");
+            	}
+            	 else{
+            		alert("缺少必要的参数或参数为非数字");
+            	}
+            }
+        });
+				}
+
+				});
+			
+			function page(opt){
+				
+				
+				if (!opt.id) {return false;} 
+				
+				var obj = document.getElementById(opt.id);
+				
+				var nowNum = opt.nowNum || 1;
+				var allNum = opt.allNum || 5;
+				
+				var callBack = opt.callBack || function(){};
+				
+				
+				//显示    首页btn
+				if(nowNum>=4 && allNum>=6){ 
+					var oA = document.createElement("a");
+					oA.href = "#1";
+					oA.innerHTML = "首&nbsp;&nbsp;页"
+					obj.appendChild(oA);	
+				}
+				
+				//显示    上一页btn
+				if(nowNum>=2){ 
+					var oA = document.createElement("a");
+					oA.href = "#" + (nowNum -1);
+					oA.innerHTML = "上一页";
+					obj.appendChild(oA);
+				}
+				
+				//当总页数小于等于5的时候
+				if (allNum<=5) {
+					
+					for (var i =1;i<=allNum;i++) {
+						//创建a标签
+						var oA = document.createElement("a");
+						oA.href = "#"+i;
+						
+						//当前页码效果
+						if (nowNum == i) {
+							oA.className = "active";
+							oA.innerHTML = i;
+						} 
+						
+						//其他页码效果
+						else{
+							oA.innerHTML = i;
+						}
+						
+						obj.appendChild(oA);
+					}
+				}
+				//当总页数大于5的时候
+				else{
+					for (var i =1;i<=5;i++) {
+						var oA = document.createElement("a");
+
+						if (nowNum == 1 || nowNum == 2) {
+							
+							oA.href = "#" + i;
+							
+							if (nowNum == i) {
+								oA.className = "active";
+								oA.innerHTML = i;
+							} 
+							else{
+								oA.innerHTML = i;
+							}	
+						}
+						
+						
+						else if((allNum -nowNum) == 0 ||(allNum -nowNum) == 1){
+							
+							oA.href = "#" + (allNum - 5 + i);
+							
+
+							if ((allNum -nowNum) == 0 && i==5) {
+								oA.className = "active";
+								oA.innerHTML = (allNum - 5 + i);
+							}
+							else if((allNum -nowNum) == 1 && i==4){
+								oA.className = "active";
+								oA.innerHTML = (allNum - 5 + i);
+							}
+							else{
+								oA.innerHTML =(allNum - 5 + i);
+							}	
+							
+						}
+						
+						else{
+							oA.href = "#" + (nowNum - 3 + i);
+							
+							if (i==3) {
+								oA.className = "active";
+								oA.innerHTML =(nowNum - 3 + i);
+							}
+							else{
+								oA.innerHTML = (nowNum - 3 + i);
+							}
+						}
+						obj.appendChild(oA);
+					
+				}
+			}
+				
+				
+			//显示    下一页btn	
+			if((allNum - nowNum)>=1){
+				var oA = document.createElement("a");
+					oA.href = "#" + (nowNum +1);
+					oA.innerHTML = "下一页"
+					obj.appendChild(oA);	
+			}
+			
+			//显示    尾页btn	
+			if((allNum - nowNum)>=3 && allNum >=6){
+				var oA = document.createElement("a");
+					oA.href = "#" + allNum;
+					oA.innerHTML = "尾&nbsp;&nbsp;页";
+					obj.appendChild(oA);	
+			}
+			
+			//callBack函数执行
+			callBack(nowNum,allNum);
+			
+			//给a添加点击事件
+			var aA = obj.getElementsByTagName("a");
+//			var j = 
+			for (var i =0;i<aA.length;i++) {
+				aA[i].onclick = function(){
+
+					var nowNum = parseInt(this.getAttribute("href").substring(1));
+					page_now = nowNum;
+					obj.innerHTML = "";
+
+					page({
+						id:opt.id,
+						nowNum:nowNum,
+						allNum:allNum,
+						callBack:callBack
+						
+					});
+					
+					return false;
+					
+				};
+			}
+				
+		};
+
+      };
+					
+		
+			
+		</script>
+	
+	
 	</body>
 </html>

@@ -439,6 +439,7 @@ textarea:-ms-input-placeholder {
 /*表格*/
 .table{
 	background-color: #ffffff;
+	width: 100%;
 	/*width: 875px;
 	height: 492px;*/
 }
@@ -479,9 +480,11 @@ textarea:-ms-input-placeholder {
 }
 
 /*myweekly*/
-.myweekly .table{
-
+.myweekly .table-bordered > tbody > tr > th:nth-child(3),
+.myweekly .table-bordered > tbody > tr > td:nth-child(3){
+	width: 36%;
 }
+
 /*myweekly*/
 
 
@@ -505,28 +508,35 @@ textarea:-ms-input-placeholder {
 
 /*翻页*/
 
-.pager{
+.myweekly .pager{
   padding-left: 0;
-  margin: 60px 0 0 0;
+  margin: 60px 0 30px 0;
   text-align: center;
   list-style: none;
   font-size: 12px;
   color: #006fdd;
+  
 }
 
-.pager li > a,
+.myweekly .pager >a,
+.myweekly .pager >a:before,
+.myweekly .pager >a:after,
 .pager li > span {
   padding: 5px 10px;
   border: 1px solid #4285f4;
   border-radius: 25px;
   margin-left:3px;
   margin-right:3px;
+  background-color: #ffffff;
 }
 
 
-.pager li > .pager-tab.active,
-.pager li > a:hover,
-.pager li > a:focus {
+.myweekly .pager >.pager-tab.active,
+#pagination >a.active,
+.myweekly .pager > a:hover,
+.myweekly .pager >a:before,
+.myweekly .pager >a:after,
+.myweekly .pager > a:focus {
   text-decoration: none;
   background-color: #006fdd;
   color: white;
