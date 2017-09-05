@@ -194,7 +194,7 @@
 							
 							$.ajax({
 								 type:"get",
-          			 url:"../../../../api/pc_weekly.php?page="+ page_now +"&session="+session_id,
+          			 url:"/api/pc_weekly.php?page="+ page_now +"&session="+session_id,
            			 dataType:'json',
           			 success:function(json){
           			 	
@@ -204,7 +204,7 @@
 
           			 	for (var i =0; i <=num;i++) {
        			 	     // 得到表格某一页数据
-										if (json["data"][i].status == "本周已请假") {
+										if (json["data"][i].status == "已请假") {
 											itable.innerHTML += "<tr><td>"+ group + "</td>" +
           			 	                    		"<td>"+ json["data"][i].week + "</td>" +
           			 	                    				 "<td>"+ json["data"][i].reason + "</td>" +

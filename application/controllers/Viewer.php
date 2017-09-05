@@ -75,7 +75,7 @@ class Viewer extends Tracer
             }
         }
         else
-            $this->jump('Login');
+            $this->jump('skip','请先登录','viewer/index');
     }
 
 
@@ -91,7 +91,7 @@ class Viewer extends Tracer
      * 加入分组界面
      */
     public function join_group() {
-        $this->check_state() or $this->jump('login', '请先登录', 'viewer/index');
+        $this->check_state() or $this->jump('skip', '请先登录', 'viewer/index');
         $this->jump('Grouping');
     }
 
@@ -100,7 +100,7 @@ class Viewer extends Tracer
      * 更改密码界面
      */
     public function change_psd() {
-        $this->check_state() or $this->jump('login', '请先登录', 'viewer/index');
+        $this->check_state() or $this->jump('skip', '请先登录', 'viewer/index');
         $data = $this->info();
         $this->view('ChangePassWord',$data);
     }
@@ -119,14 +119,14 @@ class Viewer extends Tracer
      */
     public function write_weekly() {
 
-        if ($this->check_state() && $this->db->exist_group()) {
+        if ($this->check_state() or $this->jump('skip','请先登录','viewer/index') && $this->db->exist_group()) {
             $data = $this->info();
             $data['status'] = $this->db->connect->query("SELECT status FROM report WHERE week_num = {$data['week_num']} AND user_id = {$data['id']}")->fetch_assoc()['status'];
             $data['status'] == '' and $data['status'] = 1;
             $this->view('WriteWeekly', $data);
         }
         else {
-            $this->jump('skip', '你未登录或未加入分组', 'viewer/index');
+            $this->jump('skip', '请先加入分组', 'viewer/index');
         }
 
     }
@@ -157,7 +157,7 @@ class Viewer extends Tracer
      *
      */
     public function show_weekly(){
-        if ($this->check_state() && $this->db->exist_group()) {
+        if ($this->check_state() or $this->jump('skip','请先登录','viewer/index') && $this->db->exist_group()) {
             switch ($this->terminal){
                 case 'mobile':
                     $this->view('MyWeekly',array('session_id'=>session_id()));
@@ -176,7 +176,7 @@ class Viewer extends Tracer
             }
         }
         else {
-            $this->jump('skip', '你未登录或未加入分组', 'viewer/index');
+            $this->jump('skip', '请先加入分组', 'viewer/index');
         }
     }
 
