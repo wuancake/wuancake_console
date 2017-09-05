@@ -75,7 +75,7 @@ class Viewer extends Tracer
             }
         }
         else
-            $this->jump('skip','请先登录','viewer/index');
+            $this->jump('Login');
     }
 
 
