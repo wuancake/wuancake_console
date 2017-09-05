@@ -66,7 +66,8 @@ while ($data = $res->fetch_assoc()) {
             $info['data'][] = [
                 'status' => "本周已请假",
                 "week" => $data['week_num'],
-                "time" => $data['reply_time']];
+                "time" => $data['reply_time'],
+                "reason"=>$data['text']];
             break;
 
         default:
