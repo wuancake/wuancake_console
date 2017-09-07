@@ -21,8 +21,8 @@ if ($connect->connect_error) {
     json(['error' => '数据库连接出错']);
 }
 
-isset($_GET['week']) and is_numeric($_GET['week']) or json(['error' => '缺少必要的week参数或week参数为非数字']);
-isset($_GET['session']) or json(['error' => '缺少必要的参数:id']);
+!empty($_GET['week']) and is_numeric($_GET['week']) or json(['error' => '缺少必要的week参数或week参数为非数字']);
+!empty($_GET['session']) or json(['error' => '缺少必要的参数:id']);
 
 session_id($_GET['session']);
 session_start();

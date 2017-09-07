@@ -22,8 +22,8 @@ if ($connect->connect_error) {
 }
 
 
-isset($_GET['session']) or json(['error' => '缺少必要的参数:id']);
-isset($_GET['page']) and is_numeric($_GET['page']) or json(['error' => '缺少必要的page参数或者page为非数字']);
+!empty($_GET['session']) or json(['error' => '缺少必要的参数:id']);
+!empty($_GET['page']) and is_numeric($_GET['page']) or json(['error' => '缺少必要的page参数或者page为非数字']);
 
 session_id($_GET['session']);
 session_start();
