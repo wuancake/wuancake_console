@@ -8,7 +8,8 @@
     <title>WriteWeekly</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/User/mobile/css/base.css"/>
     <link rel="stylesheet" href="/public/User/mobile/css/public.css"/>
 
@@ -27,7 +28,7 @@
 </head>
 <body>
 <div class="title">
-    <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    <a href="/index.php/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>撰写周报</h2>
 </div>
 <div class="writeweekly">
@@ -100,7 +101,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script type="text/javascript" src="/public/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/User/bootstrap/js/bootstrap.min.js"></script>
 </div>
 </body>
 </html>

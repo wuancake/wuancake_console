@@ -24,13 +24,13 @@
 </head>
 <body>
 <div class="title">
-    <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    <a href="/index.php/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>修改密码</h2>
 </div>
 <div class="changepassword">
     <form role="form" class="info-box" action="/index.php/user/set_new_psd" method="post">
 
-        <div class="form-group has-success has-feedback">
+        <div class="form-group">
             <input type="password" class="form-control" placeholder="新密码" name="password">
             <span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
         </div>
