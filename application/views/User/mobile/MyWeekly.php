@@ -25,7 +25,7 @@
 	</head>
   	<body> 
   		<div class="title">
-    	<a href="javascript:history.go(-1)"  id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    	<a href="/index.php/viewer/index"  id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
       <h2>我的周报</h2>
     	</div>
 <div class="myweekly">
@@ -189,8 +189,10 @@ var mytouch = (function() {
                             doc.getElementById("pullup").style.display = "block";
                           	nw --;
 							$.getJSON("/api/weekly.php?week="+ nw +"&session="+session_id,function(json){
-							if(nw<0){
-								alert("已经翻到顶端了！");
+							if(nw<1){
+//								alert("已经翻到顶端了！");
+								$("#show").html('<div class="skip"><div class="hint">已经翻到第一页了！</div></div>');
+								nw = 0;
 							}
 							else{
 
@@ -276,8 +278,9 @@ var mytouch = (function() {
             $.getJSON("/api/weekly.php?week="+ nw +"&session="+session_id,function(json){
 							
 							if(nw>offsetDays+1){
-								nw=offsetDays+1;
-								alert("已经翻到最后一页了！");
+								nw=offsetDays+2;
+//								alert("已经翻到最后一页了！");
+								$("#show").html('<div class="skip"><div class="hint">已经翻到最后一页了！</div></div>');
 							}
 							
 							else{
