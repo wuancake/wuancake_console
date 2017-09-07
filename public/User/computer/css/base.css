@@ -11,6 +11,7 @@ i{
 	font-style: normal;
 }
 
+
 /******* base *******/
 .clear {
 	clear: both;
@@ -41,6 +42,7 @@ i{
   width: 274px;
   border-radius: 0;
   overflow: hidden;
+
 }
 
 .sidebar-top {
@@ -89,6 +91,16 @@ i{
 .myinfo  .media-body{
 	background-color: #00479b;
 	padding: 15px 10px 15px 20px;
+
+}
+
+
+
+.sidebar .myinfo h4.media-heading{
+		width: 90px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .myinfo .glyphicon.share-icon{
