@@ -24,7 +24,7 @@
                 <input type="text" name="email" placeholder="邮箱" >
             </div>
             <div class="sign-user-password sign-user">
-                <input type="password" name="password" placeholder="密码">
+                <input type="password" id="pswd" name="password" placeholder="密码">
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
             <div class="sign-in-btn">
@@ -32,6 +32,9 @@
             </div>
             <div class="sign-up-href">
                 -><a href="/index.php/viewer/signup" class="sign-up-a">注册</a>
+                <br>
+                -><a href="/index.php/viewer/ChangePassWord" class="sign-up-a">找回密码</a>
+
             </div>
         </form>
     </div>
@@ -42,6 +45,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../../../public/User/computer/js/eyes.js" ></script>
 </body>
 
 </html>
