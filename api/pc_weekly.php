@@ -1,5 +1,5 @@
 <?php
-define('SIZE',5);
+define('SIZE', 5);
 
 function json(array $info)
 {
@@ -23,7 +23,7 @@ if ($connect->connect_error) {
 
 
 isset($_GET['session']) or json(['error' => '缺少必要的参数:id']);
-isset($_GET['page']) and is_numeric($_GET['page']) or json(['error'=>'缺少必要的page参数或者page为非数字']);
+isset($_GET['page']) and is_numeric($_GET['page']) or json(['error' => '缺少必要的page参数或者page为非数字']);
 
 session_id($_GET['session']);
 session_start();
@@ -36,8 +36,8 @@ $id = $_SESSION['token']['id'];
 exist_group($id, $connect) or json(array('error' => '用户未加入分组'));
 
 
-$offset = ($page - 1)*SIZE;
-$res = $connect->query("SELECT * FROM report WHERE user_id = $id ORDER BY week_num DESC LIMIT $offset,".SIZE);
+$offset = ($page - 1) * SIZE;
+$res = $connect->query("SELECT * FROM report WHERE user_id = $id ORDER BY week_num DESC LIMIT $offset," . SIZE);
 
 $res->num_rows or json(['error' => '该用户当前未提交任何周报']);
 
@@ -52,6 +52,7 @@ while ($data = $res->fetch_assoc()) {
             $done = str_replace('本周完成：', '', $message['0']);
             $problem = str_replace('所遇问题：', '', $message['1']);
             $todo = str_replace('下周计划：', '', $message['2']);
+            $url = isset($message['3']) ? $message['3'] : '无';
 
             $info['data'][] = [
                 'status' => "已提交",
@@ -59,7 +60,8 @@ while ($data = $res->fetch_assoc()) {
                 "time" => $data['reply_time'],
                 "finished" => $done,
                 "problem" => $problem,
-                "plan" => $todo];
+                "plan" => $todo,
+                "url" => $url];
             break;
 
         case 3:
@@ -67,7 +69,7 @@ while ($data = $res->fetch_assoc()) {
                 'status' => "已请假",
                 "week" => $data['week_num'],
                 "time" => $data['reply_time'],
-                "reason"=>$data['text']];
+                "reason" => $data['text']];
             break;
 
         default:

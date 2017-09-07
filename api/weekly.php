@@ -1,12 +1,14 @@
 <?php
 
-function json(array $info) {
+function json(array $info)
+{
     echo json_encode($info);
     die();
 }
 
 
-function exist_group($id, $connect) {
+function exist_group($id, $connect)
+{
     $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
     $res = $connect->query($sql)->num_rows;
 
@@ -28,29 +30,32 @@ session_start();
 empty($_SESSION['token']) and json(['error' => '错误的session_id']);
 
 $num = $_GET['week'];
-$id  = $_SESSION['token']['id'];
+$id = $_SESSION['token']['id'];
 
 exist_group($id, $connect) or json(array('error' => '用户未加入分组'));
 
 $res = $connect->query("SELECT * FROM report WHERE user_id = $id AND week_num = $num") or $this->json(['error' => '获取信息出错，请检查参数是否合法']);
 
 $res->num_rows or json(['status' => '未提交',
-                           'week' => $num]);
+    'week' => $num]);
 
 $data = $res->fetch_assoc();
 $data['status'] == 3 and json(['status' => "本周已请假",
-                                  "week" => $num,
-                                  "time" => $data['reply_time']]);
+    "week" => $num,
+    "time" => $data['reply_time']]);
 
 $message = $data['text'];
 $message = explode('<br>', $message);
 
-$done    = str_replace('本周完成：', '', $message['0']);
+$done = str_replace('本周完成：', '', $message['0']);
 $problem = str_replace('所遇问题：', '', $message['1']);
-$todo    = str_replace('下周计划：', '', $message['2']);
+$todo = str_replace('下周计划：', '', $message['2']);
+$url = isset($message['3']) ? $message['3'] : '无';
+
 json(['status' => "已提交",
-         "week" => $num,
-         "time" => $data['reply_time'],
-         "finished" => $done,
-         "problem" => $problem,
-         "plan" => $todo]);
+    "week" => $num,
+    "time" => $data['reply_time'],
+    "finished" => $done,
+    "problem" => $problem,
+    "plan" => $todo,
+    "url" => $url]);
