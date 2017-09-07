@@ -100,13 +100,14 @@
 		 <div class="right-part">
 		 	
 		 	<div class="title-bar">
-				<h4>周报详情</h4>
+				<h4>周报详情<?php echo $url; ?></h4>
 			</div>
 		 	
 			<div class="container-fluid  myweekly">
   				<div class="row">
      				<div class="col-md-1"></div>
  						<div class="col-md-10">
+ 							
 							<table class="table table-striped  table-bordered  text-center">
 				 				<thead>
     							<tr>
@@ -127,6 +128,8 @@
    				 			 	<!--js创建分页-->
  								</div>
 					  	</nav>
+ 						
+ 						<p id="warning" ></p>
  						
  			 		</div>
  	
@@ -189,7 +192,7 @@
 					
 					callBack:function(pno){
 						//回调函数，在这里写相关显示传参数
-						
+
 							var itable = document.getElementById("idData");
 							
 							$.ajax({
@@ -212,12 +215,34 @@
           			 	                     				 "<td>"+ json["data"][i].time + "</td></tr>" ;
 										} 
 										else{
-											itable.innerHTML += "<tr><td>"+ group + "</td>" +
+											
+											
+											if (json["data"][i].url =="无") {
+												
+												itable.innerHTML += "<tr><td>"+ group + "</td>" +
           			 	                    				 "<td>"+ json["data"][i].week + "</td>" +
           			 	                    				 "<td>本周完成："+ json["data"][i].finished +
-          			 	                     				 "<br/>所遇问题："+ json["data"][i].problem + 																							   																							 "<br/>下周计划："+ json["data"][i].plan +"</td>" +
+          			 	                     				 "<br/>所遇问题："+ json["data"][i].problem + 																							   																							 																							 "<br/>下周计划："+ json["data"][i].plan + "</td>" +
           			 	                   				  "<td>"+ json["data"][i].status + "</td>" +
           			 	                     				"<td>"+ json["data"][i].time + "</td></tr>" ;
+												
+												
+											} else{
+												
+												itable.innerHTML += "<tr><td>"+ group + "</td>" +
+          			 	                    				 "<td>"+ json["data"][i].week + "</td>" +
+          			 	                    				 "<td>本周完成："+ json["data"][i].finished +
+          			 	                     				 "<br/>所遇问题："+ json["data"][i].problem + 																							   																							 																							 "<br/>下周计划："+ json["data"][i].plan + 
+          			 	                     				 "<br/>作品链接：" + json["data"][i].url + "</td>" +
+          			 	                   				  "<td>"+ json["data"][i].status + "</td>" +
+          			 	                     				"<td>"+ json["data"][i].time + "</td></tr>" ;
+												
+											}
+											
+											
+          			 	                     				
+          			 	                     				
+          			 	                     			
 										}
 
           			 	};  		
@@ -271,8 +296,15 @@
 					obj.appendChild(oA);
 				}
 				
+				//当总页数等于0的时候
+				if (num == 0) {
+					
+					var oB = document.getElementById("warning");
+					oB.innerHTML = "当前您还未提交过周报";
+				
+				}
 				//当总页数小于等于5的时候
-				if (allNum<=5) {
+				else if (allNum<=5 && num != 0) {
 					
 					for (var i =1;i<=allNum;i++) {
 						//创建a标签
@@ -349,7 +381,7 @@
 				
 				
 			//显示    下一页btn	
-			if((allNum - nowNum)>=1){
+			if((allNum - nowNum)>=1 && num !=0){
 				var oA = document.createElement("a");
 					oA.href = "#" + (nowNum +1);
 					oA.innerHTML = "下一页"
