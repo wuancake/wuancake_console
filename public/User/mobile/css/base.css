@@ -33,16 +33,16 @@ html {
 
 
 
-@font-face{
+/*@font-face{
 	font-style:normal;
 	font-family:"PingFang_Regular";
 	src:url('../fonts/PingFang_Regular.ttf') format('truetype');
-	} 
+	} */
 	
 		
 body{
-	font-family:"PingFang_Regular","Microsoft YaHei","Roboto",sans-serif;
-   /* background-color: #f2f2f2;*/
+	/*font-family:"PingFang_Regular","Microsoft YaHei","Roboto",sans-serif;
+   /* background-color: #f2f2f2;*/*/
     height: 100%;
     }
  

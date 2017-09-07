@@ -120,6 +120,10 @@
 	margin-bottom:1.5rem;
 }
 
+.writeweekly .info-box .la-horizontal{
+	margin-bottom:1rem;
+}
+
 .info-box .la-horizontal .la-horizontal-left{
 	float: left;
 	font-weight: 100;
@@ -176,35 +180,20 @@
   	background-color: rgba(0,0,0,0);
   }
   .login .btn-register,#logBtn{
-  	display: line-block;
-  	/*width: 69%;*/
-  	width:49%;
+  	display:inline-block;
+  	width:47%;
   	font-size: 1.125rem;
   	color: white;
   	background-color: #1987fc;
   	height: 2.5rem;
   	border-radius: 1.25rem;
-  	/*box-sizing: border-box;*/
-  	/*border: none;
-  	margin: 0 auto;*/
   	margin-bottom: 1rem;
+
   }
   
-  
-  /*#logBtn:hover{
-  	background-color: #4285f4;
-  }*/
-  
-   /*.login .btn-register{
-  	display: block;
-  	font-size: 1.125rem;
-  	height: 2.5rem;
-  	box-sizing: border-box;
-  	border: none;
-  	margin: 0 auto;
-  	margin-bottom: 5rem;
-  }*/
- 
+#logBtn {
+	float: right;
+}
  
    .login .btn-register{
   	background-color: #FFFFFF;
@@ -497,6 +486,16 @@
             padding-bottom: 0;
         }
 
+      
+  	#showSideBar3{
+  	  	width: 44%;
+  	  	height: 100%;
+  	  	overflow: hidden;
+  	  	z-index: 1000;
+  	  }
+  	  
+  	 .sidebar .box,#showSideBar3{float: left;}
+  	  
 
 .sidebar .box .page-header img{
 	display: block;
@@ -582,8 +581,7 @@
       .sub-menu a{
       	text-decoration:none
       }  
-      
-  
+
         
  /*SideBar end*/
 
@@ -641,7 +639,7 @@
     height: 10.875rem;
     width: 10.875rem;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -650,7 +648,7 @@
 }
 .homepage .box .percent {
    text-align: center;
-   color: black;
+   color:#1c1c1c;
    margin-top: 2.03125rem;
    z-index: 3;
    position: absolute;
@@ -785,12 +783,12 @@ background-color: #4285f4;
 	border: 1px solid #8ca1d1;
 }
 .askLeaveSuccess .timeboxmiddle{
-	background: -webkit-linear-gradient(top,#ffffff,#8ca1d1);
+	background:-webkit-linear-gradient(top,#ffffff,#8ca1d1);
 }
 
 .askLeaveSuccess .timeboxin{
-	/*background-color: #f2f2f2;*/
-	overflow: hidden;
+	/*background-color: #;*/
+	/*overflow: hidden;*/
 }
 
 .askLeaveSuccess .percent p{

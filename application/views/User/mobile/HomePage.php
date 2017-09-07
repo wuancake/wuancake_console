@@ -36,11 +36,11 @@
 
 <!--侧边栏-->
 <div class="sidebar-box" id="sid-box" style="display: none;">
-    <div class="sidebar">
+    <div class="sidebar clearfix">
         <div class="box">
             <div class="page with-sidebar">
                 <div class="page-header">
-                    <img class="img-responsive" src="/public/User/mobile/img/logo.png" alt="用户头像">
+                    <img class="img-responsive" src="/public/User/mobile/img/logo.jpg" alt="用户头像">
                     <div class="uid"><span><?php
                             switch ($group) {
                                 case 1:
@@ -77,6 +77,7 @@
                 </div>
             </div>
         </div>
+        <div id="showSideBar3" onclick="sideBar(3)"></div>
     </div>
 </div>
 

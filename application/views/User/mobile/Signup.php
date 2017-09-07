@@ -28,18 +28,10 @@
 </div>
 <div class="signup">
     <form role="form" class="info-box registered-box" action="/index.php/user/register" method="post">
-        <!--<div class="form-group has-success has-feedback">
-               <input type="text" class="form-control" placeholder="用户名" >
-               <span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>
-          </div>
-        <div class="form-group has-error has-feedback">
-               <input type="email" class="form-control" placeholder="电子邮箱">
-            <span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>
-          </div>-->
-        <div class="form-group has-success">
+        <div class="form-group">
             <input type="text" class="form-control text-center" placeholder="用户名" name="username">
         </div>
-        <div class="form-group has-error">
+        <div class="form-group">
             <input type="email" class="form-control text-center" placeholder="电子邮箱" name="email">
         </div>
         <div class="form-group">

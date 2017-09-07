@@ -28,8 +28,13 @@
 				hours = 23 - hours;
 				minuter = 59 - minuter;
 				second = 59 - second;
-
-				countdown.innerHTML =  day + "天" + hours  + "时" + minuter + "分" + second + "秒" ;
+				if (day==0) {
+					countdown.innerHTML = hours  + "时" + minuter + "分" + second + "秒" ;
+				} else{
+					countdown.innerHTML =  day + "天" + hours  + "时" + minuter + "分" + second + "秒" ;
+					
+				}
+				
 				
 				return (day * 24 * 60 * 60 + hours * 60 * 60 + minuter * 60 + second) / 604800 * 100;
 			

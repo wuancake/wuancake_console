@@ -26,7 +26,7 @@
     <h2>午安煎饼计划</h2>
 </div>
 <div class="login clearfix">
-    <img src="/public/User/mobile/img/logo.png"/>
+    <img src="/public/User/mobile/img/logo.jpg"/>
     <form action="/index.php/user/login" method="post">
         <div class="from-group center-block">
             <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="输入电子邮箱"
@@ -37,18 +37,12 @@
                    name="password">
         </div>
 
-        <div class="from-group  center-block">
+        <div class="from-group  center-block clearfix">
             <a href="/index.php/viewer/signup" class="btn btn-register">注册</a>
             <button id="logBtn" type="submit" class="btn">登录</button>
         </div>
 
     </form>
-
-
-    <!--<div class="center-block">
-        <a  href="/index.php/viewer/signup" class="btn btn-link btn-register">注册</a>
-    </div>-->
-
 
     <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
 

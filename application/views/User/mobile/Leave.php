@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="title">
-    <a href="javascript:history.go(-1)" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    <a href="/index.php/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>我要请假</h2>
 </div>
 
@@ -77,11 +77,6 @@
         </div>
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left">请假周数：</label>
-            <!--<select class="la-horizontal-right">
-                          <option>请假一周</option>
-                          <option>请假二周</option>
-                          <option>请假三周</option>
-                </select>-->
             <div class="la-horizontal-right">
                 <button type="button" class="btn" value="1" id="one">一周</button>
                 <button type="button" class="btn" value="2" id="two">二周</button>

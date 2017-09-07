@@ -26,43 +26,52 @@
 
 </head>
 <body>
-<div class="title">
-    <h2>午安煎饼计划</h2>
-</div>
+		<div class="title">
+     	 <h2>选择分组</h2>
+    	</div>
 
 
-<div class="grouping">
-    <p class="text-center">选择要加入的分组</p>
-
-    <form class="genre" action="/index.php/user/join_group" method="post">
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="PHP" value="1">PHP组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Web" value="2">Web前端组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="UI" value="3">UI设计组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Android" value="4">Android组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="PM" value="5">产品经理组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="QA" value="6">软件测试组
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="genre" id="Java" value="7">Java组
-        </label>
-        <div class="center-block">
-            <button id="genreBtn" type="submit" class="btn btn-default">确定</button>
-        </div>
-    </form>
-
-
-</div>
+			<div class="grouping">
+			<form  class="genre" action="/index.php/user/join_group" method="post">
+							<table class="table table-striped  table-bordered  text-center">
+  			    	  <tbody>
+  			    	  	<tr>
+    		        	 <td><input type="radio" name="genre" id="PHP" value="1"></td>
+       		     	   <td>PHP组</td>
+     		     	    </tr>
+     		     	     <tr>
+      		     	   <td><input type="radio" name="genre" id="Web" value="2"></td>
+      		     	   <td>Web前端组</td>
+    		      	  </tr>
+    		      	  <tr>
+      		      	 <td><input type="radio" name="genre" id="UI" value="3"></td>
+       		      	 <td>UI设计组</td>
+     		     	   </tr>
+     		     	   <tr>
+    		        	 <td><input type="radio" name="genre" id="Android" value="4"></td>
+       		     	   <td>Android组</td>
+     		     	   </tr>
+    	 		    	  <tr>
+      	 		    	  <td><input type="radio" name="genre" id="PM" value="5"></td>
+        		    	  <td>产品经理组</td>
+      		    	  </tr>
+      		    	  <tr>
+    		        	 <td><input type="radio" name="genre" id="QA" value="6"></td>
+       		     	   <td>软件测试组</td>
+     		     	    </tr>
+     		     	    <tr>
+    		        	 <td><input type="radio" name="genre" id="Java" value="7"></td>
+       		     	   <td>JAVA组</td>
+     		     	    </tr>
+    		     	  </tbody>
+    	    	  <table>
+				
+				<div class="center-block">
+  	  	 <button id="genreBtn" type="submit" class="btn btn-default" >提交</button>
+ 				</div>
+			</form>
+			<p>警告：只能选择一次分组，请谨慎选择</p>		
+		</div>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

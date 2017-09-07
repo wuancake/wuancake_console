@@ -37,7 +37,7 @@
             <input type="password" class="form-control text-center" placeholder="新密码" name="newpsd">
             <!--<span class="glyphicon glyphicon-ok form-control-feedback iconfont icon-icon-successful-1"></span>-->
         </div>
-        <div class="form-group has-error">
+        <div class="form-group">
             <input type="password" class="form-control text-center" placeholder="确认新密码" name="repassword">
             <!--<span class="glyphicon glyphicon-remove form-control-feedback iconfont icon-icon-dangerous-1"></span>  -->
         </div>
