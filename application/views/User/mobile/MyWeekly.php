@@ -72,7 +72,7 @@ $(document).ready(function(){
             cache:false,
             success:function(json){
             	
-              if(json.status=="已提交"){
+              if(json.status=="已提交" && json.url!="无"){
             		 $("#show").html("");
            		   $("#show").html(
               	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
@@ -84,7 +84,28 @@ $(document).ready(function(){
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
                 + json.problem + '</div></div>' +
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
-                + json.plan + '</div></div>' );	
+                + json.plan + '</div></div>'  +
+                 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">作品链接：</label><div class="la-content" id="plan">' 
+                + json.url + '</div></div>' 
+                
+                );	
+            		}
+            		
+              else if(json.status=="已提交" && json.url =="无"){
+            		 $("#show").html("");
+           		   $("#show").html(
+              	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
+                + json.week + '周</span></div>' +
+            		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-horizontal-right" id="time">' 
+                + json.time + '</time></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">本周完成：</label><div class="la-content" id="finished">' 
+                + json.finished + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
+                + json.problem + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
+                + json.plan + '</div></div>'  
+                
+                );	
             		}
             		
             	else if(json.status=="未提交"){
@@ -173,7 +194,7 @@ var mytouch = (function() {
 							}
 							else{
 
-                	 if(json.status=="已提交"){
+                	if(json.status=="已提交" && json.url!="无"){
             		 $("#show").html("");
            		   $("#show").html(
               	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
@@ -185,7 +206,28 @@ var mytouch = (function() {
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
                 + json.problem + '</div></div>' +
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
-                + json.plan + '</div></div>' );	
+                + json.plan + '</div></div>'  +
+                 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">作品链接：</label><div class="la-content" id="plan">' 
+                + json.url + '</div></div>' 
+                
+                );	
+            		}
+            		
+              else if(json.status=="已提交" && json.url =="无"){
+            		 $("#show").html("");
+           		   $("#show").html(
+              	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
+                + json.week + '周</span></div>' +
+            		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-horizontal-right" id="time">' 
+                + json.time + '</time></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">本周完成：</label><div class="la-content" id="finished">' 
+                + json.finished + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
+                + json.problem + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
+                + json.plan + '</div></div>'  
+                
+                );	
             		}
             		
             	else if(json.status=="未提交"){
@@ -240,7 +282,7 @@ var mytouch = (function() {
 							
 							else{
 
-                	 if(json.status=="已提交"){
+                	 if(json.status=="已提交" && json.url!="无"){
             		 $("#show").html("");
            		   $("#show").html(
               	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
@@ -252,7 +294,28 @@ var mytouch = (function() {
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
                 + json.problem + '</div></div>' +
     	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
-                + json.plan + '</div></div>' );	
+                + json.plan + '</div></div>'  +
+                 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">作品链接：</label><div class="la-content" id="plan">' 
+                + json.url + '</div></div>' 
+                
+                );	
+            		}
+            		
+              else if(json.status=="已提交" && json.url =="无"){
+            		 $("#show").html("");
+           		   $("#show").html(
+              	 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">周数：</label><span class="la-horizontal-right" id="nw">'
+                + json.week + '周</span></div>' +
+            		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">提交时间：</label><time class="la-horizontal-right" id="time">' 
+                + json.time + '</time></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">本周完成：</label><div class="la-content" id="finished">' 
+                + json.finished + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">所遇到问题：</label><div class="la-content" id="problem">' 
+                + json.problem + '</div></div>' +
+    	       		 '<div class="form-group la-horizontal clearfix"><label class="la-horizontal-left">下周计划：</label><div class="la-content" id="plan">' 
+                + json.plan + '</div></div>'  
+                
+                );	
             		}
             		
             	else if(json.status=="未提交"){
