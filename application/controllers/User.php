@@ -27,14 +27,17 @@ class User extends Tracer
      * $rpsd string 确认输入的密码
      */
     public function register() {
-        $username = $this->post('username', 'viewer/signup');
+        $username = htmlspecialchars($this->post('username', 'viewer/signup'));
         $email    = $this->post('email', 'viewer/signup');
-        $nickname = $this->post('nickname', 'viewer/signup');
+        $nickname = htmlspecialchars($this->post('nickname', 'viewer/signup'));
         $psd      = $this->post('password', 'viewer/signup');
         $qq       = $this->post('qq', 'viewer/signup');
         $rpsd     = $this->post('repassword', 'viewer/signup');
 
-        strpos($psd,' ') and $this->jump('skip', '密码中不能有空格', 'viewer/signup');
+        foreach (['/','*','?',':','\\','-','_','+'] as $value){
+            strpos($username,$value) !== false and $this->jump('skip',"你的用户名中存在特殊字符'$value'",'viewer/signup');
+        }
+        strpos($psd,' ') !== false and $this->jump('skip', '密码中不能有空格', 'viewer/signup');
         strlen($psd) >= 6 or $this->jump('skip', '密码至少为6位', 'viewer/signup');
         $psd === $rpsd or $this->jump('skip', '两次输入密码不一致', 'viewer/signup');
         is_numeric($qq) or $this->jump('skip', '请输入正确的QQ号码', 'viewer/signup');

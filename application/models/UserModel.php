@@ -44,7 +44,7 @@ class UserModel extends TracerModels
         $sql  = "SELECT email FROM user WHERE email = ?";
         $stmt = $this->connect->prepare($sql);
         $stmt->bind_param('s', $email);
-        $stmt->execute() or $this->jump('', '查询出错');
+        $stmt->execute() or $this->jump('skip', '查询出错');
         if ($stmt->fetch())
             return '该邮箱已注册本网站';
         $stmt->free_result();
@@ -53,7 +53,7 @@ class UserModel extends TracerModels
             $sql  = "SELECT user_name FROM user WHERE user_name = ?";
             $stmt = $this->connect->prepare($sql);
             $stmt->bind_param('s', $username);
-            $stmt->execute() or $this->jump('', '查询出错');
+            $stmt->execute() or $this->jump('skip', '查询出错');
             if ($stmt->fetch())
                 return '用户名已存在';
             $stmt->free_result();
@@ -63,7 +63,7 @@ class UserModel extends TracerModels
             $sql  = "SELECT wuan_name FROM user WHERE wuan_name = ?";
             $stmt = $this->connect->prepare($sql);
             $stmt->bind_param('s', $nickname);
-            $stmt->execute() or $this->jump('', '查询出错');
+            $stmt->execute() or $this->jump('skip', '查询出错');
             if ($stmt->fetch())
                 return '该昵称已被注册';
             $stmt->free_result();
@@ -92,7 +92,8 @@ class UserModel extends TracerModels
 
 
     /**
-     * 删除session和cookie */
+     * 删除session和cookie
+     */
     public function delToken() {
         session_unset();
         session_destroy();
