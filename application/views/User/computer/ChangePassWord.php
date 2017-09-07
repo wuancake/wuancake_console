@@ -104,7 +104,7 @@
                 <input type="password"  name="password" placeholder="原密码" >
             </div>
             <div class="new-password sign-user">
-                <input type="password" name="newpsd" placeholder="新密码">
+                <input type="password" id="pswd" name="newpsd" placeholder="新密码">
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
             <div class="confirm-password sign-user">
