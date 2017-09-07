@@ -25,76 +25,6 @@
 
 
 <body>
-<!--左边-->
-<div class="sidebar">
-
-    <!--导航上层-->
-    <div class="sidebar-top">
-        <!--午安icon-->
-        <div class="media logo">
-        </div>
-
-        <!--我的信息-->
-        <div class="media myinfo">
-            <div class="media-left">
-                <a href="#"><img class="media-object portrait" src="/public/User/computer/img/logo.png" alt="我的头像"></a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading"><?php echo $username; ?></h4>
-                <?php
-                switch ($group) {
-                    case 1:
-                        echo 'PHP组';
-                        break;
-                    case 2:
-                        echo 'Web前端组';
-                        break;
-                    case 3:
-                        echo 'UI设计组';
-                        break;
-                    case 4:
-                        echo 'Android组';
-                        break;
-                    case 5:
-                        echo '产品经理组';
-                        break;
-                    case 6:
-                        echo '软件测试组';
-                        break;
-                    case 7:
-                        echo 'Java组';
-                        break;
-                } ?>
-            </div>
-            <div class="media-right">
-                <a href="/index.php/user/quit">
-                    <span class="glyphicon iconfont icon-fenxiang"></span>
-                </a>
-            </div>
-        </div>
-
-        <!--导航-->
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" class="active">
-                <a href="/index.php/viewer/index" class="text-center"><span
-                            class="glyphicon iconfont icon-shouye"></span>首页</a>
-            </li>
-            <li role="presentation">
-                <a href="/index.php/viewer/show_weekly" class="text-center"><span
-                            class="glyphicon iconfont icon-wo"></span>我的周报</a>
-            </li>
-            <li role="presentation">
-                <a href="/index.php/viewer/change_psd" class="text-center"><span
-                            class="glyphicon iconfont icon-icon28"></span>修改密码</a>
-            </li>
-        </ul>
-    </div>
-
-
-    <!--导航底层-->
-    <div class="sidebar-bottom"></div>
-</div>
-
 
 <!--右边	-->
 <div class="right-part">
@@ -107,7 +37,7 @@
         <div class="grouping">
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <table class="table table-striped  table-bordered  text-center">
                         <tbody>
                         <tr>
@@ -150,7 +80,7 @@
 
                 </div>
 
-                <div class="col-md-1"></div>
+                <div class="col-md-2"></div>
 
             </div>
         </div>
