@@ -1,6 +1,7 @@
   	function sideBar(id){
 			var showSideBar1 = document.getElementById("showSideBar1");
 			var showSideBar2 = document.getElementById("showSideBar2");
+			var showSideBar3 = document.getElementById("showSideBar3");
 			var sidbox = document.getElementById("sid-box");
 			
 			  if(id==1){
