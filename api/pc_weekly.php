@@ -52,7 +52,7 @@ while ($data = $res->fetch_assoc()) {
             $done = str_replace('本周完成：', '', $message['0']);
             $problem = str_replace('所遇问题：', '', $message['1']);
             $todo = str_replace('下周计划：', '', $message['2']);
-            $url = isset($message['3']) ? $message['3'] : '无';
+            $url = empty($message['3']) ? $message['3'] : '无';
 
             $info['data'][] = [
                 'status' => "已提交",
