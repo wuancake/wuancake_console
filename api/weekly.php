@@ -50,7 +50,7 @@ $message = explode('<br>', $message);
 $done = str_replace('本周完成：', '', $message['0']);
 $problem = str_replace('所遇问题：', '', $message['1']);
 $todo = str_replace('下周计划：', '', $message['2']);
-$url = empty($message['3']) ? str_replace('作品链接：','',$message['3']) : '无';
+$url = empty($message['3']) ? '无' : str_replace('作品链接：', '', $message['3']);
 
 json(['status' => "已提交",
     "week" => $num,
