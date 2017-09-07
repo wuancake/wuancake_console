@@ -95,7 +95,8 @@ class Admin extends Tracer
         $_SESSION['token']['auth'] === 1 && $_SESSION['token']['group'] !== $user_group
             and $this->jump('skip','非法请求，导师只能踢出本组的人','viewer/?');
 
-        $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman
+        $time = date('Y-m-d H:m:s');
+        $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
                                     WHERE user_id = $user_id AND create_time IN 
                                     (SELECT value FROM 
                                     (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time)
