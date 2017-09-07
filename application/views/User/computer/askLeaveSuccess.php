@@ -101,7 +101,7 @@
 			<div class="title-bar">
 							<h4 class="week">
 								本周第<i id="nw"></i>周
-								<span>已请假 <span class="glyphicon iconfont icon-cha"></span></span>
+								<span>已请假 <span class="glyphicon iconfont icon-quanyes"></span></span>
 								<h4 class="week">本周当前状态</h4>
 							</h4>
 					</div>			
@@ -147,5 +147,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="/public/User/computer/js/ball-weeknum.js" ></script>
+		
   </body>
 </html>
