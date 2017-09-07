@@ -176,7 +176,7 @@ class UserModel extends TracerModels
     public function exist_group() {
         $id = @$_SESSION['token']['id'];
 
-        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
+        $sql = "SELECT group_id FROM user_group WHERE user_id = $id AND deleteFlg != 1";
         $res = $this->connect->query($sql)->num_rows;
 
         return $res != 0;
