@@ -191,7 +191,10 @@ class UserModel extends TracerModels
     public function sel_group(){
         $id       = @$_SESSION['token']['id'];
         $id = (int)$id;
-        return $this->connect->query("SELECT group_id FROM user_group WHERE user_id = $id")->fetch_assoc()['group_id'];
+        return $this->connect->query("SELECT group_id FROM user_group WHERE user_id = $id AND deleteFlg != 1")->fetch_assoc()['group_id'];
 
     }
+
+
+
 }

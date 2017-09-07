@@ -45,7 +45,7 @@ class User extends Tracer
         $date     = date('Y-m-d H:m:s');
         $password = md5($psd);
 
-        ($message = $this->db->check_sole($email, $username, $nickname)) === 1 or $this->jump('skip', $message,'viewer/index');
+        ($message = $this->db->check_sole($email, $username, $nickname)) === 1 or $this->jump('skip', $message,'viewer/signup');
 
         $sql  = "INSERT INTO user VALUE (DEFAULT,?,?,?,?,?,0,0,'$date','$date')";
         $stmt = $this->db->connect->prepare($sql);
@@ -109,7 +109,8 @@ class User extends Tracer
         $id   = $_SESSION['token']['id'];
         $time = date('Y-m-d H:m:s');
 
-        $this->db->connect->query("INSERT INTO user_group VALUE ($id,$group_id,0,'$time','$time')");
+        $this->db->connect->query("INSERT INTO user_group VALUE (DEFAULT,$id,$group_id,0,DEFAULT ,'$time','$time')")
+        or $this->jump('skip','加入分组失败，请稍候重试');
 
         $this->jump('skip', '加入分组成功', 'viewer/index');
     }
