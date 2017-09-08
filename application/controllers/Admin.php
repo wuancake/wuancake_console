@@ -42,6 +42,7 @@ class Admin extends Tracer
         //验证成功,储存session&cookie信息
         $this->db->setToken($id, $username, $auth, $group_id);
 
+        $this->attend();
         $this->jump('skip', '登陆成功,即将转向主页', 'viewer/?');
     }
 
@@ -116,7 +117,7 @@ class Admin extends Tracer
      * 考勤，检索数据库，向数据库中的report表增加用户跷周报的数据
      * 本方法会在每次导师、管理员登录后自动执行
      */
-    public function attend(){
+    private function attend(){
         //统计截止到此周数的周报未提交人数
         $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
         $time = date('Y-m-d H:m:s');
@@ -142,8 +143,6 @@ class Admin extends Tracer
             }
         }
     }
-
-
 
 
 }
