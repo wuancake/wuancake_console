@@ -14,6 +14,7 @@ class Viewerb extends Tracer
      * 增加管理员界面
      */
     public function addAdmin(){
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
         $this->view('AddAdmin');
     }
 
@@ -22,6 +23,7 @@ class Viewerb extends Tracer
      * 增加导师界面
      */
     public function addMentor(){
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
         $this->view('AddMentor');
     }
 
@@ -30,7 +32,9 @@ class Viewerb extends Tracer
      * 查看周报汇总界面
      */
     public function checkWeekly(){
-        $this->view('CheckWeekly');
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+
+        $this->view('CheckWeekly',['session_id'=>session_id()]);
     }
 
 
@@ -38,7 +42,8 @@ class Viewerb extends Tracer
      * 考勤汇总界面
      */
     public function gatherAttendance(){
-        $this->view('GatherAttendance');
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+        $this->view('GatherAttendance',['session_id'=>session_id()]);
     }
 
 
@@ -46,7 +51,8 @@ class Viewerb extends Tracer
      * 清人汇总界面
      */
     public function gatherClear(){
-        $this->view('GatherClear');
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+        $this->view('GatherClear',['session_id'=>session_id()]);
     }
 
 
