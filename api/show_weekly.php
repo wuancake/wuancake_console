@@ -17,7 +17,7 @@ if ($connect->connect_error) {
     json(['error' => '数据库连接出错']);
 }
 
-//当前
+//默认前一周
 $week_num = ceil((time() - strtotime('2015-11-02')) / 604800)-1;
 $data['data'] = array();
 
