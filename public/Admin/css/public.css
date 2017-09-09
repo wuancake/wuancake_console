@@ -30,6 +30,124 @@ i{
 
 
 /******* base *******/
+.login .form-control{
+	height: 50px;
+}
+.form-control{
+	height: 46px;
+}
+.selectbox{
+
+}
+
+.textframe{
+	width: 670px;
+/*	border: 1px solid pink;*/
+	margin: 0 auto;
+	height: 25px;
+	font-size: 34px;
+}
+
+.main{
+	padding:40px 10px 10px 26px;
+}
+
+.gatherattendance .form-group,.checkweekly .form-group{
+	font-size: 34px;
+	width:400px;
+}
+
+/*.gatherattendance .btn-register{
+
+	height: 32px;
+	line-height: 32px;
+	width: 80px;
+}*/
+
+
+.gatherattendance .main select.textbox,.checkweekly .main select.textbox{
+	width: 220px;
+}
+
+.login .textframe{font-size: 40px;}
+
+.textbox,
+.textbox:focus{
+	border: 0;
+	border-bottom: 1px solid #418afe;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px red;
+  outline: none;
+  border-radius: 0;
+  font-size: 40px;
+}
+
+
+.textbox{
+		margin-bottom: 54px;
+}
+.login .textbox{
+		margin-bottom: 76px;
+}
+
+.gatherattendance .textbox,.checkweekly .textbox{
+		font-size: 34px;
+}
+
+
+
+.btn{
+	border: 1px solid #47acff ;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0;
+	letter-spacing:2;
+	font-size: 30px;
+	padding: 0 15px;
+	
+}
+
+.btn-select{
+	margin-left: 40px;
+}
+
+.btn-register{
+	 width: 428px;
+	 height: 72px;
+	 line-height: 60px;
+/*	 font-size: 32px;*/
+}
+
+.login .btn-register{
+		width: 414px;
+		height: 108px;
+}
+
+.main .btn:hover{
+	color: #ffffff;
+	background-color: #418afe;
+	box-shadow: 0px 0px 0px red  inset;
+}
+
+
+/*input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: rgb(0, 71, 155);
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: rgb(0, 71, 155);
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: rgb(0, 71, 155);
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: rgb(0, 71, 155);
+}*/
 
 
 /*login start*/
@@ -53,7 +171,7 @@ i{
   top: 44%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
-  
+  padding: 0;
 }
 
 .login .main>h1 {
@@ -62,7 +180,8 @@ i{
 	line-height: 134px;
 	color: #ffffff;
 	background: #47acff;
-	margin: 0;
+	margin: 0 0 88px 0;
+
 }
 
 
@@ -71,9 +190,35 @@ i{
 
 /*SideBar start*/
 .sidebar{
-	border: 1px solid  green;
-	height: 100%;
+	background-color: #418afe;
+	padding:0 0 0 16px;
+	font-size: 38px;
+	height: 800px;
+
 }
+
+
+.sidebar .nav li a{
+		color: #ffffff;
+	height: 110px;
+	line-height: 110px;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+
+.sidebar .nav li.active{
+	background-color: #00479b;
+
+}
+
+.sidebar .nav li a:hover{
+	background-color: #00479b;
+}
+
+
 
 
 /*SideBar end*/
@@ -83,7 +228,20 @@ i{
 
 /*title start*/
 .title{
-	border: 1px solid  green;
+	height: 120px;
+	color: #ffffff;
+	background-color: #47acff;
+	line-height:120px;
+}
+
+.title h1{
+	font-size: 48px;
+	line-height:80px;
+}
+
+
+.title .post{
+	font-size: 38px;
 }
 
 .title .glyphicon-arrow-right{
@@ -94,4 +252,78 @@ i{
 /*title end*/
 
 
+/*addadmin start*/
+.addadmin .main,.addmentor .main{
+	  margin-top: 40px;
+}
+/*addadmin end*/
 
+
+
+/*addmentor start*/
+
+
+.main select.textbox{
+	/*很关键：将默认的select选择框样式清除*/
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+
+	width: 100%;
+	background: url(../img/select.png) no-repeat right;
+
+}
+
+
+
+
+/*addmentor end*/
+
+
+/*表格*/
+.table{
+	background-color: #ffffff;
+	/*width: 875px;
+	height: 492px;*/
+}
+
+.table th{
+	font-weight: 500;
+}
+
+
+
+
+/*.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border-bottom: none;
+  border-top: none;
+}*/
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	vertical-align: middle;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 1px;
+  text-align: center;
+  width: 100px;
+}
+
+
+.table-bordered > tbody > tr > th:nth-child(3),
+.table-bordered > tbody > tr > td:nth-child(3){
+	text-align: left;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f4f9fe;
+}
