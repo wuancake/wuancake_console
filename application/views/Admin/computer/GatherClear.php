@@ -15,8 +15,23 @@
 			<div class="row title">
 				<div class="col-md-12">
 					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
-					<div class="col-md-5 post text-right">管理员:陶陶
-						 <a href="#" class="glyphicon glyphicon-arrow-right">登出</a>
+					<div class="col-md-5 post text-right">  <?php
+                        switch ($_SESSION['admin']['auth']){
+                            case 1:
+                                echo '导师';
+                                break;
+                            case 2:
+                                echo '管理员';
+                                break;
+                            case 3:
+                                echo '最高管理员';
+                                break;
+                            default:
+                                echo 'error';
+                                break;
+                        }
+                        ?>:<?php echo $_SESSION['admin']['username']?>
+						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
 				</div>
 			</div>

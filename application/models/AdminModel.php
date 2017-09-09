@@ -9,20 +9,11 @@ class AdminModel extends TracerModels
      * @return integer 如果存在返回1，如果不存在返回0
      */
     public function check_sole($email){
-        $sql  = "SELECT email FROM adm WHERE email = ?";
-        $stmt = $this->connect->prepare($sql);
-        $stmt->bind_param('s', $email);
-        if ($stmt->execute()){
-            echo '系统错误，请稍后再试';
-            exit();
-        }
-
-        if ($stmt->fetch()){
-            $stmt->free_result();
-            return 1;
-        }
-        else{
-            $stmt->free_result();
+        $sql  = "SELECT id,username,password,auth,group_id FROM adm WHERE email = '$email'";
+        $res = $this->connect->query($sql);
+        if ($res->num_rows){
+            return $res->fetch_assoc();
+        }else{
             return 0;
         }
 
@@ -40,8 +31,8 @@ class AdminModel extends TracerModels
         $message = "$id*$username*$auth*$group_id";
         $token   = "$message*" . password_hash($message, PASSWORD_DEFAULT);
 
-        $_SESSION['token'] = array('id' => $id, 'username' => $username, 'auth' => $auth,'group'=>$group_id);
-        setcookie('token', $token, time() + 3600 * 24 * 7, '/');
+        $_SESSION['admin'] = array('id' => $id, 'username' => $username, 'auth' => $auth,'group'=>$group_id);
+        setcookie('admin', $token, time() + 3600 * 24 * 3, '/');
     }
 
 
@@ -49,11 +40,11 @@ class AdminModel extends TracerModels
      * 查看登录状态
      */
     public function check_state(){
-        if (isset($_SESSION['token'])) {
+        if (isset($_SESSION['admin'])) {
             return 1;
         }
-        elseif (isset($_COOKIE['token'])) {
-            $message = explode('*', $_COOKIE['token']);
+        elseif (isset($_COOKIE['admin'])) {
+            $message = explode('*', $_COOKIE['admin']);
             if (count($message) !== 5) {
                 //cookie被篡改，删除用户登录凭证
                 $this->delToken();
@@ -62,7 +53,7 @@ class AdminModel extends TracerModels
             $str = "$message[0]*$message[1]*$message[2]*$message[3]";
             if (password_verify($str, $message[4])) {
                 //cookie文件存在且合法，设置session令牌
-                $_SESSION['token'] = array('id' => $message[0], 'username' => $message[1], 'auth' => $message[2],'group'=>$message[3]);
+                $_SESSION['admin'] = array('id' => $message[0], 'username' => $message[1], 'auth' => $message[2],'group'=>$message[3]);
                 return 1;
             }
         }

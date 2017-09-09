@@ -15,8 +15,23 @@
 			<div class="row title">
 				<div class="col-md-12">
 					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
-					<div class="col-md-5 post text-right">管理员:陶陶
-						 <a href="#" class="glyphicon glyphicon-arrow-right">登出</a>
+					<div class="col-md-5 post text-right">  <?php
+                        switch ($_SESSION['admin']['auth']){
+                            case 1:
+                                echo '导师';
+                                break;
+                            case 2:
+                                echo '管理员';
+                                break;
+                            case 3:
+                                echo '最高管理员';
+                                break;
+                            default:
+                                echo 'error';
+                                break;
+                        }
+                        ?>:<?php echo $_SESSION['admin']['username']?>
+						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
 				</div>
 			</div>
@@ -42,39 +57,40 @@
      			</div>
  				<div class="col-md-9">
  					<div class="main">
- 						<form class="form-horizontal">
+ 						<form class="form-horizontal" action="/index.php/admin/create_admin" method="post">
  							<div class="textframe">
  								<label for="" class="col-md-3 control-label">昵称：</label>
  								<div class="col-md-9">
- 									<input type="text" class="form-control textbox" placeholder="">
+ 									<input type="text" class="form-control textbox" placeholder="" name="name">
  								</div>
  							</div>
  							<div class="textframe">
  								<label for="" class="col-md-3 control-label">邮箱：</label>
  								<div class="col-md-9">
- 									<input type="email" class="form-control textbox" placeholder="">
+ 									<input type="email" class="form-control textbox" placeholder="" name="email">
  								</div>
  							</div>
    							<div class="textframe">
    								<label for="" class="col-md-3 control-label">密码：</label>
    								<div class="col-md-9">
-   									<input type="password" class="form-control textbox" placeholder="">
+   									<input type="password" class="form-control textbox" placeholder="" name="password">
    								</div>
    							</div>
    							<div class="textframe">
    								<label for="" class="col-md-3 control-label">分组：</label>
    								<div class="col-sm-9">
-   									<select for="" class="textbox">
-   										<option>PHP组</option>
- 									 	<option>Web前端组</option>
- 										<option>UI设计组</option>
-   										<option>Android组</option>
- 									 	<option>产品经理组</option>
- 										<option>软件测试组</option>
- 										<option>JAVA组</option>
+   									<select for="" class="textbox" name="group">
+   										<option value="1">PHP组</option>
+ 									 	<option value="2">Web前端组</option>
+ 										<option value="3">UI设计组</option>
+   										<option value="4">Android组</option>
+ 									 	<option value="5">产品经理组</option>
+ 										<option value="6">软件测试组</option>
+ 										<option value="7">JAVA组</option>
 									</select>
    								</div>
    							</div>
+                            <input type="hidden" name="auth" value="1">
    							<div class="textframe">
   								<div class="col-md-offset-3 col-md-10">
      						  		<button type="submit" class="btn btn-default btn-register text-center">登录</button>

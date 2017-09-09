@@ -21,29 +21,21 @@ class Admin extends Tracer
      */
     public function login()
     {
-        $this->db->check_state() and $this->jump('skip', '你已登录', 'viewer/?');
+        $this->db->check_state() and $this->jump('skip', '你已登录', 'viewerb/checkWeekly');
 
-        $email = $this->post('email', 'viewer/login');
-        $psd = $this->post('password', 'viewer/login');
+        $email = $this->post('email', 'viewerb/login');
+        $psd = $this->post('password', 'viewerb/login');
 
-        $this->db->check_sole($email) === 0 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewer/?');
+        ($res = $this->db->check_sole(addslashes($email))) === 0 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewerb/login');
 
-        $sql = "SELECT id,username,password,auth,group_id FROM user WHERE email = ?";
-        $stmt = $this->db->connect->prepare($sql);
-        $stmt->bind_param('s', $email);
-        $stmt->bind_result($id, $username, $true_psd, $auth, $group_id);
-        $stmt->execute() or $this->jump('skip', '未知错误，请稍后重试', 'viewer/?');
-        $stmt->fetch();
-        $stmt->free_result();
-        $stmt->close();
-
-        $true_psd == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewer/?');
+        $res['password'] == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewerb/login');
 
         //验证成功,储存session&cookie信息
-        $this->db->setToken($id, $username, $auth, $group_id);
-
+        $this->db->setToken($res['id'], $res['username'], $res['auth'], $res['group_id']);
+        //对数据库数据进行考勤操作
         $this->attend();
-        $this->jump('skip', '登陆成功,即将转向主页', 'viewer/?');
+
+        $this->jump('skip', '登陆成功,即将转向主页', 'viewerb/checkWeekly');
     }
 
 
@@ -53,7 +45,7 @@ class Admin extends Tracer
     public function quit()
     {
         $this->db->delToken();
-        $this->jump('skip', '你已退出登录！', 'viewer/index');
+        $this->jump('skip', '你已退出登录！', 'viewerb/login');
     }
 
 
@@ -67,23 +59,23 @@ class Admin extends Tracer
      */
     public function create_admin()
     {
-        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/?');
+        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewerb/login');
 
-        $email = $this->post('email', 'viewer/?');
-        $name = htmlspecialchars($this->post('name', 'viewer/?'));
-        $psd = $this->post('password', 'viewer/?');
-        $auth = (int)$this->post('auth', 'viewer/?');
-        $group = (int)$this->post('group', 'viewer/?');
+        $email = $this->post('email', 'viewerb/addAdmin');
+        $name = htmlspecialchars($this->post('name', 'viewerb/addAdmin'));
+        $psd = md5($this->post('password', 'viewebr/addAdmin'));
+        $auth = (int)$this->post('auth', 'viewerb/addAdmin');
+        $group = 0;
 
-        $auth >= $_SESSION['token']['auth'] and $this->jump('skip', '权限不足，无法操作', 'viewer/?');
+        $auth >= $_SESSION['admin']['auth'] and $this->jump('skip', '权限不足，无法操作', 'viewerb/addAdmin');
 
         $sql = "INSERT INTO adm VALUE (DEFAULT,?,?,?,?,?)";
         $stmt = $this->db->connect->prepare($sql);
         $stmt->bind_param('sssii', $name, $email, $psd, $auth, $group);
-        $stmt->execute() or $this->jump('skip', '操作失败', 'viewer/?');
+        $stmt->execute() or $this->jump('skip', '操作失败', 'viewerb/addAdmin');
         $stmt->close();
 
-        $this->jump('skip', '创建账号成功', 'viewer/?');
+        $this->jump('skip', '创建账号成功', 'viewerb/addAdmin');
     }
 
 
@@ -97,8 +89,8 @@ class Admin extends Tracer
         $user_id = (int)$this->post('user_id', 'viewer/?');
         $user_group = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
 
-        $headsman = $_SESSION['token']['name'];
-        $_SESSION['token']['auth'] === 1 && $_SESSION['token']['group'] !== $user_group
+        $headsman = $_SESSION['admin']['name'];
+        $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
         and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/?');
 
         $time = date('Y-m-d H:m:s');

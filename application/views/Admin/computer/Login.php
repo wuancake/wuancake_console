@@ -14,17 +14,17 @@
 			<div class="floor"></div>
  			<div class="main">
  				<h1 class="text-center">午安煎饼计划考勤系统管理后台</h1>
- 				<form class="form-horizontal">
+ 				<form class="form-horizontal" action="/index.php/admin/login" method="post">
  					<div class="textframe">
  						<label for="" class="col-md-3 control-label">邮箱：</label>
  						<div class="col-md-9">
- 							<input type="email" class="form-control textbox" placeholder="">
+ 							<input type="email" class="form-control textbox" placeholder="" name="email">
  						</div>
  					</div>
    					<div class="textframe">
    						<label for="" class="col-md-3 control-label">密码：</label>
    						<div class="col-md-9">
-   							<input type="password" class="form-control textbox" placeholder="">
+   							<input type="password" class="form-control textbox" placeholder="" name="password">
    						</div>
    					</div>
    					<div class="textframe">
