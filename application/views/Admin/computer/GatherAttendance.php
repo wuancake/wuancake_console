@@ -2,21 +2,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>CheckWeekly</title>
-		<link rel="stylesheet" href="../../../../public/User/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="../../../../public/User/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../../../../public/Admin/css/public.css" />
+		<title>GatherAttendance</title>
+		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/public/Admin/css/public.css" />
 		
 		
 		
 	</head>
 	<body>
-		<div class="checkweekly container-fluid">
+		<div class="gatherattendance container-fluid">
 			<div class="row title">
 				<div class="col-md-12">
 					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
 					<div class="col-md-5 post text-right">管理员:陶陶
-						<span class="glyphicon glyphicon-arrow-right">登出</span>
+						 <a href="#" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
 				</div>
 			</div>
@@ -24,19 +24,19 @@
      			<div class="col-md-3 sidebar">
      				<ul class="nav nav-pills nav-stacked">
      					<li role="presentation">
-     						<a href="#">新增管理员</a>
+     						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">新增导师</a>
+     						<a href="/index.php/viewerb/addMentor">新增导师</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">查看周报</a>
+     						<a href="/index.php/viewerb/checkWeekly">查看周报</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">考勤汇总</a>
+     						<a href="/index.php/viewerb/gatherAttendance">考勤汇总</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">清人汇总</a>
+     						<a href="/index.php/viewerb/gatherClear">清人汇总</a>
      					</li>
      				</ul>
      			</div>
@@ -76,9 +76,12 @@
 				 					<tr>
 				 						<th>分组</th>
         		     					<th>昵称</th>
-        		     					<th>周数</th>
-        		    					<th>考勤情况</th>
-        		    	 				<th>考勤内容</th>
+        		     					<th>QQ号</th>
+        		    	 				<th>第58周</th>
+        		    	 				<th>第57周</th>
+        		    	 				<th>第56周</th>
+        		    	 				<th>第55周</th>
+        		    	 				<th>操作</th>
      			     				</tr>
 				 				</thead>
 				 				<tbody id="idData">
@@ -86,8 +89,11 @@
   			    				  	<tr>
   			    				  		<td>产品经理组</td>
         		    	  				<td>88</td>
-        		    	 			 	<td>表格单元格表格单</td>
+        		    	 			 	<td>表格单元格表格单元格表</td>
         		    					<td>已提交</td>
+        		    					<td>表格单元格</td>
+        		    					<td>表格单元格</td>
+        		    					<td>表格单元格</td>
         		    					<td>表格单元格</td>
       		    	 				</tr>
       		    					<tr>
@@ -96,11 +102,17 @@
        		     						<td>表格单元格</td>
        		      						<td>周报状态</td>
         		    					<td>提交时间</td>
+       		     						<td>表格单元格</td>
+       		      						<td>周报状态</td>
+        		    					<td>提交时间</td>
      		     	    			</tr>
      		     	    			<tr>
       		     	   					<td>表格单元格</td>
       		     	 					<td>表格单元格</td>
-       		     						<td>表格单元格表格单元</td>
+       		     						<td>表格单元格表格单元格</td>
+       		     						<td>周报状态</td>
+        		    					<td>提交时间</td>
+       		     						<td>周报状态</td>
        		     						<td>周报状态</td>
         		    					<td>提交时间</td>
     		      					</tr>
@@ -110,10 +122,16 @@
        		     		 		       	<td>表格单元格</td>
        		     		 		       	<td>周报状态</td>
         	    		 		       	<td>提交时间</td>
+       		     		 		       	<td>表格单元格</td>
+       		     		 		       	<td>周报状态</td>
+        	    		 		       	<td>提交时间</td>
      		     		 		    </tr>
      		     		 		    <tr>
     				        			<td>表格单元格</td>
        		     	    				<td>表格单元格</td>
+       		     	       		     	<td>表格单元格</td>
+       		     	       		     	<td>周报状态</td>
+        	    	       		     	<td>提交时间</td>
        		     	       		     	<td>表格单元格</td>
        		     	       		     	<td>周报状态</td>
         	    	       		     	<td>提交时间</td>

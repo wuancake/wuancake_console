@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>GatherClear</title>
-		<link rel="stylesheet" href="../../../../public/User/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="../../../../public/User/bootstrap/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../../../../public/Admin/css/public.css" />
+		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/public/Admin/css/public.css" />
 		
 		
 		
@@ -16,7 +16,7 @@
 				<div class="col-md-12">
 					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
 					<div class="col-md-5 post text-right">管理员:陶陶
-						<span class="glyphicon glyphicon-arrow-right">登出</span>
+						 <a href="#" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
 				</div>
 			</div>
@@ -24,19 +24,19 @@
      			<div class="col-md-3 sidebar">
      				<ul class="nav nav-pills nav-stacked">
      					<li role="presentation">
-     						<a href="#">新增管理员</a>
+     						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">新增导师</a>
+     						<a href="/index.php/viewerb/addMentor">新增导师</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">查看周报</a>
+     						<a href="/index.php/viewerb/checkWeekly">查看周报</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">考勤汇总</a>
+     						<a href="/index.php/viewerb/gatherAttendance">考勤汇总</a>
      					</li>
      					<li role="presentation">
-     						<a href="#">清人汇总</a>
+     						<a href="/index.php/viewerb/gatherClear">清人汇总</a>
      					</li>
      				</ul>
      			</div>
