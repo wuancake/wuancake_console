@@ -345,7 +345,7 @@ class User extends Tracer
         $id       = $_SESSION['token']['id'];
         $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
 
-        $res = $this->db->connect->query("SELECT status FROM report WHERE user_id = $id");
+        $res = $this->db->connect->query("SELECT status FROM report WHERE user_id = $id AND week_num = $week_num");
 
         if (!$res->num_rows || $res->fetch_assoc()['status'] != 3) {
             $this->jump('skip', '你尚未请假', 'viewer/vacate');
