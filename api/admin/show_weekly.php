@@ -48,17 +48,31 @@ if (empty($_GET['week'])) {
         json($data);
     }
 } else {
-    //返回指定周数，指定分组的周报提交情况
-    ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
-    and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
+    if(!empty($_GET['group'])) {
+        //返回指定周数，指定分组的周报提交情况
+        ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
+        and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
-    $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
+        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
                                         INNER JOIN user WHERE report.user_id = user.id 
                                         AND week_num = {$_GET['week']} AND group_id = {$_GET['group']};");
 
-    while ($foo = $res->fetch_assoc()) {
-        $data['data'][] = $foo;
-    }
-    json($data);
+        while ($foo = $res->fetch_assoc()) {
+            $data['data'][] = $foo;
+        }
+        json($data);
+    }else{
+        //返回指定周数，所有分组的周报提交情况
+        ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
+        and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
+        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
+                                        INNER JOIN user WHERE report.user_id = user.id 
+                                        AND week_num = {$_GET['week']};");
+
+        while ($foo = $res->fetch_assoc()) {
+            $data['data'][] = $foo;
+        }
+        json($data);
+    }
 }
