@@ -65,7 +65,7 @@ class Admin extends Tracer
         $name = htmlspecialchars($this->post('name', 'viewerb/addAdmin'));
         $psd = md5($this->post('password', 'viewebr/addAdmin'));
         $auth = (int)$this->post('auth', 'viewerb/addAdmin');
-        $group = 0;
+        $group = !empty($_POST['group']) ? $_POST['group'] : 0;
 
         $auth >= $_SESSION['admin']['auth'] and $this->jump('skip', '权限不足，无法操作', 'viewerb/addAdmin');
 
