@@ -40,9 +40,14 @@ $res->num_rows or json(['status' => '未提交',
     'week' => $num]);
 
 $data = $res->fetch_assoc();
+$data['status'] == 1 and json(['status' => "未提交",
+                                "week" => $data['week_num'],
+                                "time" => $data['reply_time'],
+                                "reason" => $data['text']]);
+
 $data['status'] == 3 and json(['status' => "本周已请假",
-    "week" => $num,
-    "time" => $data['reply_time']]);
+                                "week" => $num,
+                                "time" => $data['reply_time']]);
 
 $message = $data['text'];
 $message = explode('<br>', $message);
