@@ -37,14 +37,24 @@ exist_group($id, $connect) or json(array('error' => '用户未加入分组'));
 
 
 $offset = ($page - 1) * SIZE;
+
 $res = $connect->query("SELECT * FROM report WHERE user_id = $id ORDER BY week_num DESC LIMIT $offset," . SIZE);
 
 $res->num_rows or json(['error' => '该用户当前未提交任何周报']);
+
 
 $info = ['data' => []];
 
 while ($data = $res->fetch_assoc()) {
     switch ($data['status']) {
+        case 1:
+            $info['data'][] = [
+                'status' => "未提交",
+                "week" => $data['week_num'],
+                "time" => $data['reply_time'],
+                "reason" => $data['text']];
+            break;
+
         case 2:
             $message = $data['text'];
             $message = explode('<br>', $message);
