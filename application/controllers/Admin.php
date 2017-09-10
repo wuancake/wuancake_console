@@ -84,14 +84,14 @@ class Admin extends Tracer
      */
     public function fuck_someone()
     {
-        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/?');
+        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/login');
 
-        $user_id = (int)$this->post('user_id', 'viewer/?');
+        $user_id = (int)$this->post('user_id', 'viewer/gatherAttend');
         $user_group = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
 
         $headsman = $_SESSION['admin']['name'];
         $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
-        and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/?');
+        and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/gatherAttend');
 
         $time = date('Y-m-d H:m:s');
         $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
@@ -100,7 +100,7 @@ class Admin extends Tracer
                                     (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time)
                                     AS gp);");
 
-        echo "<script></script>";
+        echo "<script>alert('踢人成功')</script>";
 
     }
 
