@@ -214,6 +214,13 @@
           			 	                   				   "<td>"+ json["data"][i].status + "</td>" +
           			 	                     				 "<td>"+ json["data"][i].time + "</td></tr>" ;
 										} 
+										else if (json["data"][i].status == "未提交") {
+											itable.innerHTML += "<tr><td>"+ group + "</td>" +
+          			 	                    		"<td>"+ json["data"][i].week + "</td>" +
+          			 	                    				 "<td>"+ json["data"][i].reason + "</td>" +
+          			 	                   				   "<td>"+ json["data"][i].status + "</td>" +
+          			 	                     				 "<td>"+ json["data"][i].time + "</td></tr>" ;
+										} 
 										else{
 											
 											
@@ -227,7 +234,8 @@
           			 	                     				"<td>"+ json["data"][i].time + "</td></tr>" ;
 												
 												
-											} else{
+											} 
+											else{
 												
 												itable.innerHTML += "<tr><td>"+ group + "</td>" +
           			 	                    				 "<td>"+ json["data"][i].week + "</td>" +
@@ -238,11 +246,7 @@
           			 	                     				"<td>"+ json["data"][i].time + "</td></tr>" ;
 												
 											}
-											
-											
-          			 	                     				
-          			 	                     				
-          			 	                     			
+											     			
 										}
 
           			 	};  		
@@ -252,13 +256,10 @@
             	},      			 
 
             error:function(json){
-            	if (json.error=="缺少必要的参数:id") {
-            		alert("用户尚未登录");
-            	}
-            	else if(json.error=="用户未加入分组"){
-            		alert("用户尚未加入分组");
-            	}
-            	 else{
+							if (json.error != null){
+								alert(json.error);
+							} 
+            	else{
             		alert("缺少必要的参数或参数为非数字");
             	}
             }
