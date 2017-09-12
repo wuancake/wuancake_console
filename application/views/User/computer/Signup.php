@@ -22,16 +22,16 @@
     <div class="column-sign signup">
         <form class="sign-up-box" action="/index.php/user/register" method="post">
             <div class="sign-user-id sign-user">
-                <input type="text" name="username" placeholder="用户名">
+                <input type="text" name="username" placeholder="用户名" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
             <div class="sign-user-email sign-user">
-                <input type="text" name="email" placeholder="电子邮箱">
+                <input type="text" name="email" placeholder="电子邮箱" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
             <div class="sign-user-name sign-user">
-                <input type="text" name="nickname" placeholder="午安网昵称">
+                <input type="text" name="nickname" placeholder="午安网昵称" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
             <div class="sign-user-qq sign-user">
-                <input type="text" name="qq" placeholder="QQ">
+                <input type="text" name="qq" placeholder="QQ" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
             <div class="sign-user-password sign-user">
                 <input type="password" id="pswd" name="password" placeholder="密码">
