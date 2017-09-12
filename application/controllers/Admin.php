@@ -120,7 +120,7 @@ class Admin extends Tracer
 
             //获取当前循环周数未提交周报的学员id
             $res = $this->db->connect->query($sql);
-            if ($res->num_rows === 0) return;
+            if ($res->num_rows === 0) continue;
 
             while ($arr = $res->fetch_assoc()) {
                 $list[] = ['user_id' => $arr['user_id'],
@@ -129,7 +129,7 @@ class Admin extends Tracer
 
             foreach ($list as $value) {
 
-                if ($value['group'] === 0) continue;
+//                if ($value['group'] === 0) continue;
 
                 $this->db->connect->query("INSERT INTO report VALUE ($week,{$value['user_id']},{$value['group']},'未提交',1,'$time')");
             }
