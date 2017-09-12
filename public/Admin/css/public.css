@@ -320,6 +320,27 @@ textarea:-ms-input-placeholder {
   width: 100px;
 }
 
+/*.table-bordered > thead > tr > td.status1{
+	border: 1px solid red;
+}*/
+
+
+.gatherattendance .table>tbody>tr>td.status1{
+	  color: #a21b19;
+    background-color: #ffdcdc;
+    border-color: #ffbebe;
+}
+.gatherattendance .table>tbody>tr>td.status2{
+	  color: #31708f;
+    background-color: #e6f2ff;
+    border-color: #bfd3ea;
+}
+.gatherattendance .table>tbody>tr>td.status3{
+	  color: #8a6d3b;
+    background-color: #fff094;
+    border-color: #ffdc2e;
+
+}
 
 /*.table-bordered > tbody > tr > th:nth-child(3),
 .table-bordered > tbody > tr > td:nth-child(3){
@@ -360,6 +381,10 @@ textarea:-ms-input-placeholder {
 	outline:none;
 }
 
+.btn-rm:hover{
+	font-weight: 700;
+}
+
 /*翻页*/
 
 .pager{
@@ -390,7 +415,9 @@ textarea:-ms-input-placeholder {
   color: white;
 }
 
-
+option{
+	font-size: 16px;
+}
 
 
 /*翻页*/
