@@ -54,7 +54,7 @@ if (empty($_GET['week'])) {
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num4) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num3)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num2)
-             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num1;");
+             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num1 WHERE a.group_id = {$_GET['group']};");
 
         while ($foo = $res->fetch_assoc()) { $data['data'][] = $foo; }
 
@@ -66,7 +66,7 @@ if (empty($_GET['week'])) {
     and json(['error' => '权限不足，导师只能查看本组学员的考勤汇总']);
 
     $week_num1 = $_GET['week'];
-    $week_num1 >= (ceil((time() - strtotime('2015-11-02')) / 604800)-1) and json(['error'=>'不能获取到本周或本周之后']);
+    $week_num1 > (ceil((time() - strtotime('2015-11-02')) / 604800)-1) and json(['error'=>'不能获取到本周或本周之后']);
     $week_num2 = --$week_num1;
     $week_num3 = --$week_num2;
     $week_num4 = --$week_num3;
@@ -76,7 +76,8 @@ if (empty($_GET['week'])) {
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num4) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num3)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num2)
-             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num1;");
+             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num1 
+             WHERE a.group_id = {$_GET['group']};");
 
     while ($foo = $res->fetch_assoc()) { $data['data'][] = $foo; }
     json($data);
