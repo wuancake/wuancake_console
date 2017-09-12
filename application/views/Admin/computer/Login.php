@@ -16,9 +16,9 @@
  				<h1 class="text-center">午安煎饼计划考勤系统管理后台</h1>
  				<form class="form-horizontal" action="/index.php/admin/login" method="post">
  					<div class="textframe">
- 						<label for="" class="col-md-3 control-label">邮箱：</label>
+ 						<label for="" class="col-md-3 control-label" >邮箱：</label>
  						<div class="col-md-9">
- 							<input type="email" class="form-control textbox" placeholder="" name="email">
+ 							<input type="email" class="form-control textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #f5f9ff inset;">
  						</div>
  					</div>
    					<div class="textframe">

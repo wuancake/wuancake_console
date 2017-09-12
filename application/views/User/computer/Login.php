@@ -21,7 +21,7 @@
     <div class="column-sign">
         <form class="sign-in-box" action="/index.php/user/login" method="post">
             <div class="sign-user-id sign-user">
-                <input type="text" name="email" placeholder="邮箱" >
+                <input type="text" name="email" placeholder="邮箱" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
             <div class="sign-user-password sign-user">
                 <input type="password" id="pswd" name="password" placeholder="密码">

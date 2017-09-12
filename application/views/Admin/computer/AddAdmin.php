@@ -60,13 +60,13 @@
  							<div class="textframe">
  								<label for="" class="col-md-3 control-label">昵称：</label>
  								<div class="col-md-9">
- 									<input type="text" class="form-control textbox" placeholder="" name="name">
+ 									<input type="text" class="form-control textbox" placeholder="" name="name" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
  								</div>
  							</div>
  							<div class="textframe">
  								<label for="" class="col-md-3 control-label">邮箱：</label>
  								<div class="col-md-9">
- 									<input type="email" class="form-control textbox" placeholder="" name="email">
+ 									<input type="email" class="form-control textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
  								</div>
  							</div>
    							<div class="textframe">
