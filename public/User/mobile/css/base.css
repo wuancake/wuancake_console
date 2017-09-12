@@ -39,7 +39,7 @@ html {
 	src:url('../fonts/PingFang_Regular.ttf') format('truetype');
 	} */
 	
-		
+html{touch-action:manipulation;}		
 body{
 	/*font-family:"PingFang_Regular","Microsoft YaHei","Roboto",sans-serif;
    /* background-color: #f2f2f2;*/*/
