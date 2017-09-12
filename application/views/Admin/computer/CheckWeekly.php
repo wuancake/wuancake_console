@@ -212,6 +212,7 @@ function weeknum(){
 
 		var session_id = "<?php echo $session_id; ?>";  //获取动态id
 		var identity = "<?php echo $_SESSION['admin']['auth'];?>";  //访问身份
+		var mentor_group = "<?php echo $_SESSION['admin']['group']; ?>";
 		var user_group=  "<?php switch ($group) {
                              case 1:
                                  echo 'PHP组';
@@ -316,7 +317,7 @@ function weeknum(){
 		else if(identity =="1"){
 				$.ajax({
 				type:"get",
-        		url:"/api/admin/show_weekly.php?week=" +week_num+ "&group=" +1+ "&session="+session_id,
+        		url:"/api/admin/show_weekly.php?week=" +week_num+ "&group=" +mentor_group+ "&session="+session_id,
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;

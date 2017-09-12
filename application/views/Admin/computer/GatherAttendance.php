@@ -74,16 +74,17 @@
  							</div>
  							<div class="form-group pull-left">
  								<label for="" class="control-label pull-left">截止周数：</label>
- 								<select for="" class="textbox">
-   										<option>第100周</option>
+ 								<select for="" class="textbox" id="iweek">
+   										<!--<option>第100周</option>
  									 	<option>第99周</option>
  									 	<option>第98周</option>
  									 	<option>第97周</option>
- 									 	<option>第96周</option>
+ 									 	<option>第96周</option>-->
+ 									 	
 								</select>
  							</div>
  							
- 								<button type="submit" class="btn btn-default btn-select">确定</button>
+ 								<button type="button" class="btn btn-default btn-select" class="iselect">确定</button>
  							</div>
  							
  							<table class="table table-striped  table-bordered  text-center">
@@ -101,7 +102,6 @@
 				 				</thead>
 				 				<tbody id="idData">
   			    				  	<!--sql数据库数据查询-->
-
   			    	  			</tbody>
     	    	 			</table>
     	    	 			
@@ -158,8 +158,6 @@
 
 
 	function status(week){
-	var itable = document.getElementById("idData");
-	
 	var cn;
 	switch(week){
 		case '1':
@@ -177,25 +175,8 @@
 }
 
 
-//
-//	    $(document).ready(function(){
-//		var rmval = ;
-//      $(".btn-rm").bind("click", function () {
-//          $.ajax({
-//				type:"post",
-//      		url:"/api/admin/kick_sum.php?session=" +session_id+ "&user_id=" ,
-//         		dataType:'json',   		
-//    			success:function(json){
-//    				alert("!!!!");
-//    				
-//    				
-//    		}
-//      });
-//     
-//  });
-
 function weeknum(){
-//	var nw = document.getElementById("nw");
+
 	// 获取当前时间
 	var currentTime = new Date();
 	// 这里写的是2015年11月2日0时0分0秒   Javascript中月份是实际数字减1，故指定日期月份减一，另获取到毫秒。
@@ -214,6 +195,7 @@ function weeknum(){
 
 		var session_id = "<?php echo $session_id; ?>";  //获取动态id
 		var identity = "<?php echo $_SESSION['admin']['auth'];?>";  //访问身份
+		var mentor_group = "<?php echo $_SESSION['admin']['group']; ?>";
 		var week_num = weeknum();
 //		var week_numb = 1;
 		var ithead = document.getElementById("ithead");
@@ -250,10 +232,10 @@ function weeknum(){
 					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week1) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week2) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week3) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week4) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
@@ -302,7 +284,7 @@ function weeknum(){
 		else if(identity =="1"){
 				$.ajax({
 				type:"get",
-        		url:"/api/admin/weekly_sum.php?week=" +(week_num-1)+ "&group=" +1+ "&session="+session_id,
+        		url:"/api/admin/weekly_sum.php?week=" + week_num + "&group=" +mentor_group+ "&session="+session_id,
            		dataType:'json',   		
       			success:function(json){
 
@@ -326,10 +308,10 @@ function weeknum(){
 					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week1) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week2) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week3) + "</td>" +
-          			 	            	"<td>"+ status(json["data"][i].week4) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
+          			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
@@ -358,6 +340,9 @@ function weeknum(){
 								irow.style.display = "none";
 							}
 						}
+						
+
+						
 					}
 				});
 						
@@ -381,6 +366,51 @@ function weeknum(){
 
 			};
 			
+			
+			
+//function weeksel(){
+//	var week_num = weeknum();	
+//	var iweek = document.getElementById("iweek");
+//	for (var i = week_num ; i>0; i--) {
+//		iweek.innerHTML +="<option>第"+ i +"周</option>";
+//	}
+//	
+//}
+//weeksel();	
+//	$.ajax({
+//			type:"get",
+//      	url:"/api/admin/weekly_sum.php?week=" + 90 + "&session="+session_id,
+//         	dataType:'json',   		
+//    		success:function(json){
+//				
+//					}
+//				});
+//						
+//          	},      			 
+//
+//          error:function(json){
+//          	if (json.error != null) {
+//          		alert(json.error)
+//          	}
+//
+//          	 else{
+//          		alert("缺少必要的参数或参数为非数字");
+//          	}  
+//          }
+//     });	
+		
+$(function(){
+	var week_num = weeknum();	
+	var iweek = document.getElementById("iweek");
+	for (var i = week_num ; i>0; i--) {
+		iweek.innerHTML +="<option value="+ i +">第"+ i +"周</option>";
+	}
+	
+//	$("option").click(function(){
+//		$("option").val("");
+//		
+//	});	
+});
 			
 			function page(opt){
 				
@@ -527,8 +557,9 @@ function weeknum(){
 			};
 
       };
-					
-		
+      
+      
+      
 
 			
 		</script>
