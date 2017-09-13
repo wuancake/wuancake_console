@@ -19,7 +19,7 @@ if ($connect->connect_error) {
 $user_id = $_GET['user_id'];
 $user_group = $connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
 
-$headsman = $_SESSION['admin']['name'];
+$headsman = $_SESSION['admin']['username'];
 $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group and json( ['error'=>'非法请求，导师只能踢出本组的人']);
 
 $time = date('Y-m-d H:m:s');
