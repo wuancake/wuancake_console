@@ -37,7 +37,8 @@ if (empty($_GET['week'])) {
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num3)
-             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4;");
+             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4
+             INNER JOIN user_group ON a.user_id = user_group.user_id AND user_group.deleteFlg = 0;");
 
         while ($foo = $res->fetch_assoc()) { $data['data'][] = $foo;}
 
@@ -54,7 +55,8 @@ if (empty($_GET['week'])) {
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num3)
-             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4 WHERE a.group_id = {$_GET['group']};");
+             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4
+             INNER JOIN user_group ON a.user_id = user_group.user_id AND user_group.deleteFlg = 0 AND a.group_id = {$_GET['group']};");
 
         while ($foo = $res->fetch_assoc()) { $data['data'][] = $foo; }
 
@@ -78,7 +80,8 @@ if (empty($_GET['week'])) {
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num3)
-             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4 ;");
+             INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4
+             INNER JOIN user_group ON a.user_id = user_group.user_id AND user_group.deleteFlg = 0;");
 
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;
@@ -101,7 +104,7 @@ if (empty($_GET['week'])) {
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
              INNER JOIN report AS c ON a.user_id = c.user_id AND c.week_num = $week_num3)
              INNER JOIN report AS d ON a.user_id = d.user_id AND d.week_num = $week_num4 
-             WHERE a.group_id = {$_GET['group']};");
+             INNER JOIN user_group ON a.user_id = user_group.user_id AND user_group.deleteFlg = 0 AND a.group_id = {$_GET['group']};");
 
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;
