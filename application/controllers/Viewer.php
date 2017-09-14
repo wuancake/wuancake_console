@@ -157,7 +157,7 @@ class Viewer extends Tracer
      *
      */
     public function show_weekly(){
-        if ($this->check_state() or $this->jump('skip','请先登录','viewer/index') && $this->db->exist_group()) {
+        if ($this->check_state() && $this->db->exist_group() or $this->jump('skip','请先登录或加入分组','viewer/index') ) {
             switch ($this->terminal){
                 case 'mobile':
                     $this->view('MyWeekly',array('session_id'=>session_id()));
