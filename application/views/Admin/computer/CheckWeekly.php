@@ -61,29 +61,25 @@
  							<div class="selectbox">
  							<div class="form-group  pull-left">
  								<label for="" class="control-label pull-left">分组：</label>
- 								<select for="" class="textbox">
-   										<option>全部</option>
-   										<option>PHP组</option>
- 									 	<option>Web前端组</option>
- 										<option>UI设计组</option>
-   										<option>Android组</option>
- 									 	<option>产品经理组</option>
- 										<option>软件测试组</option>
- 										<option>JAVA组</option>
+ 								<select for="" class="textbox" id="igroup">
+   										<option value="0"  selected="selected">全部</option>
+   										<option value="1">PHP组</option>
+ 									 	<option value="2">Web前端组</option>
+ 										<option value="3">UI设计组</option>
+   										<option value="4">Android组</option>
+ 									 	<option value="5">产品经理组</option>
+ 										<option value="6">软件测试组</option>
+ 										<option value="7">JAVA组</option>
 								</select>
  							</div>
  							<div class="form-group pull-left">
  								<label for="" class="control-label pull-left">截止周数：</label>
- 								<select for="" class="textbox">
-   										<option>第100周</option>
- 									 	<option>第99周</option>
- 									 	<option>第98周</option>
- 									 	<option>第97周</option>
- 									 	<option>第96周</option>
+ 								<select for="" class="textbox" id="iweek">
+   										<!--周数选项值-->
 								</select>
  							</div>
  							
- 								<button type="submit" class="btn btn-default btn-select">确定</button>
+ 								 								<button type="button" class="btn btn-default btn-select" class="iselect" id="ibtnsel">确定</button>
  							</div>
  							
  							<table class="table table-striped  table-bordered  text-center">
@@ -175,23 +171,6 @@
 }
 
 
-//
-//	    $(document).ready(function(){
-//		var rmval = ;
-//      $(".btn-rm").bind("click", function () {
-//          $.ajax({
-//				type:"post",
-//      		url:"/api/admin/kick_sum.php?session=" +session_id+ "&user_id=" ,
-//         		dataType:'json',   		
-//    			success:function(json){
-//    				alert("!!!!");
-//    				
-//    				
-//    		}
-//      });
-//     
-//  });
-
 function weeknum(){
 //	var nw = document.getElementById("nw");
 	// 获取当前时间
@@ -206,44 +185,16 @@ function weeknum(){
 	return offsetDays;
 }
 
-
-		
-	window.onload = function (){
-
 		var session_id = "<?php echo $session_id; ?>";  //获取动态id
 		var identity = "<?php echo $_SESSION['admin']['auth'];?>";  //访问身份
 		var mentor_group = "<?php echo $_SESSION['admin']['group']; ?>";
-		var user_group=  "<?php switch ($group) {
-                             case 1:
-                                 echo 'PHP组';
-                                 break;
-                             case 2:
-                                 echo 'Web前端组';
-                                 break;
-                             case 3:
-                                 echo 'UI设计组';
-                                 break;
-                             case 4:
-                                 echo 'Android组';
-                                 break;
-                             case 5:
-                                 echo '产品经理组';
-                                 break;
-                             case 6:
-                                 echo '软件测试组';
-                                 break;
-                             case 7:
-                                 echo 'Java组';
-                                 break;
-                         } ?>";
-		var week_num = weeknum();
-//		var ithead = document.getElementById("ithead");
-//        			ithead.innerHTML ="<tr><th>分组</th><th>昵称</th><th>QQ号</th><th>第"+
-//        			 week_num+"周</th><th>第"+(week_num-1)+"周</th><th>第"+(week_num-2)+"周</th><th>第"+(week_num-3)+"周</th><th>操作</th></tr>" ;
+		
+	window.onload = function (){
 
-		var allnumb =0;
+		
+		var week_num = weeknum();
 				
-		if (identity =="3" || identity =="2") {
+		if (identity =="3" || identity =="2") {  //如果登录账户为 超级管理员或管理员
 				$.ajax({
 				type:"get",
         		url:"/api/admin/show_weekly.php?session="+session_id,
@@ -274,7 +225,7 @@ function weeknum(){
 	};
 						//回调函数，在这里写相关显示传参数
 
-							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
 							var totalPage = 0;   //   总页数       
 				
 						//总共分几页
@@ -314,7 +265,7 @@ function weeknum(){
         });
         
 		}
-		else if(identity =="1"){
+		else if(identity =="1"){  //如果登录账户为 导师
 				$.ajax({
 				type:"get",
         		url:"/api/admin/show_weekly.php?week=" +week_num+ "&group=" +mentor_group+ "&session="+session_id,
@@ -345,7 +296,7 @@ function weeknum(){
 					};
 						//回调函数，在这里写相关显示传参数
 
-							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
 							var totalPage = 0;   //   总页数       
 				
 						//总共分几页
@@ -392,7 +343,184 @@ function weeknum(){
 			};
 			
 			
-			function page(opt){
+
+		
+$(document).ready(function(){
+	var week_num = weeknum();	
+	var iweek = document.getElementById("iweek");
+	for (var i = week_num ; i>82; i--) {
+		iweek.innerHTML +="<option value="+ i +">第"+ i +"周</option>";
+	}
+
+});	
+	
+	
+$(document).ready(function(){	
+	$("#ibtnsel").click(function(){	
+		$("#pagination").html("");	  //清空之前的分页按钮
+		
+		//获取分组select的值
+		var igroupval=document.getElementById("igroup"); 
+		var index=igroupval.selectedIndex;
+		 	sel_igroup= igroupval.options[index].value; 
+		
+		//获取周数select的值
+		var iweekval=document.getElementById("iweek"); 
+		var index=iweekval.selectedIndex;
+			sel_iweek= iweekval.options[index].value; 
+		
+		if (sel_igroup == "0" ) {
+			$.ajax({
+			type:"get",
+        	url:"/api/admin/show_weekly.php?week=" + sel_iweek +  "&session=" + session_id,
+           	dataType:'json',   		
+      		success:function(json){
+				var num = json["data"].length;
+      				var pageSize = 5;	   //每页显示行数  
+					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
+					var page_now = page_num -(page_num-1);   //   等于第一页  
+      				
+      				page({
+					
+					id:"pagination",   //当前id
+					nowNum:page_now,//当前页
+					allNum:page_num, //显示总页妈
+					callBack:function(pno){
+					var itable = document.getElementById("idData");
+          			$("#idData").html("");
+
+					for (var i =0; i <num;i++) {
+						
+											
+					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
+          			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
+          			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
+          			 	            	
+					};
+						//回调函数，在这里写相关显示传参数
+
+//						var numb = itable.rows.length;   //表格所有行数(所有记录数)
+						var totalPage = 0;   //   总页数       
+				
+						//总共分几页
+						if(num/pageSize>parseInt(num/pageSize)){
+							totalPage = parseInt(num/pageSize)+1;
+						}else{
+							totalPage = parseInt(num/pageSize);
+						}
+
+						var currentPage = pno;//当前页数
+						var startRow = (currentPage - 1) * pageSize +1;
+						var endRow = currentPage * pageSize;
+						endRow = (endRow >num)? num:endRow;
+				
+						for (var i=1;i<(num+1);i++) {
+							var irow = itable.rows[i-1];
+							if (i>=startRow && i <=endRow) {
+								irow.style.display = "table-row";
+							} else{
+								irow.style.display = "none";
+							}
+						}
+					}
+				});
+				
+            	},      			 
+
+            error:function(json){
+            	if (json.error != null) {
+//          		alert("json.error");
+            		alert("报错");
+            	}
+
+            	 else{
+            		alert("缺少必要的参数或参数为非数字");
+            	}  
+            }
+       });	
+			
+			
+		} else{
+			$.ajax({
+			type:"get",
+        	url:"/api/admin/show_weekly.php?week=" + sel_iweek + "&group=" + sel_igroup + "&session="+session_id,
+           	dataType:'json',   		
+      		success:function(json){
+				var num = json["data"].length;
+      				var pageSize = 5;	   //每页显示行数  
+					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
+					var page_now = page_num -(page_num-1);   //   等于第一页  
+      				
+      				page({
+					
+					id:"pagination",   //当前id
+					nowNum:page_now,//当前页
+					allNum:page_num, //显示总页妈
+					callBack:function(pno){
+					var itable = document.getElementById("idData");
+          			$("#idData").html("");
+
+					for (var i =0; i <num;i++) {
+						
+											
+					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
+          			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
+          			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
+          			 	            	
+					};
+						//回调函数，在这里写相关显示传参数
+
+//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+							var totalPage = 0;   //   总页数       
+				
+						//总共分几页
+						if(num/pageSize>parseInt(num/pageSize)){
+							totalPage = parseInt(num/pageSize)+1;
+						}else{
+							totalPage = parseInt(num/pageSize);
+						}
+
+						var currentPage = pno;//当前页数
+						var startRow = (currentPage - 1) * pageSize +1;
+						var endRow = currentPage * pageSize;
+						endRow = (endRow >num)? num:endRow;
+				
+						for (var i=1;i<(num+1);i++) {
+							var irow = itable.rows[i-1];
+							if (i>=startRow && i <=endRow) {
+								irow.style.display = "table-row";
+							} else{
+								irow.style.display = "none";
+							}
+						}
+					}
+				});
+				
+            	},      			 
+
+            error:function(json){
+            	if (json.error != null) {
+            		alert(json.error)
+            	}
+
+            	 else{
+            		alert("缺少必要的参数或参数为非数字");
+            	}  
+            }
+       });	
+	}
+	
+	});
+});
+	
+		
+			
+			
+			function page(opt){    //分页按钮
 				
 				
 				if (!opt.id) {return false;} 
