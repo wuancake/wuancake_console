@@ -66,7 +66,7 @@ if (empty($_GET['week'])) {
 
     if (empty($_GET['group'])) {
         //返回指定周数，所有分组的周报提交情况
-        ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
+        ($_SESSION['admin']['auth'] == 1)
         and json(['error' => '权限不足，导师只能查看本组学员的考勤汇总']);
 
         $week_num1 = $_GET['week'];
