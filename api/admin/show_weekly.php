@@ -26,9 +26,9 @@ if (empty($_GET['week'])) {
         //返回前一周，所有分组的周报提交情况
         ($_SESSION['admin']['auth'] == 1) and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
-        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
-                                        INNER JOIN user WHERE report.user_id = user.id 
-                                        AND week_num = $week_num");
+        $res = $connect->query("SELECT r.*,user.user_name AS name FROM 
+                                        (report as r INNER JOIN user ON r.user_id = user.id AND r.week_num = $week_num)
+                                        INNER JOIN user_group AS g ON g.user_id = r.user_id AND g.deleteFlg = 0");
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;
         }
@@ -38,9 +38,9 @@ if (empty($_GET['week'])) {
         ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
         and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
-        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
-                                        INNER JOIN user WHERE report.user_id = user.id 
-                                        AND week_num = $week_num AND group_id = {$_GET['group']};");
+        $res = $connect->query("SELECT r.*,user.user_name AS name FROM 
+                                        (report as r INNER JOIN user ON r.user_id = user.id AND r.week_num = $week_num AND r.group_id = {$_GET['group']})
+                                        INNER JOIN user_group AS g ON g.user_id = r.user_id AND g.deleteFlg = 0;");
 
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;
@@ -53,9 +53,10 @@ if (empty($_GET['week'])) {
         ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
         and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
-        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
-                                        INNER JOIN user WHERE report.user_id = user.id 
-                                        AND week_num = {$_GET['week']} AND group_id = {$_GET['group']};");
+        $res = $connect->query("SELECT r.*,user.user_name AS name FROM 
+                                        (report AS r INNER JOIN user WHERE r.user_id = user.id 
+                                        AND r.week_num = {$_GET['week']} AND r.group_id = {$_GET['group']})
+                                        INNER JOIN user_group AS g ON g.user_id = r.user_id AND g.deleteFlg = 0;");
 
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;
@@ -66,9 +67,9 @@ if (empty($_GET['week'])) {
         ($_SESSION['admin']['auth'] == 1)
         and json(['error' => '权限不足，导师只能查看本组学员的周报提交情况']);
 
-        $res = $connect->query("SELECT report.*,user.user_name AS name FROM report 
-                                        INNER JOIN user WHERE report.user_id = user.id 
-                                        AND week_num = {$_GET['week']};");
+        $res = $connect->query("SELECT report.*,user.user_name AS name FROM 
+                                        (report AS r INNER JOIN user WHERE r.user_id = user.id AND r.week_num = {$_GET['week']})
+                                        INNER JOIN user_group AS g ON g.user_id = r.user_id AND g.deleteFlg = 0;");
 
         while ($foo = $res->fetch_assoc()) {
             $data['data'][] = $foo;

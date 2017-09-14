@@ -20,7 +20,7 @@ $data['data'] = array();
 
 $res = $connect->query("
         SELECT g.user_id,g.group_id,u.user_name,u.qq,g.headsman,g.modify_time FROM
-        user_group AS g INNER JOIN user AS u ON g.user_id = u.id AND g.deleteFlg=1;");
+        user_group AS g INNER JOIN user AS u ON g.user_id = u.id AND g.deleteFlg=1 ORDER BY g.modify_time DESC;");
 
 while ($foo = $res->fetch_assoc()) { $data['data'][] = $foo;}
 
