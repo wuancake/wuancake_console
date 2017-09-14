@@ -209,41 +209,38 @@
 
 	};
 	
-	
-	
-	
+
+
+		
 	function page(opt){
 				
 				
 				if (!opt.id) {return false;} 
 				
 				var obj = document.getElementById(opt.id);
-//				var itable = document.getElementById("idData");
-//				var numb = itable.rows.length;
 				
 				var nowNum = opt.nowNum || 1;
-				var allNum = opt.allNum || 10;
+				var allNum = opt.allNum || 5;
 				
 				var callBack = opt.callBack || function(){};
-				
 				
 				//显示    首页btn
 				if(nowNum>=4 && allNum>=6){ 
 					var oA = document.createElement("a");
 					oA.href = "#1";
-					oA.innerHTML = "首页";
+					oA.innerHTML = "首页"
 					obj.appendChild(oA);
 				}
 				//显示    上一页btn
-				else if(nowNum>=2){ 
+				if(nowNum>=2){ 
 					var oA = document.createElement("a");
 					oA.href = "#" + (nowNum -1);
-					oA.innerHTML = "上一页";
+					oA.innerHTML = "上一页"
 					obj.appendChild(oA);
 				}
 				
 				//当总页数小于等于5的时候
-				else if (allNum<=5) {
+				if (allNum<=5) {
 					
 					for (var i =1;i<=allNum;i++) {
 						//创建a标签
@@ -317,8 +314,7 @@
 					
 				}
 			}
-			
-			
+				
 				
 			//显示    尾页btn	
 			if((allNum - nowNum)>=3 && allNum >=6){
@@ -357,9 +353,12 @@
 					return false;
 					
 				};
-			};
+			}
+				
+		}
+      
 
-      };
+
 	
 </script>		
 		
