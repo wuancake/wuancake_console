@@ -287,7 +287,9 @@ window.onload = function (){
         		url:"/api/admin/weekly_sum.php?week=" + week_num + "&group=" +mentor_group+ "&session="+session_id,
            		dataType:'json',   		
       			success:function(json){
-
+					var sel_dis = document.getElementById("igroup");
+					sel_dis.selectedIndex = mentor_group;
+					sel_dis.disabled= true;
       				
       				var num = json["data"].length;
       				var pageSize = 10;	   //每页显示行数  
@@ -312,7 +314,7 @@ window.onload = function (){
           			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button' id='rm"+ json["data"][i].id +"' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -404,7 +406,7 @@ var user_id = val.value;
 $(document).ready(function(){
 	var week_num = weeknum();	
 	var iweek = document.getElementById("iweek");
-	for (var i = week_num ; i>82; i--) {
+	for (var i = week_num ; i>85; i--) {
 		iweek.innerHTML +="<option value="+ i +">第"+ i +"周</option>";
 	}
 
@@ -461,7 +463,7 @@ $(document).ready(function(){
           			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -536,7 +538,7 @@ $(document).ready(function(){
           			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -585,38 +587,35 @@ $(document).ready(function(){
 });
 	
 			
-			function page(opt){
+function page(opt){
 				
 				
 				if (!opt.id) {return false;} 
 				
 				var obj = document.getElementById(opt.id);
-//				var itable = document.getElementById("idData");
-//				var numb = itable.rows.length;
 				
 				var nowNum = opt.nowNum || 1;
-				var allNum = opt.allNum || 10;
+				var allNum = opt.allNum || 5;
 				
 				var callBack = opt.callBack || function(){};
-				
 				
 				//显示    首页btn
 				if(nowNum>=4 && allNum>=6){ 
 					var oA = document.createElement("a");
 					oA.href = "#1";
-					oA.innerHTML = "首页";
+					oA.innerHTML = "首页"
 					obj.appendChild(oA);
 				}
 				//显示    上一页btn
-				else if(nowNum>=2){ 
+				if(nowNum>=2){ 
 					var oA = document.createElement("a");
 					oA.href = "#" + (nowNum -1);
-					oA.innerHTML = "上一页";
+					oA.innerHTML = "上一页"
 					obj.appendChild(oA);
 				}
 				
 				//当总页数小于等于5的时候
-				else if (allNum<=5) {
+				if (allNum<=5) {
 					
 					for (var i =1;i<=allNum;i++) {
 						//创建a标签
@@ -690,8 +689,7 @@ $(document).ready(function(){
 					
 				}
 			}
-			
-			
+				
 				
 			//显示    尾页btn	
 			if((allNum - nowNum)>=3 && allNum >=6){
@@ -730,9 +728,10 @@ $(document).ready(function(){
 					return false;
 					
 				};
-			};
-
-      };
+			}
+				
+		}
+      
 
 		</script>
 	</body>

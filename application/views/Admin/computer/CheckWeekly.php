@@ -270,6 +270,10 @@ function weeknum(){
         		url:"/api/admin/show_weekly.php?week=" +week_num+ "&group=" +mentor_group+ "&session="+session_id,
            		dataType:'json',   		
       			success:function(json){
+      				var sel_dis = document.getElementById("igroup");
+					sel_dis.selectedIndex = mentor_group;
+					sel_dis.disabled= true;
+      				
       				var num = json["data"].length;
       				var pageSize = 5;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 
@@ -519,7 +523,7 @@ $(document).ready(function(){
 		
 			
 			
-			function page(opt){    //分页按钮
+function page(opt){
 				
 				
 				if (!opt.id) {return false;} 
@@ -621,8 +625,7 @@ $(document).ready(function(){
 					
 				}
 			}
-			
-			
+				
 				
 			//显示    尾页btn	
 			if((allNum - nowNum)>=3 && allNum >=6){
@@ -661,9 +664,11 @@ $(document).ready(function(){
 					return false;
 					
 				};
-			};
+			}
+				
+		}
+      
 
-      };
 					
 		
 

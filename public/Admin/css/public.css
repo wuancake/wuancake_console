@@ -65,10 +65,13 @@ a:hover{text-decoration: none;}
 	width: 80px;
 }*/
 
-
 .gatherattendance .main select.textbox,.checkweekly .main select.textbox{
 	height: 50px;
 	width: 220px;
+}
+
+.gatherattendance #igroup[disabled="ture"]{
+	font-size: 10px;
 }
 
 .login .textframe{font-size: 40px;}
