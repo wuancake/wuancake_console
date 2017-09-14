@@ -173,39 +173,11 @@
 }
 
 
-
-
 var session_id = "<?php echo $session_id; ?>";  //获取动态id
 var identity = "<?php echo $_SESSION['admin']['auth'];?>";  //访问身份
 var mentor_group = "<?php echo $_SESSION['admin']['group']; ?>";  //该身份所在分组 
 
-function rm(val){
-var user_id = val;
-//var arr = new Array();
-	$.ajax({
-				type:"post",
-        		url:"/api/admin/kick_someone.php?session=" + session_id + "&user_id=" +user_id,
-           		data:{session_id:session_id,user_id:user_id},
-           		async:false,
-           		dataType:'json',
-      			success:function(data){
-      				alert(data.success);
-      				$("#pagination").html("");	  //清空之前的分页按钮
-      				var rm_show = defaultshow();
-            	},      			 
 
-            error:function(json){
-            	if (json.error != null) {
-            		alert("出错")
-            	}
-
-            	 else{
-            		alert("缺少必要的参数或参数为非数字");
-            	}
-            }
-        });
-        
-}
 
 
 
@@ -224,9 +196,9 @@ function weeknum(){
 
 
 
-		
-	 function defaultshow(){
-	 		 	//表头刷新
+window.onload = function (){
+	
+	 	//表头刷新
 		var week_num = weeknum();
 		var ithead = document.getElementById("ithead");
         ithead.innerHTML ="<tr><th>分组</th><th>昵称</th><th>QQ号</th><th>第"+
@@ -264,7 +236,7 @@ function weeknum(){
           			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -340,7 +312,7 @@ function weeknum(){
           			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+          			 	            	"<td>"+ "<button type='button' id='rm"+ json["data"][i].id +"' onclick='rm(this.value)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -392,7 +364,41 @@ function weeknum(){
 
 			};
 				
-defaultshow();
+
+function rm(val){
+var user_id = val.value;
+
+	$.ajax({
+				type:"post",
+        		url:"/api/admin/kick_someone.php?session=" + session_id + "&user_id=" +user_id,
+           		data:{session_id:session_id,user_id:user_id},
+           		async:false,
+           		dataType:'json',
+      			success:function(data){
+      				
+      				if (data.success != false) {
+//    					alert(data.success);
+      					var parentNode=val.parentNode.parentNode; 
+							parentNode.style.display ="none";
+							
+      				} 
+      				else{
+      					alert(data.error);
+      				}  				
+            	},      			 
+
+            error:function(json){
+            	if (json.error != null) {
+            		alert("出错")
+            	}
+
+            	 else{
+            		alert("缺少必要的参数或参数为非数字");
+            	}
+            }
+       });     
+}
+
 
 		
 $(document).ready(function(){

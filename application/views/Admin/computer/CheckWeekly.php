@@ -191,7 +191,6 @@ function weeknum(){
 		
 	window.onload = function (){
 
-		
 		var week_num = weeknum();
 				
 		if (identity =="3" || identity =="2") {  //如果登录账户为 超级管理员或管理员
