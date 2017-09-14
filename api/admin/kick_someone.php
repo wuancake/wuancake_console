@@ -1,4 +1,6 @@
 <?php
+require_once  '../config.php';
+
 function json(array $info)
 {
     echo json_encode($info);
@@ -11,7 +13,7 @@ session_start();
 empty($_SESSION['admin']) and json(['error' => '错误的session_id']);
 empty($_GET['user_id']) and json(['error' => '缺少必要的参数:user_id']);
 
-$connect = new mysqli('localhost', 'root', 'root', 'weekly');
+$connect = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
 if ($connect->connect_error) {
     json(['error' => '数据库连接出错']);
 }

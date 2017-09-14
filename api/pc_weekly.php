@@ -1,4 +1,5 @@
 <?php
+require_once  'config.php';
 define('SIZE', 5);
 
 function json(array $info)
@@ -16,7 +17,7 @@ function exist_group($id, $connect)
 }
 
 
-$connect = new mysqli('localhost', 'root', 'root', 'weekly');
+$connect = new mysqli($config['host'], $config['username'], $config['password'], $config['database']);
 if ($connect->connect_error) {
     json(['error' => '数据库连接出错']);
 }
