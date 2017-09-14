@@ -15,11 +15,16 @@ $url_info = explode('?', $_SERVER['REQUEST_URI']);
 
 //获取URL中的信息
 $info = array_filter(explode('/', $url_info[0]));
-foreach ($info as $key => $value) {
-    if ($value !== 'index.php')
-        unset($info[$key]);
-    else
-        break;
+
+if ($info[1] =='index.php') {
+    foreach ($info as $key => $value) {
+        if ($value !== 'index.php')
+            array_splice($info, 0, 1);
+        else {
+            array_splice($info, 0, 1);
+            break;
+        }
+    }
 }
 
 //储存URL中通过get传入的参数值
@@ -34,20 +39,25 @@ if (strpos($_SERVER['REQUEST_URI'], '?')) {
 
 //获取要调用的类,如果没有指定要调用的类，则默认为viewer类
 //如果直接访问网站域名，则调用view类的login方法
-if (sizeof($info) <= 1)
+if (sizeof($info) < 1)
     $class = 'viewer';
 else
-    $class = implode(array_slice($info, 1, 1));
+    $class = implode(array_slice($info, 0, 1));
 
 
 //获取要调用的函数，如果没有指定要调用的方法，则默认为index方法
-if (sizeof($info) <= 2)
+if (sizeof($info) < 2)
     $function = 'index';
 else
-    $function = implode(array_slice($info, 2, 1));
+    $function = implode(array_slice($info, 1, 1));
 
-//获取URL中的参数
-$parameter = array_slice($info, 3);
+//获取URL中的参数(待完善
+$parameter = array_slice($info, 2);
+
+if (sizeof($info)===1 and $info[1]=='admin'){
+    $class = 'viewerb';
+    $function = 'login';
+}
 
 //调用
 $exc = new $class();
