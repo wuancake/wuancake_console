@@ -9,8 +9,12 @@ body {
 i{font-style: normal;}
 
 a{text-decoration: none;}
+
 a:hover{text-decoration: none;}
 
+label{font-weight: 500;}
+
+option{font-size: 16px;}
 /******* base *******/
 .clear {
 	clear: both;
@@ -28,53 +32,62 @@ a:hover{text-decoration: none;}
 }
 .clearfix { *zoom:1;}  
 
-
-
 /******* base *******/
-.login .form-control{
-	height: 60px;
-}
-.form-control{
-	height: 55px;
-}
+
 .textbox{
+	width: 490px;
 	height: 54px;
 }
 
 .textframe{
 	width: 670px;
-/*	border: 1px solid pink;*/
 	margin: 0 auto;
-	height: 25px;
 	font-size: 34px;
+		/*font-weight: 100;*/
 }
 
-.main{
-	padding:40px 10px 10px 26px;
+
+
+.addadmin .main,.addmentor .main,.checkweekly .main,.gatherattendance .main, .gatherclear .main{
+	/*border: 1px solid palevioletred;*/
+    height: 100%;
+    padding-left: 266px;
+    padding-top: 150px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction:row; 
+    -webkit-align-items: center;
+     align-items: center; 
+    -webkit-justify-content: center;
+    justify-content: center;
 }
 
-.gatherattendance .form-group,.checkweekly .form-group{
+.content{width: 84%;}
+
+.selectbox{
 	font-size: 34px;
-	width:400px;
-}
-
-/*.gatherattendance .btn-register{
-
-	height: 32px;
-	line-height: 32px;
-	width: 80px;
-}*/
+	width: 860px;
+	height: 50px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	display: flex;
+  flex-direction:row; 
+  -webkit-align-items: flex-start;
+   align-items: flex-start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+	}
 
 .gatherattendance .main select.textbox,.checkweekly .main select.textbox{
 	height: 50px;
 	width: 220px;
+	padding-right: 50px;
+  margin-right: 20px;
 }
 
 .gatherattendance #igroup[disabled="ture"]{
 	font-size: 10px;
 }
-
-.login .textframe{font-size: 40px;}
 
 .textbox,
 .textbox:focus{
@@ -87,71 +100,103 @@ a:hover{text-decoration: none;}
   font-size: 40px;
 }
 
-
 .textbox{
 		margin-bottom: 54px;
-}
-.login .textbox{
-		margin-bottom: 76px;
 }
 
 .gatherattendance .textbox,.checkweekly .textbox{
 		font-size: 34px;
 }
 
-
-
 .btn{
 	border: 1px solid #47acff ;
 	background-color: rgba(255, 255, 255, 0);
 	border-radius: 0;
-	letter-spacing:2;
+	letter-spacing:2px;
 }
 
 .btn-select{
 	font-size: 30px;
-	margin-left: 40px;
 	padding: 0 15px;
+	height: 50px;
 }
 
 .btn-register{
+	display: block;
 	 width: 428px;
 	 height: 72px;
-	 line-height: 60px;
-/*	 font-size: 32px;*/
+	 margin:0 auto;
+	 font-size: 32px;
 }
 
-.login .btn-register{
-		width: 414px;
-		height: 108px;
-}
 
-.main .btn:hover{
+
+
+
+.main .btn:hover,.main .btn:focus,.main .btn:visited,.main .btn:before,.main .btn:active{
 	color: #ffffff;
 	background-color: #418afe;
 	box-shadow: 0px 0px 0px red  inset;
 }
 
 
-/*input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: rgb(0, 71, 155);
+
+.main select.textbox{
+	/*很关键：将默认的select选择框样式清除*/
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+
+	width: 490px;
+	background: url(../img/select.png) no-repeat right;
+
 }
 
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: rgb(0, 71, 155);
+
+/*SideBar start*/
+.sidebar{
+	background-color: #418afe;
+	padding:0 0 0 16px;
+	font-size: 38px;
+	height: 800px;
+	width:340px;
+	position: fixed;
+  left: 0;
+  top: 120px;
+  height: 100%;
+  width:340px;
+  overflow: hidden;
 }
 
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: rgb(0, 71, 155);
+.sidebar .nav li a{
+	color: #ffffff;
+	height: 110px;
+	line-height: 110px;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
 }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: rgb(0, 71, 155);
-}*/
+.nav>li>a:hover,.nav>li>a:focus,.nav>li>a:active,.nav>li>a:before,.nav>li>a:visited,.nav>li>a:link{
+	background-color: rgba(255,255,255,0);
+}
+
+.nav>li>a:hover{
+	color: #00479b;
+}
+
+.sidebar .nav>li.active{
+	background-color: #00479b;
+}
+
+.sidebar .nav>li.active a:hover{
+	color: #ffffff;
+}
+/*SideBar end*/
 
 
 /*login start*/
@@ -169,6 +214,7 @@ textarea:-ms-input-placeholder {
 
 .login .main{
 	background:#f5f9ff;
+	margin: 0 auto;
 	width: 960px;
 	height: 660px;
 	position: fixed;
@@ -188,45 +234,19 @@ textarea:-ms-input-placeholder {
 
 }
 
+.login .btn-register{
+		width: 414px;
+		height: 108px;
+		line-height: 100px;
+}
+
+.login .textbox{
+		width: 540px;
+		margin-bottom: 76px;
+}
+.login .textframe{font-size: 40px;}
 
 /*login end*/
-
-
-/*SideBar start*/
-.sidebar{
-	background-color: #418afe;
-	padding:0 0 0 16px;
-	font-size: 38px;
-	height: 800px;
-
-}
-
-
-.sidebar .nav li a{
-		color: #ffffff;
-	height: 110px;
-	line-height: 110px;
-	margin: 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-
-.sidebar .nav li.active{
-	background-color: #00479b;
-
-}
-
-.sidebar .nav li a:hover{
-	background-color: #00479b;
-}
-
-
-
-
-/*SideBar end*/
-
 
 
 
@@ -235,14 +255,20 @@ textarea:-ms-input-placeholder {
 	height: 120px;
 	color: #ffffff;
 	background-color: #47acff;
-	line-height:120px;
-}
-
-.title h1{
 	font-size: 48px;
-	line-height:80px;
+	line-height:120px;
+	padding: 0 30px;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+  left: 0;
+  top: 0;
 }
 
+.title .text-left{
+	font-size: 48px;
+	/*line-height:80px;*/
+}
 
 .title .post{
 	font-size: 38px;
@@ -254,64 +280,17 @@ textarea:-ms-input-placeholder {
 	text-decoration:none ;
 }
 
-
 /*title end*/
-
-
-/*addadmin start*/
-.addadmin .main,.addmentor .main{
-	  margin-top: 40px;
-}
-/*addadmin end*/
-
-
-
-/*addmentor start*/
-
-
-.main select.textbox{
-	/*很关键：将默认的select选择框样式清除*/
-	appearance:none;
-	-moz-appearance:none;
-	-webkit-appearance:none;
-
-	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
-	padding-right: 14px;
-
-	width: 99.4%;
-	background: url(../img/select.png) no-repeat right;
-
-}
-
-
-
-
-/*addmentor end*/
-
 
 /*表格*/
 .table{
 	background-color: #ffffff;
-	/*width: 875px;
-	height: 492px;*/
 }
 
 .table th{
 	font-weight: 500;
 }
 
-
-
-
-/*.table-bordered > thead > tr > th,
-.table-bordered > tbody > tr > th,
-.table-bordered > tfoot > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > td {
-  border-bottom: none;
-  border-top: none;
-}*/
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 	vertical-align: middle;
@@ -323,10 +302,6 @@ textarea:-ms-input-placeholder {
   text-align: center;
   width: 100px;
 }
-
-/*.table-bordered > thead > tr > td.status1{
-	border: 1px solid red;
-}*/
 
 
 .gatherattendance .table>tbody>tr>td.status1{
@@ -346,11 +321,6 @@ textarea:-ms-input-placeholder {
 
 }
 
-/*.table-bordered > tbody > tr > th:nth-child(3),
-.table-bordered > tbody > tr > td:nth-child(3){
-	text-align: left;
-}*/
-
 .checkweekly .table-striped> #idData > tr >th:nth-child(5),
 .checkweekly .table-striped> #idData > tr >td:nth-child(5){
 	width: 50%;
@@ -364,17 +334,6 @@ textarea:-ms-input-placeholder {
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f4f9fe;
 }
-
-/*.table-striped > tbody > tr>td.qingjia{
-  background-color: lightgoldenrodyellow;
-}
-
-.table-striped > tbody > tr>td.weitijiao{
-  background-color: indianred;
-}*/
-
-
-
 
 
 .btn-rm,.btn-rm:hover,.btn-rm:focus,.btn-rm:active,.btn-rm:before{
@@ -411,22 +370,15 @@ textarea:-ms-input-placeholder {
 
 
 .pager >.pager-tab.active,
-#pagination >a.active,
-.myweekly .pager > a:hover,
-.myweekly .pager > a:focus {
+#pagination >a.active {
   text-decoration: none;
   background-color: #418afe;
   color: white;
 }
 
-option{
-	font-size: 16px;
-}
-
-
 /*翻页*/
 
-/*input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {-webkit-box-shadow: 0px 0px 0px 50px white inset;}*/
+
 
 #warning{
 	text-align: center;
@@ -434,6 +386,4 @@ option{
 	color: #ff6a6a;
 }
 
-/*#iweek,#igronp{
-	
-}*/
+
