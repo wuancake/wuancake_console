@@ -93,7 +93,7 @@ class Admin extends Tracer
         $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
         and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/gatherAttend');
 
-        $time = date('Y-m-d H:m:s');
+        $time = date('Y-m-d H:i:s');
         $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
                                     WHERE user_id = $user_id AND create_time IN 
                                     (SELECT value FROM 
@@ -112,7 +112,7 @@ class Admin extends Tracer
     private function attend(){
         //统计截止到此周数的周报未提交人数
         $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
-        $time = date('Y-m-d H:m:s');
+        $time = date('Y-m-d H:i:s');
 
         for ($week = 83; $week <= $last_week; $week++) {
             $sql = "SELECT user_id,group_id FROM user_group WHERE deleteFlg != 1 AND

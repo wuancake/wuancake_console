@@ -24,7 +24,7 @@ $user_group = $connect->query("SELECT group_id FROM user_group WHERE user_id = $
 $headsman = $_SESSION['admin']['username'];
 $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group and json( ['error'=>'非法请求，导师只能踢出本组的人']);
 
-$time = date('Y-m-d H:m:s');
+$time = date('Y-m-d H:i:s');
 
 $res = $connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = '$headsman' ,modify_time = '$time'
                                     WHERE user_id = $user_id AND create_time IN 
