@@ -10,27 +10,19 @@
 
 	</head>
 	<body>
-		<div class="login container-fluid">
+		<div class="login">
 			<div class="floor"></div>
  			<div class="main">
  				<h1 class="text-center">午安煎饼计划考勤系统管理后台</h1>
- 				<form class="form-horizontal" action="/index.php/admin/login" method="post">
- 					<div class="textframe">
- 						<label for="" class="col-md-3 control-label" >邮箱：</label>
- 						<div class="col-md-9">
- 							<input type="email" class="form-control textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #f5f9ff inset;">
- 						</div>
- 					</div>
-   					<div class="textframe">
-   						<label for="" class="col-md-3 control-label">密码：</label>
-   						<div class="col-md-9">
-   							<input type="password" class="form-control textbox" placeholder="" name="password">
-   						</div>
-   					</div>
-   					<div class="textframe">
-  						<div class="col-md-offset-3 col-md-10">
-     				 		<button type="submit" class="btn btn-default btn-register text-center">登 录</button>
-  						</div>
+ 				<form  action="/index.php/admin/login" method="post">
+ 					<div class="textframe clearfix">
+ 						<label for="" class="pull-left" >邮箱：</label>
+ 						<input type="email"  class="pull-left textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #f5f9ff inset;">
+ 							
+ 						<label for="" class="pull-left">密码：</label>
+ 						<input type="password" class="textbox" placeholder="" name="password">
+ 							
+ 						<button type="submit" class="btn btn-default btn-register">登 录</button>
   					</div>
  				</form>
  			</div>

@@ -9,11 +9,10 @@
 		
 	</head>
 	<body>
-		<div class="addadmin container-fluid">
-			<div class="row title">
-				<div class="col-md-12">
-					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
-					<div class="col-md-5 post text-right">
+		<div class="addadmin">
+			<div class="title">
+					<div class="pull-left">考勤系统管理后台</div>
+					<div class="post pull-right">
                         <?php
                         switch ($_SESSION['admin']['auth']){
                             case 1:
@@ -31,14 +30,13 @@
                         }
                         ?>:<?php echo $_SESSION['admin']['username']?>
 						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
-					</div>
 				</div>
 			</div>
-			<div class="row">
-     			<div class="col-md-3 sidebar">
-     				<ul class="nav nav-pills nav-stacked">
-     					<li role="presentation">
-     						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
+
+     			<div class="sidebar">
+     				<ul class="nav  nav-stacked">
+     					<li role="presentation"  class="active">
+     						<a href="/index.php/viewerb/addAdmin" >新增管理员</a>
      					</li>
      					<li role="presentation">
      						<a href="/index.php/viewerb/addMentor">新增导师</a>
@@ -54,38 +52,25 @@
      					</li>
      				</ul>
      			</div>
- 				<div class="col-md-9">
+ 
  					<div class="main">
- 						<form class="form-horizontal" action="/index.php/admin/create_admin" method="post">
- 							<div class="textframe">
- 								<label for="" class="col-md-3 control-label">昵称：</label>
- 								<div class="col-md-9">
- 									<input type="text" class="form-control textbox" placeholder="" name="name" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
- 								</div>
- 							</div>
- 							<div class="textframe">
- 								<label for="" class="col-md-3 control-label">邮箱：</label>
- 								<div class="col-md-9">
- 									<input type="email" class="form-control textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
- 								</div>
- 							</div>
-   							<div class="textframe">
-   								<label for="" class="col-md-3 control-label" >密码：</label>
-   								<div class="col-md-9">
-   									<input type="password" class="form-control textbox" placeholder="" name="password">
-   								</div>
-   							</div>
-                            <input type="hidden" name="auth" value="2">
-   							<div class="textframe">
-  								<div class="col-md-offset-3 col-md-10">
-     						  		<button type="submit" class="btn btn-default btn-register text-center">登录</button>
-  								</div>
+ 						<form class="content" action="/index.php/admin/create_admin" method="post">
+ 							<div class="textframe  clearfix">
+ 								<label for="" class="pull-left">昵称：</label>
+ 								<input type="text" class="textbox" placeholder="" name="name" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
+ 									
+ 								<label for="" class="pull-left">邮箱：</label>
+ 								<input type="email" class="textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
+
+   								<label for="" class="pull-left">密码：</label>
+   								<input type="password" class="textbox" placeholder="" name="password">
+
+                         	    <input type="hidden" name="auth" value="2">
+     						  	<button type="submit" class="btn btn-default btn-register text-center">创建</button>
   							</div>
  						</form>	
  					</div>
  				</div>
-  			</div>
-		</div>
 	</body>
 </html>
 

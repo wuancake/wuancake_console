@@ -11,11 +11,10 @@
 		
 	</head>
 	<body>
-		<div class="gatherclear container-fluid">
-			<div class="row title">
-				<div class="col-md-12">
-					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
-					<div class="col-md-5 post text-right">  <?php
+		<div class="gatherclear">
+			<div class="title clearfix">
+					<div class="pull-left">考勤系统管理后台</div>
+					<div class="pull-right post">  <?php
                         switch ($_SESSION['admin']['auth']){
                             case 1:
                                 echo '导师';
@@ -33,11 +32,9 @@
                         ?>:<?php echo $_SESSION['admin']['username']?>
 						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
-				</div>
 			</div>
-			<div class="row">
-     			<div class="col-md-3 sidebar">
-     				<ul class="nav nav-pills nav-stacked">
+     			<div class="sidebar">
+     				<ul class="nav  nav-stacked">
      					<li role="presentation">
      						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
      					</li>
@@ -50,14 +47,13 @@
      					<li role="presentation">
      						<a href="/index.php/viewerb/gatherAttendance">考勤汇总</a>
      					</li>
-     					<li role="presentation">
+     					<li role="presentation" class="active">
      						<a href="/index.php/viewerb/gatherClear">清人汇总</a>
      					</li>
      				</ul>
      			</div>
- 				<div class="col-md-9">
  					<div class="main">
- 						<form class="form-horizontal">
+ 						<form class="content">
  							<table class="table table-striped  table-bordered  text-center">
 				 				<thead>
 				 					<tr>
@@ -79,11 +75,12 @@
    			
  								</div>
 					  		</nav>
+					  		
+					  		<p id="warning" ></p>
  						</form>	
  					</div>
  				</div>
-  			</div>
-		</div>
+
 		
 		
 		
@@ -334,27 +331,36 @@
 			//callBack函数执行
 			callBack(nowNum,allNum);
 			
-			//给a添加点击事件
-			var aA = obj.getElementsByTagName("a");
-			for (var i =0;i<aA.length;i++) {
-				aA[i].onclick = function(){
-					var nowNum = parseInt(this.getAttribute("href").substring(1));
-					obj.innerHTML = "";
-					
-					page({
-						
-						id:opt.id,
-						nowNum:nowNum,
-						allNum:allNum,
-						callBack:callBack
-						
-					});
-					
-					return false;
-					
-				};
+			var ithead = document.getElementById("idData");
+			var num = idData.childNodes.length;
+			//无数据
+			if(num == 0){
+				obj.style.display="none";
+				var oB = document.getElementById("warning");
+					oB.innerHTML = "当前无清人数据";
 			}
-				
+			else{
+				//给a添加点击事件
+				var aA = obj.getElementsByTagName("a");
+				for (var i =0;i<aA.length;i++) {
+					aA[i].onclick = function(){
+						var nowNum = parseInt(this.getAttribute("href").substring(1));
+						obj.innerHTML = "";
+					
+						page({
+						
+							id:opt.id,
+							nowNum:nowNum,
+							allNum:allNum,
+							callBack:callBack
+						
+						});
+					
+						return false;	
+					};
+				}
+			}
+	
 		}
       
 
