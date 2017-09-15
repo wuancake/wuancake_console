@@ -60,6 +60,7 @@ class Viewerb extends Tracer
      * 登录界面
      */
     public function login(){
+        $this->db->check_state() and $this->view('CheckWeekly');
         $this->view('Login');
     }
 
