@@ -29,7 +29,7 @@ $time = date('Y-m-d H:i:s');
 $res = $connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = '$headsman' ,modify_time = '$time'
                                     WHERE user_id = $user_id AND create_time IN 
                                     (SELECT value FROM 
-                                    (SELECT max(modify_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY modify_time DESC)
+                                    (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time DESC)
                                     AS gp);");
 
 $res or json(['error'=>'踢人失败']);

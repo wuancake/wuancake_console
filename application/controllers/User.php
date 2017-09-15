@@ -42,7 +42,7 @@ class User extends Tracer
         $psd === $rpsd or $this->jump('skip', '两次输入密码不一致', 'viewer/signup');
         is_numeric($qq) or $this->jump('skip', '请输入正确的QQ号码', 'viewer/signup');
 
-        $date     = date('Y-m-d H:m:s');
+        $date     = date('Y-m-d H:i:s');
         $password = md5($psd);
 
         ($message = $this->db->check_sole($email, $username, $nickname)) === 1 or $this->jump('skip', $message,'viewer/signup');
@@ -107,7 +107,7 @@ class User extends Tracer
         $group_id >= 1 && $group_id <= 7 or $this->jump('skip', '非法操作，请返回后重试', 'viewer/join_group');
 
         $id   = $_SESSION['token']['id'];
-        $time = date('Y-m-d H:m:s');
+        $time = date('Y-m-d H:i:s');
 
         $this->db->connect->query("INSERT INTO user_group VALUE (DEFAULT,$id,$group_id,0,DEFAULT ,'$time','$time')")
         or $this->jump('skip','加入分组失败，请稍候重试');
@@ -280,7 +280,7 @@ class User extends Tracer
         $group = $this->db->sel_group();
 
         $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
-        $time     = date('Y-m-d H:m:s');
+        $time     = date('Y-m-d H:i:s');
 
         $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = $week_num AND user_id = $id");
         if (@$res->num_rows) {
@@ -315,7 +315,7 @@ class User extends Tracer
         $group = $this->db->sel_group();
 
         $week_num = ceil((time() - strtotime('2015-11-02')) / 604800);
-        $time     = date('Y-m-d H:m:s');
+        $time     = date('Y-m-d H:i:s');
 
         $res = $this->db->connect->query("SELECT status FROM report WHERE week_num = $week_num AND user_id = $id");
         if (@$res->num_rows) {
