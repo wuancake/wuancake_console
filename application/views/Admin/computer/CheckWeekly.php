@@ -11,11 +11,10 @@
 		
 	</head>
 	<body>
-		<div class="checkweekly container-fluid">
-			<div class="row title">
-				<div class="col-md-12">
-					<h1 class="col-md-7 text-left">考勤系统管理后台</h1>
-					<div class="col-md-5 post text-right">  <?php
+		<div class="checkweekly">
+			<div class="title clearfix">
+					<div class="pull-left">考勤系统管理后台</div>
+					<div class="pull-right post">  <?php
                         switch ($_SESSION['admin']['auth']){
                             case 1:
                                 echo '导师';
@@ -33,18 +32,16 @@
                         ?>:<?php echo $_SESSION['admin']['username']?>
 						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
-				</div>
 			</div>
-			<div class="row">
-     			<div class="col-md-3 sidebar">
-     				<ul class="nav nav-pills nav-stacked">
+     			<div class="sidebar">
+     				<ul class="nav nav-stacked">
      					<li role="presentation">
      						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
      					</li>
      					<li role="presentation">
      						<a href="/index.php/viewerb/addMentor">新增导师</a>
      					</li>
-     					<li role="presentation">
+     					<li role="presentation"  class="active">
      						<a href="/index.php/viewerb/checkWeekly">查看周报</a>
      					</li>
      					<li role="presentation">
@@ -55,13 +52,12 @@
      					</li>
      				</ul>
      			</div>
- 				<div class="col-md-9">
  					<div class="main">
- 						<form class="form-horizontal">
- 							<div class="selectbox">
- 							<div class="form-group  pull-left">
- 								<label for="" class="control-label pull-left">分组：</label>
- 								<select for="" class="textbox" id="igroup">
+ 						<form class="content">
+ 							<div class="selectbox clearfix">
+
+ 								<label for="" class="pull-left">分组：</label>
+ 								<select for="" class="textbox  pull-left" id="igroup">
    										<option value="0"  selected="selected">全部</option>
    										<option value="1">PHP组</option>
  									 	<option value="2">Web前端组</option>
@@ -71,15 +67,13 @@
  										<option value="6">软件测试组</option>
  										<option value="7">JAVA组</option>
 								</select>
- 							</div>
- 							<div class="form-group pull-left">
- 								<label for="" class="control-label pull-left">截止周数：</label>
- 								<select for="" class="textbox" id="iweek">
+
+ 								<label for="" class="pull-left">截止周数：</label>
+ 								<select for="" class="textbox pull-left" id="iweek">
    										<!--周数选项值-->
 								</select>
- 							</div>
- 							
- 								 								<button type="button" class="btn btn-default btn-select" class="iselect" id="ibtnsel">确定</button>
+
+ 								<button type="button" class="btn btn-default btn-select" class="iselect" id="ibtnsel">确定</button>
  							</div>
  							
  							<table class="table table-striped  table-bordered  text-center">
@@ -103,11 +97,13 @@
    				 			 	<!--js创建分页-->
  								</div>
 					  		</nav>
+					  		
+					  		<p id="warning" ></p>
  						</form>	
  					</div>
  				</div>
-  			</div>
-		</div>
+
+
 		
 		
 		
@@ -645,27 +641,36 @@ function page(opt){
 			//callBack函数执行
 			callBack(nowNum,allNum);
 			
-			//给a添加点击事件
-			var aA = obj.getElementsByTagName("a");
-			for (var i =0;i<aA.length;i++) {
-				aA[i].onclick = function(){
-					var nowNum = parseInt(this.getAttribute("href").substring(1));
-					obj.innerHTML = "";
-					
-					page({
-						
-						id:opt.id,
-						nowNum:nowNum,
-						allNum:allNum,
-						callBack:callBack
-						
-					});
-					
-					return false;
-					
-				};
+			var ithead = document.getElementById("idData");
+			var num = idData.childNodes.length;
+			//无数据
+			if(num == 0){
+				obj.style.display="none";
+				var oB = document.getElementById("warning");
+					oB.innerHTML = "当前无成员周报数据";
 			}
-				
+			else{
+				//给a添加点击事件
+				var aA = obj.getElementsByTagName("a");
+				for (var i =0;i<aA.length;i++) {
+					aA[i].onclick = function(){
+						var nowNum = parseInt(this.getAttribute("href").substring(1));
+						obj.innerHTML = "";
+					
+						page({
+						
+							id:opt.id,
+							nowNum:nowNum,
+							allNum:allNum,
+							callBack:callBack
+						
+						});
+					
+						return false;	
+					};
+				}
+			}
+	
 		}
       
 
