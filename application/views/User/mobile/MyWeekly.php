@@ -276,10 +276,12 @@ var mytouch = (function() {
             doc.getElementById("pulldown").style.display = "block";
             nw ++;
             $.getJSON("/api/weekly.php?week="+ nw +"&session="+session_id,function(json){
-							
-							if(nw>offsetDays+1){
-								nw=offsetDays+2;
+            	
+							if(nw>offsetDays+1 && json.status =="未提交"){
+//								if()
+								
 //								alert("已经翻到最后一页了！");
+								nw=offsetDays+2;
 								$("#show").html('<div class="skip"><div class="hint">已经翻到最后一页了！</div></div>');
 							}
 							
