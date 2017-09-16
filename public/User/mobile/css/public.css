@@ -109,6 +109,8 @@
 }
 
 .wri-vacation-box .la-horizontal .la-horizontal-right .btn.active,
+.wri-vacation-box .la-horizontal .la-horizontal-right .btn.active:focus ,
+.wri-vacation-box .la-horizontal .la-horizontal-right .btn.active:hover,
 .wri-vacation-box .la-horizontal .la-horizontal-right .btn:hover,
 .wri-vacation-box .la-horizontal .la-horizontal-right .btn:focus{
 	color: #ffffff;
