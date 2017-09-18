@@ -50,6 +50,9 @@
      					<li role="presentation">
      						<a href="/viewerb/gatherClear">清人汇总</a>
      					</li>
+     					<li role="presentation">
+     						<a href="/viewerb/check">学员检索</a>
+     					</li>
      				</ul>
      			</div>
  
