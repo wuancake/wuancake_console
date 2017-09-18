@@ -14,7 +14,7 @@
 			<div class="floor"></div>
  			<div class="main">
  				<h1 class="text-center">午安煎饼计划考勤系统管理后台</h1>
- 				<form  action="/index.php/admin/login" method="post">
+ 				<form  action="/admin/login" method="post">
  					<div class="textframe clearfix">
  						<label for="" class="pull-left" >邮箱：</label>
  						<input type="email"  class="pull-left textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #f5f9ff inset;">

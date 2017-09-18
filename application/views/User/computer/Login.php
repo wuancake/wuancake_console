@@ -19,7 +19,7 @@
 <body>
 
     <div class="column-sign">
-        <form class="sign-in-box" action="/index.php/user/login" method="post">
+        <form class="sign-in-box" action="/user/login" method="post">
             <div class="sign-user-id sign-user">
                 <input type="text" name="email" placeholder="邮箱" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
@@ -31,9 +31,9 @@
                 <button class="btn btn-primary" type="submit"><span>登陆</span></button>
             </div>
             <div class="sign-up-href">
-                -><a href="/index.php/viewer/signup" class="sign-up-a">注册</a>
+                -><a href="/viewer/signup" class="sign-up-a">注册</a>
                 <br>
-                -><a href="/index.php/viewer/ChangePassWord" class="sign-up-a">找回密码</a>
+<!--                -><a href="/viewer/ChangePassWord" class="sign-up-a">找回密码</a>-->
 
             </div>
         </form>

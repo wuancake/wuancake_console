@@ -20,7 +20,7 @@
 <body>
 
     <div class="column-sign signup">
-        <form class="sign-up-box" action="/index.php/user/register" method="post">
+        <form class="sign-up-box" action="/user/register" method="post">
             <div class="sign-user-id sign-user">
                 <input type="text" name="username" placeholder="用户名" style="-webkit-box-shadow: 0px 0px 0px 50px white inset;">
             </div>
@@ -44,7 +44,7 @@
                 <button class="btn btn-primary" type="submit"><span>注册</span></button>
             </div>
             <div class="sign-in-href ">
-                -><a href="/index.php/viewer/index" class="sign-up-a">登陆</a>
+                -><a href="/viewer/index" class="sign-up-a">登陆</a>
             </div>
         </form>
     </div>

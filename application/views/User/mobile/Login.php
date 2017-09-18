@@ -27,7 +27,7 @@
 </div>
 <div class="login clearfix">
     <img src="/public/User/mobile/img/logo.jpg"/>
-    <form action="/index.php/user/login" method="post">
+    <form action="/user/login" method="post">
         <div class="from-group center-block">
             <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="输入电子邮箱"
                    name="email">
@@ -38,13 +38,13 @@
         </div>
 
         <div class="from-group  center-block clearfix">
-            <a href="/index.php/viewer/signup" class="btn btn-register">注册</a>
+            <a href="/viewer/signup" class="btn btn-register">注册</a>
             <button id="logBtn" type="submit" class="btn">登录</button>
         </div>
 
     </form>
 
-    <a href="/index.php/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
+    <a href="/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
 
 
 </div>

@@ -137,36 +137,36 @@ class UserModel extends TracerModels
      * @param $email string 电子邮箱地址
      * @param $info mixed 要发送的信息
      */
-    public function send_mail($email, $info) {
-        require './library/mailer/PHPMailerAutoload.php';
-
-        $mail = new PHPMailer;
-
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.qq.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = '459472218@qq.com';
-        $mail->Password   = 'qpqzmxasigvzbhef';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port       = 465;
-
-        $mail->setFrom('459472218@qq.com', 'wuan');
-        $mail->addAddress($email, 'user');     // Add a recipient
-//        $mail->addAddress('ellen@example.com');               // Name is optional
-//        $mail->addReplyTo('info@example.com', 'Information');
-//        $mail->addCC('cc@example.com');
-//        $mail->addBCC('bcc@example.com');
-        $mail->isHTML(false);
-
-        $mail->Subject = 'reset password';
-        $mail->Body    = '请访问以下链接进行重置密码操作：' . $info;
-
-        if (!$mail->send()) {
-            echo 'Message could not be sent.' . 'Mailer Error: ' . $mail->ErrorInfo;
-            die();
-        }
-
-    }
+//    public function send_mail($email, $info) {
+//        require './library/mailer/PHPMailerAutoload.php';
+//
+//        $mail = new PHPMailer;
+//
+//        $mail->isSMTP();
+//        $mail->Host       = 'smtp.qq.com';
+//        $mail->SMTPAuth   = true;
+//        $mail->Username   = '';
+//        $mail->Password   = '';
+//        $mail->SMTPSecure = 'ssl';
+//        $mail->Port       = 465;
+//
+//        $mail->setFrom('@qq.com', 'wuan');
+//        $mail->addAddress($email, 'user');     // Add a recipient
+////        $mail->addAddress('ellen@example.com');               // Name is optional
+////        $mail->addReplyTo('info@example.com', 'Information');
+////        $mail->addCC('cc@example.com');
+////        $mail->addBCC('bcc@example.com');
+//        $mail->isHTML(false);
+//
+//        $mail->Subject = 'reset password';
+//        $mail->Body    = '请访问以下链接进行重置密码操作：' . $info;
+//
+//        if (!$mail->send()) {
+//            echo 'Message could not be sent.' . 'Mailer Error: ' . $mail->ErrorInfo;
+//            die();
+//        }
+//
+//    }
 
 
     /**

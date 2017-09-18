@@ -25,7 +25,7 @@
 	</head>
   	<body> 
   		<div class="title">
-    	<a href="/index.php/viewer/index"  id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    	<a href="/viewer/index"  id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
       <h2>我的周报</h2>
     	</div>
 <div class="myweekly">

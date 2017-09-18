@@ -26,7 +26,7 @@
     </div>
     
 <div class="forgetpass clearfix">
-  <form action="/index.php/user/recover_psd" method="post">
+  <form action="/user/recover_psd" method="post">
   	<h4>忘记密码?</h4>
     <div class="from-group center-block">
       <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="注册的电子邮箱" name="email">
@@ -41,7 +41,7 @@
   <p>提交后我们将修改密码的地址以邮件的形式发送到您的邮箱中，请注意查收！</p>
  
   <div class="box clearfix">
-			<span>已有帐号？</span><a href="/index.php/viewer/index">点击登录</a>
+			<span>已有帐号？</span><a href="/viewer/index">点击登录</a>
 		</div>
 
 </div>

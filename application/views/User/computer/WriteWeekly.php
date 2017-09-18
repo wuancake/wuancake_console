@@ -72,7 +72,7 @@
                          } ?>
   				</div>
   				<div class="media-right">
-  				   <a href="/index.php/user/quit">
+  				   <a href="/user/quit">
   				   	<span class="glyphicon iconfont icon-fenxiang"></span>
   				   </a>
   				</div>
@@ -81,13 +81,13 @@
 				<!--导航-->
   			<ul class="nav nav-pills nav-stacked">
  					<li role="presentation" class="active">
- 							<a href="/index.php/viewer/index" class="text-center"><span class="glyphicon iconfont icon-shouye"></span>首页</a>
+ 							<a href="/viewer/index" class="text-center"><span class="glyphicon iconfont icon-shouye"></span>首页</a>
  					</li>
  					<li role="presentation">
- 							<a href="/index.php/viewer/show_weekly" class="text-center"><span class="glyphicon iconfont icon-wo"></span>我的周报</a>
+ 							<a href="/viewer/show_weekly" class="text-center"><span class="glyphicon iconfont icon-wo"></span>我的周报</a>
  					</li>
  					<li role="presentation">
- 							<a href="/index.php/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
+ 							<a href="/viewer/change_psd" class="text-center"><span class="glyphicon iconfont icon-icon28"></span>修改密码</a>
  					</li>
 				</ul>
 				</div>
@@ -104,7 +104,7 @@
             <h4>周报撰写</h4>
         </div>
         <div class="box writeweekly">
-        	<form action="/index.php/user/write_weekly" method="post">
+        	<form action="/user/write_weekly" method="post">
             <div class="column-leave-1">
                 <div class="user-info">
                     <span class="user-group">

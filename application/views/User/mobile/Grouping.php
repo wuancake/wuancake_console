@@ -32,7 +32,7 @@
 
 
 			<div class="grouping">
-			<form  class="genre" action="/index.php/user/join_group" method="post">
+			<form  class="genre" action="/user/join_group" method="post">
 							<table class="table table-striped  table-bordered  text-center">
   			    	  <tbody>
   			    	  	<tr>

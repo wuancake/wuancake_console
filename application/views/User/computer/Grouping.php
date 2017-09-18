@@ -33,7 +33,7 @@
         <h4>选择分组</h4>
     </div>
 
-    <form action="/index.php/user/join_group" method="post">
+    <form action="/user/join_group" method="post">
         <div class="grouping">
             <div class="row">
                 <div class="col-md-2"></div>

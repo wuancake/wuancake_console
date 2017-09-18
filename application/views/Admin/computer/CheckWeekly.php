@@ -30,25 +30,25 @@
                                 break;
                         }
                         ?>:<?php echo $_SESSION['admin']['username']?>
-						 <a href="/index.php/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
+						 <a href="/admin/quit" class="glyphicon glyphicon-arrow-right">登出</a>
 					</div>
 			</div>
      			<div class="sidebar">
      				<ul class="nav nav-stacked">
      					<li role="presentation">
-     						<a href="/index.php/viewerb/addAdmin">新增管理员</a>
+     						<a href="/viewerb/addAdmin">新增管理员</a>
      					</li>
      					<li role="presentation">
-     						<a href="/index.php/viewerb/addMentor">新增导师</a>
+     						<a href="/viewerb/addMentor">新增导师</a>
      					</li>
      					<li role="presentation"  class="active">
-     						<a href="/index.php/viewerb/checkWeekly">查看周报</a>
+     						<a href="/viewerb/checkWeekly">查看周报</a>
      					</li>
      					<li role="presentation">
-     						<a href="/index.php/viewerb/gatherAttendance">考勤汇总</a>
+     						<a href="/viewerb/gatherAttendance">考勤汇总</a>
      					</li>
      					<li role="presentation">
-     						<a href="/index.php/viewerb/gatherClear">清人汇总</a>
+     						<a href="/viewerb/gatherClear">清人汇总</a>
      					</li>
      				</ul>
      			</div>

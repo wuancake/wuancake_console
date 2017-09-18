@@ -66,12 +66,12 @@
                 </div>
                 <div class="page-sidebar text-center">
                     <ul class="sub-menu">
-                        <li class="active"><a  href="/index.php/viewer/show_weekly">我的周报</a></li>
-                        <li><a  href="/index.php/viewer/change_psd">修改密码</a></li>
+                        <li class="active"><a  href="/viewer/show_weekly">我的周报</a></li>
+                        <li><a  href="/viewer/change_psd">修改密码</a></li>
                     </ul>
                 </div>
                 <div class="page-region">
-                    <a href="/index.php/user/quit" class="btn btn-default center-block " >退出</a>
+                    <a href="/user/quit" class="btn btn-default center-block " >退出</a>
                 </div>
             </div>
         </div>
@@ -116,8 +116,8 @@
                     echo 'Java组';
                     break;
             } ?></span>：<span><?php echo $username; ?></span></p>
-    <a href="/index.php/viewer/show_weekly" id="myweeklybtn" class="center-block btn">我的周报</a>
-    <form action="/index.php/user/vacate_off" method="post">
+    <a href="/viewer/show_weekly" id="myweeklybtn" class="center-block btn">我的周报</a>
+    <form action="/user/vacate_off" method="post">
         <button id="canleave" class="center-block" type="submit">取消请假</button>
     </form>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">

@@ -28,7 +28,7 @@
     <h2>修改密码</h2>
 </div>
 <div class="changepassword">
-    <form role="form" class="info-box" action="/index.php/user/reset_psd" method="post">
+    <form role="form" class="info-box" action="/user/reset_psd" method="post">
         <div class="form-group">
             <input type="password" class="form-control text-center" placeholder="旧密码" name="password">
         </div>

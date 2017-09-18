@@ -172,17 +172,17 @@ class User extends Tracer
      * $email string email地址
      * !!!!!!!!!正式上线前需要更改公钥!!!!!!!!!!!!!!!!!!!!
      */
-    public function recover_psd() {
-        $email = $this->post('email', 'viewer/recover_psd');
-
-        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
-        $body = $email . '*' . (time() + 600);
-        $key  = $body . '*' . hash_hmac('sha256', $body, 'foo');
-
-        $info = 'http://' . $_SERVER['SERVER_NAME'] . "/index.php/user/verify_psdtoken?key=$key";
-        $this->db->send_mail($email, $info);
-        $this->jump('skip', '邮件发送成功，请查收邮件', 'viewer/index');
-    }
+//    public function recover_psd() {
+//        $email = $this->post('email', 'viewer/recover_psd');
+//
+//        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
+//        $body = $email . '*' . (time() + 600);
+//        $key  = $body . '*' . hash_hmac('sha256', $body, 'foo');
+//
+//        $info = 'http://' . $_SERVER['SERVER_NAME'] . "/user/verify_psdtoken?key=$key";
+//        $this->db->send_mail($email, $info);
+//        $this->jump('skip', '邮件发送成功，请查收邮件', 'viewer/index');
+//    }
 
 
     /**

@@ -41,12 +41,12 @@
             </div>
             <div class="page-sidebar text-center">
                 <ul class="sub-menu">
-                    <li class="active"><a href="/index.php/viewer/show_weekly">我的周报</a></li>
-                    <li><a href="/index.php/viewer/change_psd">修改密码</a></li>
+                    <li class="active"><a href="/viewer/show_weekly">我的周报</a></li>
+                    <li><a href="/viewer/change_psd">修改密码</a></li>
                 </ul>
             </div>
             <div class="page-region">
-                <a href="/index.php/user/quit" class="btn btn-default center-block ">退出</a>
+                <a href="/user/quit" class="btn btn-default center-block ">退出</a>
             </div>
         </div>
     </div>

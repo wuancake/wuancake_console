@@ -28,11 +28,11 @@
 </head>
 <body>
 <div class="title">
-    <a href="/index.php/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    <a href="/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>撰写周报</h2>
 </div>
 <div class="writeweekly">
-    <form role="form" class="info-box wri-weekly-box" action="/index.php/user/write_weekly" method="post">
+    <form role="form" class="info-box wri-weekly-box" action="/user/write_weekly" method="post">
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left"><?php
                 switch ($group) {

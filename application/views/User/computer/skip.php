@@ -36,7 +36,7 @@
                 </div>
                 <?php
                 if (!empty($url))
-                    echo "<meta http-equiv='refresh' content=1;URL='/index.php/$url'>";
+                    echo "<meta http-equiv='refresh' content=1;URL='/$url'>";
                 ?>
             </div>
 

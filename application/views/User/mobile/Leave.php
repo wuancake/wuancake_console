@@ -24,13 +24,13 @@
 </head>
 <body>
 <div class="title">
-    <a href="/index.php/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
+    <a href="/viewer/index" id="showSideBar"><span id="returnbtn" class="iconfont icon-fanhui"></span></a>
     <h2>我要请假</h2>
 </div>
 
 <div class="leave">
 
-    <form role="form" class="info-box wri-vacation-box" action="/index.php/user/vacate" method="post">
+    <form role="form" class="info-box wri-vacation-box" action="/user/vacate" method="post">
         <div class="form-group la-horizontal clearfix">
             <label class="la-horizontal-left"><?php
                 switch ($group) {

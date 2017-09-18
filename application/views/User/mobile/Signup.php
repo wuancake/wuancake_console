@@ -27,7 +27,7 @@
     <h2>午安煎饼计划</h2>
 </div>
 <div class="signup">
-    <form role="form" class="info-box registered-box" action="/index.php/user/register" method="post">
+    <form role="form" class="info-box registered-box" action="/user/register" method="post">
         <div class="form-group">
             <input type="text" class="form-control text-center" placeholder="用户名" name="username">
         </div>
@@ -50,7 +50,7 @@
     </form>
 
     <div class="box clearfix">
-        已有帐号？</span><a href="/index.php/viewer/index">点击登录</a>
+        已有帐号？</span><a href="/viewer/index">点击登录</a>
     </div>
 </div>
 

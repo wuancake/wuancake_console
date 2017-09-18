@@ -25,7 +25,7 @@
 <body>
 
     <div class="right-part-password">
-        <form class="column-password" action="/index.php/user/set_new_psd" method="post">
+        <form class="column-password" action="/user/set_new_psd" method="post">
             <div class="new-password sign-user">
                 <input type="password" id="pswd" placeholder="新密码" name="password">
                 <span class="glyphicon iconfont icon-yanjing"></span>
