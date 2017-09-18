@@ -82,27 +82,27 @@ class Admin extends Tracer
     /**
      * 踢人
      */
-    public function fuck_someone()
-    {
-        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/login');
-
-        $user_id = (int)$this->post('user_id', 'viewer/gatherAttend');
-        $user_group = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
-
-        $headsman = $_SESSION['admin']['name'];
-        $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
-        and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/gatherAttend');
-
-        $time = date('Y-m-d H:i:s');
-        $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
-                                    WHERE user_id = $user_id AND create_time IN 
-                                    (SELECT value FROM 
-                                    (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time)
-                                    AS gp);");
-
-        echo "<script>alert('踢人成功')</script>";
-
-    }
+//    public function fuck_someone()
+//    {
+//        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/login');
+//
+//        $user_id = (int)$this->post('user_id', 'viewer/gatherAttend');
+//        $user_group = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
+//
+//        $headsman = $_SESSION['admin']['name'];
+//        $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
+//        and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/gatherAttend');
+//
+//        $time = date('Y-m-d H:i:s');
+//        $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
+//                                    WHERE user_id = $user_id AND create_time IN
+//                                    (SELECT value FROM
+//                                    (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time)
+//                                    AS gp);");
+//
+//        echo "<script>alert('踢人成功')</script>";
+//
+//    }
 
 
     /**
@@ -135,6 +135,45 @@ class Admin extends Tracer
             }
         }
     }
+
+
+    public function check(){
+        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewerb/login');
+        empty($_POST['qq']) and $this->jump('check','请输入QQ！');
+        $_SESSION['admin']['auth'] < 2 and $this->jump('skip', '权限不足，无法操作', 'viewerb/check');
+
+        $qq = $_POST['qq'];
+        $res = $this->db->connect->query("
+                                            SELECT u.user_name,case
+                                            WHEN g.group_id = 1 THEN 'PHP组'
+                                            WHEN g.group_id = 2 THEN 'Web前端组'
+                                            WHEN g.group_id = 3 THEN 'UI设计组'
+                                            WHEN g.group_id = 4 THEN 'Android组'
+                                            WHEN g.group_id = 5 THEN '产品经理组'
+                                            WHEN g.group_id = 6 THEN '软件测试组'
+                                            WHEN g.group_id = 7 THEN 'Java组'
+                                            ELSE '其他组'
+                                            END 'group'
+                                            FROM
+                                            user AS u INNER JOIN user_group AS g ON u.id=g.user_id AND u.QQ='$qq'
+                                            AND g.deleteFlg = 0;
+        ");
+
+        if (!$res->num_rows) $this->view('check',['message'=>'此QQ暂未在网站注册']);
+
+        $data = array();
+        while ($info = $res->fetch_assoc()){
+            $data[] = [
+                'qq'=>$qq,
+                "name"=>$info['user_name'],
+                'group'=>$info['group']
+            ];
+        }
+        $this->view('check',['info'=>$data]);
+
+    }
+
+
 
 
 }

@@ -70,7 +70,8 @@ class Viewerb extends Tracer
      */
 
     public function check(){
-        $this->view('checkQQ');
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+        $this->view('check');
     }
 
 }
