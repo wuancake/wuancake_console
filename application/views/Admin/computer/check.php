@@ -69,7 +69,7 @@
                                     if (!empty($info)){
                                         foreach ($info as $key=>$value) {
                                             echo
-                                            "<div style=\"border: 1px solid #47acff;margin-top: 100px;padding: 20px;text-align: center;\">
+                                            "<div class=\"check_sel\">
                                     <p>QQ：{$value['qq']}</p>
    									<p>学员：{$value['name']}</p>
    									<p>组别：{$value['group']}</p>
@@ -78,7 +78,7 @@
                                     }
                                     if (!empty($message)){
                                         echo "
-                                        <div style=\"border: 1px solid #47acff;margin-top: 100px;padding: 20px;text-align: center;\">
+                                        <div class=\"check_sel\">
                                         <p>$message</p>
                                         </div>";
                                     }
