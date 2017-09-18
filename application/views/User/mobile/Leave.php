@@ -120,6 +120,7 @@
             $("#one,#two,#three").removeClass("active");
             $("#three").addClass("active");
         });
+     });
 </script>
 
 </body>
