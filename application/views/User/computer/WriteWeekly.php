@@ -160,7 +160,7 @@
                 <span class="next-plan">下周计划（必填）</span>
                 <textarea rows="3" cols="30" placeholder="合理的计划能够带来更好的学习效果" name="todo"></textarea>
                 <span class="homework">作品链接</span>
-                <textarea rows="1" cols="30" placeholder="记得把作品链接放在这里，特别是UI组的伙伴么" name="url"></textarea>
+                <textarea rows="1" cols="30" placeholder="记得把作品链接放在这里，特别是UI组的伙伴们" name="url"></textarea>
             </div>
             
             <div class="btn-leave">
