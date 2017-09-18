@@ -64,4 +64,13 @@ class Viewerb extends Tracer
         $this->view('Login');
     }
 
+
+    /**
+     * 查询界面
+     */
+
+    public function check(){
+        $this->view('checkQQ');
+    }
+
 }
