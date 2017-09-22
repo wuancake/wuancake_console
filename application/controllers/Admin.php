@@ -80,63 +80,8 @@ class Admin extends Tracer
 
 
     /**
-     * 踢人
+     * 根据QQ查询用户信息
      */
-//    public function fuck_someone()
-//    {
-//        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewer/login');
-//
-//        $user_id = (int)$this->post('user_id', 'viewer/gatherAttend');
-//        $user_group = $this->db->connect->query("SELECT group_id FROM user_group WHERE user_id = $user_id")->fetch_assoc()['group_id'];
-//
-//        $headsman = $_SESSION['admin']['name'];
-//        $_SESSION['admin']['auth'] === 1 && $_SESSION['admin']['group'] !== $user_group
-//        and $this->jump('skip', '非法请求，导师只能踢出本组的人', 'viewer/gatherAttend');
-//
-//        $time = date('Y-m-d H:i:s');
-//        $this->db->connect->query("UPDATE user_group SET deleteFlg = 1 , headsman = $headsman ,modify_time = $time
-//                                    WHERE user_id = $user_id AND create_time IN
-//                                    (SELECT value FROM
-//                                    (SELECT max(create_time) AS value FROM user_group WHERE user_id = $user_id ORDER BY create_time)
-//                                    AS gp);");
-//
-//        echo "<script>alert('踢人成功')</script>";
-//
-//    }
-
-
-    /**
-     * 考勤，检索数据库，向数据库中的report表增加用户跷周报的数据
-     * 本方法会在每次导师、管理员登录后自动执行
-     */
-    private function attend(){
-        //统计截止到此周数的周报未提交人数
-        $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
-        $time = date('Y-m-d H:i:s');
-
-        for ($week = 83; $week <= $last_week; $week++) {
-            $sql = "SELECT user_id,group_id FROM user_group WHERE deleteFlg != 1 AND
-                    user_id NOT IN (SELECT user_id AS id FROM report WHERE week_num = $week);";
-
-            //获取当前循环周数未提交周报的学员id
-            $res = $this->db->connect->query($sql);
-            if ($res->num_rows === 0) continue;
-
-            while ($arr = $res->fetch_assoc()) {
-                $list[] = ['user_id' => $arr['user_id'],
-                            'group' => $arr['group_id']];
-            }
-
-            foreach ($list as $value) {
-
-//                if ($value['group'] === 0) continue;
-
-                $this->db->connect->query("INSERT INTO report VALUE ($week,{$value['user_id']},{$value['group']},'未提交',1,'$time')");
-            }
-        }
-    }
-
-
     public function check(){
         $this->db->check_state() or $this->jump('skip', '请先登录', 'viewerb/login');
         empty($_POST['qq']) and $this->jump('check','请输入QQ！');
@@ -173,6 +118,50 @@ class Admin extends Tracer
 
     }
 
+
+    /**
+     * 考勤，检索数据库，向数据库中的report表增加用户跷周报的数据
+     * 本方法会在每次导师、管理员登录后自动执行
+     */
+    public function attend(){
+        //统计截止到此周数的周报未提交人数
+        $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
+        $time = date('Y-m-d H:i:s');
+
+        $sql_query = "SELECT user_id,group_id FROM user_group WHERE deleteFlg != 1 AND
+                    user_id NOT IN (SELECT user_id AS id FROM report WHERE week_num = ?);";
+
+        $sql_insert = "INSERT INTO report VALUE (?,?,?,'未提交',1,'$time')";
+
+        $stmt_query = $this->db->connect->prepare($sql_query);
+        $stmt_insert = $this->db->connect->prepare($sql_insert);
+
+        for ($week = 83; $week <= $last_week; $week++) {
+
+            $stmt_query->bind_param('i',$week);
+            $stmt_query->bind_result($user_id,$group_id);
+            $stmt_query->execute() or die('查询失败');
+
+            while ($stmt_query->fetch()) {
+                if (empty($user_id)) continue 2;
+                $list[] = [
+                    'user_id' => $user_id,
+                    'group' => $group_id
+                ];
+            }
+            $stmt_query->free_result();
+
+            foreach ($list as $info){
+                $stmt_insert->bind_param('iii',$week,$info['user_id'],$info['group']);
+                $stmt_insert->execute() or die('操作失败'.$stmt_insert->error);
+            }
+            unset($list);
+
+        }
+
+        $stmt_query->close();
+        $stmt_insert->close();
+    }
 
 
 

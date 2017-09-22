@@ -83,9 +83,6 @@ class User extends Tracer
         $this->db->setToken($id, $username, $wuan_name);
 
         //判断用户是否加入分组
-//        $sql = "SELECT group_id FROM user_group WHERE user_id = $id";
-//        $res = $this->db->connect->query($sql);
-//        @$res->num_rows or $this->jump('skip', '你尚未加入分组，请先选择分组', 'viewer/join_group');
         $this->db->exist_group() or $this->jump('skip', '你尚未加入分组，请先加入分组', 'viewer/join_group');
 
 
