@@ -1,0 +1,393 @@
+﻿
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: "微软雅黑";
+}
+
+i{font-style: normal;}
+
+a{text-decoration: none;}
+
+a:hover{text-decoration: none;}
+
+label{font-weight: 500;}
+
+option{font-size: 16px;}
+/******* base *******/
+.clear {
+	clear: both;
+	font-size:0;
+	line-height:0;
+	height:0;
+}
+/*清除浮动*/
+ .clearfix:after {
+	content:".";
+	clear:both;
+	display:block;
+	height:0;
+	visibility:hidden;
+}
+.clearfix { *zoom:1;}  
+
+/******* base *******/
+
+.textbox{
+	width: 490px;
+	height: 54px;
+}
+
+.textframe{
+	width: 670px;
+	margin: 0 auto;
+	font-size: 34px;
+		/*font-weight: 100;*/
+}
+
+
+
+.addadmin .main,.addmentor .main,.checkweekly .main,.gatherattendance .main, .gatherclear .main{
+	/*border: 1px solid palevioletred;*/
+    height: 100%;
+    padding-left: 266px;
+    padding-top: 150px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction:row; 
+    -webkit-align-items: center;
+     align-items: center; 
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.content{width: 84%;}
+
+.selectbox{
+	font-size: 34px;
+	width: 890px;
+	height: 50px;
+	margin-bottom: 40px;
+	overflow: hidden;
+	display: flex;
+  flex-direction:row; 
+  -webkit-align-items: flex-start;
+   align-items: flex-start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+	}
+
+.gatherattendance .main select.textbox,.checkweekly .main select.textbox{
+	height: 50px;
+	width: 230px;
+	padding-right: 50px;
+  margin-right: 20px;
+}
+
+.gatherattendance #igroup[disabled="ture"]{
+	font-size: 10px;
+}
+
+.textbox,
+.textbox:focus{
+	border: 0;
+	border-bottom: 1px solid #418afe;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0px 0px 0px red;
+  outline: none;
+  border-radius: 0;
+  font-size: 40px;
+}
+
+.textbox{
+		margin-bottom: 54px;
+}
+
+.gatherattendance .textbox,.checkweekly .textbox{
+		font-size: 34px;
+}
+
+.btn{
+	border: 1px solid #47acff ;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0;
+	letter-spacing:2px;
+}
+
+.btn-select{
+	font-size: 30px;
+	padding: 0 15px;
+	height: 50px;
+}
+
+.btn-register{
+	display: block;
+	 width: 428px;
+	 height: 72px;
+	 margin:0 auto;
+	 font-size: 32px;
+}
+
+
+
+
+
+.main .btn:hover,.main .btn:focus,.main .btn:visited,.main .btn:before,.main .btn:active{
+	color: #ffffff;
+	background-color: #418afe;
+	box-shadow: 0px 0px 0px red  inset;
+}
+
+
+
+.main select.textbox{
+	/*很关键：将默认的select选择框样式清除*/
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+
+	width: 490px;
+	background: url(../img/select.png) no-repeat right;
+
+}
+
+
+/*SideBar start*/
+.sidebar{
+	background-color: #418afe;
+	padding:0 0 0 16px;
+	font-size: 38px;
+	height: 800px;
+	width:340px;
+	position: fixed;
+  left: 0;
+  top: 120px;
+  height: 100%;
+  width:340px;
+  overflow: hidden;
+}
+
+.sidebar .nav li a{
+	color: #ffffff;
+	height: 110px;
+	line-height: 110px;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.nav>li>a:hover,.nav>li>a:focus,.nav>li>a:active,.nav>li>a:before,.nav>li>a:visited,.nav>li>a:link{
+	background-color: rgba(255,255,255,0);
+}
+
+.nav>li>a:hover{
+	color: #00479b;
+}
+
+.sidebar .nav>li.active{
+	background-color: #00479b;
+}
+
+.sidebar .nav>li.active a:hover{
+	color: #ffffff;
+}
+/*SideBar end*/
+
+
+/*login start*/
+.login .floor{
+	margin: 260px 0 110px 0;
+	width: 100%;
+	height: 660px;
+	background:#418afe;
+	
+	position: fixed;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+}
+
+.login .main{
+	background:#f5f9ff;
+	margin: 0 auto;
+	width: 960px;
+	height: 660px;
+	position: fixed;
+  top: 44%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  padding: 0;
+}
+
+.login .main>h1 {
+	font-size: 48px;
+	height: 134px;
+	line-height: 134px;
+	color: #ffffff;
+	background: #47acff;
+	margin: 0 0 88px 0;
+
+}
+
+.login .btn-register{
+		width: 414px;
+		height: 108px;
+		line-height: 100px;
+}
+
+.login .textbox{
+		width: 540px;
+		margin-bottom: 76px;
+}
+.login .textframe{font-size: 40px;}
+
+/*login end*/
+
+
+
+/*title start*/
+.title{
+	height: 120px;
+	color: #ffffff;
+	background-color: #47acff;
+	font-size: 48px;
+	line-height:120px;
+	padding: 0 30px;
+	width: 100%;
+	overflow: hidden;
+	position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.title .text-left{
+	font-size: 48px;
+	/*line-height:80px;*/
+}
+
+.title .post{
+	font-size: 38px;
+}
+
+.title .glyphicon-arrow-right{
+	cursor: pointer;
+	color: #ffffff;
+	text-decoration:none ;
+}
+
+/*title end*/
+
+/*表格*/
+.table{
+	background-color: #ffffff;
+}
+
+.table th{
+	font-weight: 500;
+}
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	vertical-align: middle;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 1px;
+  text-align: center;
+  width: 100px;
+}
+
+
+.gatherattendance .table>tbody>tr>td.status1{
+	  color: #a21b19;
+    background-color: #ffdcdc;
+    border-color: #ffbebe;
+}
+.gatherattendance .table>tbody>tr>td.status2{
+	  color: #31708f;
+    background-color: #e6f2ff;
+    border-color: #bfd3ea;
+}
+.gatherattendance .table>tbody>tr>td.status3{
+	  color: #8a6d3b;
+    background-color: #fff094;
+    border-color: #ffdc2e;
+
+}
+
+.checkweekly .table-striped> #idData > tr >th:nth-child(5),
+.checkweekly .table-striped> #idData > tr >td:nth-child(5){
+	width: 50%;
+}
+.checkweekly .table-striped> #idData > tr >td:nth-child(5){
+
+	text-align: left;
+}
+
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f4f9fe;
+}
+
+
+.btn-rm,.btn-rm:hover,.btn-rm:focus,.btn-rm:active,.btn-rm:before{
+	border: 0;
+	background-color: rgba(255, 255, 255, 0);
+	border-radius: 0;
+	letter-spacing:2px;
+	outline:none;
+}
+
+.btn-rm:hover{
+	font-weight: 700;
+}
+
+/*翻页*/
+
+.pager{
+  padding-left: 0;
+  margin: 60px 0 0 0;
+  text-align: center;
+  list-style: none;
+  font-size: 12px;
+  color: #006fdd;
+}
+
+.pager >a,
+.pager li > span {
+  padding: 6px 10px;
+  border: 1px solid #418afe;
+  border-radius:0;
+  margin-left:3px;
+  margin-right:3px;
+}
+
+
+.pager >.pager-tab.active,
+#pagination >a.active {
+  text-decoration: none;
+  background-color: #418afe;
+  color: white;
+}
+
+/*翻页*/
+
+
+
+#warning{
+	text-align: center;
+	font-size: 24px;
+	color: #ff6a6a;
+}
+
+
+.check_sel{
+	border: 1px solid #47acff;margin-top: 100px;padding: 20px;text-align: center;
+}
