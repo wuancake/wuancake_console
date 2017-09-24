@@ -68,10 +68,17 @@ class Viewerb extends Tracer
     /**
      * 查询界面
      */
-
     public function check(){
         $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
         $this->view('check');
     }
 
+
+    /**
+     * 修改密码界面
+     */
+    public function change_psd(){
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+        $this->view('resetPsd');
+    }
 }

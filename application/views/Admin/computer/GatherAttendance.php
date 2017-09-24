@@ -35,12 +35,18 @@
 			</div>
      			<div class="sidebar">
      				<ul class="nav nav-stacked">
-     					<li role="presentation">
-     						<a href="/viewerb/addAdmin">新增管理员</a>
-     					</li>
-     					<li role="presentation">
-     						<a href="/viewerb/addMentor">新增导师</a>
-     					</li>
+                        <?php
+                        if ($_SESSION['admin']['auth'] == 3){
+                            ?>
+                            <li role="presentation">
+                                <a href="/viewerb/addAdmin" >新增管理员</a>
+                            </li><?php }?>
+                        <?php
+                        if ($_SESSION['admin']['auth'] != 1){
+                            ?>
+                            <li role="presentation">
+                                <a href="/viewerb/addMentor">新增导师</a>
+                            </li><?php }?>
      					<li role="presentation">
      						<a href="/viewerb/checkWeekly">查看周报</a>
      					</li>
@@ -53,6 +59,9 @@
      					<li role="presentation">
      						<a href="/viewerb/check">学员检索</a>
      					</li>
+                        <li role="presentation">
+                            <a href="/viewerb/change_psd" >修改密码</a>
+                        </li>
      				</ul>
      			</div>
 

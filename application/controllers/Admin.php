@@ -120,10 +120,49 @@ class Admin extends Tracer
 
 
     /**
+     * 修改密码
+     */
+    public function resetPsd(){
+        $this->db->check_state() or $this->jump('skip','请登录后操作','viewerb/login');
+
+        $psd      = $this->post('password', 'viewerb/change_psd');
+        $newpsd   = $this->post('newpsd', 'viewerb/change_psd');
+        $renewpsd = $this->post('repassword', 'viewerb/change_psd');
+
+        $newpsd === $renewpsd or $this->jump('skip', '两次输入的密码不同', 'viewerb/change_psd');
+
+        $this->db->check_state() or $this->jump('skip', '请先登录', 'viewerb/change_psd');
+        $id = $_SESSION['admin']['id'];
+
+        $sql  = "SELECT password FROM adm WHERE id = ?";
+        $stmt = $this->db->connect->prepare($sql);
+        $stmt->bind_param('s', $id);
+        $stmt->bind_result($now_psd);
+        $stmt->execute() or $this->jump('skip', '操作失败，请稍后重试', 'viewerb/change_psd');
+        $stmt->fetch();
+        $stmt->close();
+
+        $now_psd == md5($psd) or $this->jump('skip', '密码错误', 'viewerb/change_psd');
+        $newpsd = md5($newpsd);
+
+        $sql  = "UPDATE adm SET password = ? WHERE id = ?";
+        $stmt = $this->db->connect->prepare($sql);
+
+        $stmt->bind_param('si', $newpsd, $id);
+        $stmt->execute() or $this->jump('skip', '操作失败，请稍后重试', 'viewerb/change_psd');
+
+        $stmt->free_result();
+        $stmt->close();
+
+        $this->jump('skip', '修改密码成功', 'viewerb/change_psd');
+    }
+
+
+    /**
      * 考勤，检索数据库，向数据库中的report表增加用户跷周报的数据
      * 本方法会在每次导师、管理员登录后自动执行
      */
-    public function attend(){
+    private function attend(){
         //统计截止到此周数的周报未提交人数
         $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
         $time = date('Y-m-d H:i:s');
@@ -162,7 +201,6 @@ class Admin extends Tracer
         $stmt_query->close();
         $stmt_insert->close();
     }
-
 
 
 }
