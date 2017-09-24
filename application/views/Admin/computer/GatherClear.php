@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>GatherClear</title>
+		<title>清人汇总</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
-		
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 		
 	</head>
@@ -150,7 +150,7 @@
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;
-      				var pageSize = 10;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				

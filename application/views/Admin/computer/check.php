@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>checkQQ</title>
+		<title>学员检索</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 	</head>
 	<body>

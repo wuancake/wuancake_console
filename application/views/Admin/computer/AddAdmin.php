@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AddAdmin</title>
+		<title>新增管理员</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 	</head>
 	<body>
@@ -69,13 +70,13 @@
  						<form class="content" action="/admin/create_admin" method="post">
  							<div class="textframe  clearfix">
  								<label for="" class="pull-left">昵称：</label>
- 								<input type="text" class="textbox" placeholder="" name="name" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
+ 								<input type="text" class="pull-left textbox" placeholder="" name="name" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
  									
  								<label for="" class="pull-left">邮箱：</label>
- 								<input type="email" class="textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
+ 								<input type="email" class="pull-left textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
 
    								<label for="" class="pull-left">密码：</label>
-   								<input type="password" class="textbox" placeholder="" name="password">
+   								<input type="password" class="pull-left textbox" placeholder="" name="password">
 
                          	    <input type="hidden" name="auth" value="2">
      						  	<button type="submit" class="btn btn-default btn-register text-center">创建</button>

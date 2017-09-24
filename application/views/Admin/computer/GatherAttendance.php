@@ -2,10 +2,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>GatherAttendance</title>
+		<title>考勤汇总</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
+		
 		
 		
 		
@@ -183,7 +185,7 @@
 var session_id = "<?php echo $session_id; ?>";  //获取动态id
 var identity = "<?php echo $_SESSION['admin']['auth'];?>";  //访问身份
 var mentor_group = "<?php echo $_SESSION['admin']['group']; ?>";  //该身份所在分组 
-
+var create_time = create_time
 
 
 
@@ -219,7 +221,7 @@ window.onload = function (){
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;
-      				var pageSize = 10;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -233,6 +235,7 @@ window.onload = function (){
 						
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						
@@ -299,7 +302,7 @@ window.onload = function (){
 					sel_dis.disabled= true;
       				
       				var num = json["data"].length;
-      				var pageSize = 10;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -311,6 +314,7 @@ window.onload = function (){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						
@@ -448,7 +452,7 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
-      				var pageSize = 10;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -460,6 +464,7 @@ $(document).ready(function(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						
@@ -523,7 +528,7 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
-      				var pageSize = 10;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -535,6 +540,7 @@ $(document).ready(function(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						

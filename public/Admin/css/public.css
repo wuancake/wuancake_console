@@ -36,14 +36,14 @@ option{font-size: 16px;}
 /******* base *******/
 
 .textbox{
-	width: 490px;
-	height: 54px;
+	width: 410px;
+	height: 32px;
 }
 
 .textframe{
-	width: 670px;
+	width: 500px;
 	margin: 0 auto;
-	font-size: 34px;
+	font-size: 24px;
 		/*font-weight: 100;*/
 }
 
@@ -66,7 +66,7 @@ option{font-size: 16px;}
 .content{width: 84%;}
 
 .selectbox{
-	font-size: 34px;
+	font-size: 24px;
 	width: 890px;
 	height: 50px;
 	margin-bottom: 40px;
@@ -80,8 +80,8 @@ option{font-size: 16px;}
 	}
 
 .gatherattendance .main select.textbox,.checkweekly .main select.textbox{
-	height: 50px;
-	width: 230px;
+	height: 32px;
+	width: 180px;
 	padding-right: 50px;
   margin-right: 20px;
 }
@@ -98,7 +98,7 @@ option{font-size: 16px;}
   box-shadow: 0px 0px 0px red;
   outline: none;
   border-radius: 0;
-  font-size: 40px;
+  font-size: 26px;
 }
 
 .textbox{
@@ -106,7 +106,7 @@ option{font-size: 16px;}
 }
 
 .gatherattendance .textbox,.checkweekly .textbox{
-		font-size: 34px;
+		font-size: 24px;
 }
 
 .btn{
@@ -117,17 +117,18 @@ option{font-size: 16px;}
 }
 
 .btn-select{
-	font-size: 30px;
-	padding: 0 15px;
-	height: 50px;
+	font-size: 18px;
+	padding: 0 10px;
+	height: 34px;
+
 }
 
 .btn-register{
 	display: block;
-	 width: 428px;
-	 height: 72px;
+	 width: 228px;
+	 height: 52px;
 	 margin:0 auto;
-	 font-size: 32px;
+	 font-size: 24px;
 }
 
 
@@ -151,31 +152,37 @@ option{font-size: 16px;}
 	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
 	padding-right: 14px;
 
-	width: 490px;
-	background: url(../img/select.png) no-repeat right;
+	width: 428px;
+	background: url(../img/select.png) no-repeat right / 14% ;
 
 }
+
+.addmentor .main select.textbox{	
+	background: url(../img/select.png) no-repeat right / 7% ;
+
+}
+
 
 
 /*SideBar start*/
 .sidebar{
 	background-color: #418afe;
 	padding:0 0 0 16px;
-	font-size: 38px;
+	font-size: 24px;
 	height: 800px;
 	width:340px;
 	position: fixed;
-  left: 0;
-  top: 120px;
-  height: 100%;
-  width:340px;
-  overflow: hidden;
+	left: 0;
+	top: 120px;
+	height: 100%;
+	width:340px;
+	overflow: hidden;
 }
 
 .sidebar .nav li a{
 	color: #ffffff;
-	height: 110px;
-	line-height: 110px;
+	height: 80px;
+	line-height: 80px;
 	margin: 0;
 	padding: 0;
 	border-radius: 0;
@@ -226,7 +233,7 @@ option{font-size: 16px;}
 }
 
 .login .main>h1 {
-	font-size: 48px;
+	font-size: 34px;
 	height: 134px;
 	line-height: 134px;
 	color: #ffffff;
@@ -237,15 +244,15 @@ option{font-size: 16px;}
 
 .login .btn-register{
 		width: 414px;
-		height: 108px;
-		line-height: 100px;
+		height: 80px;
+		line-height: 50px;
 }
 
 .login .textbox{
-		width: 540px;
+		width: 400px;
 		margin-bottom: 76px;
 }
-.login .textframe{font-size: 40px;}
+.login .textframe{font-size: 24px;}
 
 /*login end*/
 
@@ -256,7 +263,7 @@ option{font-size: 16px;}
 	height: 120px;
 	color: #ffffff;
 	background-color: #47acff;
-	font-size: 48px;
+	font-size: 34px;
 	line-height:120px;
 	padding: 0 30px;
 	width: 100%;
@@ -267,12 +274,12 @@ option{font-size: 16px;}
 }
 
 .title .text-left{
-	font-size: 48px;
+	font-size: 24px;
 	/*line-height:80px;*/
 }
 
 .title .post{
-	font-size: 38px;
+	font-size: 20px;
 }
 
 .title .glyphicon-arrow-right{
@@ -304,7 +311,11 @@ option{font-size: 16px;}
   width: 100px;
 }
 
-
+.gatherattendance .table>tbody>tr>td.status0{
+	  color: #46ad7e;
+		background-color: #e3ffcf;
+		border-color: #8fe399;
+}
 .gatherattendance .table>tbody>tr>td.status1{
 	  color: #a21b19;
     background-color: #ffdcdc;
@@ -391,3 +402,8 @@ option{font-size: 16px;}
 .check_sel{
 	border: 1px solid #47acff;margin-top: 100px;padding: 20px;text-align: center;
 }
+
+.resetpsd  .textbox {
+    width: 380px;
+}
+

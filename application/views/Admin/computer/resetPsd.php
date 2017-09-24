@@ -2,14 +2,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>AddAdmin</title>
+		<title>修改密码</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 	</head>
 	<body>
-		<div class="addadmin">
+		<div class="addadmin resetpsd">
 			<div class="title">
 					<div class="pull-left">考勤系统管理后台</div>
 					<div class="post pull-right">
@@ -68,10 +69,10 @@
  					<div class="main">
  						<form class="content" action="/admin/resetPsd" method="post">
  							<div class="textframe  clearfix">
- 								<label for="" class="pull-left">原密码：</label>
+ 								<label for="" class="pull-left">原&nbsp; 密&nbsp;码：</label>
  								<input type="password" class="textbox" placeholder="" name="password" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
  									
- 								<label for="" class="pull-left">新密码：</label>
+ 								<label for="" class="pull-left">新&nbsp; 密&nbsp;码：</label>
  								<input type="password" class="textbox" placeholder="" name="newpsd" style="-webkit-box-shadow: 0px 0px 0px 50px #ffffff inset;">
 
    								<label for="" class="pull-left">确认密码：</label>
