@@ -46,7 +46,7 @@ class User extends Tracer
         $date     = date('Y-m-d H:i:s');
         $password = md5($psd);
 
-        ($message = $this->db->check_sole($email, $username, $nickname)) === 1 or $this->jump('skip', $message,'viewer/signup');
+        ($message = $this->db->check_sole($email, $username, $nickname,$qq)) === 1 or $this->jump('skip', $message,'viewer/signup');
 
         $sql  = "INSERT INTO user VALUE (DEFAULT,?,?,?,?,?,0,0,'$date','$date')";
         $stmt = $this->db->connect->prepare($sql);

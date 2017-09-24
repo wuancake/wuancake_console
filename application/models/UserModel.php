@@ -37,10 +37,11 @@ class UserModel extends TracerModels
      * @param $username mixed 用户名
      * @param $email mixed 电子邮箱
      * @param $nickname mixed 用户昵称
+     * @param $qq mixed 用户QQ
      * @return string 如果用户名、电子邮箱或用户昵称存在，则返回存在字符串
      * @return integer 如果以上三项都未被注册，则返回整型数值1
      */
-    public function check_sole($email, $username = null, $nickname = null) {
+    public function check_sole($email, $username = null, $nickname = null,$qq = null) {
         $sql  = "SELECT email FROM user WHERE email = ?";
         $stmt = $this->connect->prepare($sql);
         $stmt->bind_param('s', $email);
@@ -68,6 +69,17 @@ class UserModel extends TracerModels
                 return '该昵称已被注册';
             $stmt->free_result();
         }
+
+        if (isset($qq)) {
+            $sql  = "SELECT QQ FROM user WHERE QQ = ?";
+            $stmt = $this->connect->prepare($sql);
+            $stmt->bind_param('s', $qq);
+            $stmt->execute() or $this->jump('skip', '查询出错');
+            if ($stmt->fetch())
+                return '该QQ已被注册';
+            $stmt->free_result();
+        }
+
         $stmt->close();
 
         return 1;
