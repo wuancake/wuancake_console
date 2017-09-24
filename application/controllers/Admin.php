@@ -35,7 +35,7 @@ class Admin extends Tracer
         //对数据库数据进行考勤操作
         $this->attend();
 
-        $this->jump('skip', '登陆成功,即将转向主页', 'viewerb/checkWeekly');
+        $this->jump('skip', '登录成功,即将转向主页', 'viewerb/checkWeekly');
     }
 
 

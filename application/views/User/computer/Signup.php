@@ -44,7 +44,7 @@
                 <button class="btn btn-primary" type="submit"><span>注册</span></button>
             </div>
             <div class="sign-in-href ">
-                -><a href="/viewer/index" class="sign-up-a">登陆</a>
+                -><a href="/viewer/index" class="sign-up-a">登录</a>
             </div>
         </form>
     </div>

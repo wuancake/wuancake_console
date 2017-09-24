@@ -29,7 +29,7 @@
                 <span class="glyphicon iconfont icon-yanjing"></span>
             </div>
             <div class="sign-in-btn">
-                <button class="btn btn-primary" type="submit"><span>登陆</span></button>
+                <button class="btn btn-primary" type="submit"><span>登录</span></button>
             </div>
             <div class="sign-up-href">
                 -><a href="/viewer/signup" class="sign-up-a">注册</a>

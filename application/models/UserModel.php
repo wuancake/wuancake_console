@@ -197,7 +197,7 @@ class UserModel extends TracerModels
 
     /**
      * 查询用户的分组代号
-     * 需要登陆后使用
+     * 需要登录后使用
      * @return integer 用户的分组代号
      */
     public function sel_group(){

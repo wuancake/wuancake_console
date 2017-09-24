@@ -54,7 +54,7 @@ class User extends Tracer
         $stmt->execute() or $this->jump('skip', '注册失败，可能含有非法信息', 'viewer/signup');
         $stmt->close();
 
-        $this->jump('skip', '注册成功,即将转向登陆界面', 'viewer/index');
+        $this->jump('skip', '注册成功,即将转向登录界面', 'viewer/index');
     }
 
 
@@ -87,7 +87,7 @@ class User extends Tracer
         $this->db->exist_group() or $this->jump('skip', '你尚未加入分组，请先加入分组', 'viewer/join_group');
 
 
-        $this->jump('skip', '登陆成功,即将转向主页', 'viewer/index');
+        $this->jump('skip', '登录成功,即将转向主页', 'viewer/index');
     }
 
 
