@@ -251,7 +251,7 @@ window.onload = function (){
 
 					for (var i =0; i <num;i++) {
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num == week_num && json["data"][i].week1 == "1") {
+							if (create_num >= week_num && json["data"][i].week1 == "1") {
 								
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
@@ -341,7 +341,7 @@ window.onload = function (){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num == week_num && json["data"][i].week1 == "1") {
+							if (create_num >= week_num && json["data"][i].week1 == "1") {
 								
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
@@ -502,7 +502,7 @@ $(document).ready(function(){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num == week_num && json["data"][i].week1 == "1") {
+							if (create_num >= week_num && json["data"][i].week1 == "1") {
 								
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
@@ -589,7 +589,7 @@ $(document).ready(function(){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num == week_num && json["data"][i].week1 == "1") {
+							if (create_num >= week_num && json["data"][i].week1 == "1") {
 								
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
