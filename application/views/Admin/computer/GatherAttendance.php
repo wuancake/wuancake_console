@@ -204,8 +204,21 @@ function weeknum(){
 }
 
 
+function createNum(cnum){
+      	var groupTime = new Date(cnum);
+		var targetTime = (new Date(2015, 10, 2, 0, 0, 0)).getTime();
+		// 将时间转位天数
+		var offsetTime =groupTime - targetTime;
+		// 将时间转位天数
+		var offsetDays =Math.floor((offsetTime / (3600 * 24 * 1000))/7);
+		
+		
+		return offsetDays;
+}
+
 
 window.onload = function (){
+
 	
 	 	//表头刷新
 		var week_num = weeknum();
@@ -224,8 +237,7 @@ window.onload = function (){
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
-      				
-      				
+      						
       				page({
 					
 					id:"pagination",   //当前id
@@ -238,8 +250,17 @@ window.onload = function (){
           			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
-						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							var create_num = createNum(json["data"][i].create_time);
+							if (create_num == week_num && json["data"][i].week1 == "1") {
+								
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} else{
+
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
@@ -247,7 +268,8 @@ window.onload = function (){
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
-          			 	            	
+							}
+
 					};
 						//回调函数，在这里写相关显示传参数
 
@@ -318,7 +340,17 @@ window.onload = function (){
 
 					for (var i =0; i <num;i++) {
 						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							var create_num = createNum(json["data"][i].create_time);
+							if (create_num == week_num && json["data"][i].week1 == "1") {
+								
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} else{
+
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
@@ -326,6 +358,7 @@ window.onload = function (){
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+							}
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -468,7 +501,17 @@ $(document).ready(function(){
 
 					for (var i =0; i <num;i++) {
 						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							var create_num = createNum(json["data"][i].create_time);
+							if (create_num == week_num && json["data"][i].week1 == "1") {
+								
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} else{
+
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
@@ -476,6 +519,7 @@ $(document).ready(function(){
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+							}
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -544,7 +588,17 @@ $(document).ready(function(){
 
 					for (var i =0; i <num;i++) {
 						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							var create_num = createNum(json["data"][i].create_time);
+							if (create_num == week_num && json["data"][i].week1 == "1") {
+								
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} else{
+
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
@@ -552,6 +606,7 @@ $(document).ready(function(){
           			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
           			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
           			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+							}
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
