@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Login</title>
+		<title>登录</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 
 	</head>
@@ -20,7 +21,7 @@
  						<input type="email"  class="pull-left textbox" placeholder="" name="email" style="-webkit-box-shadow: 0px 0px 0px 50px #f5f9ff inset;">
  							
  						<label for="" class="pull-left">密码：</label>
- 						<input type="password" class="textbox" placeholder="" name="password">
+ 						<input type="password" class="pull-left textbox" placeholder="" name="password">
  							
  						<button type="submit" class="btn btn-default btn-register">登 录</button>
   					</div>

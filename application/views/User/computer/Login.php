@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>登录界面</title>
+    <title>登录</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="/public/User/computer/css/base.css" />
     <link rel="stylesheet" href="/public/User/computer/css/public.css">
-
+	<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
+		
 
 </head>
 

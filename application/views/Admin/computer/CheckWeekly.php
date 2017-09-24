@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>CheckWeekly</title>
+		<title>查看周报</title>
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.css" />
 		<link rel="stylesheet" href="/public/User/bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/public/Admin/css/public.css" />
+		<link rel="shortcut icon" type="image/x-icon"  href="/public/Admin/img/wuanico.ico" />
 		
 		
 		
@@ -208,7 +209,7 @@ function weeknum(){
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;
-      				var pageSize = 5;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -220,19 +221,27 @@ function weeknum(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
+          			
 
 					for (var i =0; i <num;i++) {
 						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+						if (json["data"][i].status =="1") {
+							
+							
+						} else{
+							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].name + "</td>" +
           			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
           			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
           			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
+							
+						}
           			 	            	
-	};
+					};
 						//回调函数，在这里写相关显示传参数
 
-//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+							num = itable.rows.length;   //表格所有行数(所有记录数)
 							var totalPage = 0;   //   总页数       
 				
 						//总共分几页
@@ -283,7 +292,7 @@ function weeknum(){
 					sel_dis.disabled= true;
       				
       				var num = json["data"].length;
-      				var pageSize = 5;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -295,19 +304,26 @@ function weeknum(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
-
+          			$("#warning").html("");
+          			
 					for (var i =0; i <num;i++) {
 						
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+						if (json["data"][i].status =="1") {
+							
+							
+						} else{
+							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].name + "</td>" +
           			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
           			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
           			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
-          			 	            	
+							
+						}
+	            	
 					};
 						//回调函数，在这里写相关显示传参数
 
-//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+							num = itable.rows.length;   //表格所有行数(所有记录数)
 							var totalPage = 0;   //   总页数       
 				
 						//总共分几页
@@ -387,7 +403,7 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
-      				var pageSize = 5;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -399,20 +415,26 @@ $(document).ready(function(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						
 											
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							if (json["data"][i].status =="1" ) {
+							
+							
+						} else{
+							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].name + "</td>" +
           			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
           			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
           			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
-          			 	            	
+							
+						}
 					};
 						//回调函数，在这里写相关显示传参数
 
-//						var numb = itable.rows.length;   //表格所有行数(所有记录数)
+						num = itable.rows.length;   //表格所有行数(所有记录数)
 						var totalPage = 0;   //   总页数       
 				
 						//总共分几页
@@ -460,7 +482,7 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
-      				var pageSize = 5;	   //每页显示行数  
+      				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
       				
@@ -472,20 +494,26 @@ $(document).ready(function(){
 					callBack:function(pno){
 					var itable = document.getElementById("idData");
           			$("#idData").html("");
+          			$("#warning").html("");
 
 					for (var i =0; i <num;i++) {
 						
 											
-					itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+							if (json["data"][i].status =="1") {
+							
+							
+						} else{
+							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].name + "</td>" +
           			 	             	"<td>"+ json["data"][i].week_num + "</td>" +
           			 	            	"<td>"+ status(json["data"][i].status) + "</td>" +
           			 	            	"<td>"+ json["data"][i].text+ "</td></tr>"; 
-          			 	            	
+							
+						}
 					};
 						//回调函数，在这里写相关显示传参数
 
-//							var numb = itable.rows.length;   //表格所有行数(所有记录数)
+							num = itable.rows.length;   //表格所有行数(所有记录数)
 							var totalPage = 0;   //   总页数       
 				
 						//总共分几页
