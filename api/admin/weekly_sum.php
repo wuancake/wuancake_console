@@ -34,7 +34,7 @@ if (empty($_GET['week'])) {
         and json(['error' => '权限不足，导师只能查看本组学员的考勤汇总']);
 
         $res = $connect->query("
-             SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4
+             SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4,user_group.create_time
              FROM 
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
@@ -52,7 +52,7 @@ if (empty($_GET['week'])) {
         ($_SESSION['admin']['auth'] == 1) && ($_SESSION['admin']['group'] !== $_GET['group'])
         and json(['error' => '权限不足，导师只能查看本组学员的考勤汇总']);
 
-        $res = $connect->query("SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4
+        $res = $connect->query("SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4,user_group.create_time
              FROM 
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
@@ -77,7 +77,7 @@ if (empty($_GET['week'])) {
         $week_num3 = $week_num2 - 1;
         $week_num4 = $week_num3 - 1;
 
-        $res = $connect->query("SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4
+        $res = $connect->query("SELECT user.id,user_group.group_id,user.user_name,user.qq,a.status AS week1,b.status AS week2,c.status AS week3,d.status AS week4,user_group.create_time
              FROM 
              (((report AS a INNER JOIN user ON a.user_id = user.id AND a.week_num = $week_num1) 
              INNER JOIN report AS b ON a.user_id = b.user_id AND b.week_num = $week_num2)
