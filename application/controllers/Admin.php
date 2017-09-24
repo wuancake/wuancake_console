@@ -167,10 +167,10 @@ class Admin extends Tracer
         $last_week = ceil((time() - strtotime('2015-11-02')) / 604800) - 1;
         $time = date('Y-m-d H:i:s');
 
-        $sql_query = "SELECT user_id,group_id FROM user_group WHERE deleteFlg != 1 AND
+        $sql_query = "SELECT user_id,group_id,create_time FROM user_group WHERE deleteFlg != 1 AND
                     user_id NOT IN (SELECT user_id AS id FROM report WHERE week_num = ?);";
 
-        $sql_insert = "INSERT INTO report VALUE (?,?,?,'未提交',1,'$time')";
+        $sql_insert = "INSERT INTO report VALUE (?,?,?,'未提交',?,'$time')";
 
         $stmt_query = $this->db->connect->prepare($sql_query);
         $stmt_insert = $this->db->connect->prepare($sql_insert);
@@ -178,20 +178,28 @@ class Admin extends Tracer
         for ($week = 83; $week <= $last_week; $week++) {
 
             $stmt_query->bind_param('i',$week);
-            $stmt_query->bind_result($user_id,$group_id);
+            $stmt_query->bind_result($user_id,$group_id,$ctime);
             $stmt_query->execute() or die('查询失败');
 
             while ($stmt_query->fetch()) {
                 if (empty($user_id)) continue 2;
                 $list[] = [
                     'user_id' => $user_id,
-                    'group' => $group_id
+                    'group' => $group_id,
+                    'ctime'=>$ctime
                 ];
             }
             $stmt_query->free_result();
 
             foreach ($list as $info){
-                $stmt_insert->bind_param('iii',$week,$info['user_id'],$info['group']);
+                if (strtotime('this week') <= strtotime($info['ctime']) &&
+                    strtotime('this week +6 days') >= strtotime($info['ctime'])){
+                    $s = 0;
+                    $stmt_insert->bind_param('iiii',$week,$info['user_id'],$info['group'],$s);
+                }else {
+                    $s = 1;
+                    $stmt_insert->bind_param('iiii', $week, $info['user_id'], $info['group'], $s);
+                }
                 $stmt_insert->execute() or die('操作失败'.$stmt_insert->error);
             }
             unset($list);
