@@ -29,6 +29,7 @@ class User extends Tracer
     public function register() {
         $username = htmlspecialchars($this->post('username', 'viewer/signup'));
         $email    = $this->post('email', 'viewer/signup');
+        strpos($email,'@') === false and $this->jump('skip','邮箱地址错误','viewer/signup');
         $nickname = htmlspecialchars($this->post('nickname', 'viewer/signup'));
         $psd      = $this->post('password', 'viewer/signup');
         $qq       = $this->post('qq', 'viewer/signup');
@@ -182,32 +183,32 @@ class User extends Tracer
 //    }
 
 
-    /**
-     * 验证url合法性，如果合法，跳转到修改密码界面
-     */
-    public function verify_psdtoken() {
-        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
-        isset($_GET['key']) or $this->jump('skip', '非法访问', 'viewer/index');
-
-        $info = explode('*', $_GET['key']);
-
-        sizeof($info) === 3 or $this->jump('skip', '无效的url');
-
-        $body = $info[0] . '*' . $info[1];
-
-        hash_hmac('sha256', $body, 'foo') == $info[2]
-        or
-        $this->jump('skip', '无效的url', 'viewer/login');
-
-        $email = $info[0];
-        $time  = $info[1];
-
-        $time >= time() or $this->jump('skip', '该链接已过期', 'viewer/index');
-
-        $_SESSION['psd_token'] = $email;
-        $this->view('resetPsd');
-
-    }
+//    /**
+//     * 验证url合法性，如果合法，跳转到修改密码界面
+//     */
+//    public function verify_psdtoken() {
+//        //key值的构成为：base64(用户email).base64(url过期时间).base64(令牌)
+//        isset($_GET['key']) or $this->jump('skip', '非法访问', 'viewer/index');
+//
+//        $info = explode('*', $_GET['key']);
+//
+//        sizeof($info) === 3 or $this->jump('skip', '无效的url');
+//
+//        $body = $info[0] . '*' . $info[1];
+//
+//        hash_hmac('sha256', $body, 'foo') == $info[2]
+//        or
+//        $this->jump('skip', '无效的url', 'viewer/login');
+//
+//        $email = $info[0];
+//        $time  = $info[1];
+//
+//        $time >= time() or $this->jump('skip', '该链接已过期', 'viewer/index');
+//
+//        $_SESSION['psd_token'] = $email;
+//        $this->view('resetPsd');
+//
+//    }
 
 
     /**
