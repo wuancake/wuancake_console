@@ -131,9 +131,9 @@ class User extends Tracer
     public function reset_psd() {
         $this->db->check_state();
 
-        $psd      = $this->post('password', 'viewer/reset_psd');
-        $newpsd   = $this->post('newpsd', 'viewer/reset_psd');
-        $renewpsd = $this->post('repassword', 'viewer/reset_psd');
+        $psd      = $this->post('password', 'viewer/change_psd');
+        $newpsd   = $this->post('newpsd', 'viewer/change_psd');
+        $renewpsd = $this->post('repassword', 'viewer/change_psd');
 
         $newpsd === $renewpsd or $this->jump('skip', '两次输入的密码不同', 'viewer/change_psd');
 
