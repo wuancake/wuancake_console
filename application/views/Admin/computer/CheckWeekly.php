@@ -209,20 +209,37 @@ function weeknum(){
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr style='display: none;'><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
+      				
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
+					
+					
+					
       				
       				page({
 					
 					id:"pagination",   //当前id
 					nowNum:page_now,//当前页
-					allNum:page_num, //显示总页妈
+					allNum:page_num, //显示总页
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+
           			$("#idData").html("");
           			$("#warning").html("");
-          			
+          			var num = json["data"].length;
 
 					for (var i =0; i <num;i++) {
 						
@@ -292,6 +309,20 @@ function weeknum(){
 					sel_dis.disabled= true;
       				
       				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr style='display: none;'><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
+					
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -302,9 +333,11 @@ function weeknum(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+
           			$("#idData").html("");
           			$("#warning").html("");
+          			
+          			var num = json["data"].length;
           			
 					for (var i =0; i <num;i++) {
 						
@@ -403,6 +436,19 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr style='display: none;'><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -413,9 +459,11 @@ $(document).ready(function(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+					
           			$("#idData").html("");
           			$("#warning").html("");
+          			
+          			var num = json["data"].length;
 
 					for (var i =0; i <num;i++) {
 						
@@ -482,6 +530,19 @@ $(document).ready(function(){
            	dataType:'json',   		
       		success:function(json){
 				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr style='display: none;'><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -492,9 +553,11 @@ $(document).ready(function(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+					
           			$("#idData").html("");
           			$("#warning").html("");
+          			
+          			var num = json["data"].length;
 
 					for (var i =0; i <num;i++) {
 						
