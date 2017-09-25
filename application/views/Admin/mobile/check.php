@@ -7,12 +7,15 @@
     	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 		<title>学员检索</title>
 		<!--<link rel="stylesheet" href="/public/User/mobile/css/base.css" />-->
-    	<link rel="stylesheet" href="../../../public/User/mobile/css/base.css" />
+    	<link rel="stylesheet" href="/public/User/mobile/css/base.css" />
 
 
 	</head>
 	
 	<style>
+        .check_sel{
+            border: 1px solid #47acff;margin-top: 100px;padding: 20px;text-align: center;
+        }
 		.title{
 			width: 100%;
 			background-color: #418afe;
@@ -72,6 +75,24 @@
  				<div class="center-block">
    					<button type="submit" class="btn">检索</button>
 				</div>
+                <?php
+                if (!empty($info)){
+                    foreach ($info as $key=>$value) {
+                        echo
+                        "<div class=\"check_sel\">
+                                    <p>QQ：{$value['qq']}</p>
+   									<p>学员：{$value['name']}</p>
+   									<p>组别：{$value['group']}</p>
+   									</div>";
+                    }
+                }
+                if (!empty($message)){
+                    echo "
+                                        <div class=\"check_sel\">
+                                        <p>$message</p>
+                                        </div>";
+                }
+                ?>
  			</form>	
 		</div>
 	</body>
