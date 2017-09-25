@@ -50,7 +50,7 @@ class User extends Tracer
 
         $sql  = "INSERT INTO user VALUE (DEFAULT,?,?,?,?,?,0,0,'$date','$date')";
         $stmt = $this->db->connect->prepare($sql);
-        $stmt->bind_param('ssssi', $username, $email, $nickname, $password, $qq);
+        $stmt->bind_param('sssss', $username, $email, $nickname, $password, $qq);
         $stmt->execute() or $this->jump('skip', '注册失败，可能含有非法信息', 'viewer/signup');
         $stmt->close();
 
