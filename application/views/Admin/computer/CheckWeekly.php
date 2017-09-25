@@ -209,26 +209,41 @@ function weeknum(){
            		dataType:'json',   		
       			success:function(json){
       				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
+      				
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
+					
+					
+					
       				
       				page({
 					
 					id:"pagination",   //当前id
 					nowNum:page_now,//当前页
-					allNum:page_num, //显示总页妈
+					allNum:page_num, //显示总页
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+
           			$("#idData").html("");
           			$("#warning").html("");
-          			
+          			var num = json["data"].length;
 
 					for (var i =0; i <num;i++) {
-						
 						if (json["data"][i].status =="1") {
-							
-							
+
 						} else{
 							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].name + "</td>" +
@@ -292,6 +307,20 @@ function weeknum(){
 					sel_dis.disabled= true;
       				
       				var num = json["data"].length;
+					var itable = document.getElementById("idData");
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
+					
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -302,12 +331,13 @@ function weeknum(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+
           			$("#idData").html("");
           			$("#warning").html("");
           			
+          			var num = json["data"].length;
+          			
 					for (var i =0; i <num;i++) {
-						
 						if (json["data"][i].status =="1") {
 							
 							
@@ -402,7 +432,22 @@ $(document).ready(function(){
         	url:"/api/admin/show_weekly.php?week=" + sel_iweek +  "&session=" + session_id,
            	dataType:'json',   		
       		success:function(json){
+      			var itable = document.getElementById("idData");
+      			$("#idData").html("");
 				var num = json["data"].length;
+					
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -413,15 +458,14 @@ $(document).ready(function(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+					
           			$("#idData").html("");
           			$("#warning").html("");
+          			
+          			var num = json["data"].length;
 
-					for (var i =0; i <num;i++) {
-						
-											
+					for (var i =0; i <num;i++) {		
 							if (json["data"][i].status =="1" ) {
-							
 							
 						} else{
 							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
@@ -481,7 +525,22 @@ $(document).ready(function(){
         	url:"/api/admin/show_weekly.php?week=" + sel_iweek + "&group=" + sel_igroup + "&session="+session_id,
            	dataType:'json',   		
       		success:function(json){
+      			var itable = document.getElementById("idData");
+      			$("#idData").html("");
 				var num = json["data"].length;
+
+      				for (var i =0; i <num;i++) {
+						if (json["data"][i].status =="1") {
+							
+						} else{
+							
+							itable.innerHTML += "<tr><td></td><td></td><td></td><td></td><td></td></tr>" ;
+						}
+          			 	            	
+					};
+      				
+      				
+      				num = itable.rows.length;
       				var pageSize = 20;	   //每页显示行数  
 					var page_num = Math.ceil(num/pageSize);   //   总页数 : 
 					var page_now = page_num -(page_num-1);   //   等于第一页  
@@ -492,15 +551,14 @@ $(document).ready(function(){
 					nowNum:page_now,//当前页
 					allNum:page_num, //显示总页妈
 					callBack:function(pno){
-					var itable = document.getElementById("idData");
+					
           			$("#idData").html("");
           			$("#warning").html("");
+          			
+          			var num = json["data"].length;
 
-					for (var i =0; i <num;i++) {
-						
-											
-							if (json["data"][i].status =="1") {
-							
+					for (var i =0; i <num;i++) {			
+						if (json["data"][i].status =="1") {
 							
 						} else{
 							itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
@@ -573,6 +631,7 @@ function page(opt){
 				
 				//显示    首页btn
 				if(nowNum>=4 && allNum>=6){ 
+					obj.style.display="block";
 					var oA = document.createElement("a");
 					oA.href = "#1";
 					oA.innerHTML = "首页"
@@ -580,6 +639,7 @@ function page(opt){
 				}
 				//显示    上一页btn
 				if(nowNum>=2){ 
+					obj.style.display="block";
 					var oA = document.createElement("a");
 					oA.href = "#" + (nowNum -1);
 					oA.innerHTML = "上一页"
@@ -588,7 +648,7 @@ function page(opt){
 				
 				//当总页数小于等于5的时候
 				if (allNum<=5) {
-					
+					obj.style.display="block";
 					for (var i =1;i<=allNum;i++) {
 						//创建a标签
 						var oA = document.createElement("a");
@@ -610,6 +670,7 @@ function page(opt){
 				}
 				//当总页数大于5的时候
 				else{
+					obj.style.display="block";
 					for (var i =1;i<=5;i++) {
 						var oA = document.createElement("a");
 
@@ -628,7 +689,7 @@ function page(opt){
 						
 						
 						else if((allNum -nowNum) == 0 ||(allNum -nowNum) == 1){
-							
+							obj.style.display="block";
 							oA.href = "#" + (allNum - 5 + i);
 							
 
@@ -647,6 +708,7 @@ function page(opt){
 						}
 						
 						else{
+							obj.style.display="block";
 							oA.href = "#" + (nowNum - 3 + i);
 							
 							if (i==3) {
@@ -665,6 +727,7 @@ function page(opt){
 				
 			//显示    尾页btn	
 			if((allNum - nowNum)>=3 && allNum >=6){
+				obj.style.display="block";
 				var oA = document.createElement("a");
 					oA.href = "#" + allNum;
 					oA.innerHTML = "尾页"
@@ -672,6 +735,7 @@ function page(opt){
 			}
 			//显示    下一页btn	
 			if((allNum - nowNum)>=1){
+				obj.style.display="block";
 				var oA = document.createElement("a");
 					oA.href = "#" + (nowNum +1);
 					oA.innerHTML = "下一页"
@@ -691,6 +755,7 @@ function page(opt){
 			}
 			else{
 				//给a添加点击事件
+				obj.style.display="block";
 				var aA = obj.getElementsByTagName("a");
 				for (var i =0;i<aA.length;i++) {
 					aA[i].onclick = function(){
