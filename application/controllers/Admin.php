@@ -21,24 +21,38 @@ class Admin extends Tracer
      */
     public function login()
     {
-        $this->db->check_state() and $this->jump('skip', '你已登录', 'viewerb/checkWeekly');
+        if ($this->terminal == 'computer') {
+            $this->db->check_state() and $this->jump('skip', '你已登录', 'viewerb/checkWeekly');
 
-        $email = $this->post('email', 'viewerb/login');
-        $psd = $this->post('password', 'viewerb/login');
+            $email = $this->post('email', 'viewerb/login');
+            $psd = $this->post('password', 'viewerb/login');
 
-        ($res = $this->db->check_sole(addslashes($email))) === 0 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewerb/login');
+            ($res = $this->db->check_sole(addslashes($email))) === 0 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewerb/login');
 
-        $res['password'] == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewerb/login');
+            $res['password'] == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewerb/login');
 
-        //验证成功,储存session&cookie信息
-        $this->db->setToken($res['id'], $res['username'], $res['auth'], $res['group_id']);
-        //对数据库数据进行考勤操作
-        $this->attend();
+            //验证成功,储存session&cookie信息
+            $this->db->setToken($res['id'], $res['username'], $res['auth'], $res['group_id']);
+            //对数据库数据进行考勤操作
+            $this->attend();
 
-        if ($this->terminal == 'mobile'){
-            $this->jump('skip', '登录成功,即将转向主页', 'viewerb/check');
-        }else {
             $this->jump('skip', '登录成功,即将转向主页', 'viewerb/checkWeekly');
+        }else{
+            $this->db->check_state() and $this->jump('skip', '你已登录', 'viewerb/check');
+
+            $email = $this->post('email', 'viewerb/login');
+            $psd = $this->post('password', 'viewerb/login');
+
+            ($res = $this->db->check_sole(addslashes($email))) === 0 and $this->jump('skip', '该邮箱尚未在本网站注册', 'viewerb/login');
+
+            $res['password'] == md5($psd) or $this->jump('skip', '用户名或密码错误！', 'viewerb/login');
+
+            //验证成功,储存session&cookie信息
+            $this->db->setToken($res['id'], $res['username'], $res['auth'], $res['group_id']);
+            //对数据库数据进行考勤操作
+            $this->attend();
+
+            $this->jump('skip', '登录成功,即将转向主页', 'viewerb/check');
         }
     }
 
