@@ -14,7 +14,7 @@ $url_info = parse_url($_SERVER['REQUEST_URI']);
 
 //获取URL中的信息
 $info = array_filter(explode('/', $url_info['path']));
-if ($info[1] == 'index.php') {
+if (isset($info[1]) && $info[1] == 'index.php') {
     array_shift($info);
 }
 
