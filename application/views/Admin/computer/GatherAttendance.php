@@ -251,15 +251,57 @@ window.onload = function (){
 
 					for (var i =0; i <num;i++) {
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num >= week_num && json["data"][i].week1 == "1") {
-								
+							// if ((week_num - create_num>=0 && week_num - create_num<=2) && json["data"][i].week1 == "1") { ////四列合并，保护期	
+								// itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	        //     	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	        //      	"<td>"+ json["data"][i].qq + "</td>" +
+          			 	        //     	"<td colspan='4' class='status0'>保护期</td>"+
+          			 	        //     	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+
+
+							if ((week_num - create_num) <= 0) {
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
           			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
-							} else{
+							}
 
+							else if ((week_num - create_num) == 1) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
+
+							else if ((week_num - create_num) == 2) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} 
+							
+							else if ((week_num - create_num) == 3) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
+          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week3) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}else{
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
           			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
           			 	             	"<td>"+ json["data"][i].qq + "</td>" +
@@ -341,24 +383,58 @@ window.onload = function (){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num >= week_num && json["data"][i].week1 == "1") {
+								if ((week_num - create_num) <= 0) {
+									itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+											   "<td>"+ json["data"][i].user_name + "</td>" +
+												"<td>"+ json["data"][i].qq + "</td>" +
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+								}
+	
+								else if ((week_num - create_num) == 1) {
+									itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+											   "<td>"+ json["data"][i].user_name + "</td>" +
+												"<td>"+ json["data"][i].qq + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+								}
+	
+								else if ((week_num - create_num) == 2) {
+									itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+											   "<td>"+ json["data"][i].user_name + "</td>" +
+												"<td>"+ json["data"][i].qq + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+											"<td class='status0'>保护期</td>"+
+											"<td class='status0'>保护期</td>"+
+											   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+								} 
 								
-								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
-							} else{
-
-								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
-							}
+								else if ((week_num - create_num) == 3) {
+									itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+											   "<td>"+ json["data"][i].user_name + "</td>" +
+												"<td>"+ json["data"][i].qq + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+											"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week3) + "</td>" +
+											"<td class='status0'>保护期</td>"+
+											   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+								}else{
+									itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+											   "<td>"+ json["data"][i].user_name + "</td>" +
+												"<td>"+ json["data"][i].qq + "</td>" +
+											   "<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+											   "<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
+											   "<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
+											   "<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
+											   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+								}
           			 	            	
 					};
 						//回调函数，在这里写相关显示传参数
@@ -502,23 +578,59 @@ $(document).ready(function(){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num >= week_num && json["data"][i].week1 == "1") {
-								
+							if ((week_num - create_num) <= 0) {
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
-							} else{
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
 
+							else if ((week_num - create_num) == 1) {
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
+
+							else if ((week_num - create_num) == 2) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} 
+							
+							else if ((week_num - create_num) == 3) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week3) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
+							
+							else{
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										   "<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										   "<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
+										   "<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
+										   "<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
 							}
           			 	            	
 					};
@@ -589,23 +701,59 @@ $(document).ready(function(){
 					for (var i =0; i <num;i++) {
 						
 							var create_num = createNum(json["data"][i].create_time);
-							if (create_num >= week_num && json["data"][i].week1 == "1") {
-								
+							if ((week_num - create_num) <= 0) {
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td colspan='4' class='status0'>保护期</td>"+
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
-							} else{
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
 
+							else if ((week_num - create_num) == 1) {
 								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-          			 	            	"<td>"+ json["data"][i].user_name + "</td>" +
-          			 	             	"<td>"+ json["data"][i].qq + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
-          			 	            	"<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
-          			 	            	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
+
+							else if ((week_num - create_num) == 2) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							} 
+							
+							else if ((week_num - create_num) == 3) {
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week2) + "</td>" +
+										"<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week3) + "</td>" +
+										"<td class='status0'>保护期</td>"+
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
+							}
+							
+							else{
+								itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
+										   "<td>"+ json["data"][i].user_name + "</td>" +
+											"<td>"+ json["data"][i].qq + "</td>" +
+										   "<td class='status"+json["data"][i].week1+"'>"+ status(json["data"][i].week1) + "</td>" +
+										   "<td class='status"+json["data"][i].week2+"'>"+ status(json["data"][i].week2) + "</td>" +
+										   "<td class='status"+json["data"][i].week3+"'>"+ status(json["data"][i].week3) + "</td>" +
+										   "<td class='status"+json["data"][i].week4+"'>"+ status(json["data"][i].week4) + "</td>" +
+										   "<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>"; 
 							}
           			 	            	
 					};
