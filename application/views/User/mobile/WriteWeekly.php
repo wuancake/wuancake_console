@@ -57,7 +57,8 @@
                     case 7:
                         echo 'Java组';
                         break;
-                } ?>：</label>
+                } ?>：
+            </label>
             <span class="la-horizontal-right"><?php echo $username; ?></span>
         </div>
         <div class="form-group la-horizontal  clearfix">
@@ -66,7 +67,8 @@
         </div>
         <div class="form-group la-horizontal  clearfix">
             <label class="la-horizontal-left">报告状态：</label>
-            <time class="la-horizontal-right la-danger"><?php switch ($status) {
+            <time class="la-horizontal-right la-danger">
+                <?php switch ($status) {
                     case 1:
                         echo '未提交';
                         break;
@@ -76,7 +78,8 @@
                     case 3:
                         echo '已请假';
                         break;
-                }; ?></time>
+                }; ?>
+            </time>
         </div>
         <div class="form-group la-horizontal  clearfix">
             <label class="la-horizontal-left">本周完成（必填）：</label>

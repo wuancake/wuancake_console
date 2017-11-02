@@ -41,30 +41,34 @@
             <div class="page with-sidebar">
                 <div class="page-header">
                     <img class="img-responsive" src="/public/User/mobile/img/logo.jpg" alt="用户头像">
-                    <div class="uid"><span><?php
+                    <div class="uid">
+                        <span>
+                            <?php
                             switch ($group) {
                                 case 1:
-                                    echo 'PHP组';
+                                    echo 'PHP组:', $username;
                                     break;
                                 case 2:
-                                    echo 'Web前端组';
+                                    echo 'Web前端组:', $username;
                                     break;
                                 case 3:
-                                    echo 'UI设计组';
+                                    echo 'UI设计组:', $username;
                                     break;
                                 case 4:
-                                    echo 'Android组';
+                                    echo 'Android组:', $username;
                                     break;
                                 case 5:
-                                    echo '产品经理组';
+                                    echo '产品经理组:', $username;
                                     break;
                                 case 6:
-                                    echo '软件测试组';
+                                    echo '软件测试组:', $username;
                                     break;
                                 case 7:
-                                    echo 'Java组';
+                                    echo 'Java组:', $username;
                                     break;
-                            } ?>：<?php echo $username; ?></span></div>
+                            } ?>
+                        </span>
+                    </div>
                 </div>
                 <div class="page-sidebar text-center">
                     <ul class="sub-menu">

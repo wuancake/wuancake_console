@@ -55,7 +55,8 @@
                     case 7:
                         echo 'Java组';
                         break;
-                } ?>：</label>
+                } ?>：
+            </label>
             <span class="la-horizontal-right"><?php echo $username; ?></span>
         </div>
         <div class="form-group la-horizontal clearfix">
@@ -81,7 +82,7 @@
                 <button type="button" class="btn" value="1" id="one">一周</button>
                 <button type="button" class="btn" value="2" id="two">二周</button>
                 <button type="button" class="btn" value="3" id="three">三周</button>
-                <input type="hidden" name="num" id="num"  value="1"/>
+                <input type="hidden" name="num" id="num" value="1"/>
             </div>
 
         </div>
@@ -103,7 +104,7 @@
         crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         $("#one").bind("click", function () {
             $("#num").val("1");
@@ -120,7 +121,7 @@
             $("#one,#two,#three").removeClass("active");
             $("#three").addClass("active");
         });
-     });
+    });
 </script>
 
 </body>

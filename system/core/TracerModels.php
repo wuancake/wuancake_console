@@ -19,6 +19,8 @@ class TracerModels
 
     public function __construct() {
         $this->loadConfig();
+//        $dsn = "mysql:host={$this->host},dbname={$this->dbname},port={$this->port},socket={$this->socket}";
+//        $this->connect = new PDO($dsn,$this->username,$this->passwd);
         $this->connect = new mysqli($this->host, $this->username, $this->passwd, $this->dbname, $this->port, $this->socket);
         if ($this->connect->connect_error)
             die($this->connect->connect_error);

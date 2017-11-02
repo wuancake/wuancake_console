@@ -41,14 +41,9 @@
             <a href="/viewer/signup" class="btn btn-register">注册</a>
             <button id="logBtn" type="submit" class="btn">登录</button>
         </div>
-
     </form>
-
     <a href="/viewer/recover_psd" id="forgetPassword" class="forgetPassword">忘记密码？</a>
-
-
 </div>
-
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

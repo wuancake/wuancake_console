@@ -18,10 +18,6 @@ class Tracer
             $this->terminal = 'mobile';
         else
             $this->terminal = 'computer';
-//        if (strpos($agent, 'windows nt') || strpos($agent, 'macintosh'))
-//            $this->terminal = 'computer';
-//        else
-//            $this->terminal = 'mobile';
     }
 
 
