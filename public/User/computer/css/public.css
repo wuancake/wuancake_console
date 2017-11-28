@@ -173,6 +173,7 @@ textarea:-ms-input-placeholder {
   border: 1px solid rgb(40, 157, 255);
   padding: 10px 12px;
   resize: none;
+  overflow: hidden;
 }
 
 /* 更改密码 */
@@ -197,7 +198,7 @@ textarea:-ms-input-placeholder {
 }
 
 .column-password {
-  height: 270px;
+  height: 272px;
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
@@ -340,7 +341,7 @@ textarea:-ms-input-placeholder {
 /* 注册界面 */
 
 .sign-up-box {
-  height: 390px;
+  height: 392px;
   /*display: -webkit-flex;
   display: flex;
   flex-direction: column;
