@@ -177,6 +177,12 @@
                 case 7:
                     echo 'Java组';
                     break;
+                case 8:
+                    echo 'Python组';
+                    break;
+                case 9:
+                    echo 'IOS组';
+                    break;
             } ?>";
 
         var pageSize = 5;	   //每页显示行数

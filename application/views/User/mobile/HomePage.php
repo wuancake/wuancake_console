@@ -137,6 +137,12 @@
                 case 7:
                     echo 'Java组';
                     break;
+                case 8:
+                    echo 'Python组';
+                    break;
+                case 9:
+                    echo 'IOS组';
+                    break;
             } ?></span>：<span><?php echo $username; ?></span></p>
     <a href="/viewer/write_weekly" id="myweeklybtn" class="center-block btn">提交周报</a>
     <a href="/viewer/vacate" id="askleave" class="center-block btn">我要请假</a>

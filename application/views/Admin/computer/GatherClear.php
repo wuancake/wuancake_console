@@ -124,6 +124,12 @@
             case '7':
                 grouping = 'Java组';
                 break;
+            case '8':
+                grouping = 'Python组';
+                break;
+            case '9':
+                grouping = 'IOS组';
+                break;
         }
 
         return grouping;

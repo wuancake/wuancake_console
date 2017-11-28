@@ -86,6 +86,8 @@
                     <option value="5">产品经理组</option>
                     <option value="6">软件测试组</option>
                     <option value="7">JAVA组</option>
+                    <option value="8">Python组</option>
+                    <option value="9">IOS组</option>
                 </select>
 
 
