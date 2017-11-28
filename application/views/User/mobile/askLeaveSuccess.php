@@ -65,6 +65,12 @@
                                 case 7:
                                     echo 'Java组:', $username;
                                     break;
+                                case 8:
+                                    echo 'Python组:', $username;
+                                    break;
+                                case 9:
+                                    echo 'IOS组:', $username;
+                                    break;
                             } ?>
                         </span>
                     </div>

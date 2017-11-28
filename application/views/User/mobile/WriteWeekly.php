@@ -57,6 +57,12 @@
                     case 7:
                         echo 'Java组';
                         break;
+                    case 8:
+                        echo 'Python组';
+                        break;
+                    case 9:
+                        echo 'IOS组';
+                        break;
                 } ?>：
             </label>
             <span class="la-horizontal-right"><?php echo $username; ?></span>

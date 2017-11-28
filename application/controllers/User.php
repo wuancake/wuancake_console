@@ -102,7 +102,7 @@ class User extends Tracer
 
         $group_id = $this->post('genre', 'viewer/join_group');
 
-        $group_id >= 1 && $group_id <= 7 or $this->jump('skip', '非法操作，请返回后重试', 'viewer/join_group');
+        $group_id >= 1 && $group_id <= 9 or $this->jump('skip', '非法操作，请返回后重试', 'viewer/join_group');
 
         $id   = $_SESSION['token']['id'];
         $time = date('Y-m-d H:i:s');

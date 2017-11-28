@@ -69,6 +69,14 @@
                             <td><input type="radio" name="genre" id="Java" value="7"></td>
                             <td>JAVA组</td>
                         </tr>
+                        <tr>
+                            <td><input type="radio" name="genre" id="Python" value="8"></td>
+                            <td>Python组</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="genre" id="IOS" value="9"></td>
+                            <td>IOS组</td>
+                        </tr>
                         </tbody>
                         <table>
     		 			
