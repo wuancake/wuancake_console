@@ -115,6 +115,8 @@ class Admin extends Tracer
                                             WHEN g.group_id = 5 THEN '产品经理组'
                                             WHEN g.group_id = 6 THEN '软件测试组'
                                             WHEN g.group_id = 7 THEN 'Java组'
+                                            WHEN g.group_id = 8 THEN 'Python组'
+                                            WHEN g.group_id = 9 THEN 'IOS组'
                                             ELSE '其他组'
                                             END 'group'
                                             FROM
