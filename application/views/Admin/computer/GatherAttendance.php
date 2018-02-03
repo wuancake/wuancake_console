@@ -240,13 +240,6 @@
 
                             for (var i = 0; i < num; i++) {
                                 var create_num = createNum(json["data"][i].create_time);
-                                // if ((week_num - create_num>=0 && week_num - create_num<=2) && json["data"][i].week1 == "1") { ////四列合并，保护期
-                                // itable.innerHTML += "<tr><td>"+ group(json["data"][i].group_id)  + "</td>" +
-                                //     	"<td>"+ json["data"][i].user_name + "</td>" +
-                                //      	"<td>"+ json["data"][i].qq + "</td>" +
-                                //     	"<td colspan='4' class='status0'>保护期</td>"+
-                                //     	"<td>"+ "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' "+ json["data"][i].id +" '>移出</button>" + "</td></tr>";
-
 
                                 if ((week_num - create_num) <= 0) {
                                     itable.innerHTML += "<tr><td>" + group(json["data"][i].group_id) + "</td>" +
@@ -275,7 +268,7 @@
                                         "<td>" + json["data"][i].user_name + "</td>" +
                                         "<td>" + json["data"][i].qq + "</td>" +
                                         "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                        "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
@@ -286,8 +279,8 @@
                                         "<td>" + json["data"][i].user_name + "</td>" +
                                         "<td>" + json["data"][i].qq + "</td>" +
                                         "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week3) + "</td>" +
+                                        "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                        "<td class='status" + json["data"][i].week3 + "'>" + status(json["data"][i].week3) + "</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
                                 } else {
@@ -400,7 +393,7 @@
                                         "<td>" + json["data"][i].user_name + "</td>" +
                                         "<td>" + json["data"][i].qq + "</td>" +
                                         "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                        "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
@@ -411,8 +404,8 @@
                                         "<td>" + json["data"][i].user_name + "</td>" +
                                         "<td>" + json["data"][i].qq + "</td>" +
                                         "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
-                                        "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week3) + "</td>" +
+                                        "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                        "<td class='status" + json["data"][i].week3 + "'>" + status(json["data"][i].week3) + "</td>" +
                                         "<td class='status0'>保护期</td>" +
                                         "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
                                 } else {
@@ -594,7 +587,7 @@
                                             "<td>" + json["data"][i].user_name + "</td>" +
                                             "<td>" + json["data"][i].qq + "</td>" +
                                             "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                            "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
@@ -605,8 +598,8 @@
                                             "<td>" + json["data"][i].user_name + "</td>" +
                                             "<td>" + json["data"][i].qq + "</td>" +
                                             "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week3) + "</td>" +
+                                            "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                            "<td class='status" + json["data"][i].week3 + "'>" + status(json["data"][i].week3) + "</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
                                     }
@@ -718,7 +711,7 @@
                                             "<td>" + json["data"][i].user_name + "</td>" +
                                             "<td>" + json["data"][i].qq + "</td>" +
                                             "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                            "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
@@ -729,8 +722,8 @@
                                             "<td>" + json["data"][i].user_name + "</td>" +
                                             "<td>" + json["data"][i].qq + "</td>" +
                                             "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week1) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week2) + "</td>" +
-                                            "<td class='status" + json["data"][i].week1 + "'>" + status(json["data"][i].week3) + "</td>" +
+                                            "<td class='status" + json["data"][i].week2 + "'>" + status(json["data"][i].week2) + "</td>" +
+                                            "<td class='status" + json["data"][i].week3 + "'>" + status(json["data"][i].week3) + "</td>" +
                                             "<td class='status0'>保护期</td>" +
                                             "<td>" + "<button type='button'  onclick='rm(this)' class='btn-rm'  value=' " + json["data"][i].id + " '>移出</button>" + "</td></tr>";
                                     }
